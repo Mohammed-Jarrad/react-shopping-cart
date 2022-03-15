@@ -1,10 +1,11 @@
 import React from 'react'
 import '../../css/Footer/Footer.css'
+import {words} from '../../words'
 
 const Footer = () => {
     return (
         <footer>
-            made with ♥ Copy &copy; 2022
+            {words.footerTitle}
         </footer>
     )
 }

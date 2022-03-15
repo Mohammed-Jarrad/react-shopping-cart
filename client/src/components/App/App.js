@@ -1,4 +1,5 @@
 import React from "react";
+import { words } from "../../words";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
@@ -7,7 +8,7 @@ const App = () => {
     <div className="layout">
       <Header />
       <main>
-        Main
+        {words.content}
       </main>
       <Footer />
     </div>
