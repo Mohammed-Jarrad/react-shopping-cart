@@ -1,14 +1,23 @@
-import React from "react";
-import { words } from "../../words";
+import React, {useState} from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import Products from "../Products/Products";
+import data from '../../data.json'
 
 const App = () => {
+
+  let [products, setProducts] = useState(data)
+  
   return (
     <div className="layout">
       <Header />
       <main>
-        {words.content}
+        <div className="wrapper">
+          <Products products={products} />
+          <div className="filter-wrapper">
+            Filter
+          </div>
+        </div>
       </main>
       <Footer />
     </div>

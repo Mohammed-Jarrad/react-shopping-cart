@@ -1,0 +1,38 @@
+$mainColor: #2a5ea2;
+
+.products-wrapper {
+    width: 68%;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    .product-item {
+        img {
+            width: 100%;
+            height: 200px;
+            padding: 3px;
+            border: 1px solid #c0c0c0;
+            transition: all .3s;
+            &:hover {
+                transform: scale(1.03);
+            }
+        }
+        .product-desc {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            span {
+                display: inline-block;
+                color: red;
+            }
+        }
+        button {
+            border: none;
+            background: $mainColor;
+            color: white;
+            width: 100%;
+            padding: 7px;
+            cursor: pointer;
+        }
+    }
+}

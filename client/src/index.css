@@ -23,3 +23,13 @@ main {
     grid-area: main;
 }
 
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.filter-wrapper {
+    width: 30%;
+}
+
