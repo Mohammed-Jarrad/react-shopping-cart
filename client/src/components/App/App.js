@@ -6,7 +6,7 @@ import data from '../../data.json'
 
 const App = () => {
 
-  let [products, setProducts] = useState(data)
+  let [products] = useState(data)
   
   return (
     <div className="layout">
