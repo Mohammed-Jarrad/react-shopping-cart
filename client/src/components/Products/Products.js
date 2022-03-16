@@ -15,7 +15,7 @@ const Products = ({ products }) => {
 
     return (
         <div className='products-wrapper'>
-            {products.map(product =>
+            { products.map(product =>
                 (
                     <div key={product.id} className='product-item'>
                         <a href='#' onClick={() => openModal(product)}>

@@ -5,18 +5,38 @@
     font-family: 'cascadia code';
 }
 
+/* Container Style */
+.container {
+    padding: 30px 15px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 760px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 980px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1190px;
+    }
+}
 #root {
     height: 100vh;
 }
 
 .layout {
+    height: 100vh;
     display: grid;
-    grid-template-areas:
-        "header"
-        "main"
-        "footer";
+    grid-template-areas: "header" "main" "footer";
     grid-template-rows: 60px 1fr 60px;
-    height: 100%;
 }
 
 main {
@@ -24,12 +44,14 @@ main {
 }
 
 .wrapper {
+    padding: 20px;
+    grid-area: main;
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin: 10px auto;
 }
-
-.filter-wrapper {
-    width: 30%;
+@media (max-width: 991px) {
+    .wrapper {
+        flex-direction: column-reverse;
+    }
 }
-
