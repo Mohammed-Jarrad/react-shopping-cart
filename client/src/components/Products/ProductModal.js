@@ -9,6 +9,7 @@ const ProductModal = (props) => {
         <Modal
             isOpen={product}
             onRequestClose={() => closeModal()}
+            style={{ content: { width: '50%', margin: 'auto' } }}
         >
             <div className='product-info'>
                 <span className='close-icon' onClick={closeModal}> &times; </span>

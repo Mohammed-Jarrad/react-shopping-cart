@@ -1,23 +1,20 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Products from "../Products/Products";
 import data from '../../data.json'
+import Filter from "../Filter/Filter";
 
 const App = () => {
 
   let [products] = useState(data)
-  
+
   return (
     <div className="layout">
       <Header />
-      <main>
-        <div className="wrapper">
-          <Products products={products} />
-          <div className="filter-wrapper">
-            Filter
-          </div>
-        </div>
+      <main className="wrapper">
+        <Products products={products} />
+        <Filter />
       </main>
       <Footer />
     </div>
