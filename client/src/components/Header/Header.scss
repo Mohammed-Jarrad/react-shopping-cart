@@ -1,9 +1,14 @@
+// $mainColor: #333;
+$textColor: #fff;
+$mainColor: #2a5ea5;
+
 header {
   grid-area: header;
-  background-color: #2a5ea5;
-  color: white;
+  background-color: $mainColor;
+  color: $textColor;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
+  text-transform: uppercase;
 }

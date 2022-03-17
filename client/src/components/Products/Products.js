@@ -6,30 +6,41 @@ import ProductModal from './ProductModal'
 const Products = ({ products }) => {
 
     let [product, setProduct] = useState('')
+    let [isOpen, setIsOpen] = useState(false)
 
-    let openModal = (product) => {
-        setProduct(product)
+    let toggleModal = () => setIsOpen(!isOpen)
+
+    let closeModal = () => {
+        setProduct({}) // product = {}
+        toggleModal() // isOpen = false
     }
 
-    let closeModal = () => setProduct(false)
+    let addProduct = (product) => {
+        setProduct(product) // product = {1 Product}
+        toggleModal()   // isOpen = true
+    }
 
     return (
         <div className='products-wrapper'>
-            { products.map(product =>
-                (
-                    <div key={product.id} className='product-item'>
-                        <a href='#' onClick={() => openModal(product)}>
-                            <img src={product.imageUrl} alt={product.title} />
-                        </a>
-                        <div className='product-desc'>
-                            <p>{product.title}</p>
-                            <p>{product.price}<span>$</span></p>
-                        </div>
-                        <button>Add To Cart</button>
+            {typeof products === 'object' ? products.map(product =>
+            (
+                <div key={product.id} className='product-item'>
+                    <a href='#' onClick={() => addProduct(product)}>
+                        <img src={product.imageUrl} alt={product.title} />
+                    </a>
+                    <div className='product-desc'>
+                        <p>{product.title}</p>
+                        <p><span>$</span> {product.price}</p>
                     </div>
-                ))}
-                
-            <ProductModal product={product} closeModal={closeModal} />
+                    <button>Add To Cart</button>
+                </div>
+            )) : <div> {products} </div>}
+
+            <ProductModal
+                isOpen={isOpen}
+                product={product}
+                closeModal={closeModal}
+            />
         </div>
     )
 }

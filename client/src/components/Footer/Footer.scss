@@ -1,7 +1,11 @@
+$mainColor: #2a5ea5;
+// $mainColor: #333;
+$textColor: #fff;
+
 footer {
   grid-area: footer;
-  background-color: #2a5ea5;
-  color: white;
+  background-color: $mainColor;
+  color: $textColor;
   display: flex;
   justify-content: center;
   align-items: center;
