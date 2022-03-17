@@ -1,11 +1,13 @@
 import React from 'react'
 import '../../css/Header/Header.css'
-import {words} from '../../words'
+import { words } from '../../words'
 
 const Header = () => {
     return (
         <header>
-            {words.headerTitle}
+            <div className='container'>
+                {words.headerTitle}
+            </div>
         </header>
     )
 }
