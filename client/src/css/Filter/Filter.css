@@ -2,7 +2,11 @@
   margin-bottom: 30px;
   height: fit-content;
   border: 1px solid #c0c0c0;
-  padding-bottom: 10px;
+}
+@media (max-width: 991px) {
+  .filter-wrapper {
+    width: 100%;
+  }
 }
 .filter-wrapper .filter-title {
   background-color: #2a5ea5;
@@ -20,7 +24,7 @@
 .filter-wrapper select {
   width: 100%;
   padding: 10px;
-  margin-top: 4px;
+  margin: 4px auto;
   border: 1px solid #c0c0c0;
 }
 .filter-wrapper select:focus {

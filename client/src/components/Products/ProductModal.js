@@ -1,9 +1,7 @@
 import React from 'react'
 import Modal from 'react-modal'
 
-const ProductModal = (props) => {
-
-    let { product, isOpen, closeModal } = props;
+const ProductModal = ({ product, isOpen, closeModal }) => {
 
     Modal.setAppElement('#root')
 
@@ -21,7 +19,8 @@ const ProductModal = (props) => {
                     <p> - Title: {product.title} </p>
                     <p> - Description: {product.desc} </p>
                     <p> - Price: {product.price}$ </p>
-                    {/* <p> - Sizes: {product.sizes.map(e => <span>"{e}",  </span>)} </p> */}
+                    <p> - Sizes: {product && product.sizes.map(e => `[${e}] `)}</p>
+                    {/* <p> - Sizes: {product['sizes'].forEach(e => <span>"{e}",  </span>)} </p> */}
                 </div>
             </div>
         </Modal>
