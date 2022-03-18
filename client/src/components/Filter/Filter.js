@@ -1,20 +1,15 @@
 import React from 'react'
 import '../../css/Filter/Filter.css'
 
-const Filter = (props) => {
+const Filter = ({handleFilterBySize, handleFilterBySort, size, sort, products}) => {
 
-    let {handleFilterBySize, handleFilterBySort, size, sort} = props;
-    
     return (
         <div className="filter-wrapper">
             <div className='filter-title'>Filter</div>
-            <div className='no-of-products'>Number of Products is 4</div>
+            <div className='no-of-products'>{typeof products === 'object' ? products.length : '0'} Products </div>
             <div className='filter-by-sizing'>
                 <span>Size</span>
-                <select
-                    onChange={handleFilterBySize}
-                    value={size}
-                >
+                <select onChange={handleFilterBySize} value={size}>
                     <option value='ALL'>ALL</option>
                     <option value='XS'>XS</option>
                     <option value='S'>S</option>
