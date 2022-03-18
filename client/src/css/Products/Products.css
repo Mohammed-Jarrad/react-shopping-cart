@@ -1,19 +1,17 @@
 .products-wrapper {
-  flex: 1;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
-  margin-right: 30px;
-}
-@media (max-width: 767px) {
-  .products-wrapper {
-    margin-right: 0;
-  }
 }
 .products-wrapper .product-item {
   text-align: center;
   border: 2px solid #2a5ea5;
+}
+@media (max-width: 767px) {
+  .products-wrapper .product-item {
+    width: 100%;
+  }
 }
 .products-wrapper .product-item img {
   max-width: 100%;
