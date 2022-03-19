@@ -1,7 +1,7 @@
 [
     {
         "id": "id1",
-        "title": "Product 1",
+        "title": "Mouse",
         "imageUrl": "/images/product1.jpg",
         "desc": "This is product 1",
         "price": 30,
@@ -9,7 +9,7 @@
     },
     {
         "id": "id2",
-        "title": "Product 2",
+        "title": "Keyboard",
         "imageUrl": "/images/product2.jpg",
         "desc": "This is product 2",
         "price": 40,
@@ -17,7 +17,7 @@
     },
     {
         "id": "id3",
-        "title": "Product 3",
+        "title": "Headphone",
         "imageUrl": "/images/product3.jpg",
         "desc": "This is product 3",
         "price": 300,
@@ -25,7 +25,7 @@
     },
     {
         "id": "id4",
-        "title": "Product 4",
+        "title": "Laptop",
         "imageUrl": "/images/product4.jpg",
         "desc": "This is product 4",
         "price": 40,

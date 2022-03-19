@@ -1,0 +1,47 @@
+$textColor: #fff;
+$mainColor: #2a5ea5;
+
+.checkout-form {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #c0c0c0;
+  transition: all 0.3s;
+  .close-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  form {
+    > div {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      margin: 20px auto;
+      label {
+        margin-bottom: 4px;
+      }
+      input {
+        padding: 10px;
+        &:focus {
+          outline: none;
+        }
+      }
+      button {
+        background-color: $mainColor;
+        border: none;
+        padding: 10px;
+        color: #fff;
+        font-size: 17px;
+        margin-right: 3px;
+        cursor: pointer;
+        &:active {
+          transform: scale(0.99);
+        }
+      }
+    }
+  }
+}

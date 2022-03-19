@@ -1,0 +1,42 @@
+.checkout-form {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #c0c0c0;
+  transition: all 0.3s;
+}
+.checkout-form .close-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.checkout-form form > div {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 20px auto;
+}
+.checkout-form form > div label {
+  margin-bottom: 4px;
+}
+.checkout-form form > div input {
+  padding: 10px;
+}
+.checkout-form form > div input:focus {
+  outline: none;
+}
+.checkout-form form > div button {
+  background-color: #2a5ea5;
+  border: none;
+  padding: 10px;
+  color: #fff;
+  font-size: 17px;
+  margin-right: 3px;
+  cursor: pointer;
+}
+.checkout-form form > div button:active {
+  transform: scale(0.99);
+}
