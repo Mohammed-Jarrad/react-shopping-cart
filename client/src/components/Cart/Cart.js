@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../css/Cart/Cart.css'
+import Checkout from '../CeckoutForm/Checkout'
 
 const Cart = ({ cart, removeFromCart, minusQty, plusQty, showProduct }) => {
+
+    let [showForm, setShowForm] = useState(false)
+    let [value, setValue] = useState('')
+
+    let handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(value)
+    }
+
+    let handleChange = (e) => {
+        setValue((prevState) => ({ ...prevState, [e.target.name]: e.target.value }))
+    }
 
     return (
         <div className='cart'>
@@ -34,6 +47,22 @@ const Cart = ({ cart, removeFromCart, minusQty, plusQty, showProduct }) => {
                         )
                     })}
                 </div>
+                {cart.length ? (
+                    <div className='cart-footer'>
+                        <div className='total'>
+                            Total : ${
+                                cart.reduce((acc, p) => acc + (p.price * p.qty), 0)
+                            }
+                        </div>
+                        <button onClick={() => setShowForm(true)}>Select Product</button>
+                    </div>
+                ) : false}
+                <Checkout
+                    showForm={showForm}
+                    setShowForm={setShowForm}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                />
             </div>
         </div>
     )
