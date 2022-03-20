@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import '../../css/Products/Products.css'
-import Bounce from 'react-reveal/Bounce'
+import Zoom from 'react-reveal/Zoom'
 
 const Products = ({ products, addToCart, showProduct }) => {
 
     return (
-        <Bounce left cascade>
+        <Zoom cascade>
             {
                 typeof products === 'object' ? (
                     <div className='products-wrapper'>
@@ -29,12 +29,7 @@ const Products = ({ products, addToCart, showProduct }) => {
                     </div>
                 ) : <h1> {products} </h1>
             }
-            {/* <ProductModal
-                isOpen={isOpen}
-                product={product}
-                closeModal={closeModal}
-            /> */}
-        </Bounce>
+        </Zoom>
     )
 }
 

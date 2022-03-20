@@ -1,10 +1,12 @@
 import React from 'react'
 import '../../css/Filter/Filter.css'
+import Bounce from 'react-reveal/Bounce'
 
 const Filter = ({handleFilterBySize, handleFilterBySort, size, sort, products}) => {
 
     return (
-        <div className="filter-wrapper">
+        <Bounce right>
+            <div className="filter-wrapper">
             <div className='filter-title'>Filter</div>
             <div className='no-of-products'>{typeof products === 'object' ? products.length : '0'} Products </div>
             <div className='filter-by-sizing'>
@@ -32,6 +34,7 @@ const Filter = ({handleFilterBySize, handleFilterBySort, size, sort, products}) 
                 </select>
             </div>
         </div>
+        </Bounce>
     )
 }
 
