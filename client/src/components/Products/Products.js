@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import '../../css/Products/Products.css'
+import Bounce from 'react-reveal/Bounce'
 
 const Products = ({ products, addToCart, showProduct }) => {
 
     return (
-        <React.Fragment>
+        <Bounce left cascade>
             {
                 typeof products === 'object' ? (
                     <div className='products-wrapper'>
@@ -33,7 +34,7 @@ const Products = ({ products, addToCart, showProduct }) => {
                 product={product}
                 closeModal={closeModal}
             /> */}
-        </React.Fragment>
+        </Bounce>
     )
 }
 
