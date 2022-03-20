@@ -13,7 +13,7 @@ const Cart = ({ cart, removeFromCart, minusQty, plusQty, showProduct }) => {
     }
 
     let handleChange = (e) => {
-        setValue((prevState) => ({ ...prevState, [e.target.name]: e.target.value }))
+        setValue((PrevValue) => ({ ...PrevValue, [e.target.name]: e.target.value }))
     }
 
     return (
@@ -47,16 +47,18 @@ const Cart = ({ cart, removeFromCart, minusQty, plusQty, showProduct }) => {
                         )
                     })}
                 </div>
-                {cart.length ? (
-                    <div className='cart-footer'>
-                        <div className='total'>
-                            Total : ${
-                                cart.reduce((acc, p) => acc + (p.price * p.qty), 0)
-                            }
+                {
+                    cart.length ? (
+                        <div className='cart-footer'>
+                            <div className='total'>
+                                Total : ${
+                                    cart.reduce((acc, p) => acc + (p.price * p.qty), 0)
+                                }
+                            </div>
+                            <button onClick={() => setShowForm(true)}>Select Product</button>
                         </div>
-                        <button onClick={() => setShowForm(true)}>Select Product</button>
-                    </div>
-                ) : false}
+                    ) : false
+                }
                 <Checkout
                     showForm={showForm}
                     setShowForm={setShowForm}

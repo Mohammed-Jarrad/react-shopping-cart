@@ -12,7 +12,7 @@ const App = () => {
   let [products, setProducts] = useState(data)
   let [sort, setSort] = useState('')
   let [size, setSize] = useState('')
-  let [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
+  let [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) )
   let [product, setProduct] = useState('')
   let [isOpen, setIsOpen] = useState(false)
 
