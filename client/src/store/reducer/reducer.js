@@ -1,5 +1,7 @@
-let reducer = (state = {}, action) => {
-    return state;
-}
+import {combineReducers} from 'redux'
+import { productReducer } from './productReducer';
 
-export default reducer;
+
+export default combineReducers({
+    products: productReducer
+});
