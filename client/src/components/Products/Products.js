@@ -1,14 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../css/Products/Products.css'
 import Zoom from 'react-reveal/Zoom'
+import { connect } from 'react-redux'
+import { fetchProducts } from '../../store/actions/products'
 
-const Products = ({ products, addToCart, showProduct }) => {
+const Products = (props) => {
+
+    let { products, addToCart, showProduct } = props
+
+    useEffect(() => {
+        props.fetchProducts()
+    }, [])
 
     return (
         <Zoom cascade>
             {
-                typeof products === 'object' ? (
+                props.products && props.products.length ? (
                     <div className='products-wrapper'>
                         {
                             products.map(product => (
@@ -33,4 +41,8 @@ const Products = ({ products, addToCart, showProduct }) => {
     )
 }
 
-export default Products
+export default connect((state) => {
+    return {
+        products: state.products.products,
+    }
+}, { fetchProducts })(Products)
