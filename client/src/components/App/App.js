@@ -6,13 +6,15 @@ import data from '../../data.json'
 import Filter from "../Filter/Filter";
 import Cart from "../Cart/Cart";
 import ProductModal from "../Products/ProductModal";
+import { Provider } from 'react-redux'
+import store from "../../store/store";
 
 const App = () => {
 
   let [products, setProducts] = useState(data)
   let [sort, setSort] = useState('')
   let [size, setSize] = useState('')
-  let [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) )
+  let [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')))
   let [product, setProduct] = useState('')
   let [isOpen, setIsOpen] = useState(false)
 
@@ -43,7 +45,7 @@ const App = () => {
     setCart(cartClone)
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
@@ -92,39 +94,41 @@ const App = () => {
   }
 
   return (
-    <div className="layout">
-      <Header />
-      <main>
-        <div className="container">
-          <Products
-            products={products}
-            addToCart={addToCart}
+    <Provider store={store}>
+      <div className="layout">
+        <Header />
+        <main>
+          <div className="container">
+            <Products
+              products={products}
+              addToCart={addToCart}
+              cart={cart}
+              showProduct={showProduct}
+            />
+            <Filter
+              handleFilterBySize={handleFilterBySize}
+              handleFilterBySort={handleFilterBySort}
+              size={size}
+              sort={sort}
+              products={products}
+            />
+          </div>
+          <Cart
             cart={cart}
+            removeFromCart={removeFromCart}
+            minusQty={minusQty}
+            plusQty={plusQty}
             showProduct={showProduct}
           />
-          <Filter
-            handleFilterBySize={handleFilterBySize}
-            handleFilterBySort={handleFilterBySort}
-            size={size}
-            sort={sort}
-            products={products}
-          />
-        </div>
-        <Cart
-          cart={cart}
-          removeFromCart={removeFromCart}
-          minusQty={minusQty}
-          plusQty={plusQty}
-          showProduct={showProduct}
+        </main>
+        <Footer />
+        <ProductModal
+          isOpen={isOpen}
+          product={product}
+          closeModal={closeModal}
         />
-      </main>
-      <Footer />
-      <ProductModal
-        isOpen={isOpen}
-        product={product}
-        closeModal={closeModal}
-      />
-    </div>
+      </div>
+    </Provider>
   )
 }
 
