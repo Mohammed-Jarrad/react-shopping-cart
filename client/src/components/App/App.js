@@ -2,77 +2,70 @@ import React, { useEffect, useState } from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Products from "../Products/Products";
-import data from '../../data.json'
+// import data from '../../data.json'
 import Filter from "../Filter/Filter";
 import Cart from "../Cart/Cart";
 import ProductModal from "../Products/ProductModal";
-import { Provider } from 'react-redux'
-import store from "../../store/store";
+import axios from "axios";
 
 const App = () => {
 
-  let [products, setProducts] = useState(data)
+  let [products, setProducts] = useState([])
+  let [productsClone, setProductsClone] = useState([])
   let [sort, setSort] = useState('')
   let [size, setSize] = useState('')
-  let [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')))
-  let [product, setProduct] = useState('')
+  let [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
+  let [singleProduct, setSingleProduct] = useState('')
   let [isOpen, setIsOpen] = useState(false)
+
+  let fetchData = () => {
+    axios.get('/api/products')
+      .then(res => setProducts(res.data))
+  }
+
+  useEffect(() => {
+    axios.get('/api/products')
+      .then(res => {
+        setProducts(res.data)
+        setProductsClone(res.data)
+      })
+  }, [])
+
 
   let toggleModal = () => setIsOpen(!isOpen)
 
   let closeModal = () => {
-    setProduct(false) // product = {}
+    setSingleProduct(false) // singleProduct = {}
     toggleModal() // isOpen = false
   }
 
-  let showProduct = (product) => {
-    setProduct(product) // product = {1 Product}
+  let showProduct = (singleProduct) => {
+    setSingleProduct(singleProduct) // singleProduct = {1 Product}
     toggleModal()   // isOpen = true
   }
 
-  let addToCart = (product) => {
+  let addToCart = (singleProduct) => {
     let cartClone = [...cart]
     let productExist = false
     cartClone.forEach(p => {
-      if (p.id === product.id) {
+      if (p.id === singleProduct.id) {
         productExist = true;
         p.qty += 1;
       }
     })
     if (!productExist) {
-      cartClone.push({ ...product, qty: 1 })
+      cartClone.push({ ...singleProduct, qty: 1 })
     }
-    setCart(cartClone)
-  }
-
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
-  }, [cart])
-
-  let removeFromCart = (product) => {
-    let cartClone = [...cart]
-    setCart(cartClone.filter(p => p.id !== product.id))
-  }
-
-  let minusQty = (product) => {
-    let cartClone = [...cart]
-    product.qty -= 1;
-    setCart(cartClone)
-  }
-
-  let plusQty = (product) => {
-    let cartClone = [...cart]
-    product.qty += 1;
     setCart(cartClone)
   }
 
   let handleFilterBySize = (e) => {
     setSize(e.target.value)
-    if (e.target.value === "ALL") {
-      setProducts(data)
+    if (e.target.value === 'ALL') {
+      fetchData()
     } else {
-      let productsCLone = data.filter(p => p.sizes.includes(e.target.value))
-      productsCLone.length ? setProducts(productsCLone) : setProducts(`NO ITEMS WITH [${e.target.value}] SIZE`)
+      let newProducts = productsClone.filter(p => p.sizes.includes(e.target.value))
+      newProducts.length ? setProducts(newProducts) : setProducts(`NO ITEM TO SHOW WITH [${e.target.value}]`)
     }
   }
 
@@ -94,41 +87,36 @@ const App = () => {
   }
 
   return (
-    <Provider store={store}>
-      <div className="layout">
-        <Header />
-        <main>
-          <div className="container">
-            <Products
-              products={products}
-              addToCart={addToCart}
-              cart={cart}
-              showProduct={showProduct}
-            />
-            <Filter
-              handleFilterBySize={handleFilterBySize}
-              handleFilterBySort={handleFilterBySort}
-              size={size}
-              sort={sort}
-              products={products}
-            />
-          </div>
-          <Cart
-            cart={cart}
-            removeFromCart={removeFromCart}
-            minusQty={minusQty}
-            plusQty={plusQty}
+    <div className="layout">
+      <Header />
+      <main>
+        <div className="container">
+          <Products
+            products={products}
+            addToCart={addToCart}
             showProduct={showProduct}
           />
-        </main>
-        <Footer />
-        <ProductModal
-          isOpen={isOpen}
-          product={product}
-          closeModal={closeModal}
+          <Filter
+            handleFilterBySize={handleFilterBySize}
+            handleFilterBySort={handleFilterBySort}
+            size={size}
+            sort={sort}
+            products={products}
+          />
+        </div>
+        <Cart
+          cart={cart}
+          setCart={setCart}
+          showProduct={showProduct}
         />
-      </div>
-    </Provider>
+      </main>
+      <Footer />
+      <ProductModal
+        isOpen={isOpen}
+        singleProduct={singleProduct}
+        closeModal={closeModal}
+      />
+    </div>
   )
 }
 

@@ -5,7 +5,7 @@ import Fade from 'react-reveal/Fade'
 
 const Checkout = ({ showForm, setShowForm, handleChange, handleSubmit }) => {
     return (
-        <>
+        <React.Fragment>
             {
                 showForm ? (
                     <Fade bottom cascade>
@@ -33,7 +33,7 @@ const Checkout = ({ showForm, setShowForm, handleChange, handleSubmit }) => {
                     </Fade>
                 ) : false
             }
-        </>
+        </React.Fragment>
     )
 }
 

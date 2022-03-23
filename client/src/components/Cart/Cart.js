@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../css/Cart/Cart.css'
 import Checkout from '../CeckoutForm/Checkout'
 import Zoom from 'react-reveal/Zoom'
 import Bounce from 'react-reveal/Bounce'
 
-const Cart = ({ cart, removeFromCart, minusQty, plusQty, showProduct }) => {
+const Cart = ({ cart, setCart, showProduct }) => {
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
 
     let [showForm, setShowForm] = useState(false)
     let [value, setValue] = useState('')
@@ -16,6 +20,23 @@ const Cart = ({ cart, removeFromCart, minusQty, plusQty, showProduct }) => {
 
     let handleChange = (e) => {
         setValue((PrevValue) => ({ ...PrevValue, [e.target.name]: e.target.value }))
+    }
+
+    let removeFromCart = (product) => {
+        let cartClone = [...cart]
+        setCart(cartClone.filter(p => p.id !== product.id))
+    }
+
+    let minusQty = (product) => {
+        let cartClone = [...cart]
+        product.qty -= 1;
+        setCart(cartClone)
+    }
+
+    let plusQty = (product) => {
+        let cartClone = [...cart]
+        product.qty += 1;
+        setCart(cartClone)
     }
 
     return (
@@ -41,9 +62,15 @@ const Cart = ({ cart, removeFromCart, minusQty, plusQty, showProduct }) => {
                                             <p>Price: {p.price}$</p>
                                         </div>
                                         <div>
-                                            <button onClick={() => removeFromCart(p)}>Remove</button>
-                                            <button onClick={() => plusQty(p)}>+</button>
-                                            <button onClick={() => minusQty(p)}>-</button>
+                                            <button onClick={() => removeFromCart(p)}>
+                                                Remove
+                                            </button>
+                                            <button onClick={() => plusQty(p)}>
+                                                +
+                                            </button>
+                                            <button onClick={() => p.qty === 1 ? removeFromCart(p) : minusQty(p)}>
+                                                -
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
