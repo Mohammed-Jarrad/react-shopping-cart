@@ -3,7 +3,6 @@ import '../../css/Cart/Cart.css'
 import Checkout from '../CeckoutForm/Checkout'
 import Zoom from 'react-reveal/Zoom'
 import Bounce from 'react-reveal/Bounce'
-import Modal from 'react-modal'
 import CartModal from './CartModal'
 
 const Cart = ({ cart, setCart, showProduct }) => {

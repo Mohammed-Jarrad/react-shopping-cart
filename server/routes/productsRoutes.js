@@ -9,9 +9,8 @@ router.get('/api/products', async (req, res) => {
 })
 
 router.post('/api/products', async (req, res) => {
-    let newProduct = new Product(req.body)
-    let saveP = await newProduct.save()
-    res.send(saveP)
+    let newProduct = new Product(req.body).save()
+    res.send(newProduct)
 })
 
 router.delete('/api/products/:id', async (req, res) => {
