@@ -56,3 +56,57 @@ $mainColor: #2a5ea5;
     }
   }
 }
+
+.cart-modal {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  width: 80%;
+  border: 2px solid $mainColor;
+  margin: 20px auto;
+  padding: 50px;
+  .close-icon {
+    display: block;
+    float: right;
+    border: 1px solid #c0c0c0;
+    padding: 7px 10px;
+    cursor: pointer;
+    font-size: 20px;
+    &:hover {
+      span {
+        transition: all 0.3s;
+        display: block;
+        transform: scale(2);
+        color: red;
+      }
+    }
+  }
+  .order-content {
+    margin-right: 50px;
+    .alert-success {
+      text-align: center;
+      background-color: green;
+      color: #fff;
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 20px;
+    }
+    .order-info {
+      table {
+        border: 1px solid #c0c0c0;
+        width: 100%;
+        tr {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #c0c0c0;
+          &:last-child {
+            border-bottom: none;
+          }
+          td {
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+}

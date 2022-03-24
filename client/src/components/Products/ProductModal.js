@@ -1,7 +1,8 @@
 import React from 'react'
 import Modal from 'react-modal'
+import '../../css/Products/Products.css'
 
-const ProductModal = ({ product, isOpen, closeModal }) => {
+const ProductModal = ({ singleProduct, isOpen, closeModal }) => {
 
     Modal.setAppElement('#root')
 
@@ -9,18 +10,17 @@ const ProductModal = ({ product, isOpen, closeModal }) => {
         <Modal
             isOpen={isOpen}
             onRequestClose={closeModal}
-            className='modal'
+            className='products-modal'
         >
             <span className='close-icon' onClick={closeModal}> &times; </span>
             <div className='product-info'>
-                <img src={product.imageUrl} alt={product.title} />
+                <img src={singleProduct.imageUrl} alt={singleProduct.title} />
                 <div>
-                    <div>{product.title} Details</div>
-                    <p> - Title: {product.title} </p>
-                    <p> - Description: {product.desc} </p>
-                    <p> - Price: {product.price}$ </p>
-                    <p> - Sizes: {product && product.sizes.map(e => `[${e}] `)}</p>
-                    {/* <p> - Sizes: {product['sizes'].forEach(e => <span>"{e}",  </span>)} </p> */}
+                    <div>{singleProduct.title} Details</div>
+                    <p> - Title: {singleProduct.title} </p>
+                    <p> - Description: {singleProduct.desc} </p>
+                    <p> - Price: {singleProduct.price}$ </p>
+                    <p> - Sizes: {singleProduct && singleProduct.sizes.map(e => `[${e}] `)}</p>
                 </div>
             </div>
         </Modal>

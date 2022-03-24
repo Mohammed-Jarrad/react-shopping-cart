@@ -5,12 +5,12 @@ import Fade from 'react-reveal/Fade'
 
 const Checkout = ({ showForm, setShowForm, handleChange, handleSubmit }) => {
     return (
-        <>
+        <React.Fragment>
             {
                 showForm ? (
                     <Fade bottom cascade>
                         <div className='checkout-form'>
-                            <span className='close-icon' onClick={() => setShowForm(false)}> &times; </span>
+                            <span className='close-icon' onClick={() => setShowForm(false)}> <span>&times;</span> </span>
                             <form onSubmit={handleSubmit}>
                                 <Input
                                     name='name'
@@ -33,7 +33,7 @@ const Checkout = ({ showForm, setShowForm, handleChange, handleSubmit }) => {
                     </Fade>
                 ) : false
             }
-        </>
+        </React.Fragment>
     )
 }
 
