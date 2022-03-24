@@ -6,6 +6,7 @@ const Products = ({ showProduct, addToCart, products }) => {
 
     return (
         <Zoom cascade>
+            
 
             {
                 typeof products === 'object' ? (
@@ -14,7 +15,7 @@ const Products = ({ showProduct, addToCart, products }) => {
                         {
                             products.map(product => (
                                 <div key={product.id} className='product-item'>
-                                    <a href='#' onClick={() => showProduct(product)} >
+                                    <a href={'#'} onClick={() => showProduct(product)} >
                                         <img
                                             src={product.imageUrl}
                                             alt={product.title}

@@ -3,6 +3,8 @@ import '../../css/Cart/Cart.css'
 import Checkout from '../CeckoutForm/Checkout'
 import Zoom from 'react-reveal/Zoom'
 import Bounce from 'react-reveal/Bounce'
+import Modal from 'react-modal'
+import CartModal from './CartModal'
 
 const Cart = ({ cart, setCart, showProduct }) => {
 
@@ -10,32 +12,45 @@ const Cart = ({ cart, setCart, showProduct }) => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
 
+    // MY STATE ==> 
     let [showForm, setShowForm] = useState(false)
+    let [order, setOrder] = useState(false)
     let [value, setValue] = useState('')
+    let [isOpen, setIsOpen] = useState(false)
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        console.log(value)
+        let myOrder = {
+            name: value.name,
+            email: value.email,
+        }
+        setOrder(myOrder)
+        setIsOpen(true)
     }
 
     let handleChange = (e) => {
         setValue((PrevValue) => ({ ...PrevValue, [e.target.name]: e.target.value }))
     }
 
+    let closeModal = () => {
+        setOrder(false)
+        setIsOpen(false)
+    }
+
     let removeFromCart = (product) => {
         let cartClone = [...cart]
-        setCart(cartClone.filter(p => p.id !== product.id))
+        setCart(cartClone.filter(p => p._id !== product._id))
     }
 
     let minusQty = (product) => {
         let cartClone = [...cart]
-        product.qty -= 1;
+        cartClone[cartClone.indexOf(product)].qty -= 1
         setCart(cartClone)
     }
 
     let plusQty = (product) => {
         let cartClone = [...cart]
-        product.qty += 1;
+        cartClone[cartClone.indexOf(product)].qty += 1
         setCart(cartClone)
     }
 
@@ -98,6 +113,13 @@ const Cart = ({ cart, setCart, showProduct }) => {
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                 />
+                <CartModal 
+                    isOpen={isOpen}
+                    cart={cart}
+                    closeModal={closeModal}
+                    order={order}
+                />
+
             </div>
         </div>
     )

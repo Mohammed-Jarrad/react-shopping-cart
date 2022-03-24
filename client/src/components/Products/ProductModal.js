@@ -10,7 +10,7 @@ const ProductModal = ({ singleProduct, isOpen, closeModal }) => {
         <Modal
             isOpen={isOpen}
             onRequestClose={closeModal}
-            className='modal'
+            className='products-modal'
         >
             <span className='close-icon' onClick={closeModal}> &times; </span>
             <div className='product-info'>

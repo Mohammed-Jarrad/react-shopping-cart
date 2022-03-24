@@ -10,7 +10,7 @@ const Checkout = ({ showForm, setShowForm, handleChange, handleSubmit }) => {
                 showForm ? (
                     <Fade bottom cascade>
                         <div className='checkout-form'>
-                            <span className='close-icon' onClick={() => setShowForm(false)}> &times; </span>
+                            <span className='close-icon' onClick={() => setShowForm(false)}> <span>&times;</span> </span>
                             <form onSubmit={handleSubmit}>
                                 <Input
                                     name='name'

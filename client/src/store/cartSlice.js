@@ -27,8 +27,9 @@ let cartSlice = createSlice({
             state.cart = cartClone.filter(p => p.id !== product.id)
         },
         minusQty: (state, { payload: product }) => {
-            console.log(product)
-            product.qty = product.qty - 1;
+            let cartClone = [...state.cart]
+            cartClone[cartClone.indexOf(product)].qty -= 1
+            state.cart = cartClone
         },
         plusQty: (state, { payload: product }) => {
         },

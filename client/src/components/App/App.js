@@ -48,7 +48,7 @@ const App = () => {
     let cartClone = [...cart]
     let productExist = false
     cartClone.forEach(p => {
-      if (p.id === singleProduct.id) {
+      if (p._id === singleProduct._id) {
         productExist = true;
         p.qty += 1;
       }
@@ -78,9 +78,9 @@ const App = () => {
       } else if (order === 'highest') {
         return next.price - current.price
       } else if (order === 'ALL') {
-        return current.id < next.id ? -1 : 1
+        return current._id < next._id ? -1 : 1
       } else {
-        return current.id > next.id ? -1 : 1
+        return current._id > next._id ? -1 : 1
       }
     })
     setProducts(productsCLone)

@@ -51,3 +51,53 @@
 .cart .container button:active {
   transform: scale(0.9);
 }
+
+.cart-modal {
+  position: relative;
+  background-color: white;
+  width: 80%;
+  border: 2px solid #2a5ea5;
+  margin: 20px auto;
+  padding: 50px;
+}
+.cart-modal .close-icon {
+  display: block;
+  float: right;
+  border: 1px solid #c0c0c0;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.cart-modal .close-icon:hover span {
+  transition: all 0.3s;
+  display: block;
+  transform: scale(2);
+  color: red;
+}
+.cart-modal .order-content {
+  margin-right: 50px;
+}
+.cart-modal .order-content .alert-success {
+  text-align: center;
+  background-color: green;
+  color: #fff;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 20px;
+}
+.cart-modal .order-content .order-info table {
+  border: 1px solid #c0c0c0;
+  width: 100%;
+}
+.cart-modal .order-content .order-info table tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #c0c0c0;
+}
+.cart-modal .order-content .order-info table tr:last-child {
+  border-bottom: none;
+}
+.cart-modal .order-content .order-info table tr td {
+  padding: 10px;
+}

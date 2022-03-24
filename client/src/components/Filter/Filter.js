@@ -5,7 +5,7 @@ import Bounce from 'react-reveal/Bounce'
 const Filter = (props) => {
 
     let { handleFilterBySize, handleFilterBySort, size, sort, products } = props
-
+    
     return (
         <Bounce right>
             <div className="filter-wrapper">
@@ -18,7 +18,7 @@ const Filter = (props) => {
                     <select
                         onChange={handleFilterBySize}
                         value={size}
-                    >
+                    > 
                         <option value='ALL'>ALL</option>
                         <option value='XS'>XS</option>
                         <option value='S'>S</option>

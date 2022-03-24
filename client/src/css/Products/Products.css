@@ -42,7 +42,7 @@
   font-size: 16.7px;
 }
 
-.modal {
+.products-modal {
   position: relative;
   background-color: white;
   width: 80%;
@@ -51,11 +51,11 @@
   padding: 20px;
 }
 @media (max-width: 991px) {
-  .modal {
+  .products-modal {
     width: 99%;
   }
 }
-.modal .close-icon {
+.products-modal .close-icon {
   display: block;
   position: absolute;
   right: 10px;
@@ -64,32 +64,32 @@
   cursor: pointer;
   font-size: 20px;
 }
-.modal .close-icon:hover {
+.products-modal .close-icon:hover {
   transform: scale(2);
   color: red;
 }
-.modal .product-info {
+.products-modal .product-info {
   position: relative;
   display: flex;
   align-items: center;
 }
 @media (max-width: 767px) {
-  .modal .product-info {
+  .products-modal .product-info {
     flex-direction: column-reverse;
   }
 }
-.modal .product-info img {
+.products-modal .product-info img {
   margin-right: 30px;
   width: 300px;
   max-width: 100%;
 }
-.modal .product-info > div div:first-child {
+.products-modal .product-info > div div:first-child {
   text-align: center;
   margin-bottom: 50px;
   color: #2a5ea5;
   font-size: 30px;
 }
-.modal .product-info p {
+.products-modal .product-info p {
   font-size: 20px;
   margin: 10px 0;
 }
