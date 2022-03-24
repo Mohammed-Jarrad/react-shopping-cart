@@ -32,16 +32,14 @@ const App = () => {
   }, [])
 
 
-  let toggleModal = () => setIsOpen(!isOpen)
-
   let closeModal = () => {
     setSingleProduct(false) // singleProduct = {}
-    toggleModal() // isOpen = false
+    setIsOpen(false) // isOpen = false
   }
 
   let showProduct = (singleProduct) => {
     setSingleProduct(singleProduct) // singleProduct = {1 Product}
-    toggleModal()   // isOpen = true
+    setIsOpen(true)   // isOpen = true
   }
 
   let addToCart = (singleProduct) => {
