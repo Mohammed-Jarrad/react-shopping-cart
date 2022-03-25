@@ -4,6 +4,7 @@ import Input from '../Input/Input'
 import Fade from 'react-reveal/Fade'
 
 const Checkout = ({ showForm, setShowForm, handleChange, handleSubmit }) => {
+
     return (
         <React.Fragment>
             {
