@@ -24,16 +24,27 @@ const Cart = ({ cart, setCart, showProduct }) => {
             email: value.email,
         }
         setOrder(myOrder)
+        fetch('/api/orders', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(myOrder)
+        })
         setIsOpen(true)
     }
 
     let handleChange = (e) => {
-        setValue((PrevValue) => ({ ...PrevValue, [e.target.name]: e.target.value }))
+        setValue((PrevValue) => {
+            return { ...PrevValue, [e.target.name]: e.target.value }
+        })
     }
 
     let closeModal = () => {
         setOrder(false)
         setIsOpen(false)
+        setShowForm(false)
+        setCart([])
     }
 
     let removeFromCart = (product) => {
@@ -106,20 +117,19 @@ const Cart = ({ cart, setCart, showProduct }) => {
                         </Zoom>
                     ) : false
                 }
-                <Checkout
-                    showForm={showForm}
-                    setShowForm={setShowForm}
-                    handleChange={handleChange}
-                    handleSubmit={handleSubmit}
-                />
-                <CartModal 
-                    isOpen={isOpen}
-                    cart={cart}
-                    closeModal={closeModal}
-                    order={order}
-                />
-
             </div>
+            <Checkout
+                showForm={showForm}
+                setShowForm={setShowForm}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+            />
+            <CartModal
+                isOpen={isOpen}
+                cart={cart}
+                closeModal={closeModal}
+                order={order}
+            />
         </div>
     )
 }
