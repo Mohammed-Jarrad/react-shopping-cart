@@ -1,0 +1,65 @@
+$mainColor: #2a5ea5;
+
+.orders {
+  margin: 20px auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    // border: 1px solid #c0c0c0;
+    thead {
+      background-color: $mainColor;
+      color: #fff;
+      th {
+        text-align: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 10px;
+      }
+    }
+    tbody {
+      tr {
+        &:nth-child(odd) {
+          background-color: #c0c0c06c;
+        }
+        td {
+          padding: 5px;
+
+          &:first-child {
+            text-align: center;
+          }
+          &.details {
+            span {
+              display: inline-block;
+              background-color: #008E89;
+              color: white;
+              margin-right: 2px;
+              padding: 4px;
+              border-radius: 6px;
+              text-align: center;
+            }
+          }
+          &:last-child {
+            button {
+              width: 100%;
+              background-color: red;
+              border: none;
+              color: white;
+              padding: 10px;
+              font-size: 20px;
+              cursor: pointer;
+              opacity: 0.9;
+              transition: .3s;
+              &:active {
+                transform: scale(0.9);
+              }
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
