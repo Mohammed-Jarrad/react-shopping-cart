@@ -30,16 +30,16 @@ header {
         }
         .active {
           position: relative;
-          color: #E2D784;
+          color: #e2d784;
           // font-weight: bold;
           &::after {
-            content: '';
+            content: "";
             position: absolute;
-            width: 100%;
-            height: 3px;
-            background-color: #E2D784;
             bottom: -9px;
-            left: 0;
+            border: 10px solid;
+            border-color: transparent transparent white transparent;
+            left: 50%;
+            transform: translateX(-50%);
           }
         }
       }

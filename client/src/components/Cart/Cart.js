@@ -22,6 +22,9 @@ const Cart = ({ cart, setCart, showProduct }) => {
         let myOrder = {
             name: value.name,
             email: value.email,
+            orderInfo: cart.map(item => {
+                return { title: item.title, quantity: item.qty }
+            })
         }
         setOrder(myOrder)
         fetch('/api/orders', {
