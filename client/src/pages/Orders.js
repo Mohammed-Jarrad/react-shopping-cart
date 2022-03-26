@@ -18,43 +18,51 @@ const Orders = () => {
 
     return (
         <div className='orders container'>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Details</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <Bounce bottom cascade>
-                    <tbody>
-                        {orders.length ? orders.map((item, index) => (
-                            <tr key={index}>
-                                <td><span>{index + 1}</span></td>
-                                <td>{item.name}</td>
-                                <td>{item.email}</td>
-                                <td className='details'>
-                                    {item.orderInfo.map((p, i) => {
-                                        return (
-                                            <span key={p._id}>
-                                                <p> {p.title} </p>
-                                                <p> {p.quantity} </p>
-                                            </span>
-                                        )
-                                    })}
-                                </td>
-                                <td>
-                                    <button onClick={() => removeOrder(item._id)}>
-                                        <span>&times;</span>
-                                    </button>
-                                </td>
+            {
+                orders.length ? (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Details</th>
+                                <th>Delete</th>
                             </tr>
-                        )) : false}
-                    </tbody>
-                </Bounce>
-            </table>
+                        </thead>
+                        <Bounce bottom cascade>
+                            <tbody>
+                                {orders.length ? orders.map((item, index) => (
+                                    <tr key={item._id}>
+                                        <td><span>{index + 1}</span></td>
+                                        <td>{item.name}</td>
+                                        <td>{item.email}</td>
+                                        <td className='details'>
+                                            {item.orderInfo.map((p, i) => {
+                                                return (
+                                                    <span key={p._id}>
+                                                        <p> {p.title} </p>
+                                                        <p> {p.quantity} </p>
+                                                    </span>
+                                                )
+                                            })}
+                                        </td>
+                                        <td>
+                                            <button onClick={() => removeOrder(item._id)}>
+                                                <span>&times;</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )) : false}
+                            </tbody>
+                        </Bounce>
+                    </table>
+                ) : (
+                    <h1 className='no-orders-msg'>
+                        No Orders Now, Please Check Your Cart !
+                    </h1>
+                )
+            }
         </div>
     )
 }

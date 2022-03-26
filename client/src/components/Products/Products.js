@@ -14,7 +14,7 @@ const Products = ({ showProduct, addToCart, products }) => {
                     <div className='products-wrapper'>
                         {
                             products.map(product => (
-                                <div key={product.id} className='product-item'>
+                                <div key={product._id} className='product-item'>
                                     <a href={'#'} onClick={() => showProduct(product)} >
                                         <img
                                             src={product.imageUrl}

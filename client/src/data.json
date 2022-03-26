@@ -1,6 +1,5 @@
 [
     {
-        "id": "id1",
         "title": "Mouse",
         "imageUrl": "/images/product1.jpg",
         "desc": "This is product 1",
@@ -8,7 +7,6 @@
         "sizes": ["S", "M"]
     },
     {
-        "id": "id2",
         "title": "Keyboard",
         "imageUrl": "/images/product2.jpg",
         "desc": "This is product 2",
@@ -16,7 +14,6 @@
         "sizes": ["XL", "L"]
     },
     {
-        "id": "id3",
         "title": "Headphone",
         "imageUrl": "/images/product3.jpg",
         "desc": "This is product 3",
@@ -24,11 +21,38 @@
         "sizes": ["S", "M", "L"]
     },
     {
-        "id": "id4",
         "title": "Laptop",
         "imageUrl": "/images/product4.jpg",
         "desc": "This is product 4",
         "price": 40,
         "sizes": ["S", "M"]
+    },
+    {
+        "title": "Laptop Holder",
+        "imageUrl": "/images/product5.jpg",
+        "desc": "This is Holder Save Your Health",
+        "price": 20,
+        "sizes": ["L", "M"]
+    },
+    {
+        "title": "Ipad Holder",
+        "imageUrl": "/images/product6.jpg",
+        "desc": "This is Holder For Ipad",
+        "price": 15,
+        "sizes": ["XS", "S"]
+    },
+    {
+        "title": "Charger",
+        "imageUrl": "/images/product7.jpg",
+        "desc": "This is Quick Charger",
+        "price": 100,
+        "sizes": []
+    },
+    {
+        "title": "Mouse Paper",
+        "imageUrl": "/images/product8.jpg",
+        "desc": "This is Smooth Paper",
+        "price": 5,
+        "sizes": ["L", "XXL"]
     }
 ]

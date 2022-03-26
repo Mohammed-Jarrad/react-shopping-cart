@@ -1,6 +1,10 @@
 .orders {
   margin: 20px auto;
 }
+.orders .no-orders-msg {
+  text-align: center;
+  color: #2a5ea5;
+}
 .orders table {
   width: 100%;
   border-collapse: collapse;
@@ -24,29 +28,34 @@
 .orders table tbody tr td:first-child {
   text-align: center;
 }
+.orders table tbody tr td.details {
+  display: flex;
+  flex-wrap: wrap;
+}
 .orders table tbody tr td.details span {
   display: inline-block;
   background-color: #008E89;
   color: white;
-  margin-right: 2px;
+  margin: 2px;
   padding: 4px;
   border-radius: 6px;
   text-align: center;
 }
+.orders table tbody tr td:last-child {
+  width: 100px;
+}
 .orders table tbody tr td:last-child button {
+  text-align: center;
   width: 100%;
-  background-color: red;
+  background-color: transparent;
   border: none;
-  color: white;
+  color: red;
   padding: 10px;
-  font-size: 20px;
+  font-size: 50px;
+  font-weight: bold;
   cursor: pointer;
-  opacity: 0.9;
   transition: 0.3s;
 }
-.orders table tbody tr td:last-child button:active {
-  transform: scale(0.9);
-}
 .orders table tbody tr td:last-child button:hover {
-  opacity: 1;
+  transform: scale(1.1);
 }

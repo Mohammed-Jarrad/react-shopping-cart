@@ -3,6 +3,11 @@ $mainColor: #2a5ea5;
 .orders {
   margin: 20px auto;
 
+  .no-orders-msg {
+    text-align: center;
+    color: $mainColor;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -29,32 +34,33 @@ $mainColor: #2a5ea5;
             text-align: center;
           }
           &.details {
+            display: flex;
+            flex-wrap: wrap;
             span {
               display: inline-block;
               background-color: #008E89;
               color: white;
-              margin-right: 2px;
+              margin: 2px;
               padding: 4px;
               border-radius: 6px;
               text-align: center;
             }
           }
           &:last-child {
+            width: 100px;
             button {
+              text-align: center;
               width: 100%;
-              background-color: red;
+              background-color: transparent;
               border: none;
-              color: white;
+              color: red;
               padding: 10px;
-              font-size: 20px;
+              font-size: 50px;
+              font-weight: bold;
               cursor: pointer;
-              opacity: 0.9;
               transition: .3s;
-              &:active {
-                transform: scale(0.9);
-              }
-              &:hover {
-                opacity: 1;
+              &:hover{
+                transform: scale(1.1);
               }
             }
           }
