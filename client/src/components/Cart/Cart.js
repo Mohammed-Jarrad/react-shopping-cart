@@ -4,8 +4,10 @@ import Checkout from '../CeckoutForm/Checkout'
 import Zoom from 'react-reveal/Zoom'
 import Bounce from 'react-reveal/Bounce'
 import CartModal from './CartModal'
+import { MdAddShoppingCart } from 'react-icons/md'
+import { BsCartPlus, BsCartDash, BsCartX, BsCart4 } from 'react-icons/bs'
 
-const Cart = ({ cart, setCart, showProduct }) => {
+const Cart = ({ cart, setCart, showProduct, products }) => {
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
@@ -68,72 +70,78 @@ const Cart = ({ cart, setCart, showProduct }) => {
     }
 
     return (
-        <div className='cart'>
-            <div className='container'>
-                <div className='cart-title'>
-                    {cart.length} Items In Cart
-                </div>
-                <Bounce left cascade>
-                    <div className='cart-items'>
-                        {cart.map(p => {
-                            return (
-                                <div className='cart-item' key={p._id}>
-                                    <img
-                                        src={p.imageUrl}
-                                        alt={p.title}
-                                        onClick={() => showProduct(p)}
-                                    />
-                                    <div className='cart-info'>
-                                        <div>
-                                            <p>Title: {p.title}</p>
-                                            <p> Quantity: {p.qty}</p>
-                                            <p>Price: {p.price}$</p>
-                                        </div>
-                                        <div>
-                                            <button onClick={() => removeFromCart(p)}>
-                                                Remove
-                                            </button>
-                                            <button onClick={() => plusQty(p)}>
-                                                +
-                                            </button>
-                                            <button onClick={() => p.qty === 1 ? removeFromCart(p) : minusQty(p)}>
-                                                -
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </Bounce>
-                {
-                    cart.length ? (
-                        <Zoom>
-                            <div className='cart-footer'>
-                                <div className='total'>
-                                    Total : ${
-                                        cart.reduce((acc, p) => acc + (p.price * p.qty), 0)
-                                    }
-                                </div>
-                                <button onClick={() => setShowForm(true)}>Select Product</button>
+        <>
+            {
+                products.length ? (
+                    <div className='cart'>
+                        <div className='container'>
+                            <div className='cart-title'>
+                                {cart.length} Products In <BsCart4 size='1.5em' />
                             </div>
-                        </Zoom>
-                    ) : false
-                }
-            </div>
-            <Checkout
-                showForm={showForm}
-                setShowForm={setShowForm}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-            />
-            <CartModal
-                isOpen={isOpen}
-                cart={cart}
-                closeModal={closeModal}
-                order={order}
-            />
-        </div>
+                            <Bounce left cascade>
+                                <div className='cart-items'>
+                                    {cart.map(p => {
+                                        return (
+                                            <div className='cart-item' key={p._id}>
+                                                <img
+                                                    src={p.imageUrl}
+                                                    alt={p.title}
+                                                    onClick={() => showProduct(p)}
+                                                />
+                                                <div className='cart-info'>
+                                                    <div>
+                                                        <p>Title: {p.title}</p>
+                                                        <p> Quantity: <span>{p.qty}</span></p>
+                                                        <p>Price: {p.price}$</p>
+                                                    </div>
+                                                    <div>
+                                                        <button onClick={() => removeFromCart(p)}>
+                                                            <BsCartX />
+                                                        </button>
+                                                        <button onClick={() => plusQty(p)}>
+                                                            <BsCartPlus />
+                                                        </button>
+                                                        <button onClick={(e) => p.qty === 1 ? removeFromCart(p) : minusQty(p)}>
+                                                            <BsCartDash />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </Bounce>
+                            {
+                                cart.length ? (
+                                    <Zoom>
+                                        <div className='cart-footer'>
+                                            <div className='total'>
+                                                Total : ${
+                                                    cart.reduce((acc, p) => acc + (p.price * p.qty), 0)
+                                                }
+                                            </div>
+                                            <button className='select-products' onClick={() => setShowForm(true)}>Select Product</button>
+                                        </div>
+                                    </Zoom>
+                                ) : false
+                            }
+                        </div>
+                        <Checkout
+                            showForm={showForm}
+                            setShowForm={setShowForm}
+                            handleChange={handleChange}
+                            handleSubmit={handleSubmit}
+                        />
+                        <CartModal
+                            isOpen={isOpen}
+                            cart={cart}
+                            closeModal={closeModal}
+                            order={order}
+                        />
+                    </div>
+                ) : false
+            }
+        </>
     )
 }
 

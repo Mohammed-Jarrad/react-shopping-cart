@@ -1,45 +1,95 @@
-// $mainColor: #333;
-$textColor: #fff;
-$mainColor: #2a5ea5;
+// $mainColor: #3a6b34;
+$mainColor: #333;
+
+$textColor: #333;
+// $mainColor: #2a5ea5;
 
 header {
   grid-area: header;
-  background-color: $mainColor;
-  color: $textColor;
+  // background-color: $mainColor;
+  color: $mainColor;
+  box-shadow: 5px 5px 5px #c0c0c0;
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    > p {
-      font-size: 20px;
+    > a {
       text-transform: uppercase;
+      color: $mainColor;
+      text-decoration: none;
+      h1 {
+        font-family: "operator mono";
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        svg {
+          color: orangered;
+        }
+      }
     }
     nav {
-      ul {
+      ul.main-list {
         display: flex;
+        position: relative;
         list-style: none;
-        a {
-          display: block;
-          text-decoration: none;
+        li {
           margin-left: 10px;
-          font-size: 18px;
-          color: #fff;
-          cursor: pointer;
-          padding: 10px;
+          a {
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            cursor: pointer;
+            padding: 10px;
+          }
         }
         .active {
           position: relative;
-          color: #e2d784;
-          // font-weight: bold;
-          &::after {
-            content: "";
+          color: $mainColor;
+          border: 1px solid orangered;
+        }
+        li.login-drop {
+          background-color: orangered;
+          button {
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            color: #fff;
+            height: 100%;
+            font-size: 18px;
+            cursor: pointer;
+          }
+          ul.drop-content {
+            list-style: none;
             position: absolute;
-            bottom: -9px;
-            border: 10px solid;
-            border-color: transparent transparent white transparent;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 51px;
+            right: 0;
+            z-index: 1;
+            width: 300px;
+
+            li {
+              border-top: 1px solid #c0c0c0;
+              transition: 0.3s;
+              background-color: $mainColor;
+              opacity: 0.9;
+              display: flex;
+              align-items: center;
+              svg {
+                color: #fff;
+              }
+              &:hover {
+                a {
+                  margin-left: 10px;
+                }
+              }
+              a {
+                color: #fff;
+                transition: .3s;
+                flex: 1;
+              }
+            }
           }
         }
       }

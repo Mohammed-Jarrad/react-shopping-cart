@@ -4,22 +4,26 @@
   }
 }
 .cart .container .cart-title {
-  border-bottom: 1px solid #2a5ea5;
+  border-bottom: 1px solid #333;
   padding: 10px;
+}
+.cart .container .cart-title svg {
+  color: orangered;
 }
 .cart .container .cart-items {
   margin-top: 10px;
 }
 .cart .container .cart-items .cart-item {
-  box-shadow: 2px 2px 5px #c0c0c0;
+  box-shadow: 2px 2px 5px #c0c0c0, -2px -2px 5px #c0c0c0;
   display: flex;
   padding: 10px;
   margin-bottom: 10px;
 }
 .cart .container .cart-items .cart-item img {
+  border-radius: 5px;
   width: 100px;
   margin-right: 10px;
-  border: 1px solid #2a5ea5;
+  border: 1px solid #333;
   cursor: pointer;
 }
 .cart .container .cart-items .cart-item .cart-info {
@@ -31,6 +35,9 @@
 .cart .container .cart-items .cart-item .cart-info p {
   margin-bottom: 5px;
 }
+.cart .container .cart-items .cart-item .cart-info p span {
+  font-weight: bold;
+}
 .cart .container .cart-footer {
   display: flex;
   justify-content: space-between;
@@ -40,23 +47,29 @@
   font-size: 25px;
 }
 .cart .container button {
-  background-color: #2a5ea5;
-  border: none;
-  padding: 10px;
-  color: #fff;
-  font-size: 17px;
-  margin-right: 3px;
+  background-color: transparent;
+  border: 1px solid #c0c0c0;
+  padding: 5px;
+  color: orangered;
+  font-size: 20px;
+  margin-right: 10px;
+  box-shadow: 2px 2px 5px #c0c0c0;
   cursor: pointer;
 }
 .cart .container button:active {
   transform: scale(0.9);
+}
+.cart .container button.select-products {
+  background-color: #333;
+  color: white;
+  border: none;
 }
 
 .cart-modal {
   position: relative;
   background-color: white;
   width: 80%;
-  border: 2px solid #2a5ea5;
+  border: 2px solid #333;
   margin: 20px auto;
   padding: 50px;
 }
@@ -78,12 +91,16 @@
   margin-right: 50px;
 }
 .cart-modal .order-content .alert-success {
+  box-shadow: 2px 2px 5px #c0c0c0;
   text-align: center;
   background-color: green;
   color: #fff;
   margin-bottom: 20px;
   padding: 10px;
   font-size: 20px;
+}
+.cart-modal .order-content .order-info {
+  box-shadow: 2px 2px 5px #c0c0c0;
 }
 .cart-modal .order-content .order-info table {
   border: 1px solid #c0c0c0;
@@ -100,4 +117,10 @@
 }
 .cart-modal .order-content .order-info table tr td {
   padding: 10px;
+}
+.cart-modal .order-content .order-info table tr td.products-info p {
+  border: 1px solid #c0c0c0;
+  margin-bottom: 4px;
+  box-shadow: 2px 2px 2px #c0c0c0;
+  padding: 5px;
 }
