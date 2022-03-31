@@ -1,19 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import React from 'react'
 import '../../css/Products/Products.css'
-import Zoom from 'react-reveal/Zoom'
+import Fade from 'react-reveal/Fade'
+import { MdAddShoppingCart } from 'react-icons/md'
+import Loading from '../Loading/Loading'
 
-const Products = ({ showProduct, addToCart, products }) => {
+const Products = ({ showProduct, addToCart, products, loading }) => {
 
     return (
-        <Zoom cascade>
-            
+        <React.Fragment>
 
-            {
-                typeof products === 'object' ? (
+            {loading === true ? <Loading /> : false}
 
-                    <div className='products-wrapper'>
-                        {
-                            products.map(product => (
+            <Fade cascade>
+                {
+                    typeof products === 'object' && products.length ? (
+                        <div className='products-wrapper'>
+                            {products.map(product => (
                                 <div key={product._id} className='product-item'>
                                     <a href={'#'} onClick={() => showProduct(product)} >
                                         <img
@@ -26,17 +29,17 @@ const Products = ({ showProduct, addToCart, products }) => {
                                         <p><span>$</span> {product.price}</p>
                                     </div>
                                     <button onClick={() => addToCart(product)} >
-                                        Add To Cart
+                                        Add to Cart<MdAddShoppingCart size='30px' />
                                     </button>
                                 </div>
-                            ))
-                        }
-                    </div>
-                ) : (
-                    <h1> {products} </h1>
-                )
-            }
-        </Zoom>
+                            ))}
+                        </div>
+                    ) : (
+                        <h1> {products} </h1>
+                    )
+                }
+            </Fade>
+        </React.Fragment>
     )
 }
 

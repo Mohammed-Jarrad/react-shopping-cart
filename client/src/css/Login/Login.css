@@ -1,0 +1,181 @@
+.login {
+  color: #333;
+  user-select: none;
+}
+.login form.login-content {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px;
+}
+.login form.login-content h1 {
+  background-color: #333;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.login form.login-content .go-sign-up {
+  display: block;
+  color: #333;
+  margin-bottom: 20px;
+}
+.login form.login-content .login-box .input-feild {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #c0c0c0;
+}
+.login form.login-content .login-box .input-feild input.name-input,
+.login form.login-content .login-box .input-feild input.pass-input {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  margin: auto;
+  border: none;
+  background-color: transparent;
+  color: #000;
+  caret-color: #333;
+  font-size: 16px;
+  transition: 0.3s;
+  border-left: 1px solid #afafaf;
+}
+.login form.login-content .login-box .input-feild input.name-input::placeholder,
+.login form.login-content .login-box .input-feild input.pass-input::placeholder {
+  color: #afafaf;
+}
+.login form.login-content .login-box .input-feild input.name-input:focus,
+.login form.login-content .login-box .input-feild input.pass-input:focus {
+  outline: none;
+  padding-left: 15px;
+}
+.login form.login-content .login-box .input-feild input.name-input:focus::placeholder,
+.login form.login-content .login-box .input-feild input.pass-input:focus::placeholder {
+  color: transparent;
+}
+.login form.login-content .login-box .input-feild span.icon {
+  display: block;
+  padding: 10px;
+}
+.login form.login-content .login-box .input-feild span.icon svg {
+  color: #333;
+}
+.login form.login-content .login-box .input-feild span.eye {
+  padding: 10px;
+}
+.login form.login-content .login-box .input-feild span.eye svg:last-child {
+  color: #4267b2;
+  size: 2em;
+}
+.login form.login-content .login-box button {
+  display: block;
+  margin: auto;
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 100%;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: 0.3s;
+}
+.login form.login-content .login-box button:hover {
+  opacity: 1;
+}
+.login form.login-content .login-box button:active {
+  transform: scale(0.95);
+}
+.login form.login-content .login-box .check-forget {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+  margin: 10px auto;
+}
+.login form.login-content .login-box .check-forget .remember-me input {
+  cursor: pointer;
+  transition: 0.3s;
+  margin-right: 5px;
+}
+.login form.login-content .login-box .check-forget .remember-me input:checked {
+  margin-right: 10px;
+  background-color: red;
+}
+.login form.login-content .login-box .check-forget .remember-me label {
+  cursor: pointer;
+  font-size: 15px;
+  user-select: none;
+}
+.login form.login-content .login-box .check-forget a {
+  display: block;
+  color: #333;
+  font-size: 15px;
+}
+.login form.login-content .login-box .or-option {
+  border-radius: 50%;
+  background-color: #333;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin: 50px auto 20px;
+  position: relative;
+}
+.login form.login-content .login-box .or-option::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 1px;
+  right: -120px;
+  background-color: #333;
+}
+.login form.login-content .login-box .or-option::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 1px;
+  left: -120px;
+  background-color: #333;
+}
+.login form.login-content .login-box ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.login form.login-content .login-box ul li {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login form.login-content .login-box ul li:first-child {
+  background-color: #4267b2;
+}
+.login form.login-content .login-box ul li:last-child {
+  background-color: #ea4335;
+}
+.login form.login-content .login-box ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+}
