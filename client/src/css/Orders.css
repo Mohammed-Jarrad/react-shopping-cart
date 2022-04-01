@@ -3,19 +3,14 @@
 }
 .orders .no-orders-msg {
   text-align: center;
-  color: #333;
+  color: #2a5ea5;
 }
 .orders table {
   width: 100%;
   border-collapse: collapse;
-  box-shadow: 2px 2px 5px #333;
-}
-.orders table td,
-.orders table th {
-  width: fit-content;
 }
 .orders table thead {
-  background-color: #333;
+  background-color: #2a5ea5;
   color: #fff;
 }
 .orders table thead th {
@@ -24,11 +19,8 @@
   text-transform: uppercase;
   padding: 10px;
 }
-.orders table tbody tr {
-  padding: 10px;
-}
 .orders table tbody tr:nth-child(odd) {
-  background-color: #dbdbdb6c;
+  background-color: #c0c0c06c;
 }
 .orders table tbody tr td {
   padding: 5px;
@@ -37,39 +29,33 @@
   text-align: center;
 }
 .orders table tbody tr td.details {
-  width: 500px;
-}
-.orders table tbody tr td.details span {
   display: flex;
   flex-wrap: wrap;
 }
-.orders table tbody tr td.details span div {
-  width: fit-content;
-  display: inline-flex;
-  border: 1px solid #c0c0c0;
-  color: #333;
-  box-shadow: 2px 2px 5px #c0c0c0;
+.orders table tbody tr td.details span {
+  display: inline-block;
+  background-color: #008E89;
+  color: white;
   margin: 2px;
-  padding: 10px;
+  padding: 4px;
+  border-radius: 6px;
   text-align: center;
 }
 .orders table tbody tr td:last-child {
   width: 100px;
 }
 .orders table tbody tr td:last-child button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   width: 100%;
   background-color: transparent;
   border: none;
-  color: #333;
-  font-size: 30px;
+  color: red;
+  padding: 10px;
+  font-size: 50px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
 }
 .orders table tbody tr td:last-child button:hover {
-  transform: scale(1.05);
-  color: red;
+  transform: scale(1.1);
 }

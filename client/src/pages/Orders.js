@@ -2,24 +2,14 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import '../css/Orders.css'
 import Bounce from 'react-reveal/Bounce'
-import Loading from '../components/Loading/Loading'
-import { AiOutlineDelete } from 'react-icons/ai'
 
 const Orders = () => {
 
     let [orders, setOrders] = useState([])
-    let [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get('/api/orders')
-            .then(res => {
-                setOrders(res.data)
-                setLoading(false)
-            }).catch(err => {
-                setLoading(false)
-                console.log(err)
-            })
-    }, [setLoading])
+        axios.get('/api/orders').then(res => setOrders(res.data))
+    }, [])
 
     let removeOrder = (id) => {
         axios.delete(`/api/orders/${id}`)
@@ -48,24 +38,18 @@ const Orders = () => {
                                         <td>{item.name}</td>
                                         <td>{item.email}</td>
                                         <td className='details'>
-                                            <span>
-                                                {
-                                                    item.orderInfo.map((p, i) => {
-                                                        return (
-
-                                                            <div key={p._id}>
-                                                                <p> {p.title} </p> -
-                                                                <p> {p.quantity} </p>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </span>
+                                            {item.orderInfo.map((p, i) => {
+                                                return (
+                                                    <span key={p._id}>
+                                                        <p> {p.title} </p>
+                                                        <p> {p.quantity} </p>
+                                                    </span>
+                                                )
+                                            })}
                                         </td>
                                         <td>
                                             <button onClick={() => removeOrder(item._id)}>
-                                                {/* <span>&times;</span> */}
-                                                <AiOutlineDelete />
+                                                <span>&times;</span>
                                             </button>
                                         </td>
                                     </tr>
@@ -74,17 +58,9 @@ const Orders = () => {
                         </Bounce>
                     </table>
                 ) : (
-                    <div>
-                        {
-                            loading ? (
-                                <Loading />
-                            ) : (
-                                <h1 className='no-orders-msg'>
-                                    No Items To Show Now Please Check Your Cart
-                                </h1>
-                            )
-                        }
-                    </div>
+                    <h1 className='no-orders-msg'>
+                        No Orders Now, Please Check Your Cart !
+                    </h1>
                 )
             }
         </div>

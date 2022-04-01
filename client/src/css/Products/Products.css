@@ -1,17 +1,12 @@
 .products-wrapper {
-  height: 100%;
+  height: fit-content;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  gap: 10px;
 }
 .products-wrapper .product-item {
-  box-shadow: 2px 5px 5px #c0c0c0;
-  border-radius: 5px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
+  border: 2px solid #2a5ea5;
 }
 @media (max-width: 767px) {
   .products-wrapper .product-item {
@@ -20,6 +15,7 @@
 }
 .products-wrapper .product-item img {
   max-width: 100%;
+  border-bottom: 1px solid #2a5ea5;
   cursor: pointer;
 }
 .products-wrapper .product-item .product-desc {
@@ -27,7 +23,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-top: 1px solid #333;
 }
 .products-wrapper .product-item .product-desc p {
   text-transform: uppercase;
@@ -35,15 +30,12 @@
 .products-wrapper .product-item button {
   border: none;
   font-size: 17px;
-  background: #333;
+  background: #2a5ea5;
   color: #fff;
   width: 100%;
   padding: 10px;
   height: 40px;
   text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   cursor: pointer;
 }
 .products-wrapper .product-item button:active {
@@ -54,7 +46,7 @@
   position: relative;
   background-color: white;
   width: 80%;
-  border: 2px solid #333;
+  border: 2px solid #2a5ea5;
   margin: 20px auto;
   padding: 20px;
 }
@@ -94,7 +86,7 @@
 .products-modal .product-info > div div:first-child {
   text-align: center;
   margin-bottom: 50px;
-  color: #333;
+  color: #2a5ea5;
   font-size: 30px;
 }
 .products-modal .product-info p {

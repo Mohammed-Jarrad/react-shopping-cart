@@ -1,8 +1,7 @@
 footer {
-  box-shadow: 5px -5px 5px #c0c0c0;
-  padding: 20px;
   grid-area: footer;
-  color: #333;
+  background-color: #2a5ea5;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;

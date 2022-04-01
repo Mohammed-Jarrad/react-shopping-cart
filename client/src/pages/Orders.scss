@@ -1,8 +1,4 @@
-// $mainColor: #3a6b34;
-$mainColor: #333;
-
-
-// $mainColor: #2a5ea5;
+$mainColor: #2a5ea5;
 
 .orders {
   margin: 20px auto;
@@ -15,11 +11,7 @@ $mainColor: #333;
   table {
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 2px 2px 5px #333;
-    td,
-    th {
-      width: fit-content;
-    }
+    // border: 1px solid #c0c0c0;
     thead {
       background-color: $mainColor;
       color: #fff;
@@ -32,9 +24,8 @@ $mainColor: #333;
     }
     tbody {
       tr {
-        padding: 10px;
         &:nth-child(odd) {
-          background-color: #dbdbdb6c;
+          background-color: #c0c0c06c;
         }
         td {
           padding: 5px;
@@ -43,40 +34,33 @@ $mainColor: #333;
             text-align: center;
           }
           &.details {
-            width: 500px;
+            display: flex;
+            flex-wrap: wrap;
             span {
-              display: flex;
-              flex-wrap: wrap;
-              div {
-                width: fit-content;
-                display: inline-flex;
-                // background-color: green;
-                border: 1px solid #c0c0c0;
-                color: #333;
-                box-shadow: 2px 2px 5px #c0c0c0;
-                margin: 2px;
-                padding: 10px;
-                text-align: center;
-              }
+              display: inline-block;
+              background-color: #008E89;
+              color: white;
+              margin: 2px;
+              padding: 4px;
+              border-radius: 6px;
+              text-align: center;
             }
           }
           &:last-child {
             width: 100px;
             button {
-              display: flex;
-              justify-content: center;
-              align-items: center;
+              text-align: center;
               width: 100%;
               background-color: transparent;
               border: none;
-              color: $mainColor;
-              font-size: 30px;
+              color: red;
+              padding: 10px;
+              font-size: 50px;
               font-weight: bold;
               cursor: pointer;
-              transition: 0.3s;
-              &:hover {
-                transform: scale(1.05);
-                color: red;
+              transition: .3s;
+              &:hover{
+                transform: scale(1.1);
               }
             }
           }

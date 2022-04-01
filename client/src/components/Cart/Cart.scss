@@ -1,5 +1,5 @@
 $textColor: #fff;
-$mainColor: #333;
+$mainColor: #2a5ea5;
 
 .cart {
   .container {
@@ -9,19 +9,15 @@ $mainColor: #333;
     .cart-title {
       border-bottom: 1px solid $mainColor;
       padding: 10px;
-      svg {
-        color: orangered;
-      }
     }
     .cart-items {
       margin-top: 10px;
       .cart-item {
-        box-shadow: 2px 2px 5px #c0c0c0, -2px -2px 5px #c0c0c0;
+        box-shadow: 2px 2px 5px #c0c0c0;
         display: flex;
         padding: 10px;
         margin-bottom: 10px;
         img {
-          border-radius: 5px;
           width: 100px;
           margin-right: 10px;
           border: 1px solid $mainColor;
@@ -34,9 +30,6 @@ $mainColor: #333;
           align-items: center;
           p {
             margin-bottom: 5px;
-            span {
-              font-weight: bold;
-            }
           }
         }
       }
@@ -50,21 +43,15 @@ $mainColor: #333;
       }
     }
     button {
-      background-color: transparent;
-      border: 1px solid #c0c0c0;
-      padding: 5px;
-      color: orangered;
-      font-size: 20px;
-      margin-right: 10px;
-      box-shadow: 2px 2px 5px #c0c0c0;
+      background-color: $mainColor;
+      border: none;
+      padding: 10px;
+      color: #fff;
+      font-size: 17px;
+      margin-right: 3px;
       cursor: pointer;
       &:active {
         transform: scale(0.9);
-      }
-      &.select-products {
-        background-color: $mainColor;
-        color: white;
-        border: none;
       }
     }
   }
@@ -96,7 +83,6 @@ $mainColor: #333;
   .order-content {
     margin-right: 50px;
     .alert-success {
-    box-shadow: 2px 2px 5px #c0c0c0;
       text-align: center;
       background-color: green;
       color: #fff;
@@ -105,7 +91,6 @@ $mainColor: #333;
       font-size: 20px;
     }
     .order-info {
-    box-shadow: 2px 2px 5px #c0c0c0;
       table {
         border: 1px solid #c0c0c0;
         width: 100%;
@@ -119,14 +104,6 @@ $mainColor: #333;
           }
           td {
             padding: 10px;
-            &.products-info {
-              p {
-                border: 1px solid #c0c0c0;
-                margin-bottom: 4px;
-                box-shadow: 2px 2px 2px #c0c0c0;
-                padding: 5px;
-              }
-            }
           }
         }
       }

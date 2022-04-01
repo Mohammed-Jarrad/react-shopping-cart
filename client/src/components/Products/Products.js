@@ -1,22 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
 import '../../css/Products/Products.css'
-import Fade from 'react-reveal/Fade'
-import { MdAddShoppingCart } from 'react-icons/md'
-import Loading from '../Loading/Loading'
+import Zoom from 'react-reveal/Zoom'
 
-const Products = ({ showProduct, addToCart, products, loading }) => {
+const Products = ({ showProduct, addToCart, products }) => {
 
     return (
-        <React.Fragment>
+        <Zoom cascade>
+            
 
-            {loading === true ? <Loading /> : false}
+            {
+                typeof products === 'object' ? (
 
-            <Fade cascade>
-                {
-                    typeof products === 'object' && products.length ? (
-                        <div className='products-wrapper'>
-                            {products.map(product => (
+                    <div className='products-wrapper'>
+                        {
+                            products.map(product => (
                                 <div key={product._id} className='product-item'>
                                     <a href={'#'} onClick={() => showProduct(product)} >
                                         <img
@@ -29,17 +26,17 @@ const Products = ({ showProduct, addToCart, products, loading }) => {
                                         <p><span>$</span> {product.price}</p>
                                     </div>
                                     <button onClick={() => addToCart(product)} >
-                                        Add to Cart<MdAddShoppingCart size='30px' />
+                                        Add To Cart
                                     </button>
                                 </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <h1> {products} </h1>
-                    )
-                }
-            </Fade>
-        </React.Fragment>
+                            ))
+                        }
+                    </div>
+                ) : (
+                    <h1> {products} </h1>
+                )
+            }
+        </Zoom>
     )
 }
 

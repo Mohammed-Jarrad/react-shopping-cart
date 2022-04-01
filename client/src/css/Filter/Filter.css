@@ -2,15 +2,14 @@
   margin-bottom: 30px;
   height: fit-content;
   border: 1px solid #c0c0c0;
-  box-shadow: 2px 2px 5px #c0c0c0;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .filter-wrapper {
     width: 100%;
   }
 }
 .filter-wrapper .filter-title {
-  background-color: #333;
+  background-color: #2a5ea5;
   color: #fff;
   padding: 10px;
   font-weight: bold;

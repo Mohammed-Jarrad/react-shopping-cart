@@ -10,7 +10,7 @@
 .checkout-form .close-icon {
   display: block;
   float: right;
-  border: 1px solid #333;
+  border: 1px solid #2a5ea5;
   padding: 7px 10px;
   cursor: pointer;
   font-size: 20px;
@@ -19,7 +19,7 @@
   transition: all 0.3s;
   display: block;
   transform: scale(2);
-  color: #333;
+  color: #2a5ea5;
 }
 .checkout-form form {
   margin-right: 50px;
@@ -40,7 +40,7 @@
   outline: none;
 }
 .checkout-form form > div button {
-  background-color: #333;
+  background-color: #2a5ea5;
   border: none;
   padding: 10px;
   color: #fff;

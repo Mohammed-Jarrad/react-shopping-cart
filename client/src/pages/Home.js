@@ -14,17 +14,12 @@ const Home = () => {
     let [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
     let [singleProduct, setSingleProduct] = useState('')
     let [isOpen, setIsOpen] = useState(false)
-    let [loading, setLoading] = useState(true)
 
     let fetchData = () => {
         axios.get('/api/products')
             .then(res => {
                 setProducts(res.data);
                 setProductsClone(res.data)
-                setLoading(false)
-            }).catch(err => {
-                setLoading(false)
-                console.log(err)
             })
     }
 
@@ -92,7 +87,6 @@ const Home = () => {
                     products={products}
                     addToCart={addToCart}
                     showProduct={showProduct}
-                    loading={loading}
                 />
                 <Filter
                     handleFilterBySize={handleFilterBySize}
@@ -100,14 +94,12 @@ const Home = () => {
                     size={size}
                     sort={sort}
                     products={products}
-                    loading={loading}
                 />
             </div>
             <Cart
                 cart={cart}
                 setCart={setCart}
                 showProduct={showProduct}
-                products={products}
             />
             <ProductModal
                 isOpen={isOpen}

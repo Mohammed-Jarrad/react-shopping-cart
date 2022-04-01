@@ -1,13 +1,12 @@
-$mainColor: #333;
+// $mainColor: #333;
 $textColor: #fff;
-// $mainColor: #2a5ea5;
+$mainColor: #2a5ea5;
 
 .filter-wrapper {
   margin-bottom: 30px;
   height: fit-content;
   border: 1px solid #c0c0c0;
-  box-shadow: 2px 2px 5px #c0c0c0;
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     width: 100%;
   }
 
