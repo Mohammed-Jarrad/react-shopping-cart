@@ -1,0 +1,10 @@
+footer {
+  box-shadow: 5px -5px 5px #c0c0c0;
+  padding: 20px;
+  grid-area: footer;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}

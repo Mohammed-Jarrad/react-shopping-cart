@@ -1,0 +1,33 @@
+.filter-wrapper {
+  margin-bottom: 30px;
+  height: fit-content;
+  border: 1px solid #c0c0c0;
+  box-shadow: 2px 2px 5px #c0c0c0;
+}
+@media (max-width: 767px) {
+  .filter-wrapper {
+    width: 100%;
+  }
+}
+.filter-wrapper .filter-title {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.filter-wrapper > div {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}
+.filter-wrapper select {
+  width: 100%;
+  padding: 10px;
+  margin: 4px auto;
+  border: 1px solid #c0c0c0;
+}
+.filter-wrapper select:focus {
+  outline: none;
+}

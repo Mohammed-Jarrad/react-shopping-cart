@@ -1,0 +1,87 @@
+// $mainColor: #3a6b34;
+$mainColor: #333;
+
+
+// $mainColor: #2a5ea5;
+
+.orders {
+  margin: 20px auto;
+
+  .no-orders-msg {
+    text-align: center;
+    color: $mainColor;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 5px #333;
+    td,
+    th {
+      width: fit-content;
+    }
+    thead {
+      background-color: $mainColor;
+      color: #fff;
+      th {
+        text-align: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 10px;
+      }
+    }
+    tbody {
+      tr {
+        padding: 10px;
+        &:nth-child(odd) {
+          background-color: #dbdbdb6c;
+        }
+        td {
+          padding: 5px;
+
+          &:first-child {
+            text-align: center;
+          }
+          &.details {
+            width: 500px;
+            span {
+              display: flex;
+              flex-wrap: wrap;
+              div {
+                width: fit-content;
+                display: inline-flex;
+                // background-color: green;
+                border: 1px solid #c0c0c0;
+                color: #333;
+                box-shadow: 2px 2px 5px #c0c0c0;
+                margin: 2px;
+                padding: 10px;
+                text-align: center;
+              }
+            }
+          }
+          &:last-child {
+            width: 100px;
+            button {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              background-color: transparent;
+              border: none;
+              color: $mainColor;
+              font-size: 30px;
+              font-weight: bold;
+              cursor: pointer;
+              transition: 0.3s;
+              &:hover {
+                transform: scale(1.05);
+                color: red;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

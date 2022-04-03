@@ -1,0 +1,38 @@
+$mainColor: #333;
+$textColor: #fff;
+// $mainColor: #2a5ea5;
+
+.filter-wrapper {
+  margin-bottom: 30px;
+  height: fit-content;
+  border: 1px solid #c0c0c0;
+  box-shadow: 2px 2px 5px #c0c0c0;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
+  .filter-title {
+    background-color: $mainColor;
+    color: $textColor;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  > div {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px;
+    margin: 4px auto;
+    border: 1px solid #c0c0c0;
+    &:focus {
+      outline: none;
+    }
+  }
+}

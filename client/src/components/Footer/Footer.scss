@@ -1,0 +1,17 @@
+// $mainColor: #3a6b34;
+$mainColor: #333;
+
+$textColor: #fff;
+// $mainColor: #2a5ea5;
+
+footer {
+  box-shadow: 5px -5px 5px #c0c0c0;
+  padding: 20px;
+  grid-area: footer;
+  // background-color: $mainColor;
+  color: $mainColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
