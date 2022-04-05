@@ -6,21 +6,46 @@ import { AiOutlineUser, AiOutlineLock, AiFillEyeInvisible, AiFillEye } from 'rea
 
 const Login = () => {
 
-    let [isChecked, setIsChecked] = useState(false);
-    let [showEye, setShowEye] = useState(false)
+    const [isChecked, setIsChecked] = useState(false);
+    const [showEye, setShowEye] = useState(false)
+    const [inputValues, setInputValues] = useState('')
+    const [loginInfo, setLoginInfo] = useState('')
 
-    let handleChange = () => {
-        setIsChecked(!isChecked)
-    }
+    const handleChangeRemember = _ => setIsChecked(!isChecked);
 
-    let passInput = useRef()
-    let handleShowEye = () => {
-        setShowEye(!showEye)
-        passInput.current.type = 'text'
+    const passInput = useRef()
+    const handleShowEye = () => {
+        setShowEye(!showEye);
+        passInput.current.type = 'text';
     }
-    let handleHideEye = () => {
+    const handleHideEye = () => {
         setShowEye(!showEye)
         passInput.current.type = 'password'
+    }
+
+    const handelChangeInput = (e) => setInputValues(prevValue => ({ ...prevValue, [e.target.name]: e.target.value }));
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const sendUser = {
+            email: inputValues["email"],
+            password: inputValues["password"],
+        }
+        try {
+            const response = await fetch('/login', {
+                method: "POST",
+                body: JSON.stringify(sendUser),
+                headers: { "content-type": "application/json" }
+            });
+            const data = await response.json();
+            console.log(data);
+            setLoginInfo(data);
+            if (data.user) {
+                window.location.assign('/');
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     return (
@@ -29,7 +54,7 @@ const Login = () => {
             <div className='login'>
                 <form
                     className='login-content'
-                    onSubmit={(e) => e.preventDefault()}
+                    onSubmit={handleSubmit}
                 >
                     <h1>
                         <i className="fas fa-users"></i>
@@ -44,10 +69,15 @@ const Login = () => {
                                 <AiOutlineUser />
                             </span>
                             <input
-                                type='text'
-                                placeholder='Username or Email'
+                                type='email'
+                                name='email'
+                                placeholder='E-mail'
                                 className='name-input'
+                                onChange={handelChangeInput}
                             />
+                        </div>
+                        <div className='error'>
+                            {loginInfo.errors && loginInfo.errors["email"]}
                         </div>
 
                         <div className='input-feild'>
@@ -56,24 +86,22 @@ const Login = () => {
                             </span>
                             <input
                                 type='password'
+                                name='password'
                                 placeholder='Password'
                                 className='pass-input'
                                 ref={passInput}
+                                onChange={handelChangeInput}
                             />
                             <span className='eye'>
-                                <AiFillEyeInvisible
-                                    display={showEye ? 'none' : 'block'}
-                                    onClick={() => handleShowEye()}
-                                />
-
-                                <AiFillEye
-                                    display={showEye ? 'block' : 'none'}
-                                    onClick={() => handleHideEye()}
-                                />
+                                <AiFillEyeInvisible display={showEye ? 'none' : 'block'} onClick={() => handleShowEye()} />
+                                <AiFillEye display={showEye ? 'block' : 'none'} onClick={() => handleHideEye()} />
                             </span>
                         </div>
+                        <div className='error'>
+                            {loginInfo.errors && loginInfo.errors["password"]}
+                        </div>
 
-                        <button>Login</button>
+                        <button>log in</button>
 
                         <div className='check-forget'>
 
@@ -84,11 +112,11 @@ const Login = () => {
                                     name='remember'
                                     value='Remember Me'
                                     checked={isChecked}
-                                    onChange={handleChange}
+                                    onChange={handleChangeRemember}
                                 />
                                 <label
                                     htmlFor='remember Me'
-                                    onClick={handleChange}
+                                    onClick={handleChangeRemember}
                                 >
                                     Remember Me
                                 </label>

@@ -18,12 +18,14 @@
 }
 .sign form.sign-content .sign-box .personal-info {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 10px;
 }
+.sign form.sign-content .sign-box .personal-info span {
+  width: 100%;
+}
 .sign form.sign-content .sign-box .personal-info input {
-  width: 50%;
+  width: 100%;
 }
 .sign form.sign-content .sign-box > input {
   display: block;

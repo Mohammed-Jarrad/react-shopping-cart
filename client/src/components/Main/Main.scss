@@ -1,0 +1,24 @@
+.main-page {
+  position: relative;
+  .content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    text-align: center;
+    a {
+        color: #333;
+    }
+    button {
+      border: none;
+      padding: 20px;
+      background-color: rgb(56, 56, 183);
+      margin-top: 20px;
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -29,7 +29,10 @@ const Cart = ({ cart, setCart, showProduct, products }) => {
             }),
         };
         setOrder(myOrder);
-        axios.post("/order", myOrder);
+        console.log(myOrder)
+        axios.post("/order", myOrder)
+            .then(result => console.log(result.data))
+            .catch(e => console.log(e.message))
         setIsOpen(true);
     };
 

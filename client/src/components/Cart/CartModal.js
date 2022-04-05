@@ -18,11 +18,11 @@ const CartModal = ({ isOpen, closeModal, order, cart }) => {
                             <tbody>
                                 <tr>
                                     <td> Name: </td>
-                                    <td> {order.name} </td>
+                                    <td> {order.user_name} </td>
                                 </tr>
                                 <tr>
                                     <td> Email: </td>
-                                    <td> {order.email} </td>
+                                    <td> {order.user_email} </td>
                                 </tr>
                                 <tr>
                                     <td> Total: </td>

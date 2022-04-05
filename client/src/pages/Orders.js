@@ -45,12 +45,12 @@ const Orders = () => {
                                 {orders.length ? orders.map((item, index) => (
                                     <tr key={item._id}>
                                         <td><span>{index + 1}</span></td>
-                                        <td>{item.name}</td>
-                                        <td>{item.email}</td>
+                                        <td>{item.user_name}</td>
+                                        <td>{item.user_email}</td>
                                         <td className='details'>
                                             <span>
                                                 {
-                                                    item.orderInfo.map((p, i) => {
+                                                    item.order_info.map((p, i) => {
                                                         return (
 
                                                             <div key={p._id}>

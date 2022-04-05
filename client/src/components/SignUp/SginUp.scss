@@ -24,11 +24,14 @@ $mainColor: #333;
 
       .personal-info {
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         align-items: center;
         gap: 10px;
+        span {
+          width: 100%;
+        }
         input {
-          width: 50%;
+          width: 100%;
         }
       }
       > input {
