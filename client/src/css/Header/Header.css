@@ -1,7 +1,7 @@
 header {
   grid-area: header;
+  background: #fafafa;
   color: #333;
-  box-shadow: 5px 5px 5px #c0c0c0;
 }
 header .container {
   display: flex;
@@ -29,7 +29,9 @@ header .container nav ul.main-list {
   list-style: none;
 }
 header .container nav ul.main-list li {
+  position: relative;
   margin-left: 10px;
+  cursor: pointer;
 }
 header .container nav ul.main-list li a {
   font-weight: bold;
@@ -38,49 +40,34 @@ header .container nav ul.main-list li a {
   font-size: 18px;
   color: #333;
   cursor: pointer;
-  padding: 10px;
+  padding: 15px;
+}
+header .container nav ul.main-list li a.logout, header .container nav ul.main-list li a.signup {
+  background-color: orangered;
+  border-radius: 25px;
+  color: #fafafa;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+header .container nav ul.main-list li a.logout:hover, header .container nav ul.main-list li a.signup:hover {
+  opacity: 1;
+}
+header .container nav ul.main-list li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: orangered;
+  bottom: -5px;
+  left: 0;
+  transition: 0.3s;
+}
+header .container nav ul.main-list li:hover::after {
+  width: 100%;
+  opacity: 0.7;
 }
 header .container nav ul.main-list .active {
   position: relative;
   color: #333;
   border: 1px solid orangered;
-}
-header .container nav ul.main-list li.login-drop {
-  background-color: orangered;
-}
-header .container nav ul.main-list li.login-drop button {
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  color: #fff;
-  height: 100%;
-  font-size: 18px;
-  cursor: pointer;
-}
-header .container nav ul.main-list li.login-drop ul.drop-content {
-  list-style: none;
-  position: absolute;
-  top: 51px;
-  right: 0;
-  z-index: 1;
-  width: 300px;
-}
-header .container nav ul.main-list li.login-drop ul.drop-content li {
-  border-top: 1px solid #c0c0c0;
-  transition: 0.3s;
-  background-color: #333;
-  opacity: 0.9;
-  display: flex;
-  align-items: center;
-}
-header .container nav ul.main-list li.login-drop ul.drop-content li svg {
-  color: #fff;
-}
-header .container nav ul.main-list li.login-drop ul.drop-content li:hover a {
-  margin-left: 10px;
-}
-header .container nav ul.main-list li.login-drop ul.drop-content li a {
-  color: #fff;
-  transition: 0.3s;
-  flex: 1;
 }

@@ -1,7 +1,6 @@
 // $mainColor: #3a6b34;
 $mainColor: #333;
 
-
 // $mainColor: #2a5ea5;
 
 .orders {
@@ -10,6 +9,14 @@ $mainColor: #333;
   .no-orders-msg {
     text-align: center;
     color: $mainColor;
+  }
+
+  .alert-delete-msg {
+    border: 1px solid #c0c0c0;
+    color: green;
+    padding: 10px;
+    width: fit-content;
+    margin: 10px auto 20px;
   }
 
   table {
@@ -39,9 +46,9 @@ $mainColor: #333;
         td {
           padding: 5px;
 
-          &:first-child {
-            text-align: center;
-          }
+          // &:first-child {
+          //   text-align: center;
+          // }
           &.details {
             width: 500px;
             span {

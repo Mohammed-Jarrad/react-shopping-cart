@@ -1,10 +1,12 @@
 import React from 'react'
 import '../../css/Filter/Filter.css'
 import Bounce from 'react-reveal/Bounce'
+import { NavLink } from 'react-router-dom'
+import { MdNoEncryption } from 'react-icons/md'
 
 const Filter = (props) => {
 
-    let { handleFilterBySize, handleFilterBySort, size, sort, products } = props
+    let { handleFilterBySize, handleFilterBySort, size, sort, products, categories, handleFilterByCategory } = props
 
     return (
 
@@ -19,7 +21,7 @@ const Filter = (props) => {
                             </div>
                             <div className='filter-by-sizing'>
                                 <span>Size</span>
-                                <select
+                                {/* <select
                                     onChange={handleFilterBySize}
                                     value={size}
                                 >
@@ -30,7 +32,20 @@ const Filter = (props) => {
                                     <option value='L'>L</option>
                                     <option value='XL'>XL</option>
                                     <option value='XXL'>XXL</option>
-                                </select>
+                            </select> */}
+                                <div>
+                                    <div>ALL</div>
+                                    {
+                                        categories.length
+                                            ? categories.map((category, i) =>
+                                                <NavLink
+                                                    key={i}
+                                                    onClick={handleFilterByCategory}
+                                                    to="/products"
+                                                > {category} </NavLink>)
+                                            : false
+                                    }
+                                </div>
                             </div>
                             <div className='filter-by-order'>
                                 <span>Order</span>

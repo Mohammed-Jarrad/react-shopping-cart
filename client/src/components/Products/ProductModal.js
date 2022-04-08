@@ -5,8 +5,6 @@ import Zoom from 'react-reveal/Zoom'
 
 const ProductModal = ({ singleProduct, isOpen, closeModal }) => {
 
-    Modal.setAppElement('#root')
-
     return (
         <Modal
             isOpen={isOpen}

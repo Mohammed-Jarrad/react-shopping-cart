@@ -1,58 +1,68 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Cart from "../components/Cart/Cart";
 import Filter from "../components/Filter/Filter";
 import ProductModal from "../components/Products/ProductModal";
 import Products from "../components/Products/Products";
+import { GetRequest } from "../utils/requests";
 
 const Home = () => {
-  let [products, setProducts] = useState([]);
-  let [productsClone, setProductsClone] = useState([]);
-  let [sort, setSort] = useState("");
-  let [size, setSize] = useState("");
-  let [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || []
-  );
-  let [singleProduct, setSingleProduct] = useState("");
-  let [isOpen, setIsOpen] = useState(false);
-  let [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [productsClone, setProductsClone] = useState([]);
+  const [sort, setSort] = useState("");
+  const [size, setSize] = useState("");
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+  const [singleProduct, setSingleProduct] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState('');
+  const [user] = useState(localStorage.user ? JSON.parse(localStorage.user) : '');
 
-  let fetchData = () => {
-    // Get All Products From Data Base
-    axios
-      .get("/products")
-      .then((res) => {
-        setProducts(res.data);
-        setProductsClone(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err);
-      });
+
+  async function getProductsAndCategories() {
+    try {
+      //get all products
+      const resProducts = await GetRequest('/products');
+      const dataProducts = await resProducts.json();
+      console.log("data for products", dataProducts);
+      setProducts(dataProducts.products);
+      setProductsClone(dataProducts.products);
+      //get all categories
+      try {
+        const resCategories = await GetRequest('/categories');
+        const dataCategories = await resCategories.json();
+        console.log("data for Categories", dataCategories);
+        setCategories(dataCategories.categories);
+      } catch (e) {
+        console.log(e);
+      }
+      setLoading(false);
+    } catch (e) {
+      console.log(e)
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    fetchData();
+    getProductsAndCategories();
   }, []);
 
-  let closeModal = () => {
+  const closeModal = () => {
     setSingleProduct(false);
     setIsOpen(false);
   };
 
-  let showProduct = (singleProduct) => {
+  const showProduct = (singleProduct) => {
     setSingleProduct(singleProduct);
     setIsOpen(true);
   };
 
-  let addToCart = (singleProduct) => {
-    let cartClone = [...cart];
+  const addToCart = (singleProduct) => {
+    const cartClone = [...cart];
     let productExist = false;
-    cartClone.forEach((p) => {
-      if (p._id === singleProduct._id) {
+    cartClone.forEach(element => {
+      if (element._id === singleProduct._id) {
         productExist = true;
-        p.qty += 1;
+        element.qty += 1;
       }
     });
     if (!productExist) {
@@ -61,12 +71,12 @@ const Home = () => {
     setCart(cartClone);
   };
 
-  let handleFilterBySize = (e) => {
+  const handleFilterBySize = (e) => {
     setSize(e.target.value);
     if (e.target.value === "ALL") {
-      fetchData();
+      getProductsAndCategories();
     } else {
-      let newProducts = productsClone.filter((p) =>
+      const newProducts = productsClone.filter((p) =>
         p.sizes.includes(e.target.value)
       );
       newProducts.length
@@ -75,10 +85,10 @@ const Home = () => {
     }
   };
 
-  let handleFilterBySort = (e) => {
-    let order = e.target.value;
+  const handleFilterBySort = (e) => {
+    const order = e.target.value;
     setSort(order);
-    let productsCLone = products.sort((current, next) => {
+    const productsCLone = products.sort((current, next) => {
       if (order === "lowest") {
         return current.price - next.price;
       } else if (order === "highest") {
@@ -92,6 +102,11 @@ const Home = () => {
     setProducts(productsCLone);
   };
 
+  const handleFilterByCategory = (e) => {
+    // e.currentTarget.classList.toggle('active');
+
+  }
+
   return (
     <main>
       <div className="container">
@@ -100,6 +115,7 @@ const Home = () => {
           addToCart={addToCart}
           showProduct={showProduct}
           loading={loading}
+          categories={categories}
         />
         <Filter
           handleFilterBySize={handleFilterBySize}
@@ -108,6 +124,8 @@ const Home = () => {
           sort={sort}
           products={products}
           loading={loading}
+          categories={categories}
+          handleFilterByCategory={handleFilterByCategory}
         />
       </div>
       <Cart

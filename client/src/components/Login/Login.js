@@ -1,19 +1,18 @@
-import React, { useRef, useState } from 'react'
+import React, { createContext, useEffect, useRef, useState } from 'react'
 import '../../css/Login/Login.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Bounce from 'react-reveal/Bounce'
 import { AiOutlineUser, AiOutlineLock, AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
+import { GetRequest, PostRequest } from '../../utils/requests'
 
 const Login = () => {
 
     const [isChecked, setIsChecked] = useState(false);
     const [showEye, setShowEye] = useState(false)
     const [inputValues, setInputValues] = useState('')
-    const [loginInfo, setLoginInfo] = useState('')
+    const [loginError, setLoginError] = useState('')
 
-    const handleChangeRemember = _ => setIsChecked(!isChecked);
-
-    const passInput = useRef()
+    const passInput = useRef();
     const handleShowEye = () => {
         setShowEye(!showEye);
         passInput.current.type = 'text';
@@ -23,38 +22,41 @@ const Login = () => {
         passInput.current.type = 'password'
     }
 
-    const handelChangeInput = (e) => setInputValues(prevValue => ({ ...prevValue, [e.target.name]: e.target.value }));
+    const handelChangeInput = (e) => {
+        setInputValues(prevValue => ({ ...prevValue, [e.target.name]: e.target.value }));
+        setLoginError('');
+    }
 
-    async function handleSubmit(e) {
+    async function login(e) {
         e.preventDefault();
         const sendUser = {
             email: inputValues["email"],
             password: inputValues["password"],
         }
         try {
-            const response = await fetch('/login', {
-                method: "POST",
-                body: JSON.stringify(sendUser),
-                headers: { "content-type": "application/json" }
-            });
-            const data = await response.json();
-            console.log(data);
-            setLoginInfo(data);
-            if (data.user) {
-                window.location.assign('/');
+            let res = await PostRequest('/login', JSON.stringify(sendUser));
+            let data = await res.json();
+            console.log("LoginResponse", res);
+            console.log("LoginData", data);
+            if (data.isUser) {
+                localStorage.token = await data.token;
+                localStorage.user = JSON.stringify(data.isUser);
+                window.location.assign('/')
+            } else {
+                setLoginError(data.errors);
             }
-        } catch (e) {
-            console.log(e)
         }
+        catch (err) {
+            console.log(err);
+        };
     }
 
     return (
-
         <Bounce top>
             <div className='login'>
                 <form
                     className='login-content'
-                    onSubmit={handleSubmit}
+                    onSubmit={login}
                 >
                     <h1>
                         <i className="fas fa-users"></i>
@@ -77,7 +79,7 @@ const Login = () => {
                             />
                         </div>
                         <div className='error'>
-                            {loginInfo.errors && loginInfo.errors["email"]}
+                            {loginError && loginError.email}
                         </div>
 
                         <div className='input-feild'>
@@ -97,9 +99,7 @@ const Login = () => {
                                 <AiFillEye display={showEye ? 'block' : 'none'} onClick={() => handleHideEye()} />
                             </span>
                         </div>
-                        <div className='error'>
-                            {loginInfo.errors && loginInfo.errors["password"]}
-                        </div>
+                        <div className='error'>{loginError && loginError.password}</div>
 
                         <button>log in</button>
 
@@ -112,11 +112,11 @@ const Login = () => {
                                     name='remember'
                                     value='Remember Me'
                                     checked={isChecked}
-                                    onChange={handleChangeRemember}
+                                    onChange={() => setIsChecked(!isChecked)}
                                 />
                                 <label
                                     htmlFor='remember Me'
-                                    onClick={handleChangeRemember}
+                                    onClick={() => setIsChecked(!isChecked)}
                                 >
                                     Remember Me
                                 </label>
@@ -148,4 +148,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;

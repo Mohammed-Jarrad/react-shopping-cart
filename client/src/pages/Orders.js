@@ -1,78 +1,118 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import '../css/Orders.css'
 import Bounce from 'react-reveal/Bounce'
 import Loading from '../components/Loading/Loading'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { DeleteRequest, GetRequest } from '../utils/requests'
 
 const Orders = () => {
 
-    let [orders, setOrders] = useState([])
-    let [loading, setLoading] = useState(true)
-
+    // ! my states
+    const user = JSON.parse(localStorage.user);
+    const [ordersForUser, setOrdersForUser] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [alertDeleteMsg, setAlertDeleteMsg] = useState('');
+    const userName = `${user.name.first_name}${user.name.last_name}`
+    // ! get all orders for current user
     useEffect(() => {
-        axios.get('/orders')
-            .then(res => {
-                setOrders(res.data)
-                setLoading(false)
-            }).catch(err => {
-                setLoading(false)
-                console.log(err)
-            })
+        async function getOrdersForUser() {
+            try {
+                // const res = await requests.get('/orders/user');
+                const res = await GetRequest('/orders/user');
+                const data = await res.json();
+                console.log('res ordersForUser:', res)
+                console.log('data ordersForUser: ', data)
+                if (data.orders) {
+                    setOrdersForUser(data.orders);
+                    setLoading(false);
+                }
+            }
+            catch (err) {
+                console.log(err);
+                setLoading(false);
+            }
+        }
+        getOrdersForUser();
     }, [])
+    // ! get delete Message when delete order
+    function alertDeletedSuccess() {
+        return (
+            <Bounce>
+                <div className='alert-delete-msg'>
+                    {alertDeleteMsg}
+                </div>
+            </Bounce>
 
-    let removeOrder = (id) => {
-        axios.delete(`/order/${id}`)
-        axios.get('/orders').then(res => setOrders(res.data))
+        )
+    }
+    // ! remove order
+    async function removeOrder(id) {
+        try {
+            const res = await DeleteRequest(`/order/${id}`);
+            if (res.status === 202) {
+                const response = await GetRequest('/orders/user');
+                const data = await response.json();
+                setOrdersForUser(data.orders);
+                setAlertDeleteMsg('Deleted Done!');
+                setTimeout(() => {
+                    setAlertDeleteMsg('');
+                }, 2500);
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
         <div className='orders container'>
-            {
-                orders.length ? (
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Details</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <Bounce bottom cascade>
-                            <tbody>
-                                {orders.length ? orders.map((item, index) => (
-                                    <tr key={item._id}>
-                                        <td><span>{index + 1}</span></td>
-                                        <td>{item.user_name}</td>
-                                        <td>{item.user_email}</td>
-                                        <td className='details'>
-                                            <span>
-                                                {
-                                                    item.order_info.map((p, i) => {
-                                                        return (
 
-                                                            <div key={p._id}>
-                                                                <p> {p.title} </p> -
-                                                                <p> {p.quantity} </p>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <button onClick={() => removeOrder(item._id)}>
-                                                {/* <span>&times;</span> */}
-                                                <AiOutlineDelete />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                )) : false}
-                            </tbody>
-                        </Bounce>
-                    </table>
+            {alertDeleteMsg ? alertDeletedSuccess() : ""}
+
+            {
+                ordersForUser.length ? (
+                    <>
+                        <h1>{userName} Orders</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Details</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <Bounce bottom cascade>
+                                <tbody>
+                                    {
+                                        ordersForUser.map((order, index) => (
+                                            <tr key={order._id}>
+
+                                                <td><span>{index + 1}</span></td>
+                                                <td className='details'>
+                                                    <span>
+                                                        {
+                                                            order.order_info.map((info, i) => {
+                                                                return (
+                                                                    <div key={info._id}>
+                                                                        <p> {info.product.title} </p> -
+                                                                        <p> {info.quantity} </p>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <button onClick={() => removeOrder(order._id)}>
+                                                        <AiOutlineDelete />
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        ))}
+                                </tbody>
+                            </Bounce>
+                        </table>
+                    </>
                 ) : (
                     <div>
                         {
@@ -80,7 +120,7 @@ const Orders = () => {
                                 <Loading />
                             ) : (
                                 <h1 className='no-orders-msg'>
-                                    No Items To Show Now Please Check Your Cart
+                                    No orders to {userName}.
                                 </h1>
                             )
                         }

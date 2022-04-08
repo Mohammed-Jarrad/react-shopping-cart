@@ -1,50 +1,54 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import Orders from "../../pages/Orders";
 import Home from "../../pages/Home";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
 import Main from "../Main/Main";
-import { useCookies } from "react-cookie";
-import jwtDecode from "jwt-decode";
+import CreateProduct from "../CreateProduct/CreateProduct";
+import { GetRequest } from "../../utils/requests";
 
-export const CurrentUserContext = createContext();
+
+export const handleLoggedContext = createContext();
 
 const App = () => {
+  const navigate = useNavigate();
 
-  // get token and get all data for current user;
-  let [cookie] = useCookies();
-  function getCurrentUser() {
-    if (cookie.jwt) {
-      let decode_token = jwtDecode(cookie.jwt);
-      localStorage.setItem('currentUser', JSON.stringify(decode_token));
-      return decode_token.user;
-    } else {
-      localStorage.removeItem('currentUser');
-      return '';
+
+  async function handleLogged(url) {
+    try {
+      const res = await GetRequest(url)
+      console.log("handleLogged", res)
+      if (res.status === 401) {
+        navigate('/login');
+      } else {
+        navigate(url);
+      }
+    } catch (e) {
+      console.log(e)
     }
   }
 
   return (
-    <CurrentUserContext.Provider value={getCurrentUser()}>
-      <BrowserRouter>
-        <div className="layout">
-          <Header />
+    <handleLoggedContext.Provider value={handleLogged}>
+      <div className="layout">
+        <Header />
 
-          <Routes>
-            <Route exact={'true'} path="/" element={<Main />} />
-            <Route exact={'true'} path="/products" element={<Home />} />
-            <Route exact={'true'} path="/orders" element={<Orders />} />
-            <Route exact={'true'} path="/login" element={<Login />} />
-            <Route exact={'true'} path="/signup" element={<SignUp />} />
-          </Routes>
+        <Routes>
+          <Route exact={'true'} path="/" element={<Main />} />
+          <Route exact={'true'} path="/products" element={<Home />} />
+          <Route exact={'true'} path="/orders" element={<Orders />} />
+          <Route exact={'true'} path="/login" element={<Login />} />
+          <Route exact={'true'} path="/signup" element={<SignUp />} />
+          <Route exact={'true'} path="/create-product" element={<CreateProduct />} />
+          <Route path="*" element={<div> Error! PAGE NOT FOUND </div>} />
+        </Routes>
 
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </CurrentUserContext.Provider >
+        <Footer />
+      </div>
+    </handleLoggedContext.Provider>
   )
 }
 

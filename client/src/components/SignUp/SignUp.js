@@ -2,20 +2,27 @@ import React, { useRef, useState } from "react";
 import "../../css/SignUp/SginUp.css";
 import Bounce from "react-reveal/Bounce";
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
+// import Requests from "../../utils/requests";
+import { useNavigate } from "react-router-dom";
+import { PostRequest } from "../../utils/requests";
 
 const SignUp = () => {
     const [inputValue, setInputValue] = useState("");
     const [showEye, setShowEye] = useState(false);
-    const [userInfo, setUserInfo] = useState("");
+    const [userError, setUserError] = useState("");
 
-    const handleChange = (e) => setInputValue(prevValue => ({ ...prevValue, [e.target.id]: e.target.value }));
-
-    async function handleSubmit(e) {
+    // ! handle input changes + ? change the error values in change;
+    function handleChange(e) {
+        setInputValue(prevValue => ({ ...prevValue, [e.target.id]: e.target.value }));
+        setUserError('');
+    }
+    // ! signup
+    async function signup(e) {
         e.preventDefault();
         const user = {
             name: {
-                first_name: inputValue["first-name"] || null,
-                last_name: inputValue["last-name"] || null,
+                first_name: inputValue["first_name"] || null,
+                last_name: inputValue["last_name"] || null,
             },
             email: inputValue["email"] || null,
             password: inputValue["password"] || null,
@@ -27,22 +34,22 @@ const SignUp = () => {
         };
 
         try {
-            const reponse = await fetch("/signup", {
-                method: "POST",
-                body: JSON.stringify(user),
-                headers: { "content-type": "application/json" },
-            });
-            const data = await reponse.json();
-            // console.log(data);
-            setUserInfo(data);
+            const res = await PostRequest('/signup', JSON.stringify(user));
+            const data = await res.json();
+            console.log('signup res', res);
+            console.log('signup data', data);
             if (data.user) {
-                window.location.assign("/");
+                localStorage.token = await data.token;
+                localStorage.user = JSON.stringify(data.user);
+                window.location.assign('/');
+            } else {
+                setUserError(data.errors);
             }
         } catch (e) {
-            console.log("Something Error");
+            console.log(e);
         }
     };
-
+    // ! the eye icon (show & hide)
     let passInput = useRef();
     let handleShowEye = () => {
         setShowEye(!showEye);
@@ -56,32 +63,32 @@ const SignUp = () => {
     return (
         <Bounce left>
             <div className="sign">
-                <form className="sign-content" onSubmit={handleSubmit}>
+                <form className="sign-content" onSubmit={signup}>
                     <div className="sign-box">
 
                         <div className="personal-info">
                             <span>
-                                <label htmlFor="first-name">First Name:</label>
+                                <label htmlFor="first_name">First Name:</label>
                                 <input
                                     type="text"
                                     placeholder="First Name"
-                                    id="first-name"
+                                    id="first_name"
                                     onChange={handleChange}
                                 />
-                                <div className="error first-name">
-                                    {userInfo.errors && userInfo.errors["name.first_name"]}
+                                <div className="error first_name">
+                                    {userError && userError["name.first_name"]}
                                 </div>
                             </span>
                             <span>
-                                <label htmlFor="last-name">Last Name:</label>
+                                <label htmlFor="last_name">Last Name:</label>
                                 <input
                                     type="text"
                                     placeholder="Last Name"
-                                    id="last-name"
+                                    id="last_name"
                                     onChange={handleChange}
                                 />
-                                <div className="error last-name">
-                                    {userInfo.errors && userInfo.errors["name.last_name"]}
+                                <div className="error last_name">
+                                    {userError && userError["name.last_name"]}
                                 </div>
                             </span>
                         </div>
@@ -94,7 +101,7 @@ const SignUp = () => {
                             onChange={handleChange}
                         />
                         <div className="error email">
-                            {userInfo.errors && userInfo.errors["email"]}
+                            {userError && userError["email"]}
                         </div>
 
                         <label htmlFor="password">Password:</label>
@@ -110,7 +117,7 @@ const SignUp = () => {
                             <AiFillEye display={showEye ? 'block' : 'none'} onClick={() => handleHideEye()} />
                         </span>
                         <div className="error password">
-                            {userInfo.errors && userInfo.errors["password"]}
+                            {userError && userError["password"]}
                         </div>
 
                         <div className="personal-info">
@@ -123,7 +130,7 @@ const SignUp = () => {
                                     onChange={handleChange}
                                 />
                                 <div className="error country">
-                                    {userInfo.errors && userInfo.errors["location.country"]}
+                                    {userError && userError["location.country"]}
                                 </div>
                             </span>
                             <span>
@@ -135,20 +142,20 @@ const SignUp = () => {
                                     onChange={handleChange}
                                 />
                                 <div className="error city">
-                                    {userInfo.errors && userInfo.errors["location.city"]}
+                                    {userError && userError["location.city"]}
                                 </div>
                             </span>
                         </div>
 
                         <label htmlFor="phone">Phone Number:</label>
                         <input
-                            type="number"
+                            type="text"
                             placeholder="Phone Number"
                             id="phone"
                             onChange={handleChange}
                         />
                         <div className="error phone">
-                            {userInfo.errors && userInfo.errors["phone"]}
+                            {userError && userError["phone"]}
                         </div>
 
                         <button>sign up</button>

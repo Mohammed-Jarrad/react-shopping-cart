@@ -1,5 +1,5 @@
 footer {
-  box-shadow: 5px -5px 5px #c0c0c0;
+  background: transparent;
   padding: 20px;
   grid-area: footer;
   color: #333;

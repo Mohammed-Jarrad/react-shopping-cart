@@ -5,6 +5,13 @@
   text-align: center;
   color: #333;
 }
+.orders .alert-delete-msg {
+  border: 1px solid #c0c0c0;
+  color: green;
+  padding: 10px;
+  width: fit-content;
+  margin: 10px auto 20px;
+}
 .orders table {
   width: 100%;
   border-collapse: collapse;
@@ -32,9 +39,6 @@
 }
 .orders table tbody tr td {
   padding: 5px;
-}
-.orders table tbody tr td:first-child {
-  text-align: center;
 }
 .orders table tbody tr td.details {
   width: 500px;
