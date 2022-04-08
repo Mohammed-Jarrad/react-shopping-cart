@@ -16,10 +16,7 @@
   width: 100%;
   border-collapse: collapse;
   box-shadow: 2px 2px 5px #333;
-}
-.orders table td,
-.orders table th {
-  width: fit-content;
+  overflow: scroll;
 }
 .orders table thead {
   background-color: #333;
@@ -31,14 +28,22 @@
   text-transform: uppercase;
   padding: 10px;
 }
+.orders table tbody {
+  width: 100%;
+}
 .orders table tbody tr {
+  width: 100%;
   padding: 10px;
 }
 .orders table tbody tr:nth-child(odd) {
-  background-color: #dbdbdb6c;
+  background-color: #e2e2e26c;
 }
 .orders table tbody tr td {
   padding: 5px;
+}
+.orders table tbody tr td.number-order {
+  text-align: center;
+  font-size: 20px;
 }
 .orders table tbody tr td.details {
   width: 500px;
@@ -49,7 +54,7 @@
 }
 .orders table tbody tr td.details span div {
   width: fit-content;
-  display: inline-flex;
+  display: flex;
   border: 1px solid #c0c0c0;
   color: #333;
   box-shadow: 2px 2px 5px #c0c0c0;
@@ -57,10 +62,10 @@
   padding: 10px;
   text-align: center;
 }
-.orders table tbody tr td:last-child {
-  width: 100px;
+.orders table tbody tr td.show-more-order, .orders table tbody tr td.edit-order, .orders table tbody tr td.delete-order {
+  width: 200px;
 }
-.orders table tbody tr td:last-child button {
+.orders table tbody tr td.show-more-order button, .orders table tbody tr td.edit-order button, .orders table tbody tr td.delete-order button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,7 +78,18 @@
   cursor: pointer;
   transition: 0.3s;
 }
-.orders table tbody tr td:last-child button:hover {
+.orders table tbody tr td.show-more-order button:focus, .orders table tbody tr td.edit-order button:focus, .orders table tbody tr td.delete-order button:focus {
+  transform: scale(0.91);
+}
+.orders table tbody tr td.show-more-order button:hover {
+  transform: scale(1.05);
+  color: #313191;
+}
+.orders table tbody tr td.edit-order button:hover {
+  transform: scale(1.05);
+  color: #06cc06;
+}
+.orders table tbody tr td.delete-order button:hover {
   transform: scale(1.05);
   color: red;
 }

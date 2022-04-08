@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext } from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import Orders from "../../pages/Orders";
-import Home from "../../pages/Home";
+import Orders from "../../pages/Orders/Orders";
+import Home from "../../pages/Home/Home";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
 import Main from "../Main/Main";

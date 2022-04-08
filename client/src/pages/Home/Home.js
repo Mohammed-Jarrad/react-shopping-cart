@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Cart from "../components/Cart/Cart";
-import Filter from "../components/Filter/Filter";
-import ProductModal from "../components/Products/ProductModal";
-import Products from "../components/Products/Products";
-import { GetRequest } from "../utils/requests";
+import Cart from "../../components/Cart/Cart";
+import Filter from "../../components/Filter/Filter";
+import ProductModal from "../../components/Products/ProductModal";
+import Products from "../../components/Products/Products";
+import { GetRequest } from "../../utils/requests";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -15,7 +15,7 @@ const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState('');
-  const [user] = useState(localStorage.user ? JSON.parse(localStorage.user) : '');
+  // const [user] = JSON.parse(localStorage.user);
 
 
   async function getProductsAndCategories() {

@@ -23,10 +23,11 @@ $mainColor: #333;
     width: 100%;
     border-collapse: collapse;
     box-shadow: 2px 2px 5px #333;
-    td,
-    th {
-      width: fit-content;
-    }
+    overflow: scroll;
+    // td,
+    // th {
+    //   width: fit-content;
+    // }
     thead {
       background-color: $mainColor;
       color: #fff;
@@ -38,17 +39,19 @@ $mainColor: #333;
       }
     }
     tbody {
+      width: 100%;
       tr {
+        width: 100%;
         padding: 10px;
         &:nth-child(odd) {
-          background-color: #dbdbdb6c;
+          background-color: #e2e2e26c;
         }
         td {
           padding: 5px;
-
-          // &:first-child {
-          //   text-align: center;
-          // }
+          &.number-order {
+            text-align: center;
+            font-size: 20px;
+          }
           &.details {
             width: 500px;
             span {
@@ -56,7 +59,7 @@ $mainColor: #333;
               flex-wrap: wrap;
               div {
                 width: fit-content;
-                display: inline-flex;
+                display: flex;
                 // background-color: green;
                 border: 1px solid #c0c0c0;
                 color: #333;
@@ -67,8 +70,10 @@ $mainColor: #333;
               }
             }
           }
-          &:last-child {
-            width: 100px;
+          &.show-more-order,
+          &.edit-order,
+          &.delete-order {
+            width: 200px;
             button {
               display: flex;
               justify-content: center;
@@ -81,10 +86,27 @@ $mainColor: #333;
               font-weight: bold;
               cursor: pointer;
               transition: 0.3s;
-              &:hover {
-                transform: scale(1.05);
-                color: red;
+              &:focus {
+                transform: scale(0.91);
               }
+            }
+          }
+          &.show-more-order {
+            button:hover {
+              transform: scale(1.05);
+              color: rgb(49, 49, 145);
+            }
+          }
+          &.edit-order {
+            button:hover {
+              transform: scale(1.05);
+              color: rgb(6, 204, 6);
+            }
+          }
+          &.delete-order {
+            button:hover {
+              transform: scale(1.05);
+              color: red;
             }
           }
         }
