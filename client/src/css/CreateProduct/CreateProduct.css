@@ -1,29 +1,148 @@
-.create-product form textarea {
-  height: 200px;
-  width: 200px;
+.create-product {
+  position: relative;
+}
+.create-product .alert-create-msg {
+  border: 1px solid #c0c0c0;
+  color: green;
+  padding: 10px;
+  width: fit-content;
+  margin: 10px auto 20px;
+}
+.create-product form {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.create-product form .form-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+}
+@media (max-width: 991px) {
+  .create-product form .form-content {
+    flex-direction: column-reverse;
+  }
+}
+.create-product form .form-content .error {
+  color: #dd3636;
+  text-transform: lowercase;
+  float: right;
+}
+.create-product form .form-content .col-1 {
+  width: 50%;
+  text-align: center;
+}
+@media (max-width: 991px) {
+  .create-product form .form-content .col-1 {
+    width: 100%;
+  }
+}
+.create-product form .form-content .col-1 .input-box {
+  margin: 0 auto 20px;
+  width: 400px;
+}
+.create-product form .form-content .col-1 .input-box .input-content {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 991px) {
+  .create-product form .form-content .col-1 .input-box .input-content {
+    flex-direction: column;
+  }
+}
+.create-product form .form-content .col-1 .input-box .input-content label {
+  font-weight: bold;
+  text-align: left;
+}
+.create-product form .form-content .col-1 .input-box .input-content .input {
+  display: flex;
+  flex-direction: column;
+}
+.create-product form .form-content .col-1 .input-box .input-content textarea {
+  height: 100px;
   resize: none;
 }
-.create-product form .input-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-  margin-top: 20px;
+.create-product form .form-content .col-1 .input-box .input-content input,
+.create-product form .form-content .col-1 .input-box .input-content textarea {
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  box-shadow: 2px 2px 2px #c0c0c0;
+  transition: 0.3s;
 }
-.create-product form .input-box img {
+@media (min-width: 991px) {
+  .create-product form .form-content .col-1 .input-box .input-content input,
+.create-product form .form-content .col-1 .input-box .input-content textarea {
+    width: 300px;
+  }
+}
+.create-product form .form-content .col-1 .input-box .input-content input:focus,
+.create-product form .form-content .col-1 .input-box .input-content textarea:focus {
+  outline: none;
+  border: none;
+  box-shadow: 2px 2px 10px #c0c0c0;
+  caret-color: orangered;
+  padding-left: 15px;
+}
+.create-product form .form-content .col-1 .input-box .input-content input:focus::placeholder,
+.create-product form .form-content .col-1 .input-box .input-content textarea:focus::placeholder {
+  color: transparent;
+}
+.create-product form .form-content .col-1 .submit {
+  border: none;
+  width: 300px;
+  margin: auto;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  margin: 0 auto 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+@media (max-width: 991px) {
+  .create-product form .form-content .col-1 .submit {
+    float: none;
+  }
+}
+.create-product form .form-content .col-2 {
+  width: 50%;
+  text-align: center;
+}
+@media (max-width: 991px) {
+  .create-product form .form-content .col-2 {
+    width: 100%;
+  }
+}
+.create-product form .form-content .col-2 input {
+  display: none;
+}
+.create-product form .form-content .col-2 button {
+  border: none;
+  width: 120px;
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  margin: 0 auto 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.create-product form .form-content .col-2 .img-error {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.create-product form .form-content .col-2 .img-error img {
   width: 200px;
   height: 200px;
-  border-radius: 20px;
-  display: block;
-  margin-top: 20px;
-}
-.create-product form button {
-  display: block;
-  background-color: var(--main-color);
-  border: none;
-  padding: 10px 20px;
-  margin: 20px auto;
+  border: 1px solid #c0c0c0;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #c0c0c0;
+  object-fit: contain;
   cursor: pointer;
-  color: #fafafa;
-  border-radius: 20px;
+  margin: auto;
 }

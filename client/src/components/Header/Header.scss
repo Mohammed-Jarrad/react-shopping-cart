@@ -3,7 +3,6 @@ $textColor: #333;
 
 header {
   grid-area: header;
-  background: #fafafa;
   color: $mainColor;
   .container {
     display: flex;
@@ -25,14 +24,22 @@ header {
       }
     }
     nav {
+      //! main ul
       ul.main-list {
         display: flex;
+        align-items: center;
         position: relative;
         list-style: none;
-        li {
+        //! all list
+        > li {
           position: relative;
           margin-left: 10px;
           cursor: pointer;
+          .active {
+            position: relative;
+            color: $mainColor;
+            border: 1px solid orangered;
+          }
           a {
             font-weight: bold;
             display: block;
@@ -70,10 +77,64 @@ header {
             }
           }
         }
-        .active {
-          position: relative;
-          color: $mainColor;
-          border: 1px solid orangered;
+        //! drop down
+        li.drop-menu {
+          // position: relative;
+
+          > div {
+            font-weight: bold;
+            display: block;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+            // padding: 15px;
+            // background-color: orangered;
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
+            transition: 0.3s;
+            &:hover {
+              transform: scale(1.1);
+            }
+            img.profile-img {
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+          }
+          > ul.drop-list {
+            width: 300px;
+            position: absolute;
+            top: 53px;
+            right: 0;
+            list-style-type: none;
+            background-color: #fff;
+            box-shadow: 2px 2px 5px #c0c0c0;
+            border-radius: 6px;
+            z-index: 1;
+            &::after {
+              content: "";
+              position: absolute;
+            }
+            > li {
+              // padding: 10px;
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              transition: 0.3s;
+              &:not(:last-child) {
+                border-bottom: 1px solid #c0c0c0;
+              }
+              &:hover {
+                margin-left: 10px;
+              }
+            }
+            a {
+              color: #333;
+              cursor: pointer;
+            }
+          }
         }
       }
     }

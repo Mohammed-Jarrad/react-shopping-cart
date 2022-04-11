@@ -1,7 +1,6 @@
 // $mainColor: #3a6b34;
 $mainColor: #333;
 
-
 $textColor: #fff;
 // $mainColor: #2a5ea5;
 
@@ -39,6 +38,9 @@ $textColor: #fff;
     }
 
     .login-box {
+      border: 1px solid #c0c0c0;
+      border-radius: 5px;
+      padding: 20px;
       .input-feild {
         display: flex;
         align-items: center;

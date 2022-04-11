@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import Cart from "../../components/Cart/Cart";
 import Filter from "../../components/Filter/Filter";
 import ProductModal from "../../components/Products/ProductModal";
@@ -15,31 +16,34 @@ const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState('');
-  // const [user] = JSON.parse(localStorage.user);
 
-
+  //!getProductsAndCategories
   async function getProductsAndCategories() {
     try {
       //get all products
       const resProducts = await GetRequest('/products');
       const dataProducts = await resProducts.json();
       console.log("data for products", dataProducts);
-      setProducts(dataProducts.products);
-      setProductsClone(dataProducts.products);
       //get all categories
-      try {
-        const resCategories = await GetRequest('/categories');
-        const dataCategories = await resCategories.json();
-        console.log("data for Categories", dataCategories);
-        setCategories(dataCategories.categories);
-      } catch (e) {
-        console.log(e);
+      const resCategories = await GetRequest('/categories');
+      const dataCategories = await resCategories.json();
+      console.log("data for Categories", dataCategories);
+      setCategories(dataCategories.categories);
+
+      if (dataProducts.products) {
+        setProducts(dataProducts.products);
+        setProductsClone(dataProducts.products);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        console.log(dataProducts.errors);
       }
-      setLoading(false);
+
     } catch (e) {
-      console.log(e)
+      console.log(e);
       setLoading(false);
     }
+
   };
 
   useEffect(() => {
@@ -115,7 +119,10 @@ const Home = () => {
           addToCart={addToCart}
           showProduct={showProduct}
           loading={loading}
+          setLoading={setLoading}
           categories={categories}
+          setProducts={setProducts}
+          setCart={setCart}
         />
         <Filter
           handleFilterBySize={handleFilterBySize}
@@ -128,6 +135,9 @@ const Home = () => {
           handleFilterByCategory={handleFilterByCategory}
         />
       </div>
+      <button className="create-product-btn">
+        <NavLink to={`/create-product`}>Create New Product</NavLink>
+      </button>
       <Cart
         cart={cart}
         setCart={setCart}

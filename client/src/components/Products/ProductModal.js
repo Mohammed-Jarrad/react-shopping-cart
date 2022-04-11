@@ -2,6 +2,7 @@ import React from 'react'
 import Modal from 'react-modal'
 import '../../css/Products/Products.css'
 import Zoom from 'react-reveal/Zoom'
+import { Image } from 'cloudinary-react'
 
 const ProductModal = ({ singleProduct, isOpen, closeModal }) => {
 
@@ -14,7 +15,7 @@ const ProductModal = ({ singleProduct, isOpen, closeModal }) => {
             <Zoom bottom>
                 <span className='close-icon' onClick={closeModal}> &times; </span>
                 <div className='product-info'>
-                    <img src={singleProduct.imageUrl} alt={singleProduct.title} />
+                    <Image cloudName="dipbhxayl" publicId={singleProduct.imageUrl} />
                     <div>
                         <div>{singleProduct.title} Details</div>
                         <p> - Title: {singleProduct.title} </p>

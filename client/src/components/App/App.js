@@ -9,6 +9,7 @@ import SignUp from "../SignUp/SignUp";
 import Main from "../Main/Main";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import { GetRequest } from "../../utils/requests";
+import Profile from "../../pages/Profile/Profile";
 
 
 export const handleLoggedContext = createContext();
@@ -42,6 +43,7 @@ const App = () => {
           <Route exact={'true'} path="/orders" element={<Orders />} />
           <Route exact={'true'} path="/login" element={<Login />} />
           <Route exact={'true'} path="/signup" element={<SignUp />} />
+          <Route exact={'true'} path="/profile" element={<Profile />} />
           <Route exact={'true'} path="/create-product" element={<CreateProduct />} />
           <Route path="*" element={<div> Error! PAGE NOT FOUND </div>} />
         </Routes>

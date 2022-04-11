@@ -3,18 +3,35 @@
   user-select: none;
 }
 .sign form.sign-content {
-  position: absolute;
+  position: relative;
   top: 50%;
   transform: translatey(-50%);
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 5px;
   padding: 20px;
 }
 .sign form.sign-content .sign-box {
-  width: 500px;
+  width: 40%;
+}
+.sign form.sign-content .sign-box .add-photo .btn-and-img {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.sign form.sign-content .sign-box .add-photo .btn-and-img button {
+  background-color: white;
+  color: #333;
+  box-shadow: 2px 2px 5px #c0c0c0;
+}
+.sign form.sign-content .sign-box .add-photo .btn-and-img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #c0c0c0;
+  object-fit: contain;
+  cursor: pointer;
 }
 .sign form.sign-content .sign-box .personal-info {
   display: flex;
@@ -27,11 +44,24 @@
 .sign form.sign-content .sign-box .personal-info input {
   width: 100%;
 }
-.sign form.sign-content .sign-box > input {
+.sign form.sign-content .sign-box .password-input {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sign form.sign-content .sign-box .password-input span.eye {
   display: block;
-  width: 100%;
+  position: absolute;
+  right: 0;
+  border-left: 1px solid #c0c0c0;
+  padding: 10px;
+}
+.sign form.sign-content .sign-box .password-input span.eye svg:last-child {
+  color: #4267b2;
 }
 .sign form.sign-content .sign-box input {
+  width: 100%;
+  display: block;
   box-shadow: 2px 2px 5px #c0c0c0;
   background-color: transparent;
   color: #000;

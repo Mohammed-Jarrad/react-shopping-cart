@@ -42,6 +42,22 @@ main>.container {
     margin-bottom: 20px;
 }
 
+main .create-product-btn {
+    width: 80%;
+    margin: auto;
+    display: block;
+    padding: 10px;
+    background-color: #333;
+    border: none;
+}
+
+main .create-product-btn a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    width: 100%;
+}
+
 @media (max-width: 991px) {
     main .container {
         grid-template-columns: auto;
@@ -54,4 +70,13 @@ main>.container {
     main .container .products-wrapper {
         grid-row: 2;
     }
+}
+
+/* !Global Config */
+button {
+    transform: .3s;
+}
+
+button:active {
+    transform: scale(.92);
 }

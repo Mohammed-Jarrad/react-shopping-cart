@@ -7,6 +7,7 @@ import CartModal from "./CartModal";
 import { BsCartPlus, BsCartDash, BsCartX, BsCart4 } from "react-icons/bs";
 import axios from "axios";
 import Requests from "../../utils/requests";
+import { Image } from "cloudinary-react";
 
 const Cart = ({ cart, setCart, showProduct, products }) => {
     useEffect(() => {
@@ -51,10 +52,9 @@ const Cart = ({ cart, setCart, showProduct, products }) => {
                                             return (
                                                 <div className="cart-item" key={p._id}>
 
-                                                    <img
-                                                        src={p.imageUrl}
-                                                        alt={p.title}
-                                                        onClick={() => showProduct(p)}
+                                                    <Image
+                                                        cloudName="dipbhxayl"
+                                                        publicId={p.imageUrl}
                                                     />
 
                                                     <div className="cart-info">

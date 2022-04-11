@@ -1,26 +1,37 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useContext } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../../css/Header/Header.css'
-import { NavLink, Link, useNavigate } from 'react-router-dom'
-import Fade from 'react-reveal/Fade'
+import { NavLink, Link } from 'react-router-dom'
 import { BsCart4 } from 'react-icons/bs'
-import { RiArrowRightSLine } from 'react-icons/ri'
-import { CurrentUserContext, handleLoggedContext } from '../App/App'
 import { GetRequest } from '../../utils/requests'
-// import Requests from '../../utils/requests'
+import { MdKeyboardArrowRight } from 'react-icons/md';
+import { Image } from 'cloudinary-react'
+
 
 
 const Header = () => {
-    // const requests = new Requests();
 
-    const hadleLogged = useContext(handleLoggedContext);
-    const [showLoginMenu, setShowLoginMenu] = useState(false);
-    const [user] = useState(localStorage.user ? JSON.parse(localStorage.user) : '')
+    //! my states
+    const user = localStorage.user ? JSON.parse(localStorage.user) : '';
+    const full_name = user ? `${user.name.first_name} ${user.name.last_name}` : '';
+    const [showDropMenu, setShowDropMenu] = useState(false);
 
-    const hideOrShowMenu = () => setShowLoginMenu(!showLoginMenu)
+    //! hide drop menu
+    const dropRef = useRef();
+    useEffect(() => {
+        if (user) {
+            document.addEventListener('click', (e) => {
+                if (dropRef.current.contains(e.target)) {
+                    return;
+                } else {
+                    setShowDropMenu(false);
+                }
+            });
+        }
+    }, [user])
 
+    // ! logout
     async function logout() {
-        hideOrShowMenu();
         try {
             const res = await GetRequest('/logout');
             console.log('logoutRseponse', res)
@@ -39,8 +50,9 @@ const Header = () => {
         <header>
             <div className='container'>
                 <NavLink to='/'><h1><BsCart4 /> Big Store</h1></NavLink>
-                <nav>
+                <nav >
                     <ul className='main-list'>
+
                         <li><NavLink exact={'true'} to='/'> HOME </NavLink></li>
                         {
                             typeof user === 'object'
@@ -54,23 +66,44 @@ const Header = () => {
                                         <NavLink exact={'true'} to='/orders'>ORDERS</NavLink>
                                     </li>
 
-                                    <li>
-                                        <Link className='logout' to={'#'} onClick={logout}>LOG OUT</Link>
+                                    <li className='drop-menu'>
+                                        <div
+                                            onClick={() => setShowDropMenu(!showDropMenu)}
+                                            ref={dropRef}
+                                        >
+                                            <Image className="profile-img" publicId={user.user_image} cloudName='dipbhxayl' />
+                                        </div>
+                                        <ul
+                                            className='drop-list'
+                                            style={{ display: showDropMenu ? "block" : "none" }}
+
+                                        >
+                                            <li>
+                                                <MdKeyboardArrowRight />
+                                                <Link to="/profile">
+                                                    My Account
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <MdKeyboardArrowRight />
+                                                <Link to="#" onClick={logout}>
+                                                    Log Out
+                                                </Link>
+                                            </li>
+                                        </ul>
                                     </li>
 
                                 </>
                                 : <>
-
                                     <li><Link className='login' to='/login'>LOG IN</Link></li>
                                     <li><Link className='signup' to='/signup'>SIGN UP</Link></li>
-
                                 </>
                         }
                     </ul>
 
                 </nav>
             </div>
-        </header>
+        </header >
     )
 }
 

@@ -23,7 +23,7 @@ const Checkout = ({ showForm, setShowForm, cart, setCart }) => {
             })
         };
         try {
-            const res = await PostRequest("/order", JSON.stringify(order));
+            const res = await PostRequest("/order", JSON.stringify(order)); // {user, order_info}
             const data = await res.json();
             console.log("res for order", res);
             console.log("data for order", data);

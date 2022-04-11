@@ -23,7 +23,7 @@
   color: #fff;
 }
 .orders table thead th {
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   text-transform: uppercase;
   padding: 10px;
@@ -39,6 +39,7 @@
   background-color: #e2e2e26c;
 }
 .orders table tbody tr td {
+  text-align: left;
   padding: 5px;
 }
 .orders table tbody tr td.number-order {
@@ -62,10 +63,11 @@
   padding: 10px;
   text-align: center;
 }
-.orders table tbody tr td.show-more-order, .orders table tbody tr td.edit-order, .orders table tbody tr td.delete-order {
+.orders table tbody tr td.show-more-order, .orders table tbody tr td.price, .orders table tbody tr td.delete-order {
+  text-align: center;
   width: 200px;
 }
-.orders table tbody tr td.show-more-order button, .orders table tbody tr td.edit-order button, .orders table tbody tr td.delete-order button {
+.orders table tbody tr td.show-more-order button, .orders table tbody tr td.price button, .orders table tbody tr td.delete-order button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +80,7 @@
   cursor: pointer;
   transition: 0.3s;
 }
-.orders table tbody tr td.show-more-order button:focus, .orders table tbody tr td.edit-order button:focus, .orders table tbody tr td.delete-order button:focus {
+.orders table tbody tr td.show-more-order button:focus, .orders table tbody tr td.price button:focus, .orders table tbody tr td.delete-order button:focus {
   transform: scale(0.91);
 }
 .orders table tbody tr td.show-more-order button:hover {
@@ -92,4 +94,34 @@
 .orders table tbody tr td.delete-order button:hover {
   transform: scale(1.05);
   color: red;
+}
+
+.order-show-more-modal {
+  position: relative;
+  background-color: white;
+  width: 80%;
+  border: 2px solid #333;
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+@media (max-width: 991px) {
+  .order-show-more-modal {
+    width: 99%;
+  }
+}
+.order-show-more-modal .order-information {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.order-show-more-modal .order-information .product-item {
+  width: 150px;
+  text-align: center;
+  border: 1px solid #c0c0c0;
+}
+.order-show-more-modal .order-information .product-item img {
+  width: 100px;
 }

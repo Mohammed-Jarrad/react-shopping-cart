@@ -24,15 +24,11 @@ $mainColor: #333;
     border-collapse: collapse;
     box-shadow: 2px 2px 5px #333;
     overflow: scroll;
-    // td,
-    // th {
-    //   width: fit-content;
-    // }
     thead {
       background-color: $mainColor;
       color: #fff;
       th {
-        text-align: left;
+        text-align: center;
         font-weight: bold;
         text-transform: uppercase;
         padding: 10px;
@@ -47,6 +43,7 @@ $mainColor: #333;
           background-color: #e2e2e26c;
         }
         td {
+          text-align: left;
           padding: 5px;
           &.number-order {
             text-align: center;
@@ -71,8 +68,9 @@ $mainColor: #333;
             }
           }
           &.show-more-order,
-          &.edit-order,
+          &.price,
           &.delete-order {
+            text-align: center;
             width: 200px;
             button {
               display: flex;
@@ -110,6 +108,38 @@ $mainColor: #333;
             }
           }
         }
+      }
+    }
+  }
+}
+
+.order-show-more-modal {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  width: 80%;
+  border: 2px solid $mainColor;
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  @media (max-width: 991px) {
+    width: 99%;
+  }
+
+  .order-information {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    // display: flex;
+    // flex-direction: column;
+    gap: 20px;
+
+    .product-item {
+      width: 150px;
+      text-align: center;
+      border: 1px solid #c0c0c0;
+      img {
+        width: 100px;
       }
     }
   }
