@@ -70,13 +70,13 @@
 .profile .user-info .user-info-box .box h4 {
   margin-bottom: 20px;
 }
-.profile .user-info .user-info-box .box p {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.profile .user-info .user-info-box .box input {
+  padding: 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 5px;
+  caret-color: orangered;
 }
-.profile .user-info .user-info-box .box p svg {
-  color: orangered;
-  cursor: pointer;
-  margin-right: 80px;
+.profile .user-info .user-info-box .box input:focus {
+  outline: none;
+  box-shadow: 0 2px 5px #c0c0c0;
 }

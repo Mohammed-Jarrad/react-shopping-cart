@@ -52,10 +52,11 @@ const Cart = ({ cart, setCart, showProduct, products }) => {
                                             return (
                                                 <div className="cart-item" key={p._id}>
 
-                                                    <Image
+                                                    {/* <Image
                                                         cloudName="dipbhxayl"
                                                         publicId={p.imageUrl}
-                                                    />
+                                                    /> */}
+                                                    <img src={p.imageUrl} alt="" />
 
                                                     <div className="cart-info">
 

@@ -15,7 +15,8 @@ const ProductModal = ({ singleProduct, isOpen, closeModal }) => {
             <Zoom bottom>
                 <span className='close-icon' onClick={closeModal}> &times; </span>
                 <div className='product-info'>
-                    <Image cloudName="dipbhxayl" publicId={singleProduct.imageUrl} />
+                    {/* <Image cloudName="dipbhxayl" publicId={singleProduct.imageUrl} /> */}
+                    <img src={singleProduct.imageUrl} alt="product figure" />
                     <div>
                         <div>{singleProduct.title} Details</div>
                         <p> - Title: {singleProduct.title} </p>

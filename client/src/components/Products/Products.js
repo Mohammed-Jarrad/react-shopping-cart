@@ -68,10 +68,11 @@ const Products = ({ showProduct, addToCart, products, loading, setLoading, setPr
                                     <div key={product._id} className='product-item'>
 
                                         <a href={'#'} onClick={() => showProduct(product)} >
-                                            <Image
+                                            {/* <Image
                                                 cloudName="dipbhxayl"
                                                 publicId={product.imageUrl}
-                                            />
+                                            /> */}
+                                            <img alt='product figure' src={product.imageUrl} />
                                         </a>
 
                                         <div className='product-desc'>

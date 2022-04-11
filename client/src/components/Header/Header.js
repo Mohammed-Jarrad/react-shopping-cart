@@ -71,7 +71,11 @@ const Header = () => {
                                             onClick={() => setShowDropMenu(!showDropMenu)}
                                             ref={dropRef}
                                         >
-                                            <Image className="profile-img" publicId={user.user_image} cloudName='dipbhxayl' />
+                                            {/* <Image className="profile-img" publicId={user.user_image} cloudName='dipbhxayl' /> */}
+                                            <img className='profile-img'
+                                                src={user.user_image}
+                                                alt="user_image"
+                                            />
                                         </div>
                                         <ul
                                             className='drop-list'

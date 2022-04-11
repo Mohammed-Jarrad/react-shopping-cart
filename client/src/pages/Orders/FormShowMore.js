@@ -20,10 +20,11 @@ const FormShowMore = ({ showMoreForm, setShowMoreForm, order, removeOrder }) => 
                         (
                             <React.Fragment key={product._id}>
                                 <div className='product-item'>
-                                    <Image
+                                    {/* <Image
                                         cloudName="dipbhxayl"
                                         publicId={product.product["imageUrl"]}
-                                    />
+                                    /> */}
+                                    <img alt='' src={product.product["imageUrl"]} />
                                     <div>
                                         <h3>{product.product["title"]}</h3>
                                         <span>${product.product["price"]}</span>
