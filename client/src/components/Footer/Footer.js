@@ -4,7 +4,7 @@ import '../../css/Footer/Footer.css'
 const Footer = () => {
     return (
         <footer>
-            Mohammed Jarrad © 2022
+            Big Store © 2022
         </footer>
     )
 }

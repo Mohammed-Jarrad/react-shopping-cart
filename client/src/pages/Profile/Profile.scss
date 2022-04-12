@@ -1,88 +1,150 @@
 .profile {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 20px;
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 
-  .user-image {
-    width: 30%;
-    display: flex;
-    gap: 40px;
-    flex-direction: column;
-    text-align: center;
-    border-right: 1px solid #c0c0c0;
-    .user-image-content {
-      img {
-        width: 200px;
-        height: 200px;
-        object-fit: contain;
-        border-radius: 50%;
-        box-shadow: 2px 2px 5px #c0c0c0;
-      }
-      button {
-        width: fit-content;
-        margin: 10px auto 0;
-        padding: 10px 20px;
-        border: none;
-        background-color: #333;
-        color: white;
-        cursor: pointer;
-        border-radius: 6px;
-      }
-    }
-    .user-configuration {
-      list-style-type: none;
-      text-align: left;
+	.user-image {
+		width: 30%;
+		display: flex;
+		gap: 40px;
+		flex-direction: column;
+		text-align: center;
+		border-right: 1px solid #c0c0c0;
+		@media (max-width: 768px) {
+			width: 100%;
+			border: none;
+		}
+		.user-image-content {
+			img {
+				width: 200px;
+				height: 200px;
+				object-fit: contain;
+				border-radius: 50%;
+				box-shadow: 2px 2px 5px #c0c0c0;
+				@media (max-width: 768px) {
+					display: block;
+					margin: auto;
+				}
+			}
+			button {
+				width: fit-content;
+				margin: 10px auto 0;
+				padding: 10px 20px;
+				border: none;
+				background-color: #333;
+				color: white;
+				cursor: pointer;
+				border-radius: 6px;
+			}
+		}
+		.user-configuration {
+			button {
+				padding: 10px;
+				text-decoration: none;
+				color: #000;
+				font-size: 17px;
+				display: block;
+				width: 80%;
+				border-radius: 10px;
+				font-family: 'operator mono lig';
+				cursor: pointer;
+				margin: 0 auto 10px;
+				border: none;
+				opacity: 0.8;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
 
-      button {
-        padding: 10px;
-        text-decoration: none;
-        color: #000;
-        font-size: 17px;
-        display: block;
-        width: 80%;
-        border-radius: 10px;
-        font-family: "operator mono lig";
-        cursor: pointer;
-        margin: 0 auto 10px;
-        border: none;
-        opacity: 0.8;
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-  }
+	.user-info {
+		width: 70%;
+		@media (max-width: 768px) {
+			width: 100%;
+		}
 
-  .user-info {
-    width: 70%;
+		h2 {
+			border-bottom: 1px solid #c0c0c0;
+			padding-bottom: 10px;
+		}
+		.user-info-box {
+			padding: 10px;
+			display: grid;
+			margin-bottom: 20px;
+			grid-template-columns: repeat(2, 50%);
+			gap: 50px 20px;
+			.box {
+				padding: 10px;
+				h4 {
+					margin-bottom: 20px;
+				}
+				input {
+					padding: 10px;
+					border: 1px solid #c0c0c0;
+					border-radius: 5px;
+					caret-color: orangered;
+					&:focus {
+						outline: none;
+						box-shadow: 0 2px 5px #c0c0c0;
+					}
+				}
+			}
+		}
+	}
 
-    h2 {
-      border-bottom: 1px solid #c0c0c0;
-      padding-bottom: 10px;
-    }
-    .user-info-box {
-      padding: 10px;
-      display: grid;
-      margin-bottom: 20px;
-      grid-template-columns: repeat(2, 50%);
-      gap: 50px 20px;
-      .box {
-        padding: 10px;
-        h4 {
-          margin-bottom: 20px;
-        }
-        input {
-          padding: 10px;
-          border: 1px solid #c0c0c0;
-          border-radius: 5px;
-          caret-color: orangered;
-          &:focus {
-            outline: none;
-            box-shadow: 0 2px 5px #c0c0c0;
-          }
-        }
-      }
-    }
-  }
+	.change-password {
+		position: relative;
+		width: 70%;
+		@media (max-width: 768px) {
+			width: 100%;
+		}
+		.compare-password,
+		.change-form {
+			border: 1px solid #c0c0c0;
+			border-radius: 10px;
+			padding: 10px;
+			width: 300px;
+			margin: 100px auto;
+			@media (max-width: 768px) {
+				position: relative;
+			}
+			h3 {
+				margin-bottom: 10px;
+			}
+			input {
+				width: 100%;
+				padding: 10px;
+				border: none;
+				border-bottom: 1px solid #c0c0c0;
+
+				&:focus {
+					border: none;
+					outline: none;
+					box-shadow: 2px 2px 5px #c0c0c0;
+				}
+			}
+			.submit-password {
+				margin-top: 10px;
+				display: flex;
+				justify-content: center;
+				gap: 20px;
+			}
+			button {
+				padding: 10px;
+				background-color: #333;
+				color: #fff;
+				border: none;
+				margin-top: 10px;
+			}
+		}
+		.enter-new-password {
+			display: flex;
+			gap: 10px;
+		}
+	}
 }

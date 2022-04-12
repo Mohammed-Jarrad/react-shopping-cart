@@ -75,6 +75,7 @@ main .create-product-btn a {
 /* !Global Config */
 button {
     transform: .3s;
+    cursor: pointer;
 }
 
 button:active {

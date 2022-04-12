@@ -12,7 +12,7 @@ const SignUp = () => {
     const [inputValue, setInputValue] = useState("");
     const [showEye, setShowEye] = useState(false);
     const [userError, setUserError] = useState("");
-    const [userImage, setUserImage] = useState('');
+    const [userImage, setUserImage] = useState('/images/profile-image-default.webp');
     const inputRef = useRef();
     const [loading, setLoading] = useState(false);
     const [alertSignedDone, setAlertSingedDone] = useState(false);
@@ -24,14 +24,18 @@ const SignUp = () => {
     }
     //!get Path of image
     function getPathOfImg(e) {
-        let file = e.target.files[0];
-        let fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = () => {
-            setUserImage(fileReader.result);
-            console.log(fileReader.result);
+        if (e.target.files.length) {
+            let file = e.target.files[0];
+            let fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                setUserImage(fileReader.result);
+                console.log(fileReader.result);
+            }
+            fileReader.onerror = (e) => console.log(e);
+        } else {
+            setUserImage('/images/profile-image-default.webp');
         }
-        fileReader.onerror = (e) => console.log(e);
     }
     // ! signup
     async function signup(e) {
@@ -58,7 +62,7 @@ const SignUp = () => {
             console.log('signup data', data);
             if (data.user) {
                 localStorage.token = await data.token;
-                localStorage.user = JSON.stringify(data.user);
+                localStorage.user = JSON.stringify(await data.user);
                 setLoading(false);
                 setAlertSingedDone(true);
                 window.location.assign('/');
@@ -105,20 +109,14 @@ const SignUp = () => {
                                     style={{ display: 'none' }}
                                 />
                                 <div className="btn-and-img">
-                                    <button
-                                        onClick={(e) => {
-                                            inputRef.current.click();
-                                            e.preventDefault();
-                                        }}
-                                        style={{ display: userImage ? "none" : "block" }}
-                                    >
-                                        Add Photo
-                                    </button>
                                     <img
                                         alt=''
-                                        src={userImage ? userImage : "/images/profile-image-default.webp"}
+                                        src={userImage}
                                         onClick={userImage ? () => inputRef.current.click() : null}
                                     />
+                                    <div className="error">
+                                        {userError && userError["user_image"]}
+                                    </div>
                                 </div>
 
                             </div>

@@ -40,7 +40,7 @@ const Login = () => {
             console.log("LoginData", data);
             if (data.isUser) {
                 localStorage.token = await data.token;
-                localStorage.user = JSON.stringify(data.isUser);
+                localStorage.user = JSON.stringify(await data.isUser);
                 window.location.assign('/')
             } else {
                 setLoginError(data.errors);
