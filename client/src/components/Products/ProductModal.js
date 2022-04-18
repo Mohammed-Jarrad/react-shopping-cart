@@ -1,33 +1,66 @@
-import React from 'react'
-import Modal from 'react-modal'
-import '../../css/Products/Products.css'
-import Zoom from 'react-reveal/Zoom'
-import { Image } from 'cloudinary-react'
+import React from 'react';
+import Modal from 'react-modal';
+import '../../css/Products/Products.css';
 
-const ProductModal = ({ singleProduct, isOpen, closeModal }) => {
+Modal.setAppElement('#root');
 
-    return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={closeModal}
-            className='products-modal'
-        >
-            <Zoom bottom>
-                <span className='close-icon' onClick={closeModal}> &times; </span>
-                <div className='product-info'>
-                    {/* <Image cloudName="dipbhxayl" publicId={singleProduct.imageUrl} /> */}
-                    <img src={singleProduct.imageUrl} alt="product figure" />
-                    <div>
-                        <div>{singleProduct.title} Details</div>
-                        <p> - Title: {singleProduct.title} </p>
-                        <p> - Description: {singleProduct.desc} </p>
-                        <p> - Price: {singleProduct.price}$ </p>
-                        <p> - Sizes: {singleProduct && singleProduct.sizes.map(e => `[${e}] `)}</p>
-                    </div>
-                </div>
-            </Zoom>
-        </Modal >
-    )
-}
+const ProductModal = ({ singleProduct, isOpen, closeModal, addToCart, removeProduct }) => {
+	return (
+		<Modal
+			overlayClassName='product-modal-overlay'
+			className='product-modal'
+			isOpen={isOpen}
+			closeTimeoutMS={250}
+			onRequestClose={closeModal}
+		>
+			<span className='close-icon' onClick={closeModal}>
+				&times;
+			</span>
+			<div className='main-content'>
+				<div className='product-info'>
+					<img src={singleProduct.imageUrl} alt='product figure' />
+					<div className='product-info-details'>
+						<h2 className='title'>{singleProduct.title}</h2>
 
-export default ProductModal
+						<div className='desc'>
+							Description: <div>{singleProduct.desc}</div>
+						</div>
+
+						<div className='price'>
+							Price: <div>{singleProduct.price}$</div>
+						</div>
+
+						<div className='category'>
+							Category: <div>{singleProduct.category}</div>
+						</div>
+					</div>
+				</div>
+				<div className='modal-options'>
+					<button className='close' onClick={closeModal}>
+						Close
+					</button>
+					<button
+						className='add'
+						onClick={() => {
+							addToCart(singleProduct);
+							closeModal();
+						}}
+					>
+						Add To Cart
+					</button>
+					<button
+						className='delete'
+						onClick={() => {
+							closeModal();
+							removeProduct(singleProduct._id);
+						}}
+					>
+						Delete Product
+					</button>
+				</div>
+			</div>
+		</Modal>
+	);
+};
+
+export default ProductModal;

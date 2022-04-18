@@ -1,8 +1,8 @@
 footer {
-  background: transparent;
   padding: 20px;
   grid-area: footer;
-  color: #333;
+  background-color: var(--mainColor);
+  color: var(--textColor);
   display: flex;
   justify-content: center;
   align-items: center;

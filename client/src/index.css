@@ -1,12 +1,22 @@
 :root {
-    --main-color: #333;
+    --mainColor: #333;
+    --secondColor: #937047;
+    --boxShadow: 2px 2px 5px #c0c0c0;
+    --textColor: #e7dac7;
+    --bodyColor: #E0E0E0;
+}
+
+body {
+    background-color: var(--bodyColor);
+    overflow-x: hidden;
 }
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Arial';
+    /* font-family: 'Cairo', sans-serif; */
+    font-family: 'Roboto Mono', monospace;
 }
 
 
@@ -29,55 +39,52 @@
     grid-template-rows: 60px 1fr 60px;
 }
 
-main {
-    grid-row: 2;
-}
-
-main>.container {
-    grid-area: main;
-    display: grid;
-    grid-template-columns: auto 300px;
-    grid-gap: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-main .create-product-btn {
-    width: 80%;
-    margin: auto;
-    display: block;
-    padding: 10px;
-    background-color: #333;
-    border: none;
-}
-
-main .create-product-btn a {
-    text-decoration: none;
-    color: white;
-    display: block;
-    width: 100%;
-}
-
-@media (max-width: 991px) {
-    main .container {
-        grid-template-columns: auto;
-    }
-
-    main .container .filter-wrapper {
-        grid-row: 1;
-    }
-
-    main .container .products-wrapper {
-        grid-row: 2;
-    }
-}
-
 /* !Global Config */
+/* buttons */
 button {
     transform: .3s;
     cursor: pointer;
 }
 
 button:active {
-    transform: scale(.92);
+    transform: scale(.97);
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--bodyColor);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--mainColor);
+
+}
+
+
+::-webkit-scrollbar-button:single-button {
+    background-color: var(--mainColor);
+    display: block;
+    background-size: 10px;
+    background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement,
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    height: 12px;
+    width: 16px;
+    background-position: center 4px;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(96, 96, 96)'><polygon points='50,00 0,50 100,50'/></svg>");
+}
+
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(96, 96, 96)'><polygon points='0,0 100,0 50,50'/></svg>");
 }

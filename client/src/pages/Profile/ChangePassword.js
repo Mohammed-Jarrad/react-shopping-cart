@@ -23,10 +23,7 @@ const ChangePassword = ({ setShowChangePassword }) => {
 	async function handleComparePassword() {
 		const enterPassword = compareInputValue;
 		try {
-			const res = await PostRequest(
-				'/user/compare/password',
-				JSON.stringify({ enterPassword }),
-			);
+			const res = await PostRequest('/user/compare/password', JSON.stringify({ enterPassword }));
 			const data = await res.json();
 			console.log(res);
 			console.log(data);
@@ -51,12 +48,10 @@ const ChangePassword = ({ setShowChangePassword }) => {
 		setLoadingChange(true);
 		if (newPassword.length <= 5) {
 			setChangeError(true);
+			setLoadingChange(false);
 		} else {
 			try {
-				const res = await PutRequest(
-					'/user/reset/password',
-					JSON.stringify({ newPassword }),
-				);
+				const res = await PutRequest('/user/reset/password', JSON.stringify({ newPassword }));
 				const data = await res.json();
 				console.log('res change', res);
 				console.log('data change', data);
@@ -90,9 +85,7 @@ const ChangePassword = ({ setShowChangePassword }) => {
 								onChange={handleChangeCompareInput}
 								placeholder={'Enter Your Password'}
 							/>
-							{compareError ? (
-								<Alert severity='error'>{compareError.compare}</Alert>
-							) : null}
+							{compareError ? <Alert severity='error'>{compareError.compare}</Alert> : null}
 						</div>
 						<div className='submit-password'>
 							<button autoFocus onClick={handleComparePassword}>
@@ -115,15 +108,11 @@ const ChangePassword = ({ setShowChangePassword }) => {
 									{loadingChange && <CircularProgress />}
 								</div>
 								{changeError && (
-									<Alert severity='error'>
-										the password length 6 charachters or more
-									</Alert>
+									<Alert severity='error'>the password length 6 charachters or more</Alert>
 								)}
 								<div className='submit-password'>
 									<button onClick={changePassword}>Submit</button>
-									<button onClick={() => setShowChangePassword(false)}>
-										Cancel
-									</button>
+									<button onClick={() => setShowChangePassword(false)}>Cancel</button>
 								</div>
 							</div>
 						</div>

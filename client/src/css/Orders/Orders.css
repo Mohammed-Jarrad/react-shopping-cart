@@ -3,7 +3,7 @@
 }
 .orders .no-orders-msg {
   text-align: center;
-  color: #333;
+  color: var(--mainColor);
 }
 .orders .alert-delete-msg {
   border: 1px solid #c0c0c0;
@@ -19,7 +19,7 @@
   overflow: scroll;
 }
 .orders table thead {
-  background-color: #333;
+  background-color: var(--mainColor);
   color: #fff;
 }
 .orders table thead th {
@@ -74,7 +74,7 @@
   width: 100%;
   background-color: transparent;
   border: none;
-  color: #333;
+  color: var(--mainColor);
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
@@ -99,8 +99,9 @@
 .order-show-more-modal {
   position: relative;
   background-color: white;
+  z-index: 1111;
   width: 80%;
-  border: 2px solid #333;
+  border: 2px solid var(--mainColor);
   margin: 20px auto;
   padding: 20px;
   display: flex;

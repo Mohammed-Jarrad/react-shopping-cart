@@ -1,38 +1,98 @@
-$mainColor: #333;
-$textColor: #fff;
-// $mainColor: #2a5ea5;
-
 .filter-wrapper {
-  margin-bottom: 30px;
-  height: fit-content;
-  border: 1px solid #c0c0c0;
-  box-shadow: 2px 2px 5px #c0c0c0;
-  @media (max-width: 767px) {
-    width: 100%;
-  }
+	height: fit-content;
+	width: 270px;
+	background-color: var(--mainColor);
+	transition: all 0.5s;
+	position: absolute;
+	left: -270px;
+	z-index: 10;
+	opacity: 0.97;
+	height: calc(100vh - 60px);
 
-  .filter-title {
-    background-color: $mainColor;
-    color: $textColor;
-    padding: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
+	&.move {
+		left: 0;
+		position: relative;
+		.arrow-to-left {
+			right: 0;
+			svg {
+				transform: rotate(180deg);
+			}
+		}
+		@media (max-width: 991px) {
+			position: absolute;
+		}
+	}
 
-  > div {
-    margin-bottom: 10px;
-    padding: 5px 10px;
-  }
+	.arrow-to-left {
+		padding: 10px;
+		width: fit-content;
+		position: absolute;
+		right: -36px;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: all 0.3s;
+		cursor: pointer;
+		background: var(--mainColor);
+		svg {
+			fill: var(--secondColor);
+			font-size: 20px;
+			transition: all 0.3s;
+		}
+	}
 
-  select {
-    width: 100%;
-    padding: 10px;
-    margin: 4px auto;
-    border: 1px solid #c0c0c0;
-    &:focus {
-      outline: none;
-    }
-  }
+	.category-title,
+	.order-title {
+		background-color: var(--mainColor);
+		color: var(--textColor);
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 20px;
+		padding: 10px;
+	}
+
+	.filter-content {
+		position: relative;
+		.filter-items {
+			color: var(--textColor);
+			cursor: pointer;
+			border: 1px solid #c0c0c0;
+			padding: 5px;
+			transition: 0.3s;
+			margin-bottom: 10px;
+			position: relative;
+
+			&:hover {
+				color: var(--textColor);
+				background-color: var(--secondColor);
+			}
+
+			&.active {
+				border-color: var(--secondColor);
+			}
+		}
+		.filter-by-category {
+			padding: 10px;
+		}
+		.filter-by-order {
+			padding: 10px;
+		}
+		.create-product-btn {
+			width: 80%;
+			margin: auto;
+			display: block;
+			padding: 10px;
+			background-color: var(--textColor);
+
+			border: none;
+			margin-bottom: 10px;
+			a {
+				text-decoration: none;
+				color: var(--mainColor);
+				display: block;
+				width: 100%;
+			}
+		}
+	}
 }

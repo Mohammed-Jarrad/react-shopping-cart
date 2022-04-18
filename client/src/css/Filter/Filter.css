@@ -1,33 +1,93 @@
 .filter-wrapper {
-  margin-bottom: 30px;
   height: fit-content;
-  border: 1px solid #c0c0c0;
-  box-shadow: 2px 2px 5px #c0c0c0;
+  width: 270px;
+  background-color: var(--mainColor);
+  transition: all 0.5s;
+  position: absolute;
+  left: -270px;
+  z-index: 10;
+  opacity: 0.97;
+  height: calc(100vh - 60px);
 }
-@media (max-width: 767px) {
-  .filter-wrapper {
-    width: 100%;
+.filter-wrapper.move {
+  left: 0;
+  position: relative;
+}
+.filter-wrapper.move .arrow-to-left {
+  right: 0;
+}
+.filter-wrapper.move .arrow-to-left svg {
+  transform: rotate(180deg);
+}
+@media (max-width: 991px) {
+  .filter-wrapper.move {
+    position: absolute;
   }
 }
-.filter-wrapper .filter-title {
-  background-color: #333;
-  color: #fff;
+.filter-wrapper .arrow-to-left {
   padding: 10px;
+  width: fit-content;
+  position: absolute;
+  right: -36px;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: var(--mainColor);
+}
+.filter-wrapper .arrow-to-left svg {
+  fill: var(--secondColor);
+  font-size: 20px;
+  transition: all 0.3s;
+}
+.filter-wrapper .category-title,
+.filter-wrapper .order-title {
+  background-color: var(--mainColor);
+  color: var(--textColor);
   font-weight: bold;
   text-transform: uppercase;
   font-size: 20px;
-  margin-bottom: 20px;
-}
-.filter-wrapper > div {
-  margin-bottom: 10px;
-  padding: 5px 10px;
-}
-.filter-wrapper select {
-  width: 100%;
   padding: 10px;
-  margin: 4px auto;
-  border: 1px solid #c0c0c0;
 }
-.filter-wrapper select:focus {
-  outline: none;
+.filter-wrapper .filter-content {
+  position: relative;
+}
+.filter-wrapper .filter-content .filter-items {
+  color: var(--textColor);
+  cursor: pointer;
+  border: 1px solid #c0c0c0;
+  padding: 5px;
+  transition: 0.3s;
+  margin-bottom: 10px;
+  position: relative;
+}
+.filter-wrapper .filter-content .filter-items:hover {
+  color: var(--textColor);
+  background-color: var(--secondColor);
+}
+.filter-wrapper .filter-content .filter-items.active {
+  border-color: var(--secondColor);
+}
+.filter-wrapper .filter-content .filter-by-category {
+  padding: 10px;
+}
+.filter-wrapper .filter-content .filter-by-order {
+  padding: 10px;
+}
+.filter-wrapper .filter-content .create-product-btn {
+  width: 80%;
+  margin: auto;
+  display: block;
+  padding: 10px;
+  background-color: var(--textColor);
+  border: none;
+  margin-bottom: 10px;
+}
+.filter-wrapper .filter-content .create-product-btn a {
+  text-decoration: none;
+  color: var(--mainColor);
+  display: block;
+  width: 100%;
 }

@@ -1,216 +1,212 @@
-// $mainColor: #3a6b34;
-$mainColor: #333;
-
-$textColor: #fff;
-// $mainColor: #2a5ea5;
-
 .login {
-  // position: relative;
-  color: #333;
-  user-select: none;
+	color: #333;
+	user-select: none;
 
-  form.login-content {
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 350px;
-    text-align: center;
-    border-radius: 5px;
-    padding: 20px;
+	form.login-content {
+		position: relative;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 350px;
+		text-align: center;
+		border-radius: 5px;
+		padding: 20px;
 
-    h1 {
-      background-color: $mainColor;
-      color: #fff;
-      width: 50px;
-      height: 50px;
-      margin: 0 auto 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-    }
+		h1 {
+			background-color: var(--mainColor);
+			color: #fff;
+			width: 50px;
+			height: 50px;
+			margin: 0 auto 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+		}
 
-    .go-sign-up {
-      display: block;
-      color: $mainColor;
-      margin-bottom: 20px;
-    }
+		.go-sign-up {
+			display: block;
+			color: var(--mainColor);
+			margin-bottom: 20px;
+		}
 
-    .login-box {
-      border: 1px solid #c0c0c0;
-      border-radius: 5px;
-      padding: 20px;
-      .input-feild {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-        border: 1px solid #afafaf;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px #c0c0c0;
+		.login-box {
+			// border: 1px solid #c0c0c0;
+			border-radius: 5px;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			.input-feild {
+				display: flex;
+				align-items: center;
+				// margin-bottom: 20px;
+				border: 1px solid #afafaf;
+				border-radius: 5px;
+				box-shadow: 2px 2px 5px #c0c0c0;
 
-        input.name-input,
-        input.pass-input {
-          width: 100%;
-          display: block;
-          padding: 10px;
-          margin: auto;
-          border: none;
-          background-color: transparent;
-          color: #000;
-          caret-color: $mainColor;
-          font-size: 16px;
-          transition: 0.3s;
-          border-left: 1px solid #afafaf;
+				input.name-input,
+				input.pass-input {
+					width: 100%;
+					display: block;
+					padding: 10px;
+					margin: auto;
+					border: none;
+					background-color: transparent;
+					color: #000;
+					caret-color: var(--mainColor);
+					font-size: 16px;
+					transition: 0.3s;
+					border-left: 1px solid #afafaf;
 
-          &::placeholder {
-            color: #afafaf;
-          }
+					&::placeholder {
+						color: #afafaf;
+					}
 
-          &:focus {
-            outline: none;
-            padding-left: 15px;
+					&:focus {
+						outline: none;
+						padding-left: 15px;
 
-            &::placeholder {
-              color: transparent;
-            }
-          }
-        }
-        span.icon {
-          display: block;
-          padding: 10px;
-          svg {
-            color: $mainColor;
-          }
-        }
-        span.eye {
-          padding: 10px;
-          svg:last-child {
-            color: #4267b2;
-            size: 2em;
-          }
-        }
-      }
+						&::placeholder {
+							color: transparent;
+						}
+					}
+				}
+				span.icon {
+					display: block;
+					padding: 10px;
+					svg {
+						color: var(--mainColor);
+					}
+				}
+				span.eye {
+					padding: 10px;
+					svg:last-child {
+						color: #4267b2;
+						size: 2em;
+					}
+				}
+			}
 
-      button {
-        display: block;
-        margin: auto;
-        background: $mainColor;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-weight: bold;
-        font-size: 20px;
-        border-radius: 5px;
-        width: 100%;
-        text-transform: uppercase;
-        cursor: pointer;
-        opacity: 0.9;
-        transition: 0.3s;
+			button {
+				display: block;
+				margin: auto;
+				background: var(--mainColor);
+				color: #fff;
+				border: none;
+				padding: 10px 20px;
+				font-weight: bold;
+				font-size: 20px;
+				border-radius: 5px;
+				width: 100%;
+				text-transform: uppercase;
+				cursor: pointer;
+				opacity: 0.9;
+				transition: 0.3s;
 
-        &:hover {
-          opacity: 1;
-        }
+				&:hover {
+					opacity: 1;
+				}
 
-        &:active {
-          transform: scale(0.95);
-        }
-      }
+				&:active {
+					transform: scale(0.95);
+				}
+			}
 
-      .check-forget {
-        display: flex;
-        justify-content: space-between;
-        text-align: left;
-        width: 100%;
-        margin: 10px auto;
+			.check-forget {
+				display: flex;
+				justify-content: space-between;
+				text-align: left;
+				width: 100%;
+				margin: 10px auto;
 
-        .remember-me {
-          input {
-            cursor: pointer;
-            transition: 0.3s;
-            margin-right: 5px;
+				.remember-me {
+					input {
+						cursor: pointer;
+						transition: 0.3s;
+						margin-right: 5px;
 
-            &:checked {
-              margin-right: 10px;
-              background-color: red;
-            }
-          }
+						&:checked {
+							margin-right: 10px;
+							background-color: red;
+						}
+					}
 
-          label {
-            cursor: pointer;
-            font-size: 15px;
-            user-select: none;
-          }
-        }
+					label {
+						cursor: pointer;
+						font-size: 15px;
+						user-select: none;
+					}
+				}
 
-        a {
-          display: block;
-          color: $mainColor;
-          font-size: 15px;
-        }
-      }
+				a {
+					display: block;
+					color: var(--mainColor);
+					font-size: 15px;
+				}
+			}
 
-      .or-option {
-        border-radius: 50%;
-        background-color: $mainColor;
-        color: #fff;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-        margin: 50px auto 20px;
-        position: relative;
+			.or-option {
+				border-radius: 50%;
+				background-color: var(--mainColor);
+				color: #fff;
+				width: 30px;
+				height: 30px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-weight: bold;
+				margin: 50px auto 20px;
+				position: relative;
 
-        &::before {
-          content: "";
-          position: absolute;
-          width: 120px;
-          height: 1px;
-          right: -120px;
-          background-color: $mainColor;
-        }
+				&::before {
+					content: '';
+					position: absolute;
+					width: 120px;
+					height: 1px;
+					right: -120px;
+					background-color: var(--mainColor);
+				}
 
-        &::after {
-          content: "";
-          position: absolute;
-          width: 120px;
-          height: 1px;
-          left: -120px;
-          background-color: $mainColor;
-        }
-      }
+				&::after {
+					content: '';
+					position: absolute;
+					width: 120px;
+					height: 1px;
+					left: -120px;
+					background-color: var(--mainColor);
+				}
+			}
 
-      ul {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        gap: 10px;
+			ul {
+				list-style: none;
+				display: flex;
+				justify-content: center;
+				gap: 10px;
 
-        li {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+				li {
+					width: 50px;
+					height: 50px;
+					border-radius: 50%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
 
-          &:first-child {
-            background-color: #4267b2;
-          }
+					&:first-child {
+						background-color: #4267b2;
+					}
 
-          &:last-child {
-            background-color: #ea4335;
-          }
+					&:last-child {
+						background-color: #ea4335;
+					}
 
-          a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 20px;
-          }
-        }
-      }
-    }
-  }
+					a {
+						text-decoration: none;
+						color: #fff;
+						font-size: 20px;
+					}
+				}
+			}
+		}
+	}
 }

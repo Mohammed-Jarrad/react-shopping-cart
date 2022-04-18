@@ -1,0 +1,21 @@
+main {
+	grid-area: main;
+
+	.home {
+		display: flex;
+		gap: 30px;
+
+		.container {
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	main {
+		.home {
+			flex-direction: column;
+			.container {
+			}
+		}
+	}
+}

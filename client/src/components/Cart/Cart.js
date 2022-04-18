@@ -1,145 +1,106 @@
-import React, { useEffect, useState } from "react";
-import "../../css/Cart/Cart.css";
-import Checkout from "../CeckoutForm/Checkout";
-import Zoom from "react-reveal/Zoom";
-import Bounce from "react-reveal/Bounce";
-import CartModal from "./CartModal";
-import { BsCartPlus, BsCartDash, BsCartX, BsCart4 } from "react-icons/bs";
-import axios from "axios";
-import Requests from "../../utils/requests";
-import { Image } from "cloudinary-react";
+import React, { useEffect, useState } from 'react';
+import '../../css/Cart/Cart.css';
+import Checkout from '../CeckoutForm/Checkout';
+import Zoom from 'react-reveal/Zoom';
+import Bounce from 'react-reveal/Bounce';
+import { RiDeleteBin4Fill } from 'react-icons/ri';
 
 const Cart = ({ cart, setCart, showProduct, products }) => {
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
+	useEffect(() => {
+		localStorage.setItem('cart', JSON.stringify(cart));
+	}, [cart]);
 
-    // MY STATE ==>
-    const [showForm, setShowForm] = useState(false);
+	// MY STATE ==>
+	const [showForm, setShowForm] = useState(false);
 
-    const removeFromCart = (product) => {
-        const cartClone = [...cart];
-        setCart(cartClone.filter((p) => p._id !== product._id));
-    };
+	const removeFromCart = product => {
+		const cartClone = [...cart];
+		setCart(cartClone.filter(p => p._id !== product._id));
+	};
 
-    const minusQty = (product) => {
-        const cartClone = [...cart];
-        cartClone[cartClone.indexOf(product)].qty -= 1;
-        setCart(cartClone);
-    };
+	const minusQty = product => {
+		const cartClone = [...cart];
+		cartClone[cartClone.indexOf(product)].qty -= 1;
+		setCart(cartClone);
+	};
 
-    const plusQty = (product) => {
-        const cartClone = [...cart];
-        cartClone[cartClone.indexOf(product)].qty += 1;
-        setCart(cartClone);
-    };
+	const plusQty = product => {
+		const cartClone = [...cart];
+		cartClone[cartClone.indexOf(product)].qty += 1;
+		setCart(cartClone);
+	};
 
-    return (
-        <>
-            {
-                products.length ? (
-                    <div className="cart">
-                        <div className="container">
+	return (
+		<>
+			{products.length ? (
+				<div className='cart'>
+					<div className='cart-title'>
+						<span>{cart.length}</span> Products in your Cart
+					</div>
 
-                            <div className="cart-title">
-                                {cart.length} Products In <BsCart4 size="1.5em" />
-                            </div>
+					{cart.length ? (
+						<>
+							<Bounce left cascade>
+								<div className='heading'>
+									<div>ITEM</div>
+									<div>PRICE</div>
+									<div>QUANTITY</div>
+									<div>REMOVE</div>
+								</div>
+								<div className='cart-items'>
+									{cart.map(p => (
+										<div className='cart-item' key={p._id}>
+											<div className='image'>
+												<img src={p.imageUrl} alt='product figure' onClick={() => showProduct(p)} />
+												<h3>{p.title}</h3>
+											</div>
 
-                            <Bounce left cascade>
-                                <div className="cart-items">
-                                    {
-                                        cart.map((p) => {
-                                            return (
-                                                <div className="cart-item" key={p._id}>
+											<div className='price'>
+												<div>{p.price}$</div>
+											</div>
 
-                                                    {/* <Image
-                                                        cloudName="dipbhxayl"
-                                                        publicId={p.imageUrl}
-                                                    /> */}
-                                                    <img src={p.imageUrl} alt="" />
+											<div className='quantity'>
+												<div className='quantity-options'>
+													<span
+														className={`minus ${p.qty === 1 && 'hide'}`}
+														onClick={() => minusQty(p)}
+													>
+														-
+													</span>
+													{p.qty}
+													<span className='plus' onClick={() => plusQty(p)}>
+														+
+													</span>
+												</div>
+											</div>
 
-                                                    <div className="cart-info">
+											<div className='remove'>
+												<RiDeleteBin4Fill onClick={() => removeFromCart(p)} />
+											</div>
+										</div>
+									))}
+								</div>
+							</Bounce>
 
-                                                        <div>
-                                                            <p>Title: {p.title}</p>
-                                                            <p>
-                                                                {" "}
-                                                                Quantity: <span>{p.qty}</span>
-                                                            </p>
-                                                            <p>Price: {p.price}$</p>
-                                                        </div>
-
-                                                        <div>
-
-                                                            <button onClick={() => removeFromCart(p)}>
-                                                                <BsCartX />
-                                                            </button>
-
-                                                            <button onClick={() => plusQty(p)}>
-                                                                <BsCartPlus />
-                                                            </button>
-
-                                                            <button
-                                                                onClick={(e) =>
-                                                                    p.qty === 1 ? removeFromCart(p) : minusQty(p)
-                                                                }
-                                                            >
-                                                                <BsCartDash />
-                                                            </button>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            );
-                                        })
-                                    }
-                                </div>
-                            </Bounce>
-
-                            {
-                                cart.length ? (
-
-                                    <Zoom>
-                                        <div className="cart-footer">
-
-                                            <div className="total">
-                                                Total : ${
-                                                    cart.reduce((acc, p) => acc + p.price * p.qty, 0)
-                                                }
-                                            </div>
-
-                                            <button
-                                                className="select-products"
-                                                onClick={() => setShowForm(!showForm)}
-                                            >
-                                                Submit Order
-                                            </button>
-
-                                        </div>
-                                    </Zoom>
-
-                                ) : (
-                                    false
-                                )
-                            }
-                        </div>
-
-                        <Checkout
-                            showForm={showForm}
-                            setShowForm={setShowForm}
-                            cart={cart}
-                            setCart={setCart}
-                        />
-
-                    </div>
-                ) : (
-                    false
-                )
-            }
-        </>
-    );
+							<Zoom>
+								<div className='cart-footer'>
+									<div className='total'>
+										TOTAL: {cart.reduce((acc, p) => acc + p.price * p.qty, 0)} $
+									</div>
+									<button className='checkout-order' onClick={() => setShowForm(!showForm)}>
+										CECKOUT
+									</button>
+								</div>
+							</Zoom>
+						</>
+					) : null}
+				</div>
+			) : (
+				false
+			)}
+			<Checkout showForm={showForm} setShowForm={setShowForm} cart={cart} setCart={setCart} />
+		</>
+	);
 };
 
 export default Cart;
