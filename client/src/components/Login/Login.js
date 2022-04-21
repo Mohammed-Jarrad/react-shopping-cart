@@ -54,10 +54,6 @@ const Login = () => {
 		<Bounce top>
 			<div className='login'>
 				<form className='login-content' onSubmit={login}>
-					{/* <h1>
-						<i className='fas fa-users'></i>
-					</h1> */}
-
 					<NavLink className='go-sign-up' to='/signup'>
 						have an account? signup
 					</NavLink>

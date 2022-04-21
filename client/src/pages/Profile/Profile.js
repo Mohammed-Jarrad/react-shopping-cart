@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import '../../css/Profile/Profile.css';
 import { Bounce, Fade } from 'react-reveal';
-import { PostRequest, PutRequest } from '../../utils/requests';
+import { PutRequest } from '../../utils/requests';
 import Loading from '../../components/Loading/Loading';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
-import { DeleteRequest } from '../../utils/requests';
 import ChangePassword from './ChangePassword';
+import DeleteAccountModal from './DeleteAccountModal';
 
 const Profile = () => {
 	// state
@@ -17,7 +17,7 @@ const Profile = () => {
 	const [loading, setLoading] = useState(false);
 	const [alertSuccessUploaded, setAlertSuccessUploaded] = useState(false);
 	const [showChangePassword, setShowChangePassword] = useState(false);
-	const [compareInputValue, setCompareInputValue] = useState('');
+	const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
 	// handleInputChange
 	const handleInputChange = e => {
 		setInputValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -76,23 +76,6 @@ const Profile = () => {
 	}
 
 	// delete account
-	async function deleteAccount() {
-		setLoading(true);
-		try {
-			const res = await DeleteRequest(`/user`);
-			if (res.status === 202) {
-				setLoading(false);
-				localStorage.removeItem('token');
-				localStorage.removeItem('user');
-				window.location.assign('/login');
-			} else {
-				console.log(res.json().errors);
-			}
-		} catch (err) {
-			console.log(err);
-			setLoading(false);
-		}
-	}
 
 	return (
 		<React.Fragment>
@@ -116,9 +99,7 @@ const Profile = () => {
 									ref={inputRef}
 									style={{ display: 'none' }}
 								/>
-								<button onClick={() => inputRef.current.click()}>
-									Change Photo
-								</button>
+								<button onClick={() => inputRef.current.click()}>Change Photo</button>
 							</>
 						) : null}
 					</div>
@@ -126,29 +107,28 @@ const Profile = () => {
 						{showChangeInformation ? (
 							<>
 								<button onClick={handleChangeInformation}>Save</button>
-								<button onClick={() => setShowChangeInformation(false)}>
-									Cancel
-								</button>
+								<button onClick={() => setShowChangeInformation(false)}>Cancel</button>
 							</>
 						) : (
 							<button
 								onClick={() => {
 									setShowChangeInformation(true);
 									setShowChangePassword(false);
-								}}>
+								}}
+							>
 								Change Information
 							</button>
 						)}
 						<button onClick={() => setShowChangePassword(true)}>Change Password</button>
-						<button onClick={deleteAccount}>Delete Account</button>
+						<button onClick={() => setOpenDeleteAccountModal(true)}>Delete Account</button>
 					</div>
 				</div>
 				{showChangePassword === false ? (
 					<div className='user-info'>
-						<h2>Information</h2>
+						<h2>Information </h2>
 						<div className='user-info-box'>
 							<div className='box'>
-								<h4>First Name</h4>
+								<h3>First Name</h3>
 								{showChangeInformation === false ? (
 									<Fade>
 										<p>{user.name.first_name}</p>
@@ -165,7 +145,7 @@ const Profile = () => {
 								)}
 							</div>
 							<div className='box'>
-								<h4>Last Name</h4>
+								<h3>Last Name</h3>
 								{showChangeInformation === false ? (
 									<Fade>
 										<p>{user.name.last_name}</p>
@@ -182,7 +162,7 @@ const Profile = () => {
 								)}
 							</div>
 							<div className='box'>
-								<h4>Email</h4>
+								<h3>Email</h3>
 								{showChangeInformation === false ? (
 									<Fade>
 										<p>{user.email}</p>
@@ -199,7 +179,7 @@ const Profile = () => {
 								)}
 							</div>
 							<div className='box'>
-								<h4>Phone</h4>
+								<h3>Phone</h3>
 								{showChangeInformation === false ? (
 									<Fade>
 										<p>{user.phone}</p>
@@ -219,7 +199,7 @@ const Profile = () => {
 						<h2>Location</h2>
 						<div className='user-info-box'>
 							<div className='box'>
-								<h4>Country</h4>
+								<h3>Country</h3>
 								{showChangeInformation === false ? (
 									<Fade>
 										<p>{user.location.country}</p>
@@ -236,7 +216,7 @@ const Profile = () => {
 								)}
 							</div>
 							<div className='box'>
-								<h4>City</h4>
+								<h3>City</h3>
 								{showChangeInformation === false ? (
 									<Fade>
 										<p>{user.location.city}</p>
@@ -258,6 +238,10 @@ const Profile = () => {
 					<ChangePassword setShowChangePassword={setShowChangePassword} />
 				)}
 			</div>
+			<DeleteAccountModal
+				openDeleteAccountModal={openDeleteAccountModal}
+				setOpenDeleteAccountModal={setOpenDeleteAccountModal}
+			/>
 		</React.Fragment>
 	);
 };

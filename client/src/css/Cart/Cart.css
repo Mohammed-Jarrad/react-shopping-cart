@@ -1,23 +1,26 @@
 .cart {
   margin: 20px 0;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: var(--boxShadow);
 }
 .cart .cart-title {
-  border-top: 2px solid var(--mainColor);
   color: var(--mainColor);
   text-transform: uppercase;
   padding: 10px 0;
 }
 .cart .cart-title span {
   padding: 10px;
-  background: var(--mainColor);
-  color: var(--textColor);
+  background: var(--bkRed);
+  color: var(--textSecondColor);
 }
 .cart .heading {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: var(--mainColor);
-  color: #fff;
+  background-color: var(--bkRed);
+  color: var(--textSecondColor);
 }
 .cart .heading > div {
   width: 150px;
@@ -27,10 +30,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px;
   border-bottom: 1px solid #c0c0c0;
 }
 .cart .cart-items .cart-item .image {
+  text-align: center;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -54,7 +58,7 @@
 .cart .cart-items .cart-item .price svg,
 .cart .cart-items .cart-item .quantity svg,
 .cart .cart-items .cart-item .remove svg {
-  color: var(--mainColor);
+  color: var(--redColor);
   font-size: 23px;
   cursor: pointer;
   transition: all 0.3s;
@@ -67,7 +71,7 @@
 .cart .cart-items .cart-item .price .quantity-options,
 .cart .cart-items .cart-item .quantity .quantity-options,
 .cart .cart-items .cart-item .remove .quantity-options {
-  background-color: #fff;
+  background-color: var(--bodyColor);
   display: flex;
   justify-content: space-between;
   text-align: center;
@@ -86,34 +90,26 @@
   color: var(--textColor);
   cursor: pointer;
 }
+.cart .cart-items .cart-item .price .quantity-options > span:first-child,
+.cart .cart-items .cart-item .quantity .quantity-options > span:first-child,
+.cart .cart-items .cart-item .remove .quantity-options > span:first-child {
+  background-color: var(--bkRed);
+  color: var(--textSecondColor);
+}
 .cart .cart-items .cart-item .price .quantity-options > span.hide,
 .cart .cart-items .cart-item .quantity .quantity-options > span.hide,
 .cart .cart-items .cart-item .remove .quantity-options > span.hide {
   visibility: hidden;
 }
-.cart .cart-footer {
-  border-bottom: 2px solid var(--mainColor);
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-}
-.cart .cart-footer .total,
 .cart .cart-footer .checkout-order {
   border: none;
   padding: 15px;
-  width: 150px;
+  width: 100%;
   font-weight: bold;
   font-size: 18px;
   letter-spacing: 1px;
-}
-.cart .cart-footer .total {
-  border-right: 1px solid #c0c0c0;
-  border-left: 1px solid #c0c0c0;
-  width: 200px;
-  color: var(--mainColor);
-}
-.cart .cart-footer .checkout-order {
-  background-color: var(--mainColor);
+  text-align: center;
+  background-color: var(--redColor);
   color: var(--textColor);
 }
 
@@ -122,6 +118,7 @@
     width: 80px;
   }
   .cart .cart-items .cart-item .image {
+    font-size: 14px;
     width: 80px;
   }
   .cart .cart-items .cart-item .image img {
@@ -135,17 +132,7 @@
   }
 }
 .checkout-modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  background-color: var(--bodyColor);
-  padding: 20px;
-  border-radius: 4px;
-  overflow: auto;
-  transition: all 0.4s ease-in-out;
-  opacity: 0;
+  width: 300px;
 }
 .checkout-modal .accept-order h2 {
   margin-bottom: 20px;
@@ -158,49 +145,16 @@
 .checkout-modal .accept-order form button {
   padding: 10px 20px;
   border: none;
-  background-color: var(--mainColor);
+  background-color: var(--redColor);
   color: var(--textColor);
+  transition: 0.3s;
   border-radius: 5px;
 }
 .checkout-modal .accept-order form button:hover {
   filter: brightness(1.2);
 }
 
-.checkout-modal-overlay,
-.cart-modal-overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(61, 61, 61, 0.7);
-  z-index: 9999;
-  transition: all 0.5s ease-in-out;
-}
-
-.ReactModal__Content--after-open {
-  opacity: 1;
-}
-
-.ReactModal__Content--before-close {
-  opacity: 0;
-}
-
-.cart-modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 400px;
-  background-color: var(--bodyColor);
-  padding: 20px;
-  border-radius: 4px;
-  overflow: auto;
-  transition: all 0.4s ease-in-out;
-  opacity: 0;
-}
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .cart-modal {
     flex-direction: column-reverse;
     width: 85%;

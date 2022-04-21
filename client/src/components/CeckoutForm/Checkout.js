@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import '../../css/CeckoutForm/Checkout.css';
-import Input from './Input';
-import Fade from 'react-reveal/Fade';
 import Modal from 'react-modal';
 import { PostRequest } from '../../utils/requests';
 import CartModal from '../Cart/CartModal';
-import Loading from '../Loading/Loading';
 
 Modal.setAppElement('#root');
 
@@ -44,8 +41,8 @@ const Checkout = ({ showForm, setShowForm, cart, setCart }) => {
 			<Modal
 				isOpen={showForm}
 				onRequestClose={() => setShowForm(false)}
-				className='checkout-modal'
-				overlayClassName='checkout-modal-overlay'
+				className='modal checkout-modal'
+				overlayClassName='overlay-modal checkout-modal-overlay'
 				closeTimeoutMS={250}
 			>
 				<div className='accept-order'>

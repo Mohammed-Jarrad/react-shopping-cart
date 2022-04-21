@@ -1,0 +1,63 @@
+<div className='personal-info'>
+    <span>
+        <label htmlFor='first_name'>First Name:</label>
+        <input
+            type='text'
+            placeholder='First Name'
+            id='first_name'
+            onChange={handleChange}
+        />
+        <div className='error first_name'>{userError && userError['name.first_name']}</div>
+    </span>
+    <span>
+        <label htmlFor='last_name'>Last Name:</label>
+        <input type='text' placeholder='Last Name' id='last_name' onChange={handleChange} />
+        <div className='error last_name'>{userError && userError['name.last_name']}</div>
+    </span>
+</div>
+
+<div className='input-box'>
+    <label htmlFor='email'>E-mail:</label>
+    <input type='text' placeholder='E-mail' id='email' onChange={handleChange} />
+    <div className='error email'>{userError && userError['email']}</div>
+</div>
+
+<div className='input-box'>
+    <label htmlFor='password'>Password:</label>
+    <div className='password-input'>
+        <input
+            ref={passInput}
+            type='password'
+            placeholder='password'
+            id='password'
+            onChange={handleChange}
+        />
+        <span className='eye'>
+            <AiFillEyeInvisible
+                display={showEye ? 'none' : 'block'}
+                onClick={() => handleShowEye()}
+            />
+            <AiFillEye display={showEye ? 'block' : 'none'} onClick={() => handleHideEye()} />
+        </span>
+    </div>
+    <div className='error password'>{userError && userError['password']}</div>
+</div>
+
+<div className='personal-info'>
+    <span>
+        <label htmlFor='country'>Country:</label>
+        <input type='text' placeholder='country' id='country' onChange={handleChange} />
+        <div className='error country'>{userError && userError['location.country']}</div>
+    </span>
+    <span>
+        <label htmlFor='city'>City:</label>
+        <input type='text' placeholder='city' id='city' onChange={handleChange} />
+        <div className='error city'>{userError && userError['location.city']}</div>
+    </span>
+</div>
+
+<div className='input-box'>
+    <label htmlFor='phone'>Phone Number:</label>
+    <input type='text' placeholder='Phone Number' id='phone' onChange={handleChange} />
+    <div className='error phone'>{userError && userError['phone']}</div>
+</div

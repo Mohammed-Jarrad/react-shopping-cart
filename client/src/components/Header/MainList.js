@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { MdKeyboardArrowRight } from 'react-icons/md';
 import { Link, NavLink } from 'react-router-dom';
 import { RiShoppingBag3Fill } from 'react-icons/ri';
 import { BsCart4, BsPersonCircle } from 'react-icons/bs';
 import { AiFillHome, AiOutlineLogout } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
 
 const MainList = ({ logout }) => {
 	const user = localStorage.user ? JSON.parse(localStorage.user) : '';
@@ -12,10 +12,12 @@ const MainList = ({ logout }) => {
 	// * hide & drop menu
 	const dropRef = useRef();
 	const hideDrop = e => {
-		if (dropRef.current.contains(e.target)) {
-			return;
-		} else {
-			setShowDropMenu(false);
+		if (user) {
+			if (dropRef.current.contains(e.target)) {
+				return;
+			} else {
+				setShowDropMenu(false);
+			}
 		}
 	};
 
@@ -23,36 +25,40 @@ const MainList = ({ logout }) => {
 		document.addEventListener('mousedown', hideDrop);
 
 		return () => document.removeEventListener('mousedown', hideDrop);
-	}, [user]);
+	}, []);
 
-	const handleClickLogout = () => {
+	function handleClickLogout() {
 		setShowDropMenu(false);
 		logout();
-	};
+	}
 
 	return (
-		<ul className='main-list'>
+		<ul className={`main-list ${user && 'hide-register'}`}>
 			{typeof user === 'object' ? (
 				<React.Fragment>
 					<li>
 						<NavLink to='/products'>
-							PRODUCTS <BsCart4 />
+							<BsCart4 /> PRODUCTS
 						</NavLink>
 					</li>
 
 					<li>
 						<NavLink to='/orders'>
-							ORDERS <RiShoppingBag3Fill />
+							<RiShoppingBag3Fill /> ORDERS
 						</NavLink>
 					</li>
 
 					<li>
 						<NavLink to='/'>
-							HOME <AiFillHome />
+							<AiFillHome /> HOME
 						</NavLink>
 					</li>
 					<li ref={dropRef} className='drop-menu'>
-						<img onClick={() => setShowDropMenu(!showDropMenu)} src={user && user.user_image} alt='user figure' />
+						<img
+							onClick={() => setShowDropMenu(!showDropMenu)}
+							src={user && user.user_image}
+							alt='user figure'
+						/>
 						<div className={`menu-content ${showDropMenu && 'move'}`}>
 							<Link to='/profile' onClick={() => setShowDropMenu(false)}>
 								<BsPersonCircle /> Profile
@@ -66,14 +72,14 @@ const MainList = ({ logout }) => {
 			) : (
 				<>
 					<li>
-						<Link className='login' to='/login'>
-							LOG IN
-						</Link>
+						<NavLink className='login' to='/login' title='Login'>
+							<AiOutlineUser />
+						</NavLink>
 					</li>
 					<li>
-						<Link className='signup' to='/signup'>
-							SIGN UP
-						</Link>
+						<NavLink className='signup' to='/signup' title='Signup'>
+							<AiOutlineUserAdd />
+						</NavLink>
 					</li>
 				</>
 			)}

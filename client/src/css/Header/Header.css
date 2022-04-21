@@ -1,7 +1,7 @@
 header {
   grid-area: header;
-  color: var(--mainColor);
   background-color: var(--mainColor);
+  position: relative;
 }
 header .container {
   display: flex;
@@ -17,11 +17,17 @@ header .container .logo {
   align-items: center;
   font-size: 20px;
 }
+header .container .logo img {
+  width: 40px;
+  background-color: var(--bodyColor);
+  border-radius: 50%;
+  margin-left: 3px;
+}
 header .container .logo:hover span {
   filter: brightness(1.2);
 }
 header .container .logo span {
-  color: var(--secondColor);
+  color: var(--redColor);
   display: flex;
   height: 100%;
   align-items: center;
@@ -29,17 +35,15 @@ header .container .logo span {
 }
 header .container nav {
   display: flex;
-  align-items: stretch;
 }
 header .container nav .main-list {
   list-style: none;
   display: flex;
-  align-items: stretch;
   gap: 5px;
 }
 header .container nav .main-list > li {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   transition: all 0.3s;
   position: relative;
 }
@@ -53,62 +57,69 @@ header .container nav .main-list > li > a {
   position: relative;
   z-index: 1;
   transition: 0.3s;
+  height: fit-content;
 }
 header .container nav .main-list > li > a svg {
-  font-size: 17px;
+  font-size: 20px;
 }
 header .container nav .main-list > li > a::after {
   content: "";
   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
   width: 100%;
-  height: 0;
-  left: 0;
-  bottom: 0;
-  background-color: var(--bodyColor);
+  height: 100%;
+  background-color: var(--redColor);
   z-index: -1;
   transition: 0.4s;
 }
-header .container nav .main-list > li > a:hover, header .container nav .main-list > li > a.active {
-  color: var(--mainColor);
+header .container nav .main-list > li > a:not(.login):not(.signup):hover, header .container nav .main-list > li > a:not(.login):not(.signup).active {
+  color: var(--textColor);
+  font-weight: bold;
+  border-radius: 20px;
 }
-header .container nav .main-list > li > a:hover::after, header .container nav .main-list > li > a.active::after {
-  height: 100%;
+header .container nav .main-list > li > a:not(.login):not(.signup):hover::after, header .container nav .main-list > li > a:not(.login):not(.signup).active::after {
+  transform: translate(-50%, -50%) scale(1);
+  border-radius: 20px;
 }
-header .container nav .main-list > li > a:hover svg, header .container nav .main-list > li > a.active svg {
-  color: var(--secondColor);
+header .container nav .main-list > li > a.signup svg, header .container nav .main-list > li > a.login svg {
+  font-size: 25px;
+}
+header .container nav .main-list > li > a.signup:hover, header .container nav .main-list > li > a.signup.active, header .container nav .main-list > li > a.login:hover, header .container nav .main-list > li > a.login.active {
+  color: var(--textSecondColor);
+  font-weight: bold;
+}
+header .container nav .main-list > li > a.signup:hover::after, header .container nav .main-list > li > a.signup.active::after, header .container nav .main-list > li > a.login:hover::after, header .container nav .main-list > li > a.login.active::after {
+  transform: translate(-50%, -50%) scale(1);
+  border-radius: 50%;
 }
 header .container nav .main-list > li.drop-menu img {
-  width: 60px;
+  width: 50px;
   cursor: pointer;
-  object-fit: cover;
+  object-fit: contain;
 }
 header .container nav .main-list > li.drop-menu .menu-content {
   padding: 10px;
-  transition: all 0.5s;
-  background-color: var(--mainColor);
+  transition: all 0.3s;
+  background-color: var(--bodyWhite);
   position: absolute;
-  right: -350px;
-  top: 75px;
+  right: 0;
+  top: 55px;
   width: 260px;
+  transform: scale(0);
   z-index: 11;
-  opacity: 0.97;
+  border-radius: 10px;
+  box-shadow: var(--boxShadowStrong);
 }
 header .container nav .main-list > li.drop-menu .menu-content.move {
-  right: 0;
-}
-header .container nav .main-list > li.drop-menu .menu-content::before {
-  content: "";
-  position: absolute;
-  border: 15px solid;
-  border-color: transparent transparent var(--mainColor) transparent;
-  top: -30px;
-  right: 15px;
+  transform: scale(1);
 }
 header .container nav .main-list > li.drop-menu .menu-content > a {
   display: flex;
   align-items: center;
   gap: 15px;
-  color: var(--textColor);
+  color: var(--textSecondColor);
   text-decoration: none;
   padding: 10px;
   z-index: 1;
@@ -120,82 +131,87 @@ header .container nav .main-list > li.drop-menu .menu-content > a:not(:last-chil
 header .container nav .main-list > li.drop-menu .menu-content > a svg {
   font-size: 25px;
   transition: all 0.5s;
+  color: var(--redColor);
 }
 header .container nav .main-list > li.drop-menu .menu-content > a:hover {
-  background-color: #4a4a4a;
-}
-header .container nav .main-list > li.drop-menu .menu-content > a:hover svg {
-  color: var(--secondColor);
-  transform: scale(1.1);
+  background-color: var(--bkRed);
 }
 header .container nav .main-responsive-list {
-  opacity: 0.97;
   z-index: 11;
   position: absolute;
-  top: 0;
-  right: -300px;
+  top: 5px;
+  right: 10px;
   transition: all 0.5s;
+}
+header .container nav .main-responsive-list.hide {
   display: none;
 }
-header .container nav .main-responsive-list.move {
-  right: 0;
-}
-header .container nav .main-responsive-list .responsive-list {
-  background-color: var(--mainColor);
-  width: 300px;
-  min-width: 300px;
-  position: absolute;
-  top: 60px;
-  right: 0;
-  transition: all 0.5s;
-  display: flex;
-  flex-direction: column;
-  color: var(--textColor);
-}
-header .container nav .main-responsive-list .responsive-list .toggle-bar {
+header .container nav .main-responsive-list .toggle-bar {
   padding: 10px;
   width: fit-content;
   position: absolute;
-  left: -40px;
-  top: 0;
+  right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
   cursor: pointer;
-  background: var(--mainColor);
+  cursor: pointer;
 }
-header .container nav .main-responsive-list .responsive-list .toggle-bar svg {
-  fill: var(--secondColor);
+header .container nav .main-responsive-list .toggle-bar svg {
+  fill: var(--textColor);
   font-size: 20px;
   transition: all 0.3s;
 }
-header .container nav .main-responsive-list .responsive-list > div {
-  padding: 15px 10px;
-  transition: 0.3s;
+header .container nav .main-responsive-list .responsive-list {
+  background-color: var(--bodyWhite);
+  width: 300px;
+  transform: scale(0);
+  box-shadow: var(--boxShadowStrong);
+  border-radius: 10px;
+  position: absolute;
+  top: 55px;
+  left: -300px;
   display: flex;
+  flex-direction: column;
+  color: var(--textSecondColor);
+  transition: all 0.5s;
+  padding: 10px;
+}
+header .container nav .main-responsive-list .responsive-list.move {
+  transform: scale(1);
+}
+header .container nav .main-responsive-list .responsive-list > div {
+  transition: 0.3s;
+}
+header .container nav .main-responsive-list .responsive-list > div:not(:first-child) {
+  border-top: var(--border);
 }
 header .container nav .main-responsive-list .responsive-list > div a {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--textColor);
+  color: var(--textSecondColor);
   text-decoration: none;
+  padding: 5px 10px;
+}
+header .container nav .main-responsive-list .responsive-list > div a:hover {
+  background-color: var(--bkRed);
 }
 header .container nav .main-responsive-list .responsive-list > div svg {
   font-size: 30px;
   cursor: pointer;
 }
 header .container nav .main-responsive-list .responsive-list .profile-ul {
-  display: flex;
+  width: 100%;
+}
+header .container nav .main-responsive-list .responsive-list .profile-ul a {
   justify-content: space-between;
-  align-items: center;
 }
 header .container nav .main-responsive-list .responsive-list .profile-ul a img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
 }
 header .container nav .main-responsive-list .responsive-list .profile-ul svg {
   transform: rotate(180deg);
@@ -205,32 +221,38 @@ header .container nav .main-responsive-list .responsive-list .profile-ul svg:hov
   filter: brightness(1.5);
 }
 header .container nav .main-responsive-list .responsive-list .basic-ul {
-  border-top: 1px solid #c0c0c0;
+  padding: 10px 0;
+  display: flex;
   flex-direction: column;
   gap: 10px;
 }
 header .container nav .main-responsive-list .responsive-list .basic-ul a {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
-  padding-right: 10px;
   gap: 20px;
   font-size: 18px;
   font-weight: bold;
   transition: all 0.3s;
 }
-header .container nav .main-responsive-list .responsive-list .basic-ul a:hover {
-  background-color: #4a4a4a;
+header .container nav .main-responsive-list .responsive-list .basic-ul a svg {
+  color: var(--mainColor);
+}
+header .container nav .main-responsive-list .responsive-list .logout a {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+header .container nav .main-responsive-list .responsive-list .logout a svg {
+  color: var(--redColor);
 }
 
 @media (max-width: 767px) {
-  header .container {
-    justify-content: center;
-  }
-  header .container nav .main-list {
+  header .container nav .main-list.hide-register {
     display: none;
   }
+}
+@media (min-width: 768px) {
   header .container nav .main-responsive-list {
-    display: block;
+    display: none;
   }
 }

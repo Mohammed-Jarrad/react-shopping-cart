@@ -12,8 +12,8 @@ const CartModal = ({ alertSuccess, closeAlertSuccess, cart }) => {
 			<Modal
 				isOpen={alertSuccess}
 				onRequestClose={closeAlertSuccess}
-				overlayClassName='cart-modal-overlay'
-				className='cart-modal'
+				overlayClassName='overlay-modal cart-modal-overlay'
+				className='modal cart-modal'
 				closeTimeoutMS={250}
 			>
 				<div className='order-content'>

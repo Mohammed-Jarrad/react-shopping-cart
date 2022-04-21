@@ -1,186 +1,223 @@
-// $mainColor: #2a5ea5;
-// $mainColor: #3a6b34;
-$mainColor: #333;
+form.sign-content {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	// flex-direction: column;
+	margin: 10px 0;
 
-.sign {
-  position: relative;
-  user-select: none;
+	.sign-box {
+		width: 350px;
+		background: var(--bodyWhite);
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: var(--boxShadow);
+		transition: all 0.5s;
 
-  form.sign-content {
-    position: relative;
-    top: 50%;
-    transform: translatey(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 20px;
+		.add-photo {
+			padding: 10px;
+			margin-bottom: 10px;
+			.btn-and-img {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+				position: relative;
+				img {
+					width: 100px;
+					height: 100px;
+					border-radius: 50%;
+					box-shadow: var(--boxShadow);
+					object-fit: contain;
+				}
+				svg.camera {
+					cursor: pointer;
+					position: absolute;
+					bottom: -12px;
+					left: 50%;
+					transform: translateX(-50%);
+					font-size: 30px;
+					opacity: 0.6;
+					color: var(--redColor);
+					transition: all 0.3s;
+					&:hover {
+						color: var(--mainColor);
+					}
+				}
+			}
+		}
 
-    .sign-box {
-      width: 40%;
+		.input-box {
+			padding: 5px 10px;
+			.input {
+				display: flex;
+				align-items: center;
+				label {
+					width: 90px;
+					color: var(--textSecondColor);
+				}
+				input {
+					flex: 1;
+					padding: 7px 10px;
+					border: none;
+					background-color: var(--bodyColor);
+					border-radius: 5px;
+					border: var(--border);
+					transition: 0.3s;
+					caret-color: var(--redColor);
+					&:focus {
+						outline: none;
+						padding-left: 13px;
+						&::placeholder {
+							color: transparent;
+						}
+					}
+					&::placeholder {
+						transition: 0.3s;
+					}
+				}
+			}
 
-      .add-photo {
-        .btn-and-img {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-          img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            box-shadow: 2px 2px 5px #c0c0c0;
-            object-fit: contain;
-            cursor: pointer;
-          }
-        }
-      }
-      .personal-info {
-        display: flex;
-        // justify-content: center;
-        align-items: center;
-        gap: 10px;
-        span {
-          width: 100%;
-        }
-        input {
-          width: 100%;
-        }
-      }
-      .password-input {
-        display: flex;
-        align-items: center;
-        position: relative;
-        span.eye {
-          display: block;
-          position: absolute;
-          right: 0;
-          border-left: 1px solid #c0c0c0;
-          padding: 10px;
-          svg:last-child {
-            color: #4267b2;
-          }
-        }
-      }
-      input {
-        width: 100%;
-        display: block;
-        box-shadow: 2px 2px 5px #c0c0c0;
-        background-color: transparent;
-        color: #000;
-        caret-color: $mainColor;
-        font-size: 16px;
-        transition: 0.3s;
-        border: 1px solid #afafaf;
-        border-radius: 5px;
-        padding: 10px;
-        &::placeholder {
-          color: #afafaf;
-        }
-        &:focus {
-          outline: none;
-          padding-left: 15px;
-          &::placeholder {
-            color: transparent;
-          }
-        }
-      }
-      label {
-        color: $mainColor;
-        font-weight: bold;
-        display: block;
-        text-align: left;
-        margin-top: 20px;
-        margin-bottom: 5px;
-      }
-      button {
-        background: $mainColor;
-        width: 50%;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        margin-top: 20px;
-        font-weight: bold;
-        font-size: 20px;
-        border-radius: 5px;
-        text-transform: uppercase;
-        cursor: pointer;
-        opacity: 0.9;
-        transition: 0.3s;
-        &:hover {
-          opacity: 1;
-        }
-        &:active {
-          transform: scale(0.95);
-        }
-      }
-    }
-    .or-option {
-      color: #fff;
-      position: relative;
-      span {
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-        background-color: $mainColor;
-        border-radius: 50%;
-        font-weight: bold;
-        &::before {
-          content: "";
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 1px;
-          height: 120px;
-          top: 30px;
-          background-color: $mainColor;
-        }
-        &::after {
-          content: "";
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 1px;
-          height: 120px;
-          bottom: 30px;
-          background-color: $mainColor;
-        }
-      }
-    }
-    .social {
-      div {
-        margin-bottom: 20px;
-      }
-      ul {
-        list-style: none;
-        li {
-          width: 300px;
-          text-align: center;
-          padding: 20px;
-          margin-bottom: 20px;
-          border-radius: 5px;
-          &:first-child {
-            background-color: #4267b2;
-          }
-          &:last-child {
-            background: #ff3d00;
-          }
-          a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            i {
-              margin-right: 30px;
-            }
-          }
-        }
-      }
-    }
-  }
+			.error-alert {
+				.error {
+					padding: 0;
+					background-color: transparent;
+					color: var(--redColor);
+					font-size: 13px;
+				}
+			}
+
+			&.password {
+				position: relative;
+				.input > svg {
+					position: absolute;
+					right: 17px;
+					&.fill-eye {
+						color: var(--redColor);
+					}
+				}
+			}
+		}
+
+		button {
+			background: var(--redColor);
+			width: 100%;
+			color: var(--textColor);
+			border: none;
+			padding: 10px 20px;
+			margin-top: 20px;
+			font-weight: bold;
+			font-size: 20px;
+			// border-radius: 5px;
+			text-transform: uppercase;
+			cursor: pointer;
+			opacity: 0.9;
+			transition: 0.3s;
+			&:hover {
+				opacity: 1;
+			}
+			&:active {
+				transform: scale(0.95);
+			}
+		}
+	}
+
+	.or-option {
+		color: var(--textColor);
+		position: relative;
+		span {
+			width: 30px;
+			height: 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: auto;
+			background-color: var(--mainColor);
+			border-radius: 50%;
+			font-weight: bold;
+			&::before {
+				content: '';
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 1px;
+				height: 120px;
+				top: 30px;
+				background-color: var(--mainColor);
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 1px;
+				height: 120px;
+				bottom: 30px;
+				background-color: var(--mainColor);
+			}
+		}
+	}
+	.social {
+		ul {
+			list-style: none;
+			li {
+				width: 200px;
+				text-align: center;
+				padding: 20px;
+				margin-bottom: 20px;
+				border-radius: 5px;
+				&:first-child {
+					background-color: #4267b2;
+				}
+				&:last-child {
+					background: #ff3d00;
+				}
+				a {
+					text-decoration: none;
+					color: #fff;
+					font-size: 20px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					i {
+						margin-right: 30px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	form.sign-content {
+		flex-direction: column;
+		gap: 40px;
+
+		.sign-box {
+			width: 90%;
+		}
+
+		.or-option {
+			span {
+				&::after {
+					width: 120px;
+					height: 1px;
+					bottom: 15px;
+					left: 90px;
+				}
+				&::before {
+					width: 120px;
+					height: 1px;
+					top: 15px;
+					left: -60px;
+				}
+			}
+		}
+
+		// .social {
+		// 	ul {
+		// 		display: flex;
+		// 		gap: 20px;
+		// 	}
+		// }
+	}
 }

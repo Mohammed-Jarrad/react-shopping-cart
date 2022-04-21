@@ -1,42 +1,46 @@
 .filter-wrapper {
-	height: fit-content;
+	// height: fit-content;
 	width: 270px;
-	background-color: var(--mainColor);
+	background-color: var(--bodyWhite);
 	transition: all 0.5s;
-	position: absolute;
+	position: fixed;
 	left: -270px;
-	z-index: 10;
-	opacity: 0.97;
-	height: calc(100vh - 60px);
+	top: 55px;
+	z-index: 111;
+	box-shadow: var(--boxShadowStrong);
+	border-radius: 20px;
 
 	&.move {
-		left: 0;
-		position: relative;
+		left: 10px;
+		overflow: hidden;
 		.arrow-to-left {
 			right: 0;
+			top: 7px;
+			box-shadow: none;
+			padding: 5px;
 			svg {
 				transform: rotate(180deg);
 			}
 		}
-		@media (max-width: 991px) {
-			position: absolute;
-		}
 	}
 
 	.arrow-to-left {
-		padding: 10px;
-		width: fit-content;
+		width: 30px;
+		height: 30px;
 		position: absolute;
-		right: -36px;
+		right: -30px;
 		top: 0;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		transition: all 0.3s;
+		border-top-right-radius: 20px;
+		border-bottom-right-radius: 20px;
+		transition: all 0.5s;
 		cursor: pointer;
-		background: var(--mainColor);
+		box-shadow: var(--boxShadow);
+		background: var(--bodyWhite);
 		svg {
-			fill: var(--secondColor);
+			fill: var(--redColor);
 			font-size: 20px;
 			transition: all 0.3s;
 		}
@@ -44,8 +48,8 @@
 
 	.category-title,
 	.order-title {
-		background-color: var(--mainColor);
-		color: var(--textColor);
+		background-color: var(--bodyWhite);
+		color: var(--textSecondColor);
 		font-weight: bold;
 		text-transform: uppercase;
 		font-size: 20px;
@@ -53,9 +57,8 @@
 	}
 
 	.filter-content {
-		position: relative;
 		.filter-items {
-			color: var(--textColor);
+			color: var(--textSecondColor);
 			cursor: pointer;
 			border: 1px solid #c0c0c0;
 			padding: 5px;
@@ -63,13 +66,10 @@
 			margin-bottom: 10px;
 			position: relative;
 
-			&:hover {
-				color: var(--textColor);
-				background-color: var(--secondColor);
-			}
-
+			&:hover,
 			&.active {
-				border-color: var(--secondColor);
+				background-color: var(--bkRed);
+				color: var(--redColor);
 			}
 		}
 		.filter-by-category {
@@ -79,19 +79,18 @@
 			padding: 10px;
 		}
 		.create-product-btn {
-			width: 80%;
+			width: 100%;
 			margin: auto;
 			display: block;
 			padding: 10px;
-			background-color: var(--textColor);
-
+			background-color: var(--redColor);
 			border: none;
-			margin-bottom: 10px;
 			a {
 				text-decoration: none;
-				color: var(--mainColor);
+				color: var(--textColor);
 				display: block;
 				width: 100%;
+				font-weight: bold;
 			}
 		}
 	}

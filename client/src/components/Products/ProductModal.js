@@ -7,8 +7,8 @@ Modal.setAppElement('#root');
 const ProductModal = ({ singleProduct, isOpen, closeModal, addToCart, removeProduct }) => {
 	return (
 		<Modal
-			overlayClassName='product-modal-overlay'
-			className='product-modal'
+			overlayClassName='overlay-modal'
+			className='modal product-modal'
 			isOpen={isOpen}
 			closeTimeoutMS={250}
 			onRequestClose={closeModal}

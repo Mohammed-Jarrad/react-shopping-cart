@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .profile {
   display: flex;
   justify-content: space-between;
@@ -10,18 +11,25 @@
   }
 }
 .profile .user-image {
+  border-radius: 10px;
+  box-shadow: var(--boxShadow);
+  background-color: var(--bodyWhite);
   width: 30%;
   display: flex;
   gap: 40px;
   flex-direction: column;
-  text-align: center;
-  border-right: 1px solid #c0c0c0;
+  justify-content: center;
 }
 @media (max-width: 768px) {
   .profile .user-image {
     width: 100%;
-    border: none;
   }
+}
+.profile .user-image .user-image-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .profile .user-image .user-image-content img {
   width: 200px;
@@ -48,8 +56,10 @@
 }
 .profile .user-image .user-configuration button {
   padding: 10px;
-  text-decoration: none;
-  color: #000;
+  color: var(--textColor);
+  background-color: var(--mainColor);
+  transition: 0.3s;
+  border: var(--border);
   font-size: 17px;
   display: block;
   width: 80%;
@@ -57,13 +67,15 @@
   font-family: "operator mono lig";
   cursor: pointer;
   margin: 0 auto 10px;
-  border: none;
   opacity: 0.8;
 }
 .profile .user-image .user-configuration button:hover {
   opacity: 1;
 }
 .profile .user-info {
+  border-radius: 10px;
+  box-shadow: var(--boxShadow);
+  background-color: var(--bodyWhite);
   width: 70%;
 }
 @media (max-width: 768px) {
@@ -73,56 +85,59 @@
 }
 .profile .user-info h2 {
   border-bottom: 1px solid #c0c0c0;
-  padding-bottom: 10px;
+  padding: 10px;
 }
 .profile .user-info .user-info-box {
-  padding: 10px;
+  padding: 20px;
   display: grid;
-  margin-bottom: 20px;
-  grid-template-columns: repeat(2, 50%);
-  gap: 50px 20px;
-}
-@media (max-width: 767px) {
-  .profile .user-info .user-info-box {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 }
 .profile .user-info .user-info-box .box {
-  box-shadow: 0px 0px 2px #c0c0c0;
+  box-shadow: var(--boxShadow);
   padding: 10px;
-  overflow: auto;
+  border-radius: 10px;
 }
-.profile .user-info .user-info-box .box h4 {
+.profile .user-info .user-info-box .box h3 {
   margin-bottom: 20px;
 }
 .profile .user-info .user-info-box .box input {
   padding: 10px;
-  border: 1px solid #c0c0c0;
+  width: 100%;
+  border: var(--border);
   border-radius: 5px;
-  caret-color: orangered;
+  box-shadow: var(--boxShadow◘);
 }
 .profile .user-info .user-info-box .box input:focus {
   outline: none;
-  box-shadow: 0 2px 5px #c0c0c0;
+  border-color: var(--redColor);
 }
 .profile .change-password {
   position: relative;
   width: 70%;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .profile .change-password {
     width: 100%;
   }
 }
 .profile .change-password .compare-password,
 .profile .change-password .change-form {
-  border: 1px solid #c0c0c0;
+  box-shadow: var(--boxShadow);
   border-radius: 10px;
+  background-color: var(--bodyWhite);
   padding: 10px;
-  width: 400px;
-  margin: 100px auto;
+  width: 80%;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .profile .change-password .compare-password,
 .profile .change-password .change-form {
     position: relative;
@@ -131,36 +146,62 @@
 .profile .change-password .compare-password h3,
 .profile .change-password .change-form h3 {
   margin-bottom: 10px;
+  text-align: center;
 }
 .profile .change-password .compare-password input,
 .profile .change-password .change-form input {
   width: 100%;
   padding: 10px;
   border: none;
-  border-bottom: 1px solid #c0c0c0;
+  background-color: var(--bodyColor);
+  border-radius: 30px;
+}
+.profile .change-password .compare-password input .error,
+.profile .change-password .change-form input .error {
+  background-color: transparent;
+  color: var(--redColor);
+  padding: 0px 6px;
 }
 .profile .change-password .compare-password input:focus,
 .profile .change-password .change-form input:focus {
   border: none;
   outline: none;
-  box-shadow: 2px 2px 5px #c0c0c0;
 }
 .profile .change-password .compare-password .submit-password,
 .profile .change-password .change-form .submit-password {
-  margin-top: 10px;
   display: flex;
   justify-content: center;
   gap: 20px;
 }
-.profile .change-password .compare-password button,
-.profile .change-password .change-form button {
+.profile .change-password .compare-password .submit-password button,
+.profile .change-password .change-form .submit-password button {
   padding: 10px;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--redColor);
+  border-radius: 10px;
+  color: var(--textColor);
   border: none;
   margin-top: 10px;
 }
-.profile .change-password .enter-new-password {
+
+.delete-modal {
+  width: 400px;
+}
+.delete-modal .accept-delete h3 {
+  margin-bottom: 20px;
+}
+.delete-modal .accept-delete form {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 20px;
+}
+.delete-modal .accept-delete form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--redColor);
+  color: var(--textColor);
+  transition: 0.3s;
+  border-radius: 5px;
+}
+.delete-modal .accept-delete form button:hover {
+  filter: brightness(1.2);
 }

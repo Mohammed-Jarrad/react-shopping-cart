@@ -25,6 +25,7 @@ const Header = () => {
 			<div className='container'>
 				<Link to='/' className='logo'>
 					Big<span>S</span>tore
+					{/* <img src={'/images/logo.png'} alt='' /> */}
 				</Link>
 				<nav>
 					<ResponsiveList logout={logout} />

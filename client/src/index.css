@@ -1,21 +1,29 @@
 :root {
-    --mainColor: #333;
+    --mainColor: #0a4660;
     --secondColor: #937047;
-    --boxShadow: 2px 2px 5px #c0c0c0;
+    --redColor: rgb(210, 63, 87);
+    --bkRed: rgb(252, 233, 236);
+    --boxShadow: 0px 1px 5px rgb(3 0 71 / 9%);
+    --boxShadowStrong: 0px 5px 5px rgb(3 0 71/ 15%);
     --textColor: #e7dac7;
-    --bodyColor: #E0E0E0;
+    --textSecondColor: #373F50;
+    --bodyColor: #F6F9F9;
+    --bodyWhite: #fff;
+    --border: 1px solid #c0c0c0;
+    --padding: 10px;
+
 }
+
 
 body {
     background-color: var(--bodyColor);
-    overflow-x: hidden;
+    font-size: 14px;
 }
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /* font-family: 'Cairo', sans-serif; */
     font-family: 'Roboto Mono', monospace;
 }
 
@@ -36,19 +44,74 @@ body {
         "header"
         "main"
         "footer";
-    grid-template-rows: 60px 1fr 60px;
+    grid-template-rows: 50px 1fr 50px;
 }
 
 /* !Global Config */
-/* buttons */
+
+/* * buttons */
 button {
     transform: .3s;
     cursor: pointer;
+    position: relative;
 }
 
-button:active {
-    transform: scale(.97);
+button:active, svg:active, a:active {
+    transform: scale(.98);
 }
+
+button::after {
+    content: '';
+}
+
+/* * Model Style */
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    background-color: var(--bodyColor);
+    padding: 20px;
+    border-radius: 10px;
+    overflow: auto;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+}
+
+.modal:focus {
+    outline: none;
+}
+
+.overlay-modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(61, 61, 61, 0.7);
+    z-index: 9999;
+    transition: all 0.5s ease-in-out;
+}
+
+/* @media (max-width: 767px) {
+    .overlay-modal {
+        max-width: 390px;
+    }
+} */
+
+.ReactModal__Content--after-open {
+    opacity: 1;
+}
+
+.ReactModal__Content--before-close {
+    opacity: 0;
+}
+
+
+/* END Model Style */
+
 
 /* Scrollbar */
 
@@ -63,7 +126,6 @@ button:active {
 
 ::-webkit-scrollbar-thumb {
     background-color: var(--mainColor);
-
 }
 
 

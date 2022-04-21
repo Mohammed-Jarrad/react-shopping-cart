@@ -9,20 +9,10 @@
 		transform: translate(-50%, -50%);
 		width: 350px;
 		text-align: center;
-		border-radius: 5px;
+		border-radius: 20px;
 		padding: 20px;
-
-		h1 {
-			background-color: var(--mainColor);
-			color: #fff;
-			width: 50px;
-			height: 50px;
-			margin: 0 auto 30px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border-radius: 50%;
-		}
+		background-color: var(--bodyWhite);
+		box-shadow: var(--boxShadow);
 
 		.go-sign-up {
 			display: block;
@@ -31,19 +21,19 @@
 		}
 
 		.login-box {
-			// border: 1px solid #c0c0c0;
-			border-radius: 5px;
 			padding: 20px;
 			display: flex;
 			flex-direction: column;
 			gap: 10px;
+
 			.input-feild {
 				display: flex;
 				align-items: center;
-				// margin-bottom: 20px;
-				border: 1px solid #afafaf;
-				border-radius: 5px;
-				box-shadow: 2px 2px 5px #c0c0c0;
+				// border: 1px solid #afafaf;
+				// border-radius: 5px;
+				// box-shadow: 2px 2px 5px #c0c0c0;
+				background-color: var(--bodyColor);
+				box-shadow: var(--boxShadow);
 
 				input.name-input,
 				input.pass-input {
@@ -66,7 +56,6 @@
 					&:focus {
 						outline: none;
 						padding-left: 15px;
-
 						&::placeholder {
 							color: transparent;
 						}
@@ -82,7 +71,7 @@
 				span.eye {
 					padding: 10px;
 					svg:last-child {
-						color: #4267b2;
+						color: var(--redColor);
 						size: 2em;
 					}
 				}
@@ -90,9 +79,9 @@
 
 			button {
 				display: block;
-				margin: auto;
-				background: var(--mainColor);
-				color: #fff;
+				margin: 10px auto;
+				background: var(--redColor);
+				color: var(--textColor);
 				border: none;
 				padding: 10px 20px;
 				font-weight: bold;
@@ -125,6 +114,7 @@
 						cursor: pointer;
 						transition: 0.3s;
 						margin-right: 5px;
+						background-color: var(--redColor);
 
 						&:checked {
 							margin-right: 10px;

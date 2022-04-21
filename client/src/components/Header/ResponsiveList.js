@@ -31,23 +31,15 @@ const ResponsiveList = ({ logout }) => {
 	const hideToggleMenu = _ => setShowResponsive(!showResponsive);
 
 	return (
-		<div className={`main-responsive-list ${showResponsive ? 'move' : ''}`}>
-			<div className={`responsive-list`} ref={responsiveRef}>
-				<span className='toggle-bar' onClick={() => setShowResponsive(!showResponsive)}>
-					{showResponsive ? <FaTimes /> : <FaBars />}
-				</span>
-
+		<div className={`main-responsive-list ${!user && 'hide'}`}>
+			<span className='toggle-bar' onClick={() => setShowResponsive(!showResponsive)}>
+				{showResponsive ? <FaTimes /> : <FaBars />}
+			</span>
+			<div className={`responsive-list ${showResponsive && 'move'}`} ref={responsiveRef}>
 				<div className='profile-ul'>
-					<HiOutlineLogout
-						title='Logout'
-						onClick={() => {
-							hideToggleMenu();
-							logout();
-						}}
-					/>
 					<Link to='/profile' onClick={hideToggleMenu}>
-						{fullName}
-						<img src={user.user_image} alt='' />
+						<span>{fullName}</span>
+						<img src={user.user_image} alt='user figure' />
 					</Link>
 				</div>
 
@@ -57,12 +49,25 @@ const ResponsiveList = ({ logout }) => {
 						Home
 					</Link>
 					<Link to='/products' onClick={hideToggleMenu}>
-						<RiShoppingBag3Fill />
+						<BsCart4 />
 						Products
 					</Link>
 					<Link to='/orders' onClick={hideToggleMenu}>
-						<BsCart4 />
+						<RiShoppingBag3Fill />
 						Orders
+					</Link>
+				</div>
+
+				<div className='logout'>
+					<Link
+						to='#'
+						onClick={() => {
+							hideToggleMenu();
+							logout();
+						}}
+					>
+						<HiOutlineLogout title='Logout' />
+						Log Out
 					</Link>
 				</div>
 			</div>

@@ -1,7 +1,5 @@
-import { Alert, Backdrop, CircularProgress } from '@mui/material';
+import { Alert } from '@mui/material';
 import React, { useRef, useState } from 'react';
-import { Bounce } from 'react-reveal';
-import { useNavigate } from 'react-router-dom';
 import '../../css/CreateProduct/CreateProduct.css';
 import { PostRequest } from '../../utils/requests';
 import Loading from '../Loading/Loading';
@@ -19,6 +17,7 @@ const CreateProduct = () => {
 	// get path
 	function getPathOfImg(e) {
 		if (e.target.files.length) {
+			console.log(e.target.files);
 			let file = e.target.files[0];
 			let fileReader = new FileReader();
 			fileReader.readAsDataURL(file);
@@ -68,11 +67,7 @@ const CreateProduct = () => {
 	return (
 		<div className='create-product'>
 			<Loading open={loading} setOpen={setLoading} />
-			<SuccessMsg
-				open={alertCreateDone}
-				setOpen={setAlertCreateDone}
-				msg={'Created Done !'}
-			/>
+			<SuccessMsg open={alertCreateDone} setOpen={setAlertCreateDone} msg={'Created Done !'} />
 
 			<form onSubmit={createProduct}>
 				<div className='form-content'>
@@ -87,9 +82,7 @@ const CreateProduct = () => {
 										name='title'
 										onChange={handleChangeInput}
 									/>
-									{productError.title && (
-										<Alert severity='error'>{productError.title}</Alert>
-									)}
+									{productError.title && <Alert severity='error'>{productError.title}</Alert>}
 								</div>
 							</div>
 						</div>
@@ -104,9 +97,7 @@ const CreateProduct = () => {
 										name='price'
 										onChange={handleChangeInput}
 									/>
-									{productError.price && (
-										<Alert severity='error'>{productError.price}</Alert>
-									)}
+									{productError.price && <Alert severity='error'>{productError.price}</Alert>}
 								</div>
 							</div>
 						</div>
@@ -121,9 +112,7 @@ const CreateProduct = () => {
 										name='category'
 										onChange={handleChangeInput}
 									/>
-									{productError.category && (
-										<Alert severity='error'>{productError.category}</Alert>
-									)}
+									{productError.category && <Alert severity='error'>{productError.category}</Alert>}
 								</div>
 							</div>
 						</div>
@@ -137,9 +126,7 @@ const CreateProduct = () => {
 										name='desc'
 										onChange={handleChangeInput}
 									/>
-									{productError.desc && (
-										<Alert severity='error'>{productError.desc}</Alert>
-									)}
+									{productError.desc && <Alert severity='error'>{productError.desc}</Alert>}
 								</div>
 							</div>
 						</div>
@@ -148,19 +135,15 @@ const CreateProduct = () => {
 					</div>
 
 					<div className='col-2'>
-						<input
-							type='file'
-							onChange={getPathOfImg}
-							accept='image/jpg'
-							ref={selectInputRef}
-						/>
+						<input type='file' onChange={getPathOfImg} accept='image/jpg' ref={selectInputRef} />
 
 						<button
 							onClick={e => {
 								e.preventDefault();
 								selectInputRef.current.click();
 							}}
-							style={{ display: imageProductUrl ? 'none' : 'block' }}>
+							style={{ display: imageProductUrl ? 'none' : 'block' }}
+						>
 							Add Photo
 						</button>
 
@@ -168,15 +151,9 @@ const CreateProduct = () => {
 							<img
 								onClick={() => imageProductUrl && selectInputRef.current.click()}
 								alt='Product Figure'
-								src={
-									imageProductUrl
-										? imageProductUrl
-										: '/images/product-default-image.jpg'
-								}
+								src={imageProductUrl ? imageProductUrl : '/images/product-default-image.jpg'}
 							/>
-							{productError.imageUrl && (
-								<Alert severity='error'>{productError.imageUrl}</Alert>
-							)}
+							{productError.imageUrl && <Alert severity='error'>{productError.imageUrl}</Alert>}
 						</div>
 					</div>
 				</div>

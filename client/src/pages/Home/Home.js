@@ -12,7 +12,7 @@ const Home = () => {
 	const [products, setProducts] = useState([]);
 	const [productsClone, setProductsClone] = useState([]);
 	// const [size, setSize] = useState('');
-	const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+	const [cart, setCart] = useState(JSON.parse(sessionStorage.getItem('cart')) || []);
 	const [singleProduct, setSingleProduct] = useState('');
 	const [isOpen, setIsOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -139,7 +139,7 @@ const Home = () => {
 		e.target.classList.add('active');
 		//logic filtering by category
 		if (target === 'all') {
-			getProductsAndCategories();
+			setProducts(productsClone);
 		} else {
 			const newProducts = productsClone.filter(p => p.category === target);
 			setProducts(newProducts);
@@ -173,7 +173,11 @@ const Home = () => {
 		<React.Fragment>
 			<Loading open={loading} setOpen={setLoading} />
 			<Loading open={loadingDelete} setOpen={setLoadingDelete} />
-			<SuccessMsg msg={'Product Deleted !'} open={alertProductDeleted} setOpen={setAlertProductDeleted} />
+			<SuccessMsg
+				msg={'Product Deleted !'}
+				open={alertProductDeleted}
+				setOpen={setAlertProductDeleted}
+			/>
 			<main>
 				<div className='home'>
 					<Filter
@@ -181,25 +185,11 @@ const Home = () => {
 						handleFilterBySort={handleFilterBySort}
 						// size={size}
 						products={products}
-						loading={loading}
 						categories={categories}
 						handleFilterByCategory={handleFilterByCategory}
 					/>
 					<div className='container'>
-						<Products
-							products={products}
-							addToCart={addToCart}
-							showProduct={showProduct}
-							loading={loading}
-							setLoading={setLoading}
-							categories={categories}
-							setProducts={setProducts}
-							setCart={setCart}
-							loadingDelete={loadingDelete}
-							setLoadingDelete={setLoadingDelete}
-							alertProductDeleted={alertProductDeleted}
-							setAlertProductDeleted={setAlertProductDeleted}
-						/>
+						<Products addToCart={addToCart} products={products} showProduct={showProduct} />
 						<Cart cart={cart} setCart={setCart} showProduct={showProduct} products={products} />
 					</div>
 				</div>

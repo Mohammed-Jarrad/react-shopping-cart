@@ -1,5 +1,5 @@
 import { Alert, CircularProgress } from '@mui/material';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { PostRequest, PutRequest } from '../../utils/requests';
 import { Bounce } from 'react-reveal';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
@@ -77,46 +77,52 @@ const ChangePassword = ({ setShowChangePassword }) => {
 
 			<div className='change-password'>
 				{showInputChangeForm === false ? (
-					<div className='compare-password'>
-						<div className='input-compare'>
+					<Fragment>
+						<div className='compare-password'>
 							<h3>Enter Your Current Password</h3>
-							<input
-								type={'password'}
-								onChange={handleChangeCompareInput}
-								placeholder={'Enter Your Password'}
-							/>
-							{compareError ? <Alert severity='error'>{compareError.compare}</Alert> : null}
+							<div className='input-compare'>
+								<input
+									type={'password'}
+									onChange={handleChangeCompareInput}
+									placeholder={'Enter Your Password'}
+								/>
+								{compareError ? (
+									<Alert severity='error' className='error'>
+										{compareError.compare}
+									</Alert>
+								) : null}
+							</div>
+							<div className='submit-password'>
+								<button autoFocus onClick={handleComparePassword}>
+									Submit
+								</button>
+								<button onClick={() => setShowChangePassword(false)}>Cancel</button>
+							</div>
+						</div>
+					</Fragment>
+				) : (
+					<div className='change-form'>
+						<h3>Enter Your New Password</h3>
+						<div className='input-change'>
+							<div className='enter-new-password'>
+								<input
+									placeholder='Enter New Password'
+									type={'password'}
+									onChange={handleChangeNewPassword}
+								/>
+								{loadingChange && <CircularProgress />}
+							</div>
+							{changeError && (
+								<Alert severity='error' className='error'>
+									the password length 6 charachters or more
+								</Alert>
+							)}
 						</div>
 						<div className='submit-password'>
-							<button autoFocus onClick={handleComparePassword}>
-								Submit
-							</button>
+							<button onClick={changePassword}>Submit</button>
 							<button onClick={() => setShowChangePassword(false)}>Cancel</button>
 						</div>
 					</div>
-				) : (
-					<Bounce>
-						<div className='change-form'>
-							<div className='input-change'>
-								<h3>Enter Your New Password</h3>
-								<div className='enter-new-password'>
-									<input
-										placeholder='Enter New Password'
-										type={'password'}
-										onChange={handleChangeNewPassword}
-									/>
-									{loadingChange && <CircularProgress />}
-								</div>
-								{changeError && (
-									<Alert severity='error'>the password length 6 charachters or more</Alert>
-								)}
-								<div className='submit-password'>
-									<button onClick={changePassword}>Submit</button>
-									<button onClick={() => setShowChangePassword(false)}>Cancel</button>
-								</div>
-							</div>
-						</div>
-					</Bounce>
 				)}
 			</div>
 		</React.Fragment>

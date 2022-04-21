@@ -9,19 +9,10 @@
   transform: translate(-50%, -50%);
   width: 350px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 20px;
   padding: 20px;
-}
-.login form.login-content h1 {
-  background-color: var(--mainColor);
-  color: #fff;
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
+  background-color: var(--bodyWhite);
+  box-shadow: var(--boxShadow);
 }
 .login form.login-content .go-sign-up {
   display: block;
@@ -29,7 +20,6 @@
   margin-bottom: 20px;
 }
 .login form.login-content .login-box {
-  border-radius: 5px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -38,9 +28,8 @@
 .login form.login-content .login-box .input-feild {
   display: flex;
   align-items: center;
-  border: 1px solid #afafaf;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px #c0c0c0;
+  background-color: var(--bodyColor);
+  box-shadow: var(--boxShadow);
 }
 .login form.login-content .login-box .input-feild input.name-input,
 .login form.login-content .login-box .input-feild input.pass-input {
@@ -80,14 +69,14 @@
   padding: 10px;
 }
 .login form.login-content .login-box .input-feild span.eye svg:last-child {
-  color: #4267b2;
+  color: var(--redColor);
   size: 2em;
 }
 .login form.login-content .login-box button {
   display: block;
-  margin: auto;
-  background: var(--mainColor);
-  color: #fff;
+  margin: 10px auto;
+  background: var(--redColor);
+  color: var(--textColor);
   border: none;
   padding: 10px 20px;
   font-weight: bold;
@@ -116,6 +105,7 @@
   cursor: pointer;
   transition: 0.3s;
   margin-right: 5px;
+  background-color: var(--redColor);
 }
 .login form.login-content .login-box .check-forget .remember-me input:checked {
   margin-right: 10px;

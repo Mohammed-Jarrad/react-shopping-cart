@@ -24,13 +24,14 @@ const Filter = ({ handleFilterBySort, sort, products, categories, handleFilterBy
 
 	const handleClickOnCategory = e => {
 		handleFilterByCategory(e);
+		setMove(false);
 	};
 
 	const orderOptions = [
-		{ name: 'ALL', value: 'all' },
-		{ name: 'Latest', value: 'latest' },
-		{ name: 'Lowest', value: 'lowest' },
-		{ name: 'Highest', value: 'highest' },
+		{ content: 'ALL', value: 'all' },
+		{ content: 'Latest', value: 'latest' },
+		{ content: 'Lowest', value: 'lowest' },
+		{ content: 'Highest', value: 'highest' },
 	];
 
 	return (
@@ -67,12 +68,12 @@ const Filter = ({ handleFilterBySort, sort, products, categories, handleFilterBy
 								<div
 									className='filter-items'
 									onClick={event => {
-										handleFilterBySort(event, e['value']);
-										// setMove(!move);
+										handleFilterBySort(event, e.value);
+										setMove(false);
 									}}
 									key={i}
 								>
-									{e.name}
+									{e.content}
 								</div>
 							))}
 						</div>

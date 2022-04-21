@@ -1,9 +1,7 @@
 header {
 	grid-area: header;
-	color: var(--mainColor);
 	background-color: var(--mainColor);
-	// position: relative;
-	// width: 100%;
+	position: relative;
 
 	.container {
 		display: flex;
@@ -17,13 +15,19 @@ header {
 			display: flex;
 			align-items: center;
 			font-size: 20px;
+			img {
+				width: 40px;
+				background-color: var(--bodyColor);
+				border-radius: 50%;
+				margin-left: 3px;
+			}
 			&:hover {
 				span {
 					filter: brightness(1.2);
 				}
 			}
 			span {
-				color: var(--secondColor);
+				color: var(--redColor);
 				display: flex;
 				height: 100%;
 				align-items: center;
@@ -32,16 +36,14 @@ header {
 		}
 		nav {
 			display: flex;
-			align-items: stretch;
 			// TODO: main ul
 			.main-list {
 				list-style: none;
 				display: flex;
-				align-items: stretch;
 				gap: 5px;
 				> li {
 					display: flex;
-					align-items: stretch;
+					align-items: center;
 					transition: all 0.3s;
 					position: relative;
 					> a {
@@ -54,64 +56,76 @@ header {
 						position: relative;
 						z-index: 1;
 						transition: 0.3s;
+						height: fit-content;
 						svg {
-							font-size: 17px;
+							font-size: 20px;
 						}
 						&::after {
 							content: '';
 							position: absolute;
+							left: 50%;
+							top: 50%;
+							transform: translate(-50%, -50%) scale(0);
 							width: 100%;
-							height: 0;
-							left: 0;
-							bottom: 0;
-							background-color: var(--bodyColor);
+							height: 100%;
+							background-color: var(--redColor);
 							z-index: -1;
 							transition: 0.4s;
 						}
-						&:hover,
-						&.active {
-							color: var(--mainColor);
-							&::after {
-								height: 100%;
+						&:not(.login):not(.signup) {
+							&:hover,
+							&.active {
+								color: var(--textColor);
+								font-weight: bold;
+								border-radius: 20px;
+								&::after {
+									transform: translate(-50%, -50%) scale(1);
+									border-radius: 20px;
+								}
 							}
+						}
+						&.signup,
+						&.login {
 							svg {
-								color: var(--secondColor);
+								font-size: 25px;
+							}
+							&:hover,
+							&.active {
+								color: var(--textSecondColor);
+								font-weight: bold;
+								&::after {
+									transform: translate(-50%, -50%) scale(1);
+									border-radius: 50%;
+								}
 							}
 						}
 					}
 					&.drop-menu {
-						// position: relative;
 						img {
-							width: 60px;
+							width: 50px;
 							cursor: pointer;
-							object-fit: cover;
+							object-fit: contain;
 						}
 						.menu-content {
 							padding: 10px;
-							transition: all 0.5s;
-							background-color: var(--mainColor);
+							transition: all 0.3s;
+							background-color: var(--bodyWhite);
 							position: absolute;
-							right: -350px;
-							top: calc(60px + 15px);
+							right: 0;
+							top: 55px;
 							width: 260px;
+							transform: scale(0);
 							z-index: 11;
-							opacity: 0.97;
+							border-radius: 10px;
+							box-shadow: var(--boxShadowStrong);
 							&.move {
-								right: 0;
-							}
-							&::before {
-								content: '';
-								position: absolute;
-								border: 15px solid;
-								border-color: transparent transparent var(--mainColor) transparent;
-								top: -30px;
-								right: 15px;
+								transform: scale(1);
 							}
 							> a {
 								display: flex;
 								align-items: center;
 								gap: 15px;
-								color: var(--textColor);
+								color: var(--textSecondColor);
 								text-decoration: none;
 								padding: 10px;
 								z-index: 1;
@@ -122,13 +136,10 @@ header {
 								svg {
 									font-size: 25px;
 									transition: all 0.5s;
+									color: var(--redColor);
 								}
 								&:hover {
-									background-color: #4a4a4a;
-									svg {
-										color: var(--secondColor);
-										transform: scale(1.1);
-									}
+									background-color: var(--bkRed);
 								}
 							}
 						}
@@ -138,59 +149,68 @@ header {
 
 			// TODO: reponsive ul
 			.main-responsive-list {
-				opacity: 0.97;
 				z-index: 11;
 				position: absolute;
-				top: 0;
-				right: -300px;
+				top: 5px;
+				right: 10px;
 				transition: all 0.5s;
-				display: none;
 
-				&.move {
-					right: 0;
+				&.hide {
+					display: none;
+				}
+
+				.toggle-bar {
+					padding: 10px;
+					width: fit-content;
+					position: absolute;
+					right: 10px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					transition: all 0.3s;
+					cursor: pointer;
+					cursor: pointer;
+					svg {
+						fill: var(--textColor);
+						font-size: 20px;
+						transition: all 0.3s;
+					}
 				}
 
 				.responsive-list {
-					background-color: var(--mainColor);
+					background-color: var(--bodyWhite);
 					width: 300px;
-					min-width: 300px;
+					transform: scale(0);
+					box-shadow: var(--boxShadowStrong);
+					border-radius: 10px;
 					position: absolute;
-					top: 60px;
-					right: 0;
-					transition: all 0.5s;
+					top: 55px;
+					left: -300px;
 					display: flex;
 					flex-direction: column;
-					color: var(--textColor);
+					color: var(--textSecondColor);
+					transition: all 0.5s;
+					padding: 10px;
 
-					.toggle-bar {
-						padding: 10px;
-						width: fit-content;
-						position: absolute;
-						left: -40px;
-						top: 0;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						transition: all 0.3s;
-						cursor: pointer;
-						background: var(--mainColor);
-						svg {
-							fill: var(--secondColor);
-							font-size: 20px;
-							transition: all 0.3s;
-						}
+					&.move {
+						transform: scale(1);
 					}
 
 					> div {
-						padding: 15px 10px;
 						transition: 0.3s;
-						display: flex;
+						&:not(:first-child) {
+							border-top: var(--border);
+						}
+
 						a {
 							display: flex;
 							align-items: center;
-							gap: 10px;
-							color: var(--textColor);
+							color: var(--textSecondColor);
 							text-decoration: none;
+							padding: 5px 10px;
+							&:hover {
+								background-color: var(--bkRed);
+							}
 						}
 						svg {
 							font-size: 30px;
@@ -198,15 +218,14 @@ header {
 						}
 					}
 					.profile-ul {
-						display: flex;
-						justify-content: space-between;
-						align-items: center;
+						width: 100%;
 						a {
+							justify-content: space-between;
 							img {
 								width: 50px;
 								height: 50px;
 								border-radius: 50%;
-								object-fit: cover;
+								object-fit: contain;
 							}
 						}
 						svg {
@@ -219,20 +238,31 @@ header {
 					}
 
 					.basic-ul {
-						border-top: 1px solid #c0c0c0;
+						padding: 10px 0;
+						display: flex;
 						flex-direction: column;
 						gap: 10px;
 						a {
 							display: flex;
 							justify-content: space-between;
-							padding: 5px;
-							padding-right: 10px;
+							// padding-right: 10px;
 							gap: 20px;
 							font-size: 18px;
 							font-weight: bold;
 							transition: all 0.3s;
-							&:hover {
-								background-color: #4a4a4a;
+							svg {
+								color: var(--mainColor);
+							}
+						}
+					}
+
+					.logout {
+						a {
+							display: flex;
+							justify-content: space-between;
+							font-weight: bold;
+							svg {
+								color: var(--redColor);
 							}
 						}
 					}
@@ -245,13 +275,24 @@ header {
 @media (max-width: 767px) {
 	header {
 		.container {
-			justify-content: center;
+			// justify-content: center;
 			nav {
 				.main-list {
-					display: none;
+					&.hide-register {
+						display: none;
+					}
 				}
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	header {
+		.container {
+			nav {
 				.main-responsive-list {
-					display: block;
+					display: none;
 				}
 			}
 		}

@@ -7,7 +7,7 @@ import { RiDeleteBin4Fill } from 'react-icons/ri';
 
 const Cart = ({ cart, setCart, showProduct, products }) => {
 	useEffect(() => {
-		localStorage.setItem('cart', JSON.stringify(cart));
+		sessionStorage.setItem('cart', JSON.stringify(cart));
 	}, [cart]);
 
 	// MY STATE ==>
@@ -84,11 +84,11 @@ const Cart = ({ cart, setCart, showProduct, products }) => {
 
 							<Zoom>
 								<div className='cart-footer'>
-									<div className='total'>
+									{/* <div className='total'>
 										TOTAL: {cart.reduce((acc, p) => acc + p.price * p.qty, 0)} $
-									</div>
+									</div> */}
 									<button className='checkout-order' onClick={() => setShowForm(!showForm)}>
-										CECKOUT
+										CECKOUT ({`${cart.reduce((acc, p) => acc + p.price * p.qty, 0)}$`})
 									</button>
 								</div>
 							</Zoom>

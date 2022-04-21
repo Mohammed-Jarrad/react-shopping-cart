@@ -1,128 +1,132 @@
-.sign {
-  position: relative;
-  user-select: none;
-}
-.sign form.sign-content {
-  position: relative;
-  top: 50%;
-  transform: translatey(-50%);
-  width: 100%;
+form.sign-content {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 20px;
+  margin: 10px 0;
 }
-.sign form.sign-content .sign-box {
-  width: 40%;
+form.sign-content .sign-box {
+  width: 350px;
+  background: var(--bodyWhite);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--boxShadow);
+  transition: all 0.5s;
 }
-.sign form.sign-content .sign-box .add-photo .btn-and-img {
+form.sign-content .sign-box .add-photo {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+form.sign-content .sign-box .add-photo .btn-and-img {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
-.sign form.sign-content .sign-box .add-photo .btn-and-img img {
+form.sign-content .sign-box .add-photo .btn-and-img img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  box-shadow: 2px 2px 5px #c0c0c0;
+  box-shadow: var(--boxShadow);
   object-fit: contain;
+}
+form.sign-content .sign-box .add-photo .btn-and-img svg.camera {
   cursor: pointer;
-}
-.sign form.sign-content .sign-box .personal-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.sign form.sign-content .sign-box .personal-info span {
-  width: 100%;
-}
-.sign form.sign-content .sign-box .personal-info input {
-  width: 100%;
-}
-.sign form.sign-content .sign-box .password-input {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.sign form.sign-content .sign-box .password-input span.eye {
-  display: block;
   position: absolute;
-  right: 0;
-  border-left: 1px solid #c0c0c0;
-  padding: 10px;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  opacity: 0.6;
+  color: var(--redColor);
+  transition: all 0.3s;
 }
-.sign form.sign-content .sign-box .password-input span.eye svg:last-child {
-  color: #4267b2;
+form.sign-content .sign-box .add-photo .btn-and-img svg.camera:hover {
+  color: var(--mainColor);
 }
-.sign form.sign-content .sign-box input {
-  width: 100%;
-  display: block;
-  box-shadow: 2px 2px 5px #c0c0c0;
-  background-color: transparent;
-  color: #000;
-  caret-color: #333;
-  font-size: 16px;
-  transition: 0.3s;
-  border: 1px solid #afafaf;
+form.sign-content .sign-box .input-box {
+  padding: 5px 10px;
+}
+form.sign-content .sign-box .input-box .input {
+  display: flex;
+  align-items: center;
+}
+form.sign-content .sign-box .input-box .input label {
+  width: 90px;
+  color: var(--textSecondColor);
+}
+form.sign-content .sign-box .input-box .input input {
+  flex: 1;
+  padding: 7px 10px;
+  border: none;
+  background-color: var(--bodyColor);
   border-radius: 5px;
-  padding: 10px;
+  border: var(--border);
+  transition: 0.3s;
+  caret-color: var(--redColor);
 }
-.sign form.sign-content .sign-box input::placeholder {
-  color: #afafaf;
-}
-.sign form.sign-content .sign-box input:focus {
+form.sign-content .sign-box .input-box .input input:focus {
   outline: none;
-  padding-left: 15px;
+  padding-left: 13px;
 }
-.sign form.sign-content .sign-box input:focus::placeholder {
+form.sign-content .sign-box .input-box .input input:focus::placeholder {
   color: transparent;
 }
-.sign form.sign-content .sign-box label {
-  color: #333;
-  font-weight: bold;
-  display: block;
-  text-align: left;
-  margin-top: 20px;
-  margin-bottom: 5px;
+form.sign-content .sign-box .input-box .input input::placeholder {
+  transition: 0.3s;
 }
-.sign form.sign-content .sign-box button {
-  background: #333;
-  width: 50%;
-  color: #fff;
+form.sign-content .sign-box .input-box .error-alert .error {
+  padding: 0;
+  background-color: transparent;
+  color: var(--redColor);
+  font-size: 13px;
+}
+form.sign-content .sign-box .input-box.password {
+  position: relative;
+}
+form.sign-content .sign-box .input-box.password .input > svg {
+  position: absolute;
+  right: 17px;
+}
+form.sign-content .sign-box .input-box.password .input > svg.fill-eye {
+  color: var(--redColor);
+}
+form.sign-content .sign-box button {
+  background: var(--redColor);
+  width: 100%;
+  color: var(--textColor);
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
   font-weight: bold;
   font-size: 20px;
-  border-radius: 5px;
   text-transform: uppercase;
   cursor: pointer;
   opacity: 0.9;
   transition: 0.3s;
 }
-.sign form.sign-content .sign-box button:hover {
+form.sign-content .sign-box button:hover {
   opacity: 1;
 }
-.sign form.sign-content .sign-box button:active {
+form.sign-content .sign-box button:active {
   transform: scale(0.95);
 }
-.sign form.sign-content .or-option {
-  color: #fff;
+form.sign-content .or-option {
+  color: var(--textColor);
   position: relative;
 }
-.sign form.sign-content .or-option span {
+form.sign-content .or-option span {
   width: 30px;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
-  background-color: #333;
+  background-color: var(--mainColor);
   border-radius: 50%;
   font-weight: bold;
 }
-.sign form.sign-content .or-option span::before {
+form.sign-content .or-option span::before {
   content: "";
   position: absolute;
   left: 50%;
@@ -130,9 +134,9 @@
   width: 1px;
   height: 120px;
   top: 30px;
-  background-color: #333;
+  background-color: var(--mainColor);
 }
-.sign form.sign-content .or-option span::after {
+form.sign-content .or-option span::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -140,28 +144,25 @@
   width: 1px;
   height: 120px;
   bottom: 30px;
-  background-color: #333;
+  background-color: var(--mainColor);
 }
-.sign form.sign-content .social div {
-  margin-bottom: 20px;
-}
-.sign form.sign-content .social ul {
+form.sign-content .social ul {
   list-style: none;
 }
-.sign form.sign-content .social ul li {
-  width: 300px;
+form.sign-content .social ul li {
+  width: 200px;
   text-align: center;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 5px;
 }
-.sign form.sign-content .social ul li:first-child {
+form.sign-content .social ul li:first-child {
   background-color: #4267b2;
 }
-.sign form.sign-content .social ul li:last-child {
+form.sign-content .social ul li:last-child {
   background: #ff3d00;
 }
-.sign form.sign-content .social ul li a {
+form.sign-content .social ul li a {
   text-decoration: none;
   color: #fff;
   font-size: 20px;
@@ -169,6 +170,28 @@
   justify-content: center;
   align-items: center;
 }
-.sign form.sign-content .social ul li a i {
+form.sign-content .social ul li a i {
   margin-right: 30px;
+}
+
+@media (max-width: 767px) {
+  form.sign-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+  form.sign-content .sign-box {
+    width: 90%;
+  }
+  form.sign-content .or-option span::after {
+    width: 120px;
+    height: 1px;
+    bottom: 15px;
+    left: 90px;
+  }
+  form.sign-content .or-option span::before {
+    width: 120px;
+    height: 1px;
+    top: 15px;
+    left: -60px;
+  }
 }
