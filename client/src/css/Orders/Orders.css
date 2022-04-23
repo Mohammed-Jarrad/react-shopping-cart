@@ -2,6 +2,7 @@
   width: 80%;
   margin-top: 20px;
   margin-bottom: 20px;
+  transition: width 0.3s;
 }
 .orders .heading {
   display: flex;
@@ -95,4 +96,23 @@
 .orders .no-orders-msg {
   text-align: center;
   color: var(--mainColor);
+}
+
+@media (max-width: 767px) {
+  .orders {
+    width: 100%;
+  }
+  .orders .heading {
+    font-size: 14px;
+  }
+  .orders .order-information .main-order > div {
+    font-size: 15px;
+  }
+  .orders .order-information .main-order > div svg {
+    font-size: 17px;
+  }
+  .orders .order-information .order-details .order-items .order-item .img-item img {
+    width: 30px;
+    height: 30px;
+  }
 }

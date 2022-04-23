@@ -2,6 +2,7 @@
 	width: 80%;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	transition: width 0.3s;
 
 	.heading {
 		display: flex;
@@ -21,7 +22,6 @@
 			align-items: center;
 			background-color: var(--bodyWhite);
 			box-shadow: var(--boxShadow);
-			// border-radius: 20px;
 			border-top-left-radius: 10px;
 			border-top-right-radius: 10px;
 			> div {
@@ -110,5 +110,38 @@
 	.no-orders-msg {
 		text-align: center;
 		color: var(--mainColor);
+	}
+}
+
+@media (max-width: 767px) {
+	.orders {
+		width: 100%;
+
+		.heading {
+			font-size: 14px;
+		}
+
+		.order-information {
+			.main-order {
+				> div {
+					font-size: 15px;
+					svg {
+						font-size: 17px;
+					}
+				}
+			}
+			.order-details {
+				.order-items {
+					.order-item {
+						.img-item {
+							img {
+								width: 30px;
+								height: 30px;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
