@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import Cart from '../../components/Cart/Cart';
 import Filter from '../../components/Filter/Filter';
 import ProductModal from '../../components/Products/ProductModal';
 import Products from '../../components/Products/Products';
-import { DeleteRequest, GetRequest } from '../../utils/requests';
+import { DeleteRequest, GetRequest, PutRequest } from '../../utils/requests';
 import '../../css/Home/Home.css';
 import Loading from '../../components/Loading/Loading';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
@@ -19,6 +19,7 @@ const Home = () => {
 	const [categories, setCategories] = useState('');
 	const [loadingDelete, setLoadingDelete] = useState(false);
 	const [alertProductDeleted, setAlertProductDeleted] = useState(false);
+	const [ignore, forceUpdate] = useReducer(x => x + 1, 0);
 
 	// * get Products And Categories
 	async function getProductsAndCategories() {
@@ -51,22 +52,17 @@ const Home = () => {
 
 	useEffect(() => {
 		getProductsAndCategories();
-	}, []);
+	}, [ignore]);
 
 	// * Remove Product
 	async function removeProduct(id) {
 		setLoadingDelete(true);
 		try {
-			//Delete All Orders With The Same Product
-			try {
-				const resDeleteOrders = await DeleteRequest(`/order/product/${id}`);
-				if (resDeleteOrders.status === 202) {
-					console.log(await resDeleteOrders.json());
-					console.log(`Orders With product Same id ${id} Was Deleted`);
-				}
-			} catch (error) {
-				console.log(error);
-			}
+			// delete this product drom all orders contains this product
+			const res_delete_from_order = await PutRequest(`/order/remove-product/${id}`);
+			const data_delete_from_order = await res_delete_from_order.json();
+			console.log(res_delete_from_order);
+			console.log(data_delete_from_order);
 			//delete product
 			const res = await DeleteRequest(`/product/${id}`);
 			console.log(res);
@@ -74,14 +70,7 @@ const Home = () => {
 				setCart([]);
 				setLoadingDelete(false);
 				setAlertProductDeleted(true);
-				// return the products Data to products to prevent reload page
-				try {
-					const resProd = await GetRequest('/products');
-					const data = await resProd.json();
-					setProducts(data.products);
-				} catch (err) {
-					console.log(err);
-				}
+				forceUpdate();
 			}
 		} catch (error) {
 			setLoadingDelete(false);
@@ -173,11 +162,7 @@ const Home = () => {
 		<React.Fragment>
 			<Loading open={loading} setOpen={setLoading} />
 			<Loading open={loadingDelete} setOpen={setLoadingDelete} />
-			<SuccessMsg
-				msg={'Product Deleted !'}
-				open={alertProductDeleted}
-				setOpen={setAlertProductDeleted}
-			/>
+			<SuccessMsg msg={'Product Deleted !'} open={alertProductDeleted} setOpen={setAlertProductDeleted} />
 			<main>
 				<div className='home'>
 					<Filter

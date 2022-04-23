@@ -4,10 +4,11 @@ import '../../css/CreateProduct/CreateProduct.css';
 import { PostRequest } from '../../utils/requests';
 import Loading from '../Loading/Loading';
 import SuccessMsg from '../SuccessMsg/SuccessMsg';
+import { AiFillCamera } from 'react-icons/ai';
 
 const CreateProduct = () => {
 	// my state
-	const [imageProductUrl, setImageProductUrl] = useState('');
+	const [imageProductUrl, setImageProductUrl] = useState('/images/product-default-image.jpg');
 	const [inputsValue, setInputsValue] = useState('');
 	const selectInputRef = useRef();
 	const [productError, setProductError] = useState('');
@@ -17,21 +18,20 @@ const CreateProduct = () => {
 	// get path
 	function getPathOfImg(e) {
 		if (e.target.files.length) {
-			console.log(e.target.files);
 			let file = e.target.files[0];
 			let fileReader = new FileReader();
 			fileReader.readAsDataURL(file);
-			fileReader.onload = () => {
+			fileReader.onloadend = () => {
 				setImageProductUrl(fileReader.result);
-				console.log(fileReader.result);
+				setProductError(prev => ({ ...prev, [e.target.name]: '' }));
 			};
 			fileReader.onerror = e => console.log(e);
 		} else return;
 	}
 	// handle change inputs
-	const handleChangeInput = e => {
+	const handleChangeInput = async e => {
 		setInputsValue(prev => ({ ...prev, [e.target.name]: e.target.value.trim() }));
-		setProductError(false);
+		setProductError(prev => ({ ...prev, [e.target.name]: '' }));
 	};
 
 	// create product
@@ -65,100 +65,102 @@ const CreateProduct = () => {
 	};
 
 	return (
-		<div className='create-product'>
+		<>
 			<Loading open={loading} setOpen={setLoading} />
 			<SuccessMsg open={alertCreateDone} setOpen={setAlertCreateDone} msg={'Created Done !'} />
 
-			<form onSubmit={createProduct}>
-				<div className='form-content'>
+			<div className='create-product'>
+				{/* <div className='container'> */}
+				<form onSubmit={createProduct} className='container'>
 					<div className='col-1'>
 						<div className='input-box'>
-							<div className='input-content'>
-								<label htmlFor='title'>Title</label>
-								<div className='input'>
-									<input
-										type='text'
-										placeholder='Product Title'
-										name='title'
-										onChange={handleChangeInput}
-									/>
-									{productError.title && <Alert severity='error'>{productError.title}</Alert>}
-								</div>
-							</div>
+							<label htmlFor='title'>
+								<span>Title:</span>
+								<input
+									type='text'
+									placeholder='Product Title'
+									name='title'
+									onChange={handleChangeInput}
+								/>
+							</label>
+							{productError.title && (
+								<Alert className='error' severity='error'>
+									{productError.title}
+								</Alert>
+							)}
 						</div>
 
 						<div className='input-box'>
-							<div className='input-content'>
-								<label htmlFor='price'>Price</label>
-								<div className='input'>
-									<input
-										type='number'
-										placeholder='Product Price'
-										name='price'
-										onChange={handleChangeInput}
-									/>
-									{productError.price && <Alert severity='error'>{productError.price}</Alert>}
-								</div>
-							</div>
+							<label htmlFor='price'>
+								<span>Price:</span>
+								<input
+									type='number'
+									placeholder='Product Price'
+									name='price'
+									onChange={handleChangeInput}
+								/>
+							</label>
+							{productError.price && (
+								<Alert className='error' severity='error'>
+									{productError.price}
+								</Alert>
+							)}
 						</div>
 
 						<div className='input-box'>
-							<div className='input-content'>
-								<label htmlFor='category'>Category</label>
-								<div className='input'>
-									<input
-										type='text'
-										placeholder='Product Category'
-										name='category'
-										onChange={handleChangeInput}
-									/>
-									{productError.category && <Alert severity='error'>{productError.category}</Alert>}
-								</div>
-							</div>
+							<label htmlFor='category'>
+								<span>Category:</span>
+								<input
+									type='text'
+									placeholder='Product Category'
+									name='category'
+									onChange={handleChangeInput}
+								/>
+							</label>
+							{productError.category && (
+								<Alert className='error' severity='error'>
+									{productError.category}
+								</Alert>
+							)}
 						</div>
 
 						<div className='input-box'>
-							<div className='input-content'>
-								<label htmlFor='desc'>Description</label>
-								<div className='input'>
-									<textarea
-										placeholder='Product Category'
-										name='desc'
-										onChange={handleChangeInput}
-									/>
-									{productError.desc && <Alert severity='error'>{productError.desc}</Alert>}
-								</div>
-							</div>
+							<label htmlFor='desc'>
+								<span>Description:</span>
+								<textarea placeholder='Product Category' name='desc' onChange={handleChangeInput} />
+							</label>
+							{productError.desc && (
+								<Alert className='error' severity='error'>
+									{productError.desc}
+								</Alert>
+							)}
 						</div>
 
-						<button className='submit'>Submit</button>
+						<button className='submit'>Create Product</button>
 					</div>
 
 					<div className='col-2'>
-						<input type='file' onChange={getPathOfImg} accept='image/jpg' ref={selectInputRef} />
-
-						<button
-							onClick={e => {
-								e.preventDefault();
-								selectInputRef.current.click();
-							}}
-							style={{ display: imageProductUrl ? 'none' : 'block' }}
-						>
-							Add Photo
-						</button>
-
+						<input
+							type='file'
+							name='imageUrl'
+							onChange={getPathOfImg}
+							accept='image/jpg'
+							ref={selectInputRef}
+						/>
 						<div className='img-error'>
-							<img
-								onClick={() => imageProductUrl && selectInputRef.current.click()}
-								alt='Product Figure'
-								src={imageProductUrl ? imageProductUrl : '/images/product-default-image.jpg'}
-							/>
-							{productError.imageUrl && <Alert severity='error'>{productError.imageUrl}</Alert>}
+							<img alt='Product Figure' src={imageProductUrl} />
+							<AiFillCamera className='camera' onClick={() => selectInputRef.current.click()} />
+							{productError.imageUrl && (
+								<Alert severity='error' className='error'>
+									{productError.imageUrl}
+								</Alert>
+							)}
 						</div>
 					</div>
-				</div>
-			</form>
-		</div>
+				</form>
+				{/* </div> */}
+			</div>
+		</>
 	);
 };
 

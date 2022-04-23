@@ -108,9 +108,6 @@ form.sign-content .sign-box button {
 form.sign-content .sign-box button:hover {
   opacity: 1;
 }
-form.sign-content .sign-box button:active {
-  transform: scale(0.95);
-}
 form.sign-content .or-option {
   color: var(--textColor);
   position: relative;

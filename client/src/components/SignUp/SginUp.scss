@@ -107,16 +107,12 @@ form.sign-content {
 			margin-top: 20px;
 			font-weight: bold;
 			font-size: 20px;
-			// border-radius: 5px;
 			text-transform: uppercase;
 			cursor: pointer;
 			opacity: 0.9;
 			transition: 0.3s;
 			&:hover {
 				opacity: 1;
-			}
-			&:active {
-				transform: scale(0.95);
 			}
 		}
 	}

@@ -78,9 +78,9 @@ const Filter = ({ handleFilterBySort, sort, products, categories, handleFilterBy
 							))}
 						</div>
 
-						<button className='create-product-btn'>
-							<NavLink to={`/create-product`}>Create New Product</NavLink>
-						</button>
+						<NavLink className='create-product-btn' to={`/create-product`}>
+							Create New Product
+						</NavLink>
 					</div>
 				</div>
 			) : (

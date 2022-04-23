@@ -20,8 +20,7 @@ const SignUp = () => {
 
 	// ! handle input changes + ? change the error values in change;
 	function handleChange(e) {
-		setInputValue(prevValue => ({ ...prevValue, [e.target.id]: e.target.value }));
-		// setUserError('');
+		setInputValue(prevValue => ({ ...prevValue, [e.target.id]: e.target.value.trim() }));
 		userError[e.target.id] = '';
 	}
 	//!get Path of image
@@ -117,12 +116,7 @@ const SignUp = () => {
 						<div className='input-box'>
 							<div className='input'>
 								<label htmlFor='name.first_name'>First Name: </label>
-								<input
-									type='text'
-									id='name.first_name'
-									placeholder='First Name'
-									onChange={handleChange}
-								/>
+								<input type='text' id='name.first_name' placeholder='First Name' onChange={handleChange} />
 							</div>
 							<div className='error-alert'>
 								{userError['name.first_name'] && (
@@ -136,12 +130,7 @@ const SignUp = () => {
 						<div className='input-box'>
 							<div className='input'>
 								<label htmlFor='name.last_name'>Last Name: </label>
-								<input
-									type='text'
-									id='name.last_name'
-									placeholder='Last Name'
-									onChange={handleChange}
-								/>
+								<input type='text' id='name.last_name' placeholder='Last Name' onChange={handleChange} />
 							</div>
 							<div className='error-alert'>
 								{userError['name.last_name'] && (
@@ -194,12 +183,7 @@ const SignUp = () => {
 						<div className='input-box'>
 							<div className='input'>
 								<label htmlFor='location.country'>Country: </label>
-								<input
-									type='text'
-									id='location.country'
-									placeholder='Country'
-									onChange={handleChange}
-								/>
+								<input type='text' id='location.country' placeholder='Country' onChange={handleChange} />
 							</div>
 							<div className='error-alert'>
 								{userError['location.country'] && (

@@ -7,14 +7,13 @@
   top: 55px;
   z-index: 111;
   box-shadow: var(--boxShadowStrong);
-  border-radius: 20px;
 }
 .filter-wrapper.move {
   left: 10px;
   overflow: hidden;
 }
 .filter-wrapper.move .arrow-to-left {
-  right: 0;
+  right: 20px;
   top: 7px;
   box-shadow: none;
   padding: 5px;
@@ -52,6 +51,10 @@
   font-size: 20px;
   padding: 10px;
 }
+.filter-wrapper .filter-content {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
 .filter-wrapper .filter-content .filter-items {
   color: var(--textSecondColor);
   cursor: pointer;
@@ -71,16 +74,13 @@
 .filter-wrapper .filter-content .filter-by-order {
   padding: 10px;
 }
-.filter-wrapper .filter-content .create-product-btn {
+.filter-wrapper .filter-content a.create-product-btn {
   width: 100%;
-  margin: auto;
   display: block;
   padding: 10px;
   background-color: var(--redColor);
-  border: none;
-}
-.filter-wrapper .filter-content .create-product-btn a {
   text-decoration: none;
+  text-align: center;
   color: var(--textColor);
   display: block;
   width: 100%;
