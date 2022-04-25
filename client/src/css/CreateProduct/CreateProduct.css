@@ -1,11 +1,11 @@
 .create-product {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 .create-product form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,6 +61,67 @@
 .create-product form .col-1 .input-box label textarea {
   resize: none;
   height: 150px;
+}
+.create-product form .col-1 .multi-select-size {
+  width: 100%;
+}
+.create-product form .col-1 .colors .colors-config {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.create-product form .col-1 .colors .colors-config input[type=color] {
+  -webkit-appearance: none;
+  border: 1px solid #c0c0c0;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.create-product form .col-1 .colors .colors-config input[type=color]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.create-product form .col-1 .colors .colors-config input[type=color]::-webkit-color-swatch {
+  border: none;
+}
+.create-product form .col-1 .colors .colors-config button {
+  padding: 10px;
+  border: none;
+  color: var(--textSecondColor);
+  border: 1px solid var(--redColor);
+  background-color: var(--bodyWhite);
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.create-product form .col-1 .colors .colors-config button:hover {
+  background-color: var(--redColor);
+  color: var(--textColor);
+}
+.create-product form .col-1 .colors .colors-config .display-colors {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.create-product form .col-1 .colors .colors-config .display-colors > div {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.create-product form .col-1 .colors .colors-config .display-colors > div svg {
+  opacity: 0;
+  transition: all 0.3s;
+}
+.create-product form .col-1 .colors .colors-config .display-colors > div:hover svg {
+  opacity: 1;
+  cursor: pointer;
+  color: black;
 }
 .create-product form .col-1 button.submit {
   background: var(--redColor);

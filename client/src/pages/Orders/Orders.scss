@@ -19,16 +19,22 @@
 	.order-information {
 		.main-order {
 			display: flex;
-			align-items: center;
+			align-items: stretch;
 			background-color: var(--bodyWhite);
 			box-shadow: var(--boxShadow);
 			border-top-left-radius: 10px;
 			border-top-right-radius: 10px;
 			> div {
+				color: var(--textSecondColor);
 				width: 25%;
 				padding: 20px;
 				font-size: 17px;
-				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				&:not(:last-child) {
+					border-right: 1px solid var(--bkRed);
+				}
 				&.edit-arrow {
 					svg {
 						color: var(--redColor);
@@ -88,12 +94,26 @@
 						}
 					}
 					.delete {
-						cursor: pointer;
 						span {
-							color: var(--textColor);
-							background-color: var(--redColor);
-							padding: 5px;
-							width: 50%;
+							width: 40px;
+							height: 40px;
+							border: var(--border);
+							border-radius: 50%;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							margin: auto;
+							cursor: pointer;
+							svg {
+								opacity: 0;
+								font-size: 40px;
+							}
+							&:hover {
+								svg {
+									transition: all 0.3s;
+									opacity: 1;
+								}
+							}
 						}
 					}
 					.quantity {

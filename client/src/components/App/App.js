@@ -14,13 +14,14 @@ import Profile from '../../pages/Profile/Profile';
 export const handleLoggedContext = createContext();
 
 const App = () => {
-	// ? handle logged
+	// * handle logged
 	const navigate = useNavigate();
 	async function handleLogged(url) {
 		try {
 			const res = await GetRequest(url);
 			console.log('handleLogged', res);
 			if (res.status === 401) {
+				// Not Authorized
 				navigate('/login');
 			} else {
 				navigate(url);

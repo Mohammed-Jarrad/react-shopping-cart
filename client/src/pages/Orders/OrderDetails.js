@@ -1,12 +1,9 @@
 import React from 'react';
-import { AiOutlineDelete } from 'react-icons/ai';
-import { PutRequest } from '../../utils/requests';
+import { TiTimes } from 'react-icons/ti';
 
 const OrderDetails = ({ removeProductFromOrder, order }) => {
 	// states
 	const { order_info } = order;
-	const user = localStorage.user ? JSON.parse(localStorage.user) : '';
-	const full_name = user && `${user.name.first_name} ${user.name.last_name}`;
 
 	return (
 		<div className='order-items'>
@@ -17,11 +14,19 @@ const OrderDetails = ({ removeProductFromOrder, order }) => {
 						<h3>{item.product.title}</h3>
 					</div>
 					<div className='price'>$ {item.product.price * item.quantity}</div>
-					<div className='delete' onClick={() => removeProductFromOrder(item.product._id)}>
-						<span title='remove product from this order'>Remove</span>
+					<div className='delete'>
+						<span
+							style={{ background: `${item.selected_color}` }}
+							onClick={() => {
+								removeProductFromOrder(item.product._id, item.selected_color, item.selected_size);
+							}}
+							title='Remove Product'
+						>
+							<TiTimes color={`red`} />
+						</span>
 					</div>
-					<div className='quantity'>
-						<span>{item.quantity}</span>
+					<div className='size'>
+						<span>{item.selected_size ? item.selected_size : 'Not Found'}</span>
 					</div>
 				</div>
 			))}

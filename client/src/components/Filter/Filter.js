@@ -2,15 +2,33 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../../css/Filter/Filter.css';
 import { NavLink } from 'react-router-dom';
 import { BiRightArrow } from 'react-icons/bi';
+import { Select, MenuItem } from '@mui/material';
 
-const Filter = ({ handleFilterBySort, sort, products, categories, handleFilterByCategory }) => {
+const orderOptions = [
+	{ content: 'ALL', value: 'all' },
+	{ content: 'Latest', value: 'latest' },
+	{ content: 'Lowest', value: 'lowest' },
+	{ content: 'Highest', value: 'highest' },
+];
+
+const Filter = ({
+	handleFilterBySort,
+	sort,
+	products,
+	categories,
+	handleFilterByCategory,
+	handleFilterBySize,
+	size,
+	allSizes,
+}) => {
 	// states
 	const [move, setMove] = useState(false);
 	const filterRef = useRef();
+	const selectRef = useRef();
 
 	const hideFilter = e => {
 		if (localStorage.user) {
-			if (filterRef.current.contains(e.target)) {
+			if (filterRef.current.contains(e.target) || filterRef.current.contains(selectRef.current)) {
 				return;
 			} else setMove(false);
 		}
@@ -27,13 +45,6 @@ const Filter = ({ handleFilterBySort, sort, products, categories, handleFilterBy
 		setMove(false);
 	};
 
-	const orderOptions = [
-		{ content: 'ALL', value: 'all' },
-		{ content: 'Latest', value: 'latest' },
-		{ content: 'Lowest', value: 'lowest' },
-		{ content: 'Highest', value: 'highest' },
-	];
-
 	return (
 		<>
 			{products.length ? (
@@ -43,7 +54,7 @@ const Filter = ({ handleFilterBySort, sort, products, categories, handleFilterBy
 							<BiRightArrow />
 						</div>
 
-						<div className='category-title'>Category</div>
+						<div className='title'>Category</div>
 						<div className='filter-by-category'>
 							<div className='filter-items' onClick={handleClickOnCategory}>
 								All
@@ -62,7 +73,7 @@ const Filter = ({ handleFilterBySort, sort, products, categories, handleFilterBy
 								: null}
 						</div>
 
-						<div className='order-title'>Order</div>
+						<div className='title'>Order</div>
 						<div className='filter-by-order'>
 							{orderOptions.map((e, i) => (
 								<div
@@ -76,6 +87,27 @@ const Filter = ({ handleFilterBySort, sort, products, categories, handleFilterBy
 									{e.content}
 								</div>
 							))}
+						</div>
+
+						<div className='title'>Sizes</div>
+						<div className='filter-by-size'>
+							<Select
+								className='select-size'
+								ref={selectRef}
+								label='Sizes'
+								value={`${size ? size : 'Sizes'}`}
+								onChange={e => {
+									handleFilterBySize(e);
+									setMove(false);
+								}}
+							>
+								<MenuItem value={'All'}>ALL</MenuItem>
+								{allSizes.map((size, i) => (
+									<MenuItem key={i} value={size}>
+										{size.toUpperCase()}
+									</MenuItem>
+								))}
+							</Select>
 						</div>
 
 						<NavLink className='create-product-btn' to={`/create-product`}>

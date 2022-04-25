@@ -6,7 +6,7 @@ const Loading = ({ open, setOpen }) => {
 	const handleClose = () => setOpen(false);
 
 	return (
-		<Backdrop open={open} onClick={handleClose}>
+		<Backdrop open={open} onClick={handleClose} style={{ zIndex: '11' }}>
 			<CircularProgress color='inherit' />
 		</Backdrop>
 	);

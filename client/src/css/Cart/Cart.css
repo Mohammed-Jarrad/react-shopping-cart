@@ -1,6 +1,6 @@
 .cart {
   margin: 20px 0;
-  background-color: #fff;
+  background-color: var(--bodyWhite);
   border-radius: 5px;
   overflow: hidden;
   box-shadow: var(--boxShadow);
@@ -23,7 +23,7 @@
   color: var(--textSecondColor);
 }
 .cart .heading > div {
-  width: 150px;
+  width: 25%;
   text-align: center;
 }
 .cart .cart-items .cart-item {
@@ -31,7 +31,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: var(--border);
 }
 .cart .cart-items .cart-item .image {
   text-align: center;
@@ -41,7 +41,7 @@
   align-items: center;
   color: var(--mainColor);
   text-transform: capitalize;
-  width: 150px;
+  width: 25%;
 }
 .cart .cart-items .cart-item .image img {
   width: 70px;
@@ -53,20 +53,33 @@
 .cart .cart-items .cart-item .quantity,
 .cart .cart-items .cart-item .remove {
   text-align: center;
-  width: 150px;
+  width: 25%;
+  color: var(--textSecondColor);
 }
-.cart .cart-items .cart-item .price svg,
-.cart .cart-items .cart-item .quantity svg,
-.cart .cart-items .cart-item .remove svg {
-  color: var(--redColor);
-  font-size: 23px;
+.cart .cart-items .cart-item .price .icon,
+.cart .cart-items .cart-item .quantity .icon,
+.cart .cart-items .cart-item .remove .icon {
+  border-radius: 50%;
+  border: var(--border);
+  display: flex;
+  background-color: var(--bodyColor);
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+.cart .cart-items .cart-item .price .icon svg,
+.cart .cart-items .cart-item .quantity .icon svg,
+.cart .cart-items .cart-item .remove .icon svg {
+  font-size: 30px;
   cursor: pointer;
   transition: all 0.3s;
 }
-.cart .cart-items .cart-item .price svg:hover,
-.cart .cart-items .cart-item .quantity svg:hover,
-.cart .cart-items .cart-item .remove svg:hover {
-  color: red;
+.cart .cart-items .cart-item .price .icon svg:hover,
+.cart .cart-items .cart-item .quantity .icon svg:hover,
+.cart .cart-items .cart-item .remove .icon svg:hover {
+  transform: scale(1.1);
 }
 .cart .cart-items .cart-item .price .quantity-options,
 .cart .cart-items .cart-item .quantity .quantity-options,
@@ -115,11 +128,11 @@
 
 @media (max-width: 767px) {
   .cart .heading > div {
-    width: 80px;
+    width: 25%;
   }
   .cart .cart-items .cart-item .image {
     font-size: 14px;
-    width: 80px;
+    width: 25%;
   }
   .cart .cart-items .cart-item .image img {
     width: 50px;
@@ -128,9 +141,28 @@
   .cart .cart-items .cart-item .price,
 .cart .cart-items .cart-item .quantity,
 .cart .cart-items .cart-item .remove {
-    width: 80px;
+    width: 25%;
   }
 }
+a.go-to-cart {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 90px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bodyWhite);
+  box-shadow: var(--boxShadowStrong);
+  color: var(--redColor);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+a.go-to-cart svg {
+  font-size: 20px;
+}
+
 .checkout-modal {
   width: 300px;
 }
@@ -152,61 +184,4 @@
 }
 .checkout-modal .accept-order form button:hover {
   filter: brightness(1.2);
-}
-
-@media (max-width: 767px) {
-  .cart-modal {
-    flex-direction: column-reverse;
-    width: 85%;
-  }
-}
-.cart-modal .close-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: 1px solid #c0c0c0;
-  border-radius: 4px;
-  padding: 0 10px;
-  color: var(--mainColor);
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.cart-modal .order-content {
-  width: 90%;
-}
-.cart-modal .order-content .alert-success {
-  text-align: center;
-  background-color: green;
-  color: #fff;
-  margin-bottom: 20px;
-  padding: 10px;
-  font-size: 20px;
-}
-.cart-modal .order-content .order-info table {
-  border: 1px solid #c0c0c0;
-  width: 100%;
-}
-.cart-modal .order-content .order-info table tr {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #c0c0c0;
-}
-@media (max-width: 768px) {
-  .cart-modal .order-content .order-info table tr {
-    flex-direction: column;
-  }
-}
-.cart-modal .order-content .order-info table tr:last-child {
-  border-bottom: none;
-}
-.cart-modal .order-content .order-info table tr td {
-  padding: 10px;
-}
-.cart-modal .order-content .order-info table tr td.products-info p {
-  border: 1px solid #c0c0c0;
-  margin-bottom: 4px;
-  box-shadow: 2px 2px 2px #c0c0c0;
-  padding: 5px;
 }

@@ -32,9 +32,9 @@ const ResponsiveList = ({ logout }) => {
 
 	return (
 		<div className={`main-responsive-list ${!user && 'hide'}`}>
-			<span className='toggle-bar' onClick={() => setShowResponsive(!showResponsive)}>
+			<div className='toggle-bar' onClick={() => setShowResponsive(!showResponsive)}>
 				{showResponsive ? <FaTimes /> : <FaBars />}
-			</span>
+			</div>
 			<div className={`responsive-list ${showResponsive && 'move'}`} ref={responsiveRef}>
 				<div className='profile-ul'>
 					<Link to='/profile' onClick={hideToggleMenu}>

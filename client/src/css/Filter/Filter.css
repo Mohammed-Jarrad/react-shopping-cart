@@ -42,8 +42,7 @@
   font-size: 20px;
   transition: all 0.3s;
 }
-.filter-wrapper .category-title,
-.filter-wrapper .order-title {
+.filter-wrapper .title {
   background-color: var(--bodyWhite);
   color: var(--textSecondColor);
   font-weight: bold;
@@ -73,6 +72,13 @@
 }
 .filter-wrapper .filter-content .filter-by-order {
   padding: 10px;
+}
+.filter-wrapper .filter-content .filter-by-size {
+  padding: 10px;
+}
+.filter-wrapper .filter-content .filter-by-size .select-size {
+  max-height: 200px;
+  width: 100%;
 }
 .filter-wrapper .filter-content a.create-product-btn {
   width: 100%;

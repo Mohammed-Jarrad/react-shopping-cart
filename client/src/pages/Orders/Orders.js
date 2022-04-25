@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { Fragment, useEffect, useReducer, useState } from 'react';
 import '../../css/Orders/Orders.css';
 import Loading from '../../components/Loading/Loading';
 import { AiOutlineDelete } from 'react-icons/ai';
@@ -11,7 +11,7 @@ import OrderDetails from './OrderDetails';
 const Orders = () => {
 	// my states
 	const user = JSON.parse(localStorage.user);
-	const [ordersForUser, setOrdersForUser] = useState('');
+	const [ordersForUser, setOrdersForUser] = useState([]);
 	const [alertDeleteMsg, setAlertDeleteMsg] = useState(false);
 	const userName = `${user.name.first_name} ${user.name.last_name}`;
 	const [loading, setLoading] = useState(true);
@@ -43,14 +43,14 @@ const Orders = () => {
 	}, [ignore]);
 
 	// remove order
-	async function removeOrder(id) {
+	async function removeOrder(product_id) {
 		setLoadingDelete(true);
 		try {
-			const res = await DeleteRequest(`/order/${id}`);
+			const res = await DeleteRequest(`/order/${product_id}`);
 			if (res.status === 202) {
 				setLoadingDelete(false);
 				setAlertDeleteMsg(true);
-				forceUpdate(); // update the orders for user (force update)
+				forceUpdate();
 			}
 		} catch (err) {
 			console.log(err);
@@ -58,13 +58,20 @@ const Orders = () => {
 	}
 
 	//remove product from order
-	async function removeProductFromOrder(product_id) {
+	async function removeProductFromOrder(product_id, color, size) {
 		setLoadingDelete(true);
 		try {
-			const res = await PutRequest(`/order/remove-product/${product_id}`);
+			const customise = { color, size };
+			const res = await PutRequest(`/order/remove-product/${product_id}`, JSON.stringify(customise));
 			const data = await res.json();
 			if (data.order) {
+				// delete All empty orders
+				console.log('data', data);
+				await DeleteRequest(`/orders/remove-empty-orders`);
 				forceUpdate();
+				setLoadingDelete(false);
+			} else {
+				console.log(data.errors);
 				setLoadingDelete(false);
 			}
 		} catch (error) {
@@ -79,15 +86,17 @@ const Orders = () => {
 		const mainOrders = document.getElementsByClassName('main-order');
 		let show_more_button;
 		let target;
-		// select the show more btn
 		Object.values(mainOrders).forEach(
+			// select the show more btn
 			mainOrder =>
 				mainOrder.children[3].getAttribute('data-id') === id && (show_more_button = mainOrder.children[3]),
 		);
-		// select my box details what i need it
-		Object.values(ordersDetails).forEach(div => div.getAttribute('data-id') === id && (target = div));
-		// check if the current box details is open or not
+		Object.values(ordersDetails).forEach(
+			// select my box details what i need it
+			div => div.getAttribute('data-id') === id && (target = div),
+		);
 		if (target.classList.contains('show')) {
+			// check if the current box details is open or not
 			target.classList.remove('show');
 			target.style.height = '0px';
 			show_more_button.classList.remove('edit-arrow');
@@ -98,10 +107,8 @@ const Orders = () => {
 					div.classList.remove('show');
 					div.style.height = '0px';
 				}
-			});
-			// remove edit-arrow class from all show more buttons
-			Object.values(mainOrders).forEach(mainOrder => mainOrder.children[3].classList.remove('edit-arrow'));
-			// set the show class to current box details and set the edit-arrow to the current show more button
+			}); // remove edit-arrow class from all show more buttons
+			Object.values(mainOrders).forEach(mainOrder => mainOrder.children[3].classList.remove('edit-arrow')); // set the show class to current box details and set the edit-arrow to the current show more button
 			target.classList.add('show');
 			target.style.height = target.scrollHeight + 'px';
 			show_more_button.classList.add('edit-arrow');
@@ -125,36 +132,39 @@ const Orders = () => {
 						<div className='head-item more'>More</div>
 					</div>
 
-					{ordersForUser.map(order =>
-						order.order_info.length ? ( // if order_info is empty thats means the order is empty
-							<div className='order-information' key={order._id}>
-								<div className='main-order'>
-									<div className='created-at'>{order.createdAt.split('T')[0]}</div>
-									<div className='price'>
-										$ {order.order_info.reduce((a, item) => a + item.product.price * item.quantity, 0)}
-									</div>
-									<div className='delete' onClick={() => removeOrder(order._id)}>
-										<AiOutlineDelete />
-									</div>
-									<div data-id={order._id} className={`show-more`} onClick={e => showDropDiv(order._id)}>
-										<BsFillArrowRightCircleFill />
-									</div>
+					{ordersForUser.map(order => (
+						<div className='order-information' key={order._id}>
+							<div className='main-order'>
+								<div className='created-at'>{order.createdAt.split('T')[0]}</div>
+								<div className='price'>
+									$ {order.order_info.reduce((a, item) => a + item.product.price * item.quantity, 0)}
 								</div>
-								<div data-id={order._id} className={`order-details`}>
-									<OrderDetails
-										removeProductFromOrder={removeProductFromOrder}
-										order={order}
-										removeOrder={removeOrder}
-									/>
+								<div className='delete' onClick={() => removeOrder(order._id)}>
+									<AiOutlineDelete />
+								</div>
+								<div data-id={order._id} className={`show-more`} onClick={e => showDropDiv(order._id)}>
+									<BsFillArrowRightCircleFill />
 								</div>
 							</div>
-						) : null,
-					)}
+
+							<div data-id={order._id} className={`order-details`}>
+								<OrderDetails
+									removeProductFromOrder={removeProductFromOrder}
+									order={order}
+									removeOrder={removeOrder}
+								/>
+							</div>
+						</div>
+					))}
 				</React.Fragment>
 			) : (
-				<div>
-					<h1 className='no-orders-msg'>No orders to {userName}.</h1>
-				</div>
+				<>
+					{loading ? null : (
+						<div>
+							<h1 className='no-orders-msg'>No orders to {userName}.</h1>
+						</div>
+					)}
+				</>
 			)}
 		</div>
 	);

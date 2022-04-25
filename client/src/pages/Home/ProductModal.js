@@ -4,16 +4,22 @@ import '../../css/Products/Products.css';
 
 Modal.setAppElement('#root');
 
-const ProductModal = ({ singleProduct, isOpen, closeModal, addToCart, removeProduct }) => {
+const ProductModal = ({
+	singleProduct,
+	showProductModal,
+	closeProductModal,
+	removeProduct,
+	openCustomiseModal,
+}) => {
 	return (
 		<Modal
 			overlayClassName='overlay-modal'
 			className='modal product-modal'
-			isOpen={isOpen}
+			isOpen={showProductModal}
 			closeTimeoutMS={250}
-			onRequestClose={closeModal}
+			onRequestClose={closeProductModal}
 		>
-			<span className='close-icon' onClick={closeModal}>
+			<span className='close-icon' onClick={closeProductModal}>
 				&times;
 			</span>
 			<div className='main-content'>
@@ -33,17 +39,34 @@ const ProductModal = ({ singleProduct, isOpen, closeModal, addToCart, removeProd
 						<div className='category'>
 							Category: <div>{singleProduct.category}</div>
 						</div>
+
+						{singleProduct.sizes && singleProduct.sizes.length ? (
+							<div className='sizes'>
+								Sizes:{' '}
+								{singleProduct.sizes.map((size, i) => (
+									<span key={i}>{size}</span>
+								))}
+							</div>
+						) : null}
+
+						<div className='colors'>
+							<div>Colors:</div>
+							{singleProduct.colors
+								? singleProduct.colors.map((color, i) => (
+										<span className='color-item' style={{ backgroundColor: `${color}` }} key={i}></span>
+								  ))
+								: null}
+						</div>
 					</div>
 				</div>
 				<div className='modal-options'>
-					<button className='close' onClick={closeModal}>
+					<button className='close' onClick={closeProductModal}>
 						Close
 					</button>
 					<button
 						className='add'
 						onClick={() => {
-							addToCart(singleProduct);
-							closeModal();
+							openCustomiseModal(singleProduct);
 						}}
 					>
 						Add To Cart
@@ -51,7 +74,7 @@ const ProductModal = ({ singleProduct, isOpen, closeModal, addToCart, removeProd
 					<button
 						className='delete'
 						onClick={() => {
-							closeModal();
+							closeProductModal();
 							removeProduct(singleProduct._id);
 						}}
 					>

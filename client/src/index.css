@@ -18,6 +18,8 @@
 body {
     background-color: var(--bodyColor);
     font-size: 14px;
+    transition: .3s;
+    scroll-behavior: smooth;
 }
 
 * {

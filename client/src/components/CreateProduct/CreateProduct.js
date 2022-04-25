@@ -5,6 +5,50 @@ import { PostRequest } from '../../utils/requests';
 import Loading from '../Loading/Loading';
 import SuccessMsg from '../SuccessMsg/SuccessMsg';
 import { AiFillCamera } from 'react-icons/ai';
+import MultiSelect from 'react-multiple-select-dropdown-lite';
+import 'react-multiple-select-dropdown-lite/dist/index.css';
+import CreateInput from './CreateInput';
+import ColorInput from './ColorInput';
+
+export const sizeOptions = [
+	{ label: 'XS', value: 'xs' },
+	{ label: 'S', value: 's' },
+	{ label: 'M', value: 'm' },
+	{ label: 'L', value: 'l' },
+	{ label: 'Xl', value: 'xl' },
+	{ label: 'XXL', value: 'xxl' },
+	{ label: '35', value: '35' },
+	{ label: '36', value: '36' },
+	{ label: '37', value: '37' },
+	{ label: '38', value: '38' },
+	{ label: '39', value: '39' },
+	{ label: '40', value: '40' },
+	{ label: '41', value: '41' },
+	{ label: '42', value: '42' },
+	{ label: '43', value: '43' },
+	{ label: '44', value: '44' },
+	{ label: '45', value: '45' },
+	{ label: '46', value: '46' },
+];
+
+const inputsInfo = [
+	{ label: 'Title: ', labelFor: 'title', type: 'text', placeholder: 'Product Title', name: 'title' },
+	{ label: 'Price: ', labelFor: 'price', type: 'number', placeholder: 'Product Price', name: 'price' },
+	{
+		label: 'Category: ',
+		labelFor: 'category',
+		type: 'text',
+		placeholder: 'Product Category',
+		name: 'category',
+	},
+	{
+		label: 'Description: ',
+		labelFor: 'desc',
+		type: 'text',
+		placeholder: 'Product Description',
+		name: 'desc',
+	},
+];
 
 const CreateProduct = () => {
 	// my state
@@ -14,6 +58,9 @@ const CreateProduct = () => {
 	const [productError, setProductError] = useState('');
 	const [alertCreateDone, setAlertCreateDone] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const [sizes, setSizes] = useState([]);
+	const colorRef = useRef();
+	const [colors, setColors] = useState([]);
 
 	// get path
 	function getPathOfImg(e) {
@@ -44,7 +91,10 @@ const CreateProduct = () => {
 			price: inputsValue['price'],
 			category: inputsValue['category'],
 			desc: inputsValue['desc'],
+			sizes: sizes.length ? sizes.split(',') : [],
+			colors: colors,
 		};
+		console.log(product);
 		try {
 			const res = await PostRequest('/product', JSON.stringify(product));
 			const data = await res.json();
@@ -65,76 +115,40 @@ const CreateProduct = () => {
 	};
 
 	return (
-		<>
+		<React.Fragment>
 			<Loading open={loading} setOpen={setLoading} />
 			<SuccessMsg open={alertCreateDone} setOpen={setAlertCreateDone} msg={'Created Done !'} />
 
 			<div className='create-product'>
-				{/* <div className='container'> */}
 				<form onSubmit={createProduct} className='container'>
 					<div className='col-1'>
-						<div className='input-box'>
-							<label htmlFor='title'>
-								<span>Title:</span>
-								<input
-									type='text'
-									placeholder='Product Title'
-									name='title'
-									onChange={handleChangeInput}
-								/>
-							</label>
-							{productError.title && (
-								<Alert className='error' severity='error'>
-									{productError.title}
-								</Alert>
-							)}
-						</div>
+						{inputsInfo.map((input, i) => (
+							<CreateInput
+								key={i}
+								label={input.label}
+								labelFor={input.labelFor}
+								type={input.type}
+								placeholder={input.placeholder}
+								name={input.name}
+								productError={productError}
+								handleChangeInput={handleChangeInput}
+							/>
+						))}
 
-						<div className='input-box'>
-							<label htmlFor='price'>
-								<span>Price:</span>
-								<input
-									type='number'
-									placeholder='Product Price'
-									name='price'
-									onChange={handleChangeInput}
-								/>
-							</label>
-							{productError.price && (
-								<Alert className='error' severity='error'>
-									{productError.price}
-								</Alert>
-							)}
-						</div>
+						<MultiSelect
+							onChange={val => setSizes(val)}
+							options={sizeOptions}
+							placeholder={'Select Sizes ...'}
+							className='multi-select-size'
+						/>
 
-						<div className='input-box'>
-							<label htmlFor='category'>
-								<span>Category:</span>
-								<input
-									type='text'
-									placeholder='Product Category'
-									name='category'
-									onChange={handleChangeInput}
-								/>
-							</label>
-							{productError.category && (
-								<Alert className='error' severity='error'>
-									{productError.category}
-								</Alert>
-							)}
-						</div>
-
-						<div className='input-box'>
-							<label htmlFor='desc'>
-								<span>Description:</span>
-								<textarea placeholder='Product Category' name='desc' onChange={handleChangeInput} />
-							</label>
-							{productError.desc && (
-								<Alert className='error' severity='error'>
-									{productError.desc}
-								</Alert>
-							)}
-						</div>
+						<ColorInput
+							colorRef={colorRef}
+							colors={colors}
+							setColors={setColors}
+							productError={productError}
+							setProductError={setProductError}
+						/>
 
 						<button className='submit'>Create Product</button>
 					</div>
@@ -158,9 +172,8 @@ const CreateProduct = () => {
 						</div>
 					</div>
 				</form>
-				{/* </div> */}
 			</div>
-		</>
+		</React.Fragment>
 	);
 };
 

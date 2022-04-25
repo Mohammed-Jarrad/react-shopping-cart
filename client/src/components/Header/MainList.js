@@ -53,6 +53,7 @@ const MainList = ({ logout }) => {
 							<AiFillHome /> HOME
 						</NavLink>
 					</li>
+
 					<li ref={dropRef} className='drop-menu'>
 						<img
 							onClick={() => setShowDropMenu(!showDropMenu)}

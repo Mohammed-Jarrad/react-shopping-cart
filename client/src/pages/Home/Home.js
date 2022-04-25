@@ -1,44 +1,47 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import Cart from '../../components/Cart/Cart';
 import Filter from '../../components/Filter/Filter';
-import ProductModal from '../../components/Products/ProductModal';
+import ProductModal from './ProductModal';
 import Products from '../../components/Products/Products';
 import { DeleteRequest, GetRequest, PutRequest } from '../../utils/requests';
 import '../../css/Home/Home.css';
 import Loading from '../../components/Loading/Loading';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
+import SelectColorAndSize from './SelectColorAndSize';
 
 const Home = () => {
 	const [products, setProducts] = useState([]);
 	const [productsClone, setProductsClone] = useState([]);
-	// const [size, setSize] = useState('');
+	const [size, setSize] = useState('');
 	const [cart, setCart] = useState(JSON.parse(sessionStorage.getItem('cart')) || []);
 	const [singleProduct, setSingleProduct] = useState('');
-	const [isOpen, setIsOpen] = useState(false);
+	const [showProductModal, setShowProductModal] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [categories, setCategories] = useState('');
 	const [loadingDelete, setLoadingDelete] = useState(false);
 	const [alertProductDeleted, setAlertProductDeleted] = useState(false);
+	const [showCustomise, setShowCustomise] = useState(false);
+	const [allSizes, setAllSizes] = useState([]);
 	const [ignore, forceUpdate] = useReducer(x => x + 1, 0);
 
-	// * get Products And Categories
-	async function getProductsAndCategories() {
+	// * get Products And Categories And All Sizes
+	async function getProductsAndCategoriesAndSizes() {
 		setLoading(true);
 		try {
 			//get all products
 			const resProducts = await GetRequest('/products');
 			const dataProducts = await resProducts.json();
-			console.log(resProducts);
-			console.log(dataProducts);
 			//get all categories
 			const resCategories = await GetRequest('/categories');
 			const dataCategories = await resCategories.json();
-			console.log(resCategories);
-			console.log(dataCategories);
-			if (dataProducts.products && dataCategories.categories) {
+			//get all sizes
+			const resSizes = await GetRequest('/sizes');
+			const dataSizes = await resSizes.json();
+			if (dataProducts.products && dataCategories.categories && dataSizes.sizes) {
 				setProducts(dataProducts.products);
 				setProductsClone(dataProducts.products);
 				setCategories(dataCategories.categories);
+				setAllSizes(dataSizes.sizes);
 				setLoading(false);
 			} else {
 				setLoading(false);
@@ -51,22 +54,20 @@ const Home = () => {
 	}
 
 	useEffect(() => {
-		getProductsAndCategories();
+		getProductsAndCategoriesAndSizes();
 	}, [ignore]);
 
-	// * Remove Product
+	// * remove product && remove this product from all orders contains it && remove all empty orders
 	async function removeProduct(id) {
 		setLoadingDelete(true);
 		try {
-			// delete this product drom all orders contains this product
-			const res_delete_from_order = await PutRequest(`/order/remove-product/${id}`);
-			const data_delete_from_order = await res_delete_from_order.json();
-			console.log(res_delete_from_order);
-			console.log(data_delete_from_order);
+			// delete this product from all orders contains this product
+			await PutRequest(`/orders/remove-product/${id}`);
 			//delete product
 			const res = await DeleteRequest(`/product/${id}`);
 			console.log(res);
 			if (res.status === 202) {
+				await DeleteRequest('/orders/remove-empty-orders'); // delete all empty orders
 				setCart([]);
 				setLoadingDelete(false);
 				setAlertProductDeleted(true);
@@ -78,45 +79,30 @@ const Home = () => {
 		}
 	}
 
-	const closeModal = () => {
-		setSingleProduct(false);
-		setIsOpen(false);
-	};
-
-	const showProduct = singleProduct => {
-		setSingleProduct(singleProduct);
-		setIsOpen(true);
-	};
-
-	const addToCart = singleProduct => {
+	const addToCart = (product, size, color) => {
 		const cartClone = [...cart];
 		let productExist = false;
-		cartClone.forEach(element => {
-			if (element._id === singleProduct._id) {
+		cartClone.forEach(item => {
+			if (item._id === product._id && item.color === color && item.size === size) {
 				productExist = true;
-				element.qty += 1;
+				item.qty += 1;
 			}
 		});
 		if (!productExist) {
-			cartClone.push({
-				...singleProduct,
-				qty: 1,
-			});
+			cartClone.push({ ...product, qty: 1, size: size, color: color });
 		}
 		setCart(cartClone);
 	};
 
-	// const handleFilterBySize = e => {
-	// 	setSize(e.target.value);
-	// 	if (e.target.value === 'ALL') {
-	// 		getProductsAndCategories();
-	// 	} else {
-	// 		const newProducts = productsClone.filter(p => p.sizes.includes(e.target.value));
-	// 		newProducts.length
-	// 			? setProducts(newProducts)
-	// 			: setProducts(`NO ITEM TO SHOW WITH [${e.target.value}]`);
-	// 	}
-	// };
+	const handleFilterBySize = e => {
+		setSize(e.target.value);
+		if (e.target.value === 'All') {
+			setProducts(productsClone);
+		} else {
+			const newProducts = productsClone.filter(p => p.sizes.includes(e.target.value));
+			setProducts(newProducts);
+		}
+	};
 
 	const handleFilterByCategory = e => {
 		//set the active class for clicked element
@@ -143,6 +129,7 @@ const Home = () => {
 			ele.classList.remove('active');
 		});
 		event.target.classList.add('active');
+
 		let newProducts = [...products].sort((current, next) => {
 			if (order === 'lowest') {
 				return current.price - next.price;
@@ -158,6 +145,21 @@ const Home = () => {
 		console.log(newProducts);
 	};
 
+	const closeProductModal = () => {
+		setSingleProduct(false);
+		setShowProductModal(false);
+	};
+
+	const openProductModal = singleProduct => {
+		setSingleProduct(singleProduct);
+		setShowProductModal(true);
+	};
+
+	const openCustomiseModal = singleProduct => {
+		setSingleProduct(singleProduct);
+		setShowCustomise(true);
+	};
+
 	return (
 		<React.Fragment>
 			<Loading open={loading} setOpen={setLoading} />
@@ -166,25 +168,39 @@ const Home = () => {
 			<main>
 				<div className='home'>
 					<Filter
-						// handleFilterBySize={handleFilterBySize}
+						handleFilterBySize={handleFilterBySize}
 						handleFilterBySort={handleFilterBySort}
-						// size={size}
+						size={size}
 						products={products}
 						categories={categories}
 						handleFilterByCategory={handleFilterByCategory}
+						allSizes={allSizes}
 					/>
 					<div className='container'>
-						<Products addToCart={addToCart} products={products} showProduct={showProduct} />
-						<Cart cart={cart} setCart={setCart} showProduct={showProduct} products={products} />
+						<Products
+							products={products}
+							openProductModal={openProductModal}
+							openCustomiseModal={openCustomiseModal}
+							loading={loading}
+						/>
+						<Cart cart={cart} setCart={setCart} openProductModal={openProductModal} products={products} />
 					</div>
 				</div>
 
 				<ProductModal
 					removeProduct={removeProduct}
-					addToCart={addToCart}
-					isOpen={isOpen}
+					showProductModal={showProductModal}
+					closeProductModal={closeProductModal}
 					singleProduct={singleProduct}
-					closeModal={closeModal}
+					openCustomiseModal={openCustomiseModal}
+				/>
+				<SelectColorAndSize
+					singleProduct={singleProduct}
+					showCustomise={showCustomise}
+					setShowCustomise={setShowCustomise}
+					setSingleProduct={setSingleProduct}
+					setShowProductModal={setShowProductModal}
+					addToCart={addToCart}
 				/>
 			</main>
 		</React.Fragment>

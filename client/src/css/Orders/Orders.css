@@ -17,17 +17,23 @@
 }
 .orders .order-information .main-order {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   background-color: var(--bodyWhite);
   box-shadow: var(--boxShadow);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 .orders .order-information .main-order > div {
+  color: var(--textSecondColor);
   width: 25%;
   padding: 20px;
   font-size: 17px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orders .order-information .main-order > div:not(:last-child) {
+  border-right: 1px solid var(--bkRed);
 }
 .orders .order-information .main-order > div.edit-arrow svg {
   color: var(--redColor);
@@ -80,14 +86,24 @@
   height: 50px;
   object-fit: contain;
 }
-.orders .order-information .order-details .order-items .order-item .delete {
+.orders .order-information .order-details .order-items .order-item .delete span {
+  width: 40px;
+  height: 40px;
+  border: var(--border);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   cursor: pointer;
 }
-.orders .order-information .order-details .order-items .order-item .delete span {
-  color: var(--textColor);
-  background-color: var(--redColor);
-  padding: 5px;
-  width: 50%;
+.orders .order-information .order-details .order-items .order-item .delete span svg {
+  opacity: 0;
+  font-size: 40px;
+}
+.orders .order-information .order-details .order-items .order-item .delete span:hover svg {
+  transition: all 0.3s;
+  opacity: 1;
 }
 .orders .order-information .order-details .order-items .order-item .quantity span {
   border: 1px solid var(--redColor);

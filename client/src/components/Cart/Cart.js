@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import '../../css/Cart/Cart.css';
-import Checkout from '../CeckoutForm/Checkout';
-import Zoom from 'react-reveal/Zoom';
+import Checkout from './Checkout';
 import Bounce from 'react-reveal/Bounce';
 import { RiDeleteBin4Fill } from 'react-icons/ri';
+import { ImCart } from 'react-icons/im';
+import { NavLink } from 'react-router-dom';
 
-const Cart = ({ cart, setCart, showProduct, products }) => {
+const Cart = ({ cart, setCart, openProductModal, products }) => {
+	// states
+	const [showCheckout, setShowCheckout] = useState(false);
+
+	// save the cart items in local storage;
 	useEffect(() => {
 		sessionStorage.setItem('cart', JSON.stringify(cart));
 	}, [cart]);
 
-	// MY STATE ==>
-	const [showForm, setShowForm] = useState(false);
-
 	const removeFromCart = product => {
 		const cartClone = [...cart];
-		setCart(cartClone.filter(p => p._id !== product._id));
+		setCart(
+			// cartClone.filter(item => item._id !== product._id && item.color !== product.color && item.size !== product.size),
+			cartClone.filter(item => item !== product),
+		);
 	};
 
 	const minusQty = product => {
@@ -31,9 +36,13 @@ const Cart = ({ cart, setCart, showProduct, products }) => {
 	};
 
 	return (
-		<>
+		<React.Fragment>
+			<a href='#cart' className='go-to-cart'>
+				<ImCart />
+			</a>
+
 			{products.length ? (
-				<div className='cart'>
+				<div className='cart' id='cart'>
 					<div className='cart-title'>
 						<span>{cart.length}</span> Products in your Cart
 					</div>
@@ -48,11 +57,12 @@ const Cart = ({ cart, setCart, showProduct, products }) => {
 									<div>REMOVE</div>
 								</div>
 								<div className='cart-items'>
-									{cart.map(p => (
-										<div className='cart-item' key={p._id}>
+									{cart.map((p, i) => (
+										<div className='cart-item' key={i}>
 											<div className='image'>
-												<img src={p.imageUrl} alt='product figure' onClick={() => showProduct(p)} />
+												<img src={p.imageUrl} alt='product figure' onClick={() => openProductModal(p)} />
 												<h3>{p.title}</h3>
+												<h5>{p.size}</h5>
 											</div>
 
 											<div className='price'>
@@ -61,10 +71,7 @@ const Cart = ({ cart, setCart, showProduct, products }) => {
 
 											<div className='quantity'>
 												<div className='quantity-options'>
-													<span
-														className={`minus ${p.qty === 1 && 'hide'}`}
-														onClick={() => minusQty(p)}
-													>
+													<span className={`minus ${p.qty === 1 && 'hide'}`} onClick={() => minusQty(p)}>
 														-
 													</span>
 													{p.qty}
@@ -75,31 +82,27 @@ const Cart = ({ cart, setCart, showProduct, products }) => {
 											</div>
 
 											<div className='remove'>
-												<RiDeleteBin4Fill onClick={() => removeFromCart(p)} />
+												<span className='icon'>
+													<RiDeleteBin4Fill color={`${p.color}`} onClick={() => removeFromCart(p)} />
+												</span>
 											</div>
 										</div>
 									))}
 								</div>
 							</Bounce>
 
-							<Zoom>
-								<div className='cart-footer'>
-									{/* <div className='total'>
-										TOTAL: {cart.reduce((acc, p) => acc + p.price * p.qty, 0)} $
-									</div> */}
-									<button className='checkout-order' onClick={() => setShowForm(!showForm)}>
-										CECKOUT ({`${cart.reduce((acc, p) => acc + p.price * p.qty, 0)}$`})
-									</button>
-								</div>
-							</Zoom>
+							<div className='cart-footer'>
+								<button className='checkout-order' onClick={() => setShowCheckout(!showCheckout)}>
+									CECKOUT ({`${cart.reduce((acc, p) => acc + p.price * p.qty, 0)}$`})
+								</button>
+							</div>
 						</>
 					) : null}
 				</div>
-			) : (
-				false
-			)}
-			<Checkout showForm={showForm} setShowForm={setShowForm} cart={cart} setCart={setCart} />
-		</>
+			) : null}
+
+			<Checkout showCheckout={showCheckout} setShowCheckout={setShowCheckout} cart={cart} setCart={setCart} />
+		</React.Fragment>
 	);
 };
 

@@ -44,8 +44,7 @@
 		}
 	}
 
-	.category-title,
-	.order-title {
+	.title {
 		background-color: var(--bodyWhite);
 		color: var(--textSecondColor);
 		font-weight: bold;
@@ -77,6 +76,14 @@
 		}
 		.filter-by-order {
 			padding: 10px;
+		}
+
+		.filter-by-size {
+			padding: 10px;
+			.select-size {
+				max-height: 200px;
+				width: 100%;
+			}
 		}
 
 		a.create-product-btn {
