@@ -1,123 +1,144 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useContext, useState} from 'react';
 import '../../css/Filter/Filter.css';
-import { NavLink } from 'react-router-dom';
-import { BiRightArrow } from 'react-icons/bi';
-import { Select, MenuItem } from '@mui/material';
+import {NavLink} from 'react-router-dom';
+import {AiOutlineBars} from 'react-icons/ai';
+import {IoIosRemoveCircleOutline} from 'react-icons/io';
+import {Backdrop} from '@mui/material';
+import {HomeContext} from '../../Context/HomeProvider';
+import {filterContext} from '../../Context/FilterProvider';
+import {UserContext} from '../../Context/UserProvider';
 
 const orderOptions = [
-	{ content: 'ALL', value: 'all' },
-	{ content: 'Latest', value: 'latest' },
-	{ content: 'Lowest', value: 'lowest' },
-	{ content: 'Highest', value: 'highest' },
+	{content: 'All', alue: 'all'},
+	{content: 'Latest', value: 'latest'},
+	{content: 'Lowest', value: 'lowest'},
+	{content: 'Highest', value: 'highest'},
 ];
 
-const Filter = ({
-	handleFilterBySort,
-	sort,
-	products,
-	categories,
-	handleFilterByCategory,
-	handleFilterBySize,
-	size,
-	allSizes,
-}) => {
+const Filter = () => {
+	// Context
+	const {categories, sizes, colors} = useContext(HomeContext);
+	const {handleFilterBySize, handleFilterByColor, handleFilterByCategory, handleFilterBySort} =
+		useContext(filterContext);
+	const {admin} = useContext(UserContext);
+
 	// states
 	const [move, setMove] = useState(false);
-	const filterRef = useRef();
-	const selectRef = useRef();
-
-	const hideFilter = e => {
-		if (localStorage.user) {
-			if (filterRef.current.contains(e.target) || filterRef.current.contains(selectRef.current)) {
-				return;
-			} else setMove(false);
-		}
-	};
-
-	useEffect(() => {
-		document.addEventListener('mousedown', hideFilter);
-
-		return () => document.removeEventListener('mousedown', hideFilter);
-	}, []);
 
 	const handleClickOnCategory = e => {
 		handleFilterByCategory(e);
 		setMove(false);
 	};
 
+	const handleClickOnSize = e => {
+		handleFilterBySize(e);
+		setMove(false);
+	};
+
+	const handleClickOnColor = e => {
+		handleFilterByColor(e);
+		setMove(false);
+	};
+
 	return (
 		<>
-			{products.length ? (
-				<div className={`filter-wrapper ${move ? 'move' : ''}`} ref={filterRef}>
-					<div className={`filter-content`}>
-						<div className='arrow-to-left' onClick={() => setMove(!move)}>
-							<BiRightArrow />
-						</div>
+			<Backdrop open={move} onClick={() => setMove(false)} style={{zIndex: '111'}} />
 
-						<div className='title'>Category</div>
-						<div className='filter-by-category'>
-							<div className='filter-items' onClick={handleClickOnCategory}>
-								All
-							</div>
-							{categories.length
-								? categories.map((category, i) => (
-										<div
-											className='filter-items'
-											key={i}
-											onClick={handleClickOnCategory}
-											defaultValue={category}
-										>
-											{`${category.charAt(0).toUpperCase()}${category.slice(1)}`}
-										</div>
-								  ))
-								: null}
-						</div>
+			<div className={`filter-wrapper ${move ? 'move' : ''}`}>
+				<div className={`filter-content`}>
+					<div className='title filter-title' onClick={() => setMove(!move)}>
+						Filter
+						{move ? (
+							<IoIosRemoveCircleOutline className='show-icon' />
+						) : (
+							<AiOutlineBars className='hide-icon' />
+						)}
+					</div>
 
-						<div className='title'>Order</div>
-						<div className='filter-by-order'>
-							{orderOptions.map((e, i) => (
-								<div
-									className='filter-items'
-									onClick={event => {
-										handleFilterBySort(event, e.value);
-										setMove(false);
-									}}
-									key={i}
-								>
-									{e.content}
-								</div>
-							))}
+					<div className='title'>Category</div>
+					<div className='filter-by-category'>
+						<div className='filter-items' onClick={handleClickOnCategory}>
+							All
 						</div>
+						{categories
+							? categories.map((category, i) => (
+									<div
+										className='filter-items'
+										key={i}
+										onClick={handleClickOnCategory}
+										defaultValue={category}
+									>
+										{`${category.charAt(0).toUpperCase()}${category.slice(1)}`}
+									</div>
+							  ))
+							: null}
+					</div>
 
-						<div className='title'>Sizes</div>
-						<div className='filter-by-size'>
-							<Select
-								className='select-size'
-								ref={selectRef}
-								label='Sizes'
-								value={`${size ? size : 'Sizes'}`}
-								onChange={e => {
-									handleFilterBySize(e);
+					<div className='title'>Order</div>
+					<div className='filter-by-order'>
+						{orderOptions.map((e, i) => (
+							<div
+								className='filter-items'
+								onClick={event => {
+									handleFilterBySort(event);
 									setMove(false);
 								}}
+								key={i}
 							>
-								<MenuItem value={'All'}>ALL</MenuItem>
-								{allSizes.map((size, i) => (
-									<MenuItem key={i} value={size}>
-										{size.toUpperCase()}
-									</MenuItem>
-								))}
-							</Select>
-						</div>
+								{e.content}
+							</div>
+						))}
+					</div>
 
-						<NavLink className='create-product-btn' to={`/create-product`}>
-							Create New Product
-						</NavLink>
+					<div className='title'>Colors</div>
+					<div className='filter-by-color'>
+						<div className='filter-items' onClick={handleClickOnColor}>
+							All
+						</div>
+						{colors &&
+							colors.map((color, i) => (
+								<div
+									className='filter-items'
+									onClick={handleClickOnColor}
+									style={{
+										backgroundColor: `${color}`,
+									}}
+									key={i}
+								></div>
+							))}
+					</div>
+
+					<div className='title'>Sizes</div>
+					<div className='filter-by-size'>
+						<div className='filter-items' onClick={handleClickOnSize}>
+							All
+						</div>
+						{sizes &&
+							sizes.map((e, i) => (
+								<div className='filter-items' onClick={handleClickOnSize} key={i}>
+									{e}
+								</div>
+							))}
 					</div>
 				</div>
-			) : (
-				false
-			)}
+
+				{admin && (
+					<div className='admin-dashboard'>
+						<NavLink className='admin-dashboard-btn' to={`/create-product`}>
+							Create New Product
+						</NavLink>
+						<NavLink className='admin-dashboard-btn' to={`/users`}>
+							All Users
+						</NavLink>
+						<NavLink className='admin-dashboard-btn' to={`/all-orders`}>
+							All Orders
+						</NavLink>
+						<NavLink className='admin-dashboard-btn' to={`/update-product`}>
+							Update Products
+						</NavLink>
+					</div>
+				)}
+			</div>
 		</>
 	);
 };

@@ -1,33 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Modal from 'react-modal';
-import '../../css/Products/Products.css';
+import { HomeContext } from '../../Context/HomeProvider';
 
 Modal.setAppElement('#root');
 
-const ProductModal = ({
-	singleProduct,
-	showProductModal,
-	closeProductModal,
-	removeProduct,
-	openCustomiseModal,
-}) => {
+const ProductModal = ({ open, close, openCustomiseModal }) => {
+	// context
+	const { removeProduct, singleProduct } = useContext(HomeContext);
+
 	return (
 		<Modal
 			overlayClassName='overlay-modal'
 			className='modal product-modal'
-			isOpen={showProductModal}
+			isOpen={open}
 			closeTimeoutMS={250}
-			onRequestClose={closeProductModal}
+			onRequestClose={close}
 		>
-			<span className='close-icon' onClick={closeProductModal}>
+			<span className='close-icon' onClick={close}>
 				&times;
 			</span>
+			<h2 className='title'>{singleProduct.title}</h2>
 			<div className='main-content'>
 				<div className='product-info'>
 					<img src={singleProduct.imageUrl} alt='product figure' />
 					<div className='product-info-details'>
-						<h2 className='title'>{singleProduct.title}</h2>
-
 						<div className='desc'>
 							Description: <div>{singleProduct.desc}</div>
 						</div>
@@ -60,7 +56,7 @@ const ProductModal = ({
 					</div>
 				</div>
 				<div className='modal-options'>
-					<button className='close' onClick={closeProductModal}>
+					<button className='close' onClick={close}>
 						Close
 					</button>
 					<button
@@ -74,7 +70,7 @@ const ProductModal = ({
 					<button
 						className='delete'
 						onClick={() => {
-							closeProductModal();
+							close();
 							removeProduct(singleProduct._id);
 						}}
 					>

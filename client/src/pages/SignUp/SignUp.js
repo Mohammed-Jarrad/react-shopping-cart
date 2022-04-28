@@ -1,27 +1,25 @@
-import React, { useRef, useState } from 'react';
+import React, {useRef, useState} from 'react';
 import '../../css/SignUp/SginUp.css';
 import Bounce from 'react-reveal/Bounce';
-import { AiFillEyeInvisible, AiFillEye, AiFillCamera } from 'react-icons/ai';
-// import Requests from "../../utils/requests";
-import { PostRequest } from '../../utils/requests';
-import Loading from '../Loading/Loading';
-import SuccessMsg from '../SuccessMsg/SuccessMsg';
-import { Link } from 'react-router-dom';
-import { Alert } from '@mui/material';
+import {AiFillEyeInvisible, AiFillEye, AiFillCamera} from 'react-icons/ai';
+import Loading from '../../components/Loading/Loading';
+import {Link} from 'react-router-dom';
+import {Alert} from '@mui/material';
+import mainMethods from '../../utils/mainMethods';
 
 const SignUp = () => {
+	//states
 	const [inputValue, setInputValue] = useState('');
 	const [showEye, setShowEye] = useState(false);
 	const [userError, setUserError] = useState({});
 	const [userImage, setUserImage] = useState('/images/profile-image-default.webp');
 	const inputRef = useRef();
 	const [loading, setLoading] = useState(false);
-	const [alertSignedDone, setAlertSingedDone] = useState(false);
 
 	// ! handle input changes + ? change the error values in change;
 	function handleChange(e) {
-		setInputValue(prevValue => ({ ...prevValue, [e.target.id]: e.target.value.trim() }));
-		userError[e.target.id] = '';
+		setInputValue(prevValue => ({...prevValue, [e.target.id]: e.target.value.trim()}));
+		setUserError(prev => ({...prev, [e.target.id]: ''}));
 	}
 	//!get Path of image
 	function getPathOfImg(e) {
@@ -42,7 +40,7 @@ const SignUp = () => {
 	async function signup(e) {
 		e.preventDefault();
 		setLoading(true);
-		const user = {
+		const user_created = {
 			name: {
 				first_name: inputValue['name.first_name'],
 				last_name: inputValue['name.last_name'],
@@ -57,15 +55,11 @@ const SignUp = () => {
 			user_image: userImage,
 		};
 		try {
-			const res = await PostRequest('/signup', JSON.stringify(user));
-			const data = await res.json();
-			console.log('signup res', res);
-			console.log('signup data', data);
+			const data = await mainMethods.signup(user_created);
 			if (data.user) {
-				localStorage.token = await data.token;
-				localStorage.user = JSON.stringify(await data.user);
+				localStorage.setItem('user', JSON.stringify({...(await data.user), password: ''}));
+				localStorage.setItem('token', await data.token);
 				setLoading(false);
-				setAlertSingedDone(true);
 				window.location.assign('/');
 			} else {
 				setUserError(data.errors);
@@ -100,7 +94,7 @@ const SignUp = () => {
 								accept='image/*'
 								onChange={getPathOfImg}
 								ref={inputRef}
-								style={{ display: 'none' }}
+								style={{display: 'none'}}
 							/>
 							<div className='btn-and-img'>
 								<img alt='' src={userImage} />

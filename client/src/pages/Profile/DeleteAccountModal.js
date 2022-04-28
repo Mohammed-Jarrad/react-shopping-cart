@@ -1,30 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Modal from 'react-modal';
-import { useNavigate } from 'react-router-dom';
-import { DeleteRequest } from '../../utils/requests';
+import {UserContext} from '../../Context/UserProvider';
 
 Modal.setAppElement('#root');
 
-const DeleteAccountModal = ({ openDeleteAccountModal, setOpenDeleteAccountModal }) => {
-	const navigate = useNavigate();
-
-	async function deleteAccount() {
-		try {
-			const res = await DeleteRequest(`/user`);
-			const data = await res.json();
-			if (res.status === 202) {
-				localStorage.removeItem('token');
-				localStorage.removeItem('user');
-				console.log(res);
-				console.log(data);
-				navigate('/login');
-			} else {
-				console.log(res.json());
-			}
-		} catch (err) {
-			console.log(err);
-		}
-	}
+const DeleteAccountModal = () => {
+	//context
+	const {openDeleteAccountModal, setOpenDeleteAccountModal, deleteAccount} = useContext(UserContext);
 
 	return (
 		<Modal

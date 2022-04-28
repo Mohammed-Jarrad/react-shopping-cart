@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/Header/Header.css';
-import { Link } from 'react-router-dom';
-import { GetRequest } from '../../utils/requests';
+import {Link} from 'react-router-dom';
+import {GetRequest} from '../../utils/requests';
 import ResponsiveList from './ResponsiveList';
 import MainList from './MainList';
 
@@ -11,8 +11,8 @@ const Header = () => {
 		try {
 			const res = await GetRequest('/logout');
 			if (res.status === 200) {
-				localStorage.removeItem('token');
-				localStorage.removeItem('user');
+				localStorage.clear();
+				sessionStorage.removeItem('cart');
 				window.location.assign('/login');
 			}
 		} catch (err) {
@@ -24,8 +24,10 @@ const Header = () => {
 		<header>
 			<div className='container'>
 				<Link to='/' className='logo'>
-					Big<span>S</span>tore
+					{/* <img src={'/images/logo-1.png'} alt='' /> */}
+					SHOPERLY!
 				</Link>
+
 				<nav>
 					<ResponsiveList logout={logout} />
 					<MainList logout={logout} />

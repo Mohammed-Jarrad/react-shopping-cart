@@ -1,0 +1,19 @@
+.error-page {
+	width: 60%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 40px;
+	img {
+		width: 100%;
+	}
+	a {
+		text-decoration: none;
+		color: var(--textColor);
+		background-color: var(--redColor);
+		padding: 10px 20px;
+		border-radius: 10px;
+	}
+}

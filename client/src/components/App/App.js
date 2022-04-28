@@ -1,55 +1,51 @@
-import React, { createContext, useContext } from 'react';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, {useContext} from 'react';
+import {Routes, Route} from 'react-router-dom';
 import Orders from '../../pages/Orders/Orders';
 import Home from '../../pages/Home/Home';
-import Login from '../Login/Login';
-import SignUp from '../SignUp/SignUp';
+import Login from '../../pages/Login/Login';
+import SignUp from '../../pages/SignUp/SignUp';
 import Main from '../Main/Main';
-import CreateProduct from '../CreateProduct/CreateProduct';
-import { GetRequest } from '../../utils/requests';
+import CreateProduct from '../../pages/CreateProduct/CreateProduct';
 import Profile from '../../pages/Profile/Profile';
-
-export const handleLoggedContext = createContext();
+import ScrollToTop from '../Scrolling/ScrollToTop';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import {UserContext} from '../../Context/UserProvider';
+import Users from '../Users/Users';
+import AllOrders from '../AllOrders/AllOrders';
 
 const App = () => {
-	// * handle logged
-	const navigate = useNavigate();
-	async function handleLogged(url) {
-		try {
-			const res = await GetRequest(url);
-			console.log('handleLogged', res);
-			if (res.status === 401) {
-				// Not Authorized
-				navigate('/login');
-			} else {
-				navigate(url);
-			}
-		} catch (e) {
-			console.log(e);
-		}
-	}
+	const {token, admin} = useContext(UserContext);
 
 	return (
-		<handleLoggedContext.Provider value={handleLogged}>
-			<div className='layout'>
-				<Header />
+		<div className='layout'>
+			<ScrollToTop />
 
-				<Routes>
-					<Route exact={'true'} path='/' element={<Main />} />
-					<Route exact={'true'} path='/products' element={<Home />} />
-					<Route exact={'true'} path='/orders' element={<Orders />} />
-					<Route exact={'true'} path='/login' element={<Login />} />
-					<Route exact={'true'} path='/signup' element={<SignUp />} />
-					<Route exact={'true'} path='/profile' element={<Profile />} />
-					<Route exact={'true'} path='/create-product' element={<CreateProduct />} />
-					<Route path='*' element={<div> ERROR! PAGE NOT FOUND </div>} />
-				</Routes>
+			<Header />
+			<Routes>
+				<Route exact={'true'} path='/' element={<Main />} />
+				<Route exact={'true'} path='/login' element={<Login />} />
 
-				<Footer />
-			</div>
-		</handleLoggedContext.Provider>
+				<Route exact={'true'} path='/signup' element={<SignUp />} />
+				{token && (
+					<>
+						<Route exact={'true'} path='/products' element={<Home />} />
+						<Route exact={'true'} path='/orders' element={<Orders />} />
+						<Route exact={'true'} path='/profile' element={<Profile />} />
+					</>
+				)}
+				{admin && ( //  * admin dashboard !
+					<>
+						<Route exact={'true'} path='/users' element={<Users />} />
+						<Route exact={'true'} path='/create-product' element={<CreateProduct />} />
+						<Route exact={'true'} path='/all-orders' element={<AllOrders />} />
+					</>
+				)}
+				<Route path='*' element={<ErrorPage />} />
+			</Routes>
+			<Footer />
+		</div>
 	);
 };
 

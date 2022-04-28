@@ -2,13 +2,15 @@ import { Alert } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import '../../css/CreateProduct/CreateProduct.css';
 import { PostRequest } from '../../utils/requests';
-import Loading from '../Loading/Loading';
-import SuccessMsg from '../SuccessMsg/SuccessMsg';
+import Loading from '../../components/Loading/Loading';
+import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
 import { AiFillCamera } from 'react-icons/ai';
 import MultiSelect from 'react-multiple-select-dropdown-lite';
 import 'react-multiple-select-dropdown-lite/dist/index.css';
 import CreateInput from './CreateInput';
 import ColorInput from './ColorInput';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 export const sizeOptions = [
 	{ label: 'XS', value: 'xs' },

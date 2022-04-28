@@ -5,7 +5,7 @@ export async function GetRequest(url) {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
-			'x-auth-token': localStorage.getItem('token'),
+			'x-auth-token': localStorage.token && localStorage.getItem('token'),
 		},
 	});
 }
@@ -15,7 +15,7 @@ export async function PostRequest(url, body) {
 		method: 'POST',
 		headers: {
 			'content-type': 'application/json',
-			'x-auth-token': localStorage.getItem('token'),
+			'x-auth-token': localStorage.token,
 		},
 		body: body,
 	});
@@ -26,7 +26,7 @@ export async function DeleteRequest(url) {
 		method: 'DELETE',
 		headers: {
 			'content-type': 'application/json',
-			'x-auth-token': localStorage.getItem('token'),
+			'x-auth-token': localStorage.token,
 		},
 	});
 }
@@ -36,7 +36,7 @@ export async function PutRequest(url, body) {
 		method: 'PUT',
 		headers: {
 			'content-type': 'application/json',
-			'x-auth-token': localStorage.getItem('token'),
+			'x-auth-token': localStorage.token,
 		},
 		body: body,
 	});

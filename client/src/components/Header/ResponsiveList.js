@@ -1,15 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import { HiOutlineLogout } from 'react-icons/hi';
-import { RiShoppingBag3Fill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {FaBars, FaTimes} from 'react-icons/fa';
+import {HiOutlineLogout} from 'react-icons/hi';
+import {RiShoppingBag3Fill} from 'react-icons/ri';
+import {Link} from 'react-router-dom';
 import * as Icon from 'react-icons/ai';
-import { BsCart4 } from 'react-icons/bs';
+import {BsCart4} from 'react-icons/bs';
+import {UserContext} from '../../Context/UserProvider';
 
-const ResponsiveList = ({ logout }) => {
+const ResponsiveList = ({logout}) => {
+	//context
+	const {user, fullName} = useContext(UserContext);
+	//states
 	const [showResponsive, setShowResponsive] = useState(false);
-	const user = localStorage.user ? JSON.parse(localStorage.user) : '';
-	const fullName = user && `${user.name.first_name} ${user.name.last_name}`;
 	const responsiveRef = useRef();
 
 	const hideResponsive = e => {
@@ -39,7 +42,7 @@ const ResponsiveList = ({ logout }) => {
 				<div className='profile-ul'>
 					<Link to='/profile' onClick={hideToggleMenu}>
 						<span>{fullName}</span>
-						<img src={user.user_image} alt='user figure' />
+						<img src={typeof user === 'object' ? user.user_image : null} alt='user figure' />
 					</Link>
 				</div>
 

@@ -18,6 +18,7 @@
 .cart .heading {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
   background-color: var(--bkRed);
   color: var(--textSecondColor);
@@ -99,15 +100,17 @@
   height: 20px;
   border-radius: 50%;
   background-color: var(--mainColor);
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--textColor);
   cursor: pointer;
 }
 .cart .cart-items .cart-item .price .quantity-options > span:first-child,
 .cart .cart-items .cart-item .quantity .quantity-options > span:first-child,
 .cart .cart-items .cart-item .remove .quantity-options > span:first-child {
-  background-color: var(--bkRed);
-  color: var(--textSecondColor);
+  background-color: var(--redColor);
+  color: var(--textColor);
 }
 .cart .cart-items .cart-item .price .quantity-options > span.hide,
 .cart .cart-items .cart-item .quantity .quantity-options > span.hide,
@@ -127,8 +130,14 @@
 }
 
 @media (max-width: 767px) {
+  .cart .heading {
+    padding: 5px 0;
+  }
   .cart .heading > div {
     width: 25%;
+  }
+  .cart .cart-items .cart-item {
+    padding: 10px 0;
   }
   .cart .cart-items .cart-item .image {
     font-size: 14px;
@@ -143,26 +152,23 @@
 .cart .cart-items .cart-item .remove {
     width: 25%;
   }
+  .cart .cart-items .cart-item .price .icon,
+.cart .cart-items .cart-item .quantity .icon,
+.cart .cart-items .cart-item .remove .icon {
+    width: 30px;
+    height: 30px;
+  }
+  .cart .cart-items .cart-item .price .icon svg,
+.cart .cart-items .cart-item .quantity .icon svg,
+.cart .cart-items .cart-item .remove .icon svg {
+    font-size: 17px;
+  }
+  .cart .cart-items .cart-item .price .quantity-options,
+.cart .cart-items .cart-item .quantity .quantity-options,
+.cart .cart-items .cart-item .remove .quantity-options {
+    width: 100%;
+  }
 }
-a.go-to-cart {
-  width: 30px;
-  height: 30px;
-  position: fixed;
-  top: 90px;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--bodyWhite);
-  box-shadow: var(--boxShadowStrong);
-  color: var(--redColor);
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-a.go-to-cart svg {
-  font-size: 20px;
-}
-
 .checkout-modal {
   width: 300px;
 }

@@ -1,7 +1,7 @@
 .filter-wrapper {
   width: 270px;
-  background-color: var(--bodyWhite);
-  transition: all 0.5s;
+  background-color: var(--bodyColor);
+  transition: transform 0.5s, top 0.5s, left 0.5s, right 0.5s;
   position: fixed;
   left: -270px;
   top: 55px;
@@ -9,78 +9,106 @@
   box-shadow: var(--boxShadowStrong);
 }
 .filter-wrapper.move {
-  left: 10px;
-  overflow: hidden;
-}
-.filter-wrapper.move .arrow-to-left {
-  right: 20px;
-  top: 7px;
-  box-shadow: none;
-  padding: 5px;
-}
-.filter-wrapper.move .arrow-to-left svg {
-  transform: rotate(180deg);
-}
-.filter-wrapper .arrow-to-left {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  right: -30px;
+  left: 0;
   top: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  transition: all 0.5s;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+.filter-wrapper.move .filter-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bkRed);
+  padding: 10px;
   cursor: pointer;
-  box-shadow: var(--boxShadow);
-  background: var(--bodyWhite);
 }
-.filter-wrapper .arrow-to-left svg {
-  fill: var(--redColor);
-  font-size: 20px;
-  transition: all 0.3s;
+.filter-wrapper.move .filter-title .show-icon {
+  color: var(--redColor);
+  font-size: 25px;
 }
-.filter-wrapper .title {
+.filter-wrapper .hide-icon {
+  position: absolute;
+  cursor: pointer;
+  right: -35px;
+  top: 0;
+  width: 35px;
+  height: 35px;
   background-color: var(--bodyWhite);
+  box-shadow: var(--boxShadow);
+  padding: 5px;
+}
+.filter-wrapper .hide-icon:hover {
+  transition: all 0.3s;
+  color: var(--redColor);
+}
+.filter-wrapper .filter-content {
+  overflow-y: auto;
+}
+.filter-wrapper .filter-content > div:not(.title):not(.arrow-to-left):not(:last-child) {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+.filter-wrapper .filter-content .title {
   color: var(--textSecondColor);
   font-weight: bold;
   text-transform: uppercase;
   font-size: 20px;
   padding: 10px;
 }
-.filter-wrapper .filter-content {
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
-}
 .filter-wrapper .filter-content .filter-items {
   color: var(--textSecondColor);
   cursor: pointer;
-  border: 1px solid #c0c0c0;
-  padding: 5px;
+  background-color: var(--bodyWhite);
+  box-shadow: var(--boxShadow);
+  border-radius: 20px;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: 0.3s;
-  margin-bottom: 10px;
   position: relative;
 }
 .filter-wrapper .filter-content .filter-items:hover, .filter-wrapper .filter-content .filter-items.active {
-  background-color: var(--bkRed);
-  color: var(--redColor);
+  background-color: var(--redColor);
+  color: var(--textColor);
 }
-.filter-wrapper .filter-content .filter-by-category {
-  padding: 10px;
-}
+.filter-wrapper .filter-content .filter-by-category,
 .filter-wrapper .filter-content .filter-by-order {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
   padding: 10px;
 }
+.filter-wrapper .filter-content .filter-by-color,
 .filter-wrapper .filter-content .filter-by-size {
   padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
-.filter-wrapper .filter-content .filter-by-size .select-size {
-  max-height: 200px;
+.filter-wrapper .filter-content .filter-by-color .filter-items,
+.filter-wrapper .filter-content .filter-by-size .filter-items {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 0;
+}
+.filter-wrapper .filter-content .filter-by-color.filter-by-color .filter-items.active, .filter-wrapper .filter-content .filter-by-color.filter-by-color .filter-items:hover,
+.filter-wrapper .filter-content .filter-by-size.filter-by-color .filter-items.active,
+.filter-wrapper .filter-content .filter-by-size.filter-by-color .filter-items:hover {
+  outline: 1px solid var(--mainColor);
+}
+.filter-wrapper .admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
   width: 100%;
 }
-.filter-wrapper .filter-content a.create-product-btn {
+.filter-wrapper .admin-dashboard a.admin-dashboard-btn {
   width: 100%;
   display: block;
   padding: 10px;
@@ -89,6 +117,21 @@
   text-align: center;
   color: var(--textColor);
   display: block;
-  width: 100%;
   font-weight: bold;
+  position: relative;
+  transition: 0.3s;
+}
+.filter-wrapper .admin-dashboard a.admin-dashboard-btn::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 100%;
+  transition: 0.4s;
+  background-color: var(--bkRed);
+}
+.filter-wrapper .admin-dashboard a.admin-dashboard-btn:hover::after {
+  width: 5px;
+  left: 265px;
 }

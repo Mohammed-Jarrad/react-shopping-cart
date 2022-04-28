@@ -1,23 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { RiShoppingBag3Fill } from 'react-icons/ri';
-import { BsCart4, BsPersonCircle } from 'react-icons/bs';
-import { AiFillHome, AiOutlineLogout } from 'react-icons/ai';
-import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {Link, NavLink} from 'react-router-dom';
+import {RiShoppingBag3Fill} from 'react-icons/ri';
+import {BsCart4, BsPersonCircle} from 'react-icons/bs';
+import {AiFillHome, AiOutlineLogout} from 'react-icons/ai';
+import {AiOutlineUser, AiOutlineUserAdd} from 'react-icons/ai';
+import {UserContext} from '../../Context/UserProvider';
 
-const MainList = ({ logout }) => {
-	const user = localStorage.user ? JSON.parse(localStorage.user) : '';
+const MainList = ({logout}) => {
+	const {user} = useContext(UserContext);
 	const [showDropMenu, setShowDropMenu] = useState(false);
 
 	// * hide & drop menu
 	const dropRef = useRef();
 	const hideDrop = e => {
 		if (user) {
-			if (dropRef.current.contains(e.target)) {
-				return;
-			} else {
-				setShowDropMenu(false);
-			}
+			!dropRef.current.contains(e.target) && setShowDropMenu(false);
 		}
 	};
 
@@ -34,7 +32,7 @@ const MainList = ({ logout }) => {
 
 	return (
 		<ul className={`main-list ${user && 'hide-register'}`}>
-			{typeof user === 'object' ? (
+			{user ? (
 				<React.Fragment>
 					<li>
 						<NavLink to='/products'>
@@ -57,7 +55,7 @@ const MainList = ({ logout }) => {
 					<li ref={dropRef} className='drop-menu'>
 						<img
 							onClick={() => setShowDropMenu(!showDropMenu)}
-							src={user && user.user_image}
+							src={typeof user === 'object' ? user['user_image'] : null}
 							alt='user figure'
 						/>
 						<div className={`menu-content ${showDropMenu && 'move'}`}>

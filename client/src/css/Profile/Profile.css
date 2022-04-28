@@ -69,6 +69,10 @@
   margin: 0 auto 10px;
   opacity: 0.8;
 }
+.profile .user-image .user-configuration button:nth-child(3) {
+  background-color: var(--redColor);
+  color: var(--textColor);
+}
 .profile .user-image .user-configuration button:hover {
   opacity: 1;
 }
@@ -97,6 +101,7 @@
   box-shadow: var(--boxShadow);
   padding: 10px;
   border-radius: 10px;
+  background-color: var(--bodyColor);
 }
 .profile .user-info .user-info-box .box h3 {
   margin-bottom: 20px;

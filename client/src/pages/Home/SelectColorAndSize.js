@@ -1,31 +1,19 @@
 import { Alert } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
+import { CartContext } from '../../Context/CartProvider';
+import { HomeContext } from '../../Context/HomeProvider';
 
-const SelectColorAndSize = ({
-	setShowCustomise,
-	showCustomise,
-	singleProduct,
-	setSingleProduct,
-	setShowProductModal,
-	addToCart,
-}) => {
+const SelectColorAndSize = ({ open, close }) => {
 	Modal.setAppElement('#root');
+
+	//context
+	const { addToCart } = useContext(CartContext);
+	const { singleProduct, chosenSize, chosenColor, setChosenColor, setChosenSize } = useContext(HomeContext);
 
 	const productSizes = singleProduct.sizes ? [...singleProduct.sizes] : [];
 	const productColors = singleProduct.colors ? [...singleProduct.colors] : [];
-	const [chosenSize, setChosenSize] = useState('');
-	const [chosenColor, setChosenColor] = useState('');
 	const [alertMsg, setAlertMsg] = useState(false);
-
-	// close select modal
-	const closeCustomiseModal = () => {
-		setShowCustomise(false);
-		setShowProductModal(false);
-		setSingleProduct(false);
-		setChosenSize('');
-		setChosenColor('');
-	};
 
 	// handleClickSize
 	const handleClickSize = e => {
@@ -51,15 +39,15 @@ const SelectColorAndSize = ({
 			setAlertMsg(true);
 		} else {
 			addToCart(singleProduct, chosenSize, chosenColor);
-			closeCustomiseModal();
+			close();
 		}
 	};
 
 	return (
 		<Modal
-			isOpen={showCustomise}
+			isOpen={open}
 			closeTimeoutMS={250}
-			onRequestClose={closeCustomiseModal}
+			onRequestClose={close}
 			className='modal select-size-color-modal'
 			overlayClassName='overlay-modal'
 		>
@@ -120,7 +108,7 @@ const SelectColorAndSize = ({
 					<button className='submit' onClick={handleSubmit}>
 						Submit
 					</button>
-					<button className='cancel' onClick={closeCustomiseModal}>
+					<button className='cancel' onClick={close}>
 						Cancel
 					</button>
 				</div>

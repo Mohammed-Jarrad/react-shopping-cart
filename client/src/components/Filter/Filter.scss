@@ -1,7 +1,7 @@
 .filter-wrapper {
 	width: 270px;
-	background-color: var(--bodyWhite);
-	transition: all 0.5s;
+	background-color: var(--bodyColor);
+	transition: transform 0.5s, top 0.5s, left 0.5s, right 0.5s;
 	position: fixed;
 	left: -270px;
 	top: 55px;
@@ -9,84 +9,114 @@
 	box-shadow: var(--boxShadowStrong);
 
 	&.move {
-		left: 10px;
-		overflow: hidden;
-		.arrow-to-left {
-			right: 20px;
-			top: 7px;
-			box-shadow: none;
-			padding: 5px;
-			svg {
-				transform: rotate(180deg);
+		left: 0;
+		top: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		min-height: 100vh;
+		max-height: 100vh;
+
+		.filter-title {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background-color: var(--bkRed);
+			padding: 10px;
+			cursor: pointer;
+			.show-icon {
+				color: var(--redColor);
+				font-size: 25px;
 			}
 		}
 	}
 
-	.arrow-to-left {
-		width: 30px;
-		height: 30px;
+	.hide-icon {
 		position: absolute;
-		right: -30px;
-		top: 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-top-right-radius: 20px;
-		border-bottom-right-radius: 20px;
-		transition: all 0.5s;
 		cursor: pointer;
+		right: -35px;
+		top: 0;
+		width: 35px;
+		height: 35px;
+		background-color: var(--bodyWhite);
 		box-shadow: var(--boxShadow);
-		background: var(--bodyWhite);
-		svg {
-			fill: var(--redColor);
-			font-size: 20px;
+		padding: 5px;
+		&:hover {
 			transition: all 0.3s;
+			color: var(--redColor);
 		}
 	}
 
-	.title {
-		background-color: var(--bodyWhite);
-		color: var(--textSecondColor);
-		font-weight: bold;
-		text-transform: uppercase;
-		font-size: 20px;
-		padding: 10px;
-	}
-
 	.filter-content {
-		max-height: calc(100vh - 100px);
 		overflow-y: auto;
+
+		> div:not(.title):not(.arrow-to-left):not(:last-child) {
+			border-bottom: 1px solid #eee;
+			padding-bottom: 20px;
+		}
+		.title {
+			color: var(--textSecondColor);
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 20px;
+			padding: 10px;
+		}
+
 		.filter-items {
 			color: var(--textSecondColor);
 			cursor: pointer;
-			border: 1px solid #c0c0c0;
-			padding: 5px;
+			background-color: var(--bodyWhite);
+			box-shadow: var(--boxShadow);
+			border-radius: 20px;
+			padding: 20px 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			transition: 0.3s;
-			margin-bottom: 10px;
 			position: relative;
 
 			&:hover,
 			&.active {
-				background-color: var(--bkRed);
-				color: var(--redColor);
+				background-color: var(--redColor);
+				color: var(--textColor);
 			}
 		}
-		.filter-by-category {
-			padding: 10px;
-		}
+		.filter-by-category,
 		.filter-by-order {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 5px;
 			padding: 10px;
 		}
-
+		.filter-by-color,
 		.filter-by-size {
 			padding: 10px;
-			.select-size {
-				max-height: 200px;
-				width: 100%;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 10px;
+			.filter-items {
+				height: 50px;
+				width: 50px;
+				border-radius: 50%;
+				padding: 0;
+			}
+			&.filter-by-color {
+				.filter-items {
+					&.active,
+					&:hover {
+						outline: 1px solid var(--mainColor);
+					}
+				}
 			}
 		}
-
-		a.create-product-btn {
+	}
+	.admin-dashboard {
+		display: flex;
+		flex-direction: column;
+		gap: 1px;
+		width: 100%;
+		a.admin-dashboard-btn {
 			width: 100%;
 			display: block;
 			padding: 10px;
@@ -95,8 +125,25 @@
 			text-align: center;
 			color: var(--textColor);
 			display: block;
-			width: 100%;
 			font-weight: bold;
+			position: relative;
+			transition: 0.3s;
+			&::after {
+				position: absolute;
+				content: '';
+				top: 0;
+				left: 0;
+				width: 0px;
+				height: 100%;
+				transition: 0.4s;
+				background-color: var(--bkRed);
+			}
+			&:hover {
+				&::after {
+					width: 5px;
+					left: 265px;
+				}
+			}
 		}
 	}
 }

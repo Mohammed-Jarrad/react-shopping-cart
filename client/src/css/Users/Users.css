@@ -1,0 +1,40 @@
+.all-users {
+  margin: 10px auto;
+}
+.all-users .title {
+  margin-bottom: 20px;
+}
+.all-users .users {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.all-users .users .user {
+  background-color: var(--bodyWhite);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: var(--boxShadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+.all-users .users .user img {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  box-shadow: var(--boxShodow);
+}
+.all-users .users .user button {
+  padding: 10px 5px;
+  border: none;
+  background-color: var(--redColor);
+  color: var(--textColor);
+  width: 100%;
+  margin-left: auto;
+  border-radius: 10px;
+  font-weight: bold;
+}

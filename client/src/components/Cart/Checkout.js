@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import '../../css/CeckoutForm/Checkout.css';
 import Modal from 'react-modal';
-import { PostRequest } from '../../utils/requests';
 import Loading from '../Loading/Loading';
 import SuccessMsg from '../SuccessMsg/SuccessMsg';
+import {CartContext} from '../../Context/CartProvider';
+import mainMethods from '../../utils/mainMethods';
 
 Modal.setAppElement('#root');
 
-const Checkout = ({ showCheckout, setShowCheckout, cart, setCart }) => {
+const Checkout = ({open, close}) => {
+	// context
+	const {cart, setCart} = useContext(CartContext);
 	//myState
 	const [alertSuccess, setAlertSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
 
 	// create Order
-	async function handleSubmit(e) {
+	async function createOrder(e) {
 		e.preventDefault();
-		setShowCheckout(false);
+		close();
 		setLoading(true);
 		const order = {
 			order_info: cart.map(item => ({
@@ -26,15 +29,14 @@ const Checkout = ({ showCheckout, setShowCheckout, cart, setCart }) => {
 			})),
 		};
 		try {
-			const res = await PostRequest(`/order`, JSON.stringify(order));
-			const data = await res.json();
+			const data = await mainMethods.createOrder(order);
 			if (data.order) {
 				setLoading(false);
-				console.log('new order created: ', data.order);
 				setAlertSuccess(true);
 				setCart([]);
 			} else {
 				console.log(data.errors);
+				setLoading(false);
 			}
 		} catch (error) {
 			console.log(error);
@@ -48,20 +50,20 @@ const Checkout = ({ showCheckout, setShowCheckout, cart, setCart }) => {
 			<SuccessMsg msg={`order created done !`} open={alertSuccess} setOpen={setAlertSuccess} />
 
 			<Modal
-				isOpen={showCheckout}
-				onRequestClose={() => setShowCheckout(false)}
+				isOpen={open}
+				onRequestClose={() => close()}
 				className='modal checkout-modal'
 				overlayClassName='overlay-modal checkout-modal-overlay'
 				closeTimeoutMS={250}
 			>
 				<div className='accept-order'>
 					<h2> Are You Sure? </h2>
-					<form onSubmit={handleSubmit}>
+					<form onSubmit={createOrder}>
 						<button autoFocus>yes</button>
 						<button
 							onClick={e => {
 								e.preventDefault();
-								setShowCheckout(false);
+								close();
 							}}
 						>
 							No

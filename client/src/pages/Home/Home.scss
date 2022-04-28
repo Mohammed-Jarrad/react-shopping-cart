@@ -1,16 +1,60 @@
 main {
 	grid-area: main;
+	padding: 10px 0;
 	.home {
 		display: flex;
-		gap: 30px;
+		flex-direction: column;
+	}
+	.search {
+		width: 70%;
+		margin: auto;
+		padding: 20px;
+		background-color: var(--bodyWhite);
+		border-radius: 40px;
+		box-shadow: var(--boxShadow);
+		.box {
+			display: flex;
+			align-items: stretch;
+			overflow: hidden;
+			background-color: var(--bodyColor);
+			padding: 10px;
+			border-radius: 20px;
+
+			span {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: none;
+				border-right: var(--border);
+				padding: 0 10px;
+				background-color: transparent;
+				color: var(--redColor);
+			}
+			input {
+				padding: 5px;
+				border: none;
+				background-color: transparent;
+				width: 100%;
+				&:focus {
+					outline: none;
+					padding-left: 7px;
+					&::placeholder {
+						transition: all 0.3s;
+						color: transparent;
+					}
+				}
+			}
+		}
 	}
 }
 
 @media (max-width: 767px) {
 	main {
-		.home {
-			flex-direction: column;
-			.container {
+		.search {
+			width: 85%;
+			padding: 10px;
+			.box {
+				padding: 5px;
 			}
 		}
 	}
@@ -29,17 +73,32 @@ main {
 		font-weight: bold;
 		cursor: pointer;
 	}
+
+	.title {
+		width: fit-content;
+		margin: 0 auto 10px;
+		border-bottom: var(--border);
+		padding: 0 10px 10px;
+		text-transform: capitalize;
+	}
 	.main-content {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		gap: 50px;
+		// background-color: var(--bodyWhite);
+		// box-shadow: var(--boxShadow);
+		// padding: 10px;
 
 		.product-info {
 			display: flex;
 			justify-content: space-evenly;
 			align-items: center;
 			gap: 20px;
+			background-color: var(--bodyWhite);
+			box-shadow: var(--boxShadow);
+			padding: 10px;
+			border-radius: 20px;
 
 			img {
 				width: 200px;
@@ -51,17 +110,14 @@ main {
 			}
 			.product-info-details {
 				flex: 1;
-				.title {
-					width: fit-content;
-					margin: 0 auto 10px;
-					border-bottom: var(--border);
-					padding: 0 10px 10px;
-				}
+				width: 100%;
+
 				.desc,
 				.price,
 				.category {
 					margin: 5px auto;
 					> div {
+						background-color: var(--bodyColor);
 						border: var(--border);
 						border-radius: 10px;
 						padding: 7px 10px;
@@ -72,11 +128,11 @@ main {
 				.colors {
 					margin: 10px auto;
 					display: flex;
-					// justify-content: center;
 					align-items: center;
 					flex-wrap: wrap;
 					gap: 5px;
 					span {
+						background-color: var(--bodyColor);
 						padding: 5px 15px;
 						text-transform: uppercase;
 						border: var(--border);

@@ -1,54 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import '../../css/Cart/Cart.css';
 import Checkout from './Checkout';
 import Bounce from 'react-reveal/Bounce';
-import { RiDeleteBin4Fill } from 'react-icons/ri';
-import { ImCart } from 'react-icons/im';
-import { NavLink } from 'react-router-dom';
+import {RiDeleteBin4Fill} from 'react-icons/ri';
+import ScrollToBottom from '../Scrolling/ScrollToBottom';
+import {CartContext} from '../../Context/CartProvider';
+import {HomeContext} from '../../Context/HomeProvider';
 
-const Cart = ({ cart, setCart, openProductModal, products }) => {
+const Cart = ({openProductModal}) => {
+	//context
+	const {products} = useContext(HomeContext);
+	const {cart, removeFromCart, minusQty, plusQty} = useContext(CartContext);
 	// states
 	const [showCheckout, setShowCheckout] = useState(false);
+	const cartRef = useRef(null);
 
-	// save the cart items in local storage;
+	// save the cart items in session storage;
 	useEffect(() => {
 		sessionStorage.setItem('cart', JSON.stringify(cart));
 	}, [cart]);
 
-	const removeFromCart = product => {
-		const cartClone = [...cart];
-		setCart(
-			// cartClone.filter(item => item._id !== product._id && item.color !== product.color && item.size !== product.size),
-			cartClone.filter(item => item !== product),
-		);
-	};
-
-	const minusQty = product => {
-		const cartClone = [...cart];
-		cartClone[cartClone.indexOf(product)].qty -= 1;
-		setCart(cartClone);
-	};
-
-	const plusQty = product => {
-		const cartClone = [...cart];
-		cartClone[cartClone.indexOf(product)].qty += 1;
-		setCart(cartClone);
-	};
-
 	return (
 		<React.Fragment>
-			<a href='#cart' className='go-to-cart'>
-				<ImCart />
-			</a>
+			<ScrollToBottom cartRef={cartRef} />
 
-			{products.length ? (
-				<div className='cart' id='cart'>
+			{products ? (
+				<div className='cart' ref={cartRef}>
 					<div className='cart-title'>
 						<span>{cart.length}</span> Products in your Cart
 					</div>
 
 					{cart.length ? (
-						<>
+						<React.Fragment>
 							<Bounce left cascade>
 								<div className='heading'>
 									<div>ITEM</div>
@@ -96,12 +79,12 @@ const Cart = ({ cart, setCart, openProductModal, products }) => {
 									CECKOUT ({`${cart.reduce((acc, p) => acc + p.price * p.qty, 0)}$`})
 								</button>
 							</div>
-						</>
+						</React.Fragment>
 					) : null}
 				</div>
 			) : null}
 
-			<Checkout showCheckout={showCheckout} setShowCheckout={setShowCheckout} cart={cart} setCart={setCart} />
+			<Checkout open={showCheckout} close={() => setShowCheckout(false)} />
 		</React.Fragment>
 	);
 };

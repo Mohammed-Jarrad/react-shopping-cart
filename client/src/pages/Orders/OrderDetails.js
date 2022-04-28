@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TiTimes } from 'react-icons/ti';
+import { OrdersContext } from '../../Context/OrdersProvider';
 
-const OrderDetails = ({ removeProductFromOrder, order }) => {
+const OrderDetails = ({ order }) => {
+	//context
+	const { removeProductFromOrder } = useContext(OrdersContext);
 	// states
 	const { order_info } = order;
 

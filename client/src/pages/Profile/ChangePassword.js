@@ -1,105 +1,51 @@
-import { Alert, CircularProgress } from '@mui/material';
-import React, { Fragment, useState } from 'react';
-import { PostRequest, PutRequest } from '../../utils/requests';
-import { Bounce } from 'react-reveal';
+import {Alert, CircularProgress} from '@mui/material';
+import React, {useContext} from 'react';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
+import {UserContext} from '../../Context/UserProvider';
 
-const ChangePassword = ({ setShowChangePassword }) => {
-	const [compareInputValue, setCompareInputValue] = useState('');
-	const [compareError, setCompareError] = useState('');
-	const [showInputChangeForm, setShowInputChangeForm] = useState(false);
-	const [newPassword, setNewPassword] = useState('');
-	const [loadingChange, setLoadingChange] = useState(false);
-	const [changeError, setChangeError] = useState(false);
-	const [alertChangeSuccess, setAlertChangeSuccess] = useState(false);
-
-	// handleChangeCompareInput
-	const handleChangeCompareInput = e => {
-		setCompareInputValue(e.target.value);
-		setCompareError('');
-	};
-
-	// handleComparePassword
-	async function handleComparePassword() {
-		const enterPassword = compareInputValue;
-		try {
-			const res = await PostRequest('/user/compare/password', JSON.stringify({ enterPassword }));
-			const data = await res.json();
-			console.log(res);
-			console.log(data);
-			if (data.compare) {
-				setShowInputChangeForm(true);
-			} else if (data.errors) {
-				setCompareError(data.errors);
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	}
-
-	//handle cahnge new password
-	function handleChangeNewPassword(e) {
-		setNewPassword(e.target.value);
-		setChangeError(false);
-	}
-
-	// change password
-	async function changePassword() {
-		setLoadingChange(true);
-		if (newPassword.length <= 5) {
-			setChangeError(true);
-			setLoadingChange(false);
-		} else {
-			try {
-				const res = await PutRequest('/user/reset/password', JSON.stringify({ newPassword }));
-				const data = await res.json();
-				console.log('res change', res);
-				console.log('data change', data);
-				if (res.status === 200) {
-					setLoadingChange(false);
-					setAlertChangeSuccess(true);
-					window.location.assign('/profile');
-				}
-			} catch (error) {
-				console.log(error);
-				setLoadingChange(false);
-			}
-		}
-	}
+const ChangePassword = () => {
+	//context
+	const {
+		setShowChangePassword,
+		alertChangeSuccess,
+		setAlertChangeSuccess,
+		showInputChangeForm,
+		handleChangeCompareInput,
+		compareError,
+		handleComparePassword,
+		handleChangeNewPassword,
+		loadingChange,
+		changeError,
+		changePassword,
+	} = useContext(UserContext);
 
 	return (
 		<React.Fragment>
-			<SuccessMsg
-				msg={'Password Changed Done !'}
-				open={alertChangeSuccess}
-				setOpen={setAlertChangeSuccess}
-			/>
+			<SuccessMsg msg={'Password Changed Done !'} open={alertChangeSuccess} setOpen={setAlertChangeSuccess} />
 
 			<div className='change-password'>
 				{showInputChangeForm === false ? (
-					<Fragment>
-						<div className='compare-password'>
-							<h3>Enter Your Current Password</h3>
-							<div className='input-compare'>
-								<input
-									type={'password'}
-									onChange={handleChangeCompareInput}
-									placeholder={'Enter Your Password'}
-								/>
-								{compareError ? (
-									<Alert severity='error' className='error'>
-										{compareError.compare}
-									</Alert>
-								) : null}
-							</div>
-							<div className='submit-password'>
-								<button autoFocus onClick={handleComparePassword}>
-									Submit
-								</button>
-								<button onClick={() => setShowChangePassword(false)}>Cancel</button>
-							</div>
+					<div className='compare-password'>
+						<h3>Enter Your Current Password</h3>
+						<div className='input-compare'>
+							<input
+								type={'password'}
+								onChange={handleChangeCompareInput}
+								placeholder={'Enter Your Password'}
+							/>
+							{compareError ? (
+								<Alert severity='error' className='error'>
+									{compareError.compare}
+								</Alert>
+							) : null}
 						</div>
-					</Fragment>
+						<div className='submit-password'>
+							<button autoFocus onClick={handleComparePassword}>
+								Submit
+							</button>
+							<button onClick={() => setShowChangePassword(false)}>Cancel</button>
+						</div>
+					</div>
 				) : (
 					<div className='change-form'>
 						<h3>Enter Your New Password</h3>
