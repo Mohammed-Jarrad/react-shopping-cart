@@ -24,7 +24,7 @@ const Cart = ({openProductModal}) => {
 		<React.Fragment>
 			<ScrollToBottom cartRef={cartRef} />
 
-			{products ? (
+			{products.length ? (
 				<div className='cart' ref={cartRef}>
 					<div className='cart-title'>
 						<span>{cart.length}</span> Products in your Cart

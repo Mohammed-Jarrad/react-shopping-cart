@@ -9,7 +9,6 @@ const OrdersProvider = ({children}) => {
 	const [ordersForUser, setOrdersForUser] = useState([]);
 	const [alertDeleteOrder, setAlertDeleteOrder] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [loadingDelete, setLoadingDelete] = useState(false);
 	const [ignore, forceUpdate] = useReducer(x => x + 1, 0);
 
 	//get orders for user
@@ -35,7 +34,7 @@ const OrdersProvider = ({children}) => {
 		try {
 			const data = await mainMethods.getOrders();
 			if (data.orders) {
-				setOrders(orders);
+				setOrders(data.orders);
 				setLoading(false);
 			} else {
 				console.log(data.errors);
@@ -48,11 +47,9 @@ const OrdersProvider = ({children}) => {
 	};
 	// remove order
 	async function removeOrder(product_id) {
-		setLoadingDelete(true);
 		try {
 			const res = await mainMethods.deleteOrder(product_id);
 			if (res.status === 202) {
-				setLoadingDelete(false);
 				setAlertDeleteOrder(true);
 				forceUpdate();
 			}
@@ -124,8 +121,6 @@ const OrdersProvider = ({children}) => {
 				setAlertDeleteOrder,
 				loading,
 				setLoading,
-				loadingDelete,
-				setLoadingDelete,
 				ignore,
 				getOrdersForUser,
 				removeOrder,

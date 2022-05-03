@@ -5,6 +5,9 @@ const getProducts = async _ => await (await GetRequest('/products')).json(); // 
 const getCategories = async _ => await (await GetRequest('/categories')).json(); // data
 const getSizesAndColors = async _ => await (await GetRequest('/sizes-colors')).json(); // data
 const deleteProduct = async id => await DeleteRequest(`/product/${id}`); // res
+const UpdateProduct = async (id, body) => {
+	return await (await PutRequest(`/product/${id}`, JSON.stringify(body))).json(); // data
+};
 
 // users
 const getUsers = async _ => await (await GetRequest('/users')).json(); // data
@@ -32,12 +35,14 @@ const deleteAllOrdersWithoutProducts = async _ => await DeleteRequest(`/orders/r
 const deleteProductFromOrder = async (id, color, size) => {
 	return await (await PutRequest(`/order/remove-product/${id}`, JSON.stringify({color, size}))).json(); // data
 };
+const deleteAllOrdesWithUserNull = async _ => await DeleteRequest('/orders-with-user-null'); // res
 
 const mainMethods = {
 	getProducts,
 	deleteProduct,
 	getCategories,
 	getSizesAndColors,
+	UpdateProduct,
 	signup,
 	login,
 	getUser,
@@ -55,6 +60,7 @@ const mainMethods = {
 	deleteProductsFromOrders,
 	deleteAllOrdersWithoutProducts,
 	createOrder,
+	deleteAllOrdesWithUserNull,
 };
 
 export default mainMethods;

@@ -1,24 +1,14 @@
 .main-page {
-  position: relative;
+  grid-area: main;
 }
-.main-page .content {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  text-align: center;
+.main-page .container .logo {
+  margin: auto;
+  max-width: 100%;
+  width: 340px;
 }
-.main-page .content a {
-  color: #333;
+.main-page .container .logo img {
+  width: 100%;
 }
-.main-page .content button {
-  border: none;
-  padding: 20px;
-  background-color: #3838b7;
-  margin-top: 20px;
-}
-.main-page .content button a {
-  color: white;
-  text-decoration: none;
+.main-page .container .heading {
+  color: var(--mainColor);
 }

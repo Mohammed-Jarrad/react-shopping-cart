@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .profile {
+  grid-area: main;
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -69,7 +70,7 @@
   margin: 0 auto 10px;
   opacity: 0.8;
 }
-.profile .user-image .user-configuration button:nth-child(3) {
+.profile .user-image .user-configuration button:last-child {
   background-color: var(--redColor);
   color: var(--textColor);
 }

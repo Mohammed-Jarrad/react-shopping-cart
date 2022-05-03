@@ -61,6 +61,7 @@ main {
 }
 
 .product-modal {
+	width: 800px;
 	.close-icon {
 		position: absolute;
 		top: 10px;
@@ -148,7 +149,7 @@ main {
 		}
 		.modal-options {
 			display: flex;
-			justify-content: space-evenly;
+			justify-content: center;
 			align-items: center;
 			gap: 10px;
 			button {
@@ -164,7 +165,7 @@ main {
 				}
 			}
 			.close {
-				background-color: var(--mainColor);
+				background-color: var(--redColor);
 			}
 			.delete {
 				background-color: rgb(255, 39, 39);

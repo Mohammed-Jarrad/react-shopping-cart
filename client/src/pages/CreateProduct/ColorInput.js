@@ -1,8 +1,8 @@
-import { Alert } from '@mui/material';
+import {Alert} from '@mui/material';
 import React from 'react';
-import { FaTimes } from 'react-icons/fa';
+import {FaTimes} from 'react-icons/fa';
 
-const ColorInput = ({ colorRef, colors, setColors, productError, setProductError }) => {
+const ColorInput = ({colorRef, colors, setColors, productError, setProductError}) => {
 	// changes hex colors to rgb
 	const hex2rgb = color => {
 		const r = parseInt(color.substr(1, 2), 16);
@@ -14,7 +14,7 @@ const ColorInput = ({ colorRef, colors, setColors, productError, setProductError
 	// add color
 	const addColor = e => {
 		e.preventDefault();
-		setProductError(prev => ({ ...prev, colors: '' }));
+		setProductError(prev => ({...prev, colors: ''}));
 		const myColor = colorRef.current.value;
 		const myColor_rgb = hex2rgb(myColor);
 		const colorsClone = [...colors];
@@ -30,7 +30,6 @@ const ColorInput = ({ colorRef, colors, setColors, productError, setProductError
 	const removeColor = e => {
 		const deletedColor = e.currentTarget.style.backgroundColor;
 		const colorsClone = [...colors];
-		console.log(colors.indexOf(`${deletedColor}`));
 		colorsClone.splice(colorsClone.indexOf(deletedColor), 1);
 		setColors(colorsClone);
 	};

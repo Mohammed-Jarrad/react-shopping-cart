@@ -1,6 +1,8 @@
 .login {
+  grid-area: main;
   color: #333;
   user-select: none;
+  margin: 10px 0;
 }
 .login form.login-content {
   position: relative;

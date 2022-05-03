@@ -5,7 +5,7 @@ export async function GetRequest(url) {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
-			'x-auth-token': localStorage.token && localStorage.getItem('token'),
+			'x-auth-token': localStorage.token,
 		},
 	});
 }

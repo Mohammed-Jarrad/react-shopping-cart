@@ -1,12 +1,12 @@
-import React, { createContext, useContext, useReducer, useState } from 'react';
+import React, {createContext, useContext, useReducer, useState} from 'react';
 import mainMethods from '../utils/mainMethods';
-import { CartContext } from './CartProvider';
+import {CartContext} from './CartProvider';
 
 export const HomeContext = createContext();
 
-const HomeProvider = ({ children }) => {
+const HomeProvider = ({children}) => {
 	//context
-	const { setCart } = useContext(CartContext);
+	const {setCart} = useContext(CartContext);
 	// states
 	const [products, setProducts] = useState([]);
 	const [productsClone, setProductsClone] = useState([]);
@@ -27,17 +27,19 @@ const HomeProvider = ({ children }) => {
 		try {
 			// ! get products
 			const data = await mainMethods.getProducts();
-			setProducts(data.products);
-			setProductsClone(data.products);
 			// ! get get Categories
 			const data_categories = await mainMethods.getCategories();
-			setCategories(data_categories.categories);
 			// ! get colors & sizes
 			const data_colors_sizes = await mainMethods.getSizesAndColors();
-			setColors(data_colors_sizes.colors);
-			setSizes(data_colors_sizes.sizes);
 			//
-			setLoading(false);
+			if (data.products) {
+				setProducts(data.products);
+				setProductsClone(data.products);
+				setCategories(data_categories.categories);
+				setColors(data_colors_sizes.colors);
+				setSizes(data_colors_sizes.sizes);
+				setLoading(false);
+			}
 		} catch (error) {
 			console.log(error);
 			setLoading(false);

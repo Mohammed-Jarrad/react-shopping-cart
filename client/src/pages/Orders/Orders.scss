@@ -1,4 +1,5 @@
 .orders {
+	grid-area: main;
 	width: 80%;
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -9,6 +10,7 @@
 		margin-bottom: 20px;
 		color: var(--textSecondColor);
 		font-size: 20px;
+
 		.head-item {
 			width: 25%;
 			padding: var(--padding) 20px;
@@ -19,6 +21,7 @@
 	.order-information {
 		.main-order {
 			display: flex;
+			flex-wrap: wrap;
 			align-items: stretch;
 			background-color: var(--bodyWhite);
 			box-shadow: var(--boxShadow);
@@ -27,32 +30,52 @@
 			> div {
 				color: var(--textSecondColor);
 				width: 25%;
-				padding: 20px;
+				padding: 15px 20px;
 				font-size: 17px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				&:not(:last-child) {
-					border-right: 1px solid var(--bkRed);
-				}
-				&.edit-arrow {
-					svg {
-						color: var(--redColor);
-						transition: all 0.3s;
-						transform: rotate(90deg);
-					}
-				}
+
 				svg {
 					font-size: 20px;
 					transition: all 0.3s;
 				}
 				&.show-more,
 				&.delete {
+					width: fit-content;
+					padding: 10px;
+					margin: auto;
+					border-radius: 50%;
+					transition: 0.3s;
 					cursor: pointer;
+					svg {
+						font-size: 20px;
+						color: var(--textSecondColor);
+						transition: 0.3s;
+					}
 					&:hover {
+						background-color: var(--secondColor);
 						svg {
-							fill: var(--redColor);
+							color: var(--redColor);
 						}
+					}
+				}
+				&.edit-arrow {
+					svg {
+						color: var(--redColor);
+						transition: all 0.3s;
+						transform: rotate(90deg);
+						// width: fit-content;
+						// height: fit-content;
+					}
+				}
+				&.image {
+					display: block;
+					text-align: center;
+					img {
+						width: 50px;
+						height: 50px;
+						border-radius: 50%;
 					}
 				}
 			}
@@ -64,12 +87,12 @@
 			opacity: 0;
 			overflow: hidden;
 			margin-bottom: 10px;
+			background-color: var(--bodyWhite);
+			box-shadow: var(--boxShadow);
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
 			&.show {
 				opacity: 1;
-				background-color: var(--bodyWhite);
-				box-shadow: var(--boxShadow);
-				border-bottom-left-radius: 10px;
-				border-bottom-right-radius: 10px;
 			}
 			.order-items {
 				padding: var(--padding);
@@ -93,33 +116,67 @@
 							object-fit: contain;
 						}
 					}
-					.delete {
+					.price {
+						color: var(--textSecondColor);
 						span {
-							width: 40px;
-							height: 40px;
-							border: var(--border);
-							border-radius: 50%;
+							margin-top: 5px;
 							display: flex;
 							justify-content: center;
 							align-items: center;
-							margin: auto;
-							cursor: pointer;
+							gap: 5px;
+							font-size: 14px;
 							svg {
-								opacity: 0;
-								font-size: 40px;
-							}
-							&:hover {
-								svg {
-									transition: all 0.3s;
-									opacity: 1;
-								}
+								font-size: 13px;
 							}
 						}
 					}
-					.quantity {
+					.delete {
+						cursor: pointer;
+						svg {
+							padding: 10px;
+							font-size: 40px;
+							transition: 0.3s;
+							border-radius: 50%;
+							color: var(--redColor);
+							margin: auto;
+							&:hover {
+								background-color: var(--bkBlue);
+								box-shadow: var(--boxShadow);
+							}
+						}
+					}
+					.size-color {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						border: var(--border);
+						width: fit-content;
+						margin: auto;
+						border-radius: 30px;
+						overflow: hidden;
 						span {
-							border: 1px solid var(--redColor);
-							padding: 3px 5px;
+							width: 40px;
+							display: block;
+							height: 40px;
+							text-align: center;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							color: var(--textSecondColor);
+							font-weight: bold;
+						}
+					}
+				}
+				.user-info {
+					> p {
+						background-color: var(--bkBlue);
+						border-radius: 5px;
+						padding: 5px;
+						color: var(--textSecondColor);
+						margin-bottom: 1px;
+						span {
+							display: inline-block;
+							width: 100px;
 						}
 					}
 				}

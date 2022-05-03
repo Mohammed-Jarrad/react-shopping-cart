@@ -1,4 +1,5 @@
 .all-users {
+  grid-area: main;
   margin: 10px auto;
 }
 .all-users .title {

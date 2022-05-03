@@ -1,4 +1,5 @@
 .profile {
+	grid-area: main;
 	display: flex;
 	justify-content: space-between;
 	gap: 20px;
@@ -62,7 +63,7 @@
 				margin: 0 auto 10px;
 				// border: none;
 				opacity: 0.8;
-				&:nth-child(3) {
+				&:last-child {
 					background-color: var(--redColor);
 					color: var(--textColor);
 				}

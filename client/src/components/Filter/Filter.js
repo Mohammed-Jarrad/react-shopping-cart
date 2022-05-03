@@ -1,12 +1,10 @@
 import React, {useContext, useState} from 'react';
 import '../../css/Filter/Filter.css';
-import {NavLink} from 'react-router-dom';
 import {AiOutlineBars} from 'react-icons/ai';
 import {IoIosRemoveCircleOutline} from 'react-icons/io';
 import {Backdrop} from '@mui/material';
 import {HomeContext} from '../../Context/HomeProvider';
 import {filterContext} from '../../Context/FilterProvider';
-import {UserContext} from '../../Context/UserProvider';
 
 const orderOptions = [
 	{content: 'All', alue: 'all'},
@@ -20,7 +18,6 @@ const Filter = () => {
 	const {categories, sizes, colors} = useContext(HomeContext);
 	const {handleFilterBySize, handleFilterByColor, handleFilterByCategory, handleFilterBySort} =
 		useContext(filterContext);
-	const {admin} = useContext(UserContext);
 
 	// states
 	const [move, setMove] = useState(false);
@@ -121,23 +118,6 @@ const Filter = () => {
 							))}
 					</div>
 				</div>
-
-				{admin && (
-					<div className='admin-dashboard'>
-						<NavLink className='admin-dashboard-btn' to={`/create-product`}>
-							Create New Product
-						</NavLink>
-						<NavLink className='admin-dashboard-btn' to={`/users`}>
-							All Users
-						</NavLink>
-						<NavLink className='admin-dashboard-btn' to={`/all-orders`}>
-							All Orders
-						</NavLink>
-						<NavLink className='admin-dashboard-btn' to={`/update-product`}>
-							Update Products
-						</NavLink>
-					</div>
-				)}
 			</div>
 		</>
 	);

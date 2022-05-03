@@ -1,7 +1,6 @@
 import React, {useContext, useRef} from 'react';
 import '../../css/Profile/Profile.css';
 import Loading from '../../components/Loading/Loading';
-import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
 import ChangePassword from './ChangePassword';
 import DeleteAccountModal from './DeleteAccountModal';
 import {UserContext} from '../../Context/UserProvider';
@@ -15,8 +14,6 @@ const Profile = () => {
 		handleChangeInformation,
 		loading,
 		setLoading,
-		alertSuccessUploaded,
-		setAlertSuccessUploaded,
 		userImage,
 		showChangeInformation,
 		setShowChangeInformation,
@@ -30,12 +27,12 @@ const Profile = () => {
 	return (
 		<React.Fragment>
 			<Loading open={loading} setOpen={setLoading} />
-			<SuccessMsg msg={'Updated Done !'} open={alertSuccessUploaded} setOpen={setAlertSuccessUploaded} />
 
 			<div className='profile'>
 				<div className='user-image'>
 					<div className='user-image-content'>
 						<img src={userImage} alt={`${fullName} figure`} />
+
 						{showChangeInformation ? (
 							<>
 								<input

@@ -56,6 +56,9 @@ main .search .box input:focus::placeholder {
     padding: 5px;
   }
 }
+.product-modal {
+  width: 800px;
+}
 .product-modal .close-icon {
   position: absolute;
   top: 10px;
@@ -140,7 +143,7 @@ main .search .box input:focus::placeholder {
 }
 .product-modal .main-content .modal-options {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   gap: 10px;
 }
@@ -157,7 +160,7 @@ main .search .box input:focus::placeholder {
   filter: brightness(1.2);
 }
 .product-modal .main-content .modal-options .close {
-  background-color: var(--mainColor);
+  background-color: var(--redColor);
 }
 .product-modal .main-content .modal-options .delete {
   background-color: #ff2727;

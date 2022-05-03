@@ -87,12 +87,8 @@ const Login = () => {
 										ref={passInput}
 										onChange={handleChangeInput}
 									/>
-									<span className='eye'>
-										<AiFillEyeInvisible
-											display={showEye ? 'none' : 'block'}
-											onClick={() => handleShowEye()}
-										/>
-										<AiFillEye display={showEye ? 'block' : 'none'} onClick={() => handleHideEye()} />
+									<span className='eye' onClick={() => handleHideEye()}>
+										{showEye ? <AiFillEye /> : <AiFillEyeInvisible />}
 									</span>
 								</div>
 								{loginError.password && <Alert severity='error'>{loginError.password}</Alert>}

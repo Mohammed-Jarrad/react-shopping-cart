@@ -1,7 +1,11 @@
 header {
   grid-area: header;
   background-color: var(--mainColor);
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 929292929;
+  height: 50px;
 }
 header .container {
   display: flex;
@@ -10,10 +14,66 @@ header .container {
   height: 100%;
 }
 header .container .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+header .container .logo > a {
   text-transform: none;
   color: var(--textColor);
   text-decoration: none;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .container .logo > a img {
+  width: 150px;
+}
+header .container .logo > a img.cart-logo {
+  width: 45px;
+}
+header .container .logo .admin span {
+  color: var(--textColor);
+  padding: 10px;
+  font-size: 22px;
+  cursor: pointer;
+}
+header .container .logo .admin .admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  position: absolute;
+  top: 50px;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s;
+}
+@media (max-width: 767px) {
+  header .container .logo .admin .admin-dashboard {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+header .container .logo .admin .admin-dashboard.show {
+  opacity: 1;
+  max-height: 500px;
+}
+header .container .logo .admin .admin-dashboard a.admin-dashboard-btn {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  background-color: var(--redColor);
+  text-decoration: none;
+  color: var(--textColor);
+  display: block;
+  font-weight: bold;
+  position: relative;
+  transition: 0.3s;
+}
+header .container .logo .admin .admin-dashboard a.admin-dashboard-btn:hover {
+  opacity: 0.9;
 }
 header .container nav {
   display: flex;
@@ -117,7 +177,7 @@ header .container nav .main-list > li.drop-menu .menu-content > a svg {
   color: var(--redColor);
 }
 header .container nav .main-list > li.drop-menu .menu-content > a:hover {
-  background-color: var(--bkRed);
+  background-color: var(--bkBlue);
 }
 header .container nav .main-responsive-list {
   z-index: 11;
@@ -178,7 +238,7 @@ header .container nav .main-responsive-list .responsive-list > div a {
   padding: 5px 10px;
 }
 header .container nav .main-responsive-list .responsive-list > div a:hover {
-  background-color: var(--bkRed);
+  background-color: var(--bkBlue);
 }
 header .container nav .main-responsive-list .responsive-list > div svg {
   font-size: 30px;

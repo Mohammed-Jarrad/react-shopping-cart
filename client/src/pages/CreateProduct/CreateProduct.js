@@ -1,41 +1,39 @@
-import { Alert } from '@mui/material';
-import React, { useRef, useState } from 'react';
+import {Alert} from '@mui/material';
+import React, {useRef, useState} from 'react';
 import '../../css/CreateProduct/CreateProduct.css';
-import { PostRequest } from '../../utils/requests';
+import {PostRequest} from '../../utils/requests';
 import Loading from '../../components/Loading/Loading';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
-import { AiFillCamera } from 'react-icons/ai';
+import {AiFillCamera} from 'react-icons/ai';
 import MultiSelect from 'react-multiple-select-dropdown-lite';
 import 'react-multiple-select-dropdown-lite/dist/index.css';
 import CreateInput from './CreateInput';
 import ColorInput from './ColorInput';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 
 export const sizeOptions = [
-	{ label: 'XS', value: 'xs' },
-	{ label: 'S', value: 's' },
-	{ label: 'M', value: 'm' },
-	{ label: 'L', value: 'l' },
-	{ label: 'Xl', value: 'xl' },
-	{ label: 'XXL', value: 'xxl' },
-	{ label: '35', value: '35' },
-	{ label: '36', value: '36' },
-	{ label: '37', value: '37' },
-	{ label: '38', value: '38' },
-	{ label: '39', value: '39' },
-	{ label: '40', value: '40' },
-	{ label: '41', value: '41' },
-	{ label: '42', value: '42' },
-	{ label: '43', value: '43' },
-	{ label: '44', value: '44' },
-	{ label: '45', value: '45' },
-	{ label: '46', value: '46' },
+	{label: 'XS', value: 'xs'},
+	{label: 'S', value: 's'},
+	{label: 'M', value: 'm'},
+	{label: 'L', value: 'l'},
+	{label: 'Xl', value: 'xl'},
+	{label: 'XXL', value: 'xxl'},
+	{label: '35', value: '35'},
+	{label: '36', value: '36'},
+	{label: '37', value: '37'},
+	{label: '38', value: '38'},
+	{label: '39', value: '39'},
+	{label: '40', value: '40'},
+	{label: '41', value: '41'},
+	{label: '42', value: '42'},
+	{label: '43', value: '43'},
+	{label: '44', value: '44'},
+	{label: '45', value: '45'},
+	{label: '46', value: '46'},
 ];
 
-const inputsInfo = [
-	{ label: 'Title: ', labelFor: 'title', type: 'text', placeholder: 'Product Title', name: 'title' },
-	{ label: 'Price: ', labelFor: 'price', type: 'number', placeholder: 'Product Price', name: 'price' },
+export const inputsInfo = [
+	{label: 'Title: ', labelFor: 'title', type: 'text', placeholder: 'Product Title', name: 'title'},
+	{label: 'Price: ', labelFor: 'price', type: 'number', placeholder: 'Product Price', name: 'price'},
 	{
 		label: 'Category: ',
 		labelFor: 'category',
@@ -72,15 +70,15 @@ const CreateProduct = () => {
 			fileReader.readAsDataURL(file);
 			fileReader.onloadend = () => {
 				setImageProductUrl(fileReader.result);
-				setProductError(prev => ({ ...prev, [e.target.name]: '' }));
+				setProductError(prev => ({...prev, [e.target.name]: ''}));
 			};
 			fileReader.onerror = e => console.log(e);
 		} else return;
 	}
 	// handle change inputs
 	const handleChangeInput = async e => {
-		setInputsValue(prev => ({ ...prev, [e.target.name]: e.target.value.trim() }));
-		setProductError(prev => ({ ...prev, [e.target.name]: '' }));
+		setInputsValue(prev => ({...prev, [e.target.name]: e.target.value.trim()}));
+		setProductError(prev => ({...prev, [e.target.name]: ''}));
 	};
 
 	// create product

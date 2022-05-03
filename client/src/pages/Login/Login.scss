@@ -1,6 +1,8 @@
 .login {
+	grid-area: main;
 	color: #333;
 	user-select: none;
+	margin: 10px 0;
 
 	form.login-content {
 		position: relative;
@@ -29,9 +31,6 @@
 			.input-feild {
 				display: flex;
 				align-items: center;
-				// border: 1px solid #afafaf;
-				// border-radius: 5px;
-				// box-shadow: 2px 2px 5px #c0c0c0;
 				background-color: var(--bodyColor);
 				box-shadow: var(--boxShadow);
 

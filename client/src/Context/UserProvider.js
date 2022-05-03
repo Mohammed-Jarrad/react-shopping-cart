@@ -1,5 +1,4 @@
 import React, {createContext, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 import mainMethods from '../utils/mainMethods';
 
 export const UserContext = createContext();
@@ -16,7 +15,6 @@ const UserProvider = ({children}) => {
 	const [showChangeInformation, setShowChangeInformation] = useState(false);
 	const [inputValues, setInputValues] = useState('');
 	const [loading, setLoading] = useState(false);
-	const [alertSuccessUploaded, setAlertSuccessUploaded] = useState(false);
 	const [showChangePassword, setShowChangePassword] = useState(false);
 	const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
 	// handleInputChange
@@ -64,7 +62,6 @@ const UserProvider = ({children}) => {
 				localStorage.token = await data.token;
 				setShowChangeInformation(false);
 				setLoading(false);
-				setAlertSuccessUploaded(true);
 				window.location.assign('/profile');
 			} else {
 				setLoading(false);
@@ -135,21 +132,23 @@ const UserProvider = ({children}) => {
 	}
 
 	// delete Account
-	const navigate = useNavigate();
 	async function deleteAccount() {
 		try {
 			const res = await mainMethods.deleteUser();
-			if (res.status === 202) {
-				localStorage.removeItem('user');
-				localStorage.removeItem('token');
-				navigate('/login');
+			console.log(res);
+			console.log(await res.json());
+			if (res.status !== 400) {
+				localStorage.clear();
+				window.location.assign('/login');
 			} else {
-				console.log(res.json());
+				console.log(await res.json());
 			}
 		} catch (err) {
 			console.log(err);
 		}
 	}
+
+	// !! all users
 
 	// get all users =>
 	const getAllUsers = async _ => {
@@ -174,7 +173,9 @@ const UserProvider = ({children}) => {
 		setLoading(true);
 		try {
 			const res = await mainMethods.removeUser(id);
-			if (res.status === 202) {
+			console.log(res);
+			console.log(await res.json());
+			if (res.status !== 400) {
 				getAllUsers();
 				setLoading(false);
 			}
@@ -198,8 +199,6 @@ const UserProvider = ({children}) => {
 				handleChangeInformation,
 				loading,
 				setLoading,
-				alertSuccessUploaded,
-				setAlertSuccessUploaded,
 				userImage,
 				handleInputChange,
 				showChangeInformation,

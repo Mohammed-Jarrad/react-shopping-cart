@@ -1,15 +1,15 @@
-import { Alert } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import {Alert} from '@mui/material';
+import React, {useContext, useState} from 'react';
 import Modal from 'react-modal';
-import { CartContext } from '../../Context/CartProvider';
-import { HomeContext } from '../../Context/HomeProvider';
+import {CartContext} from '../../Context/CartProvider';
+import {HomeContext} from '../../Context/HomeProvider';
 
-const SelectColorAndSize = ({ open, close }) => {
+const SelectColorAndSize = ({open, close}) => {
 	Modal.setAppElement('#root');
 
 	//context
-	const { addToCart } = useContext(CartContext);
-	const { singleProduct, chosenSize, chosenColor, setChosenColor, setChosenSize } = useContext(HomeContext);
+	const {addToCart} = useContext(CartContext);
+	const {singleProduct, chosenSize, chosenColor, setChosenColor, setChosenSize} = useContext(HomeContext);
 
 	const productSizes = singleProduct.sizes ? [...singleProduct.sizes] : [];
 	const productColors = singleProduct.colors ? [...singleProduct.colors] : [];
@@ -79,7 +79,7 @@ const SelectColorAndSize = ({ open, close }) => {
 										key={i}
 										className='color-item'
 										onClick={handleClickColor}
-										style={{ background: `${color}` }}
+										style={{background: `${color}`}}
 									></div>
 								))}
 							</>
@@ -97,7 +97,7 @@ const SelectColorAndSize = ({ open, close }) => {
 					) : null}
 					{chosenColor ? (
 						<div>
-							Color: <span className='chosen-color' style={{ background: `${chosenColor}` }}></span>
+							Color: <span className='chosen-color' style={{background: `${chosenColor}`}}></span>
 						</div>
 					) : null}
 				</div>

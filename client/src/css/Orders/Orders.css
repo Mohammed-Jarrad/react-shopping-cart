@@ -1,4 +1,5 @@
 .orders {
+  grid-area: main;
   width: 80%;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -17,6 +18,7 @@
 }
 .orders .order-information .main-order {
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
   background-color: var(--bodyWhite);
   box-shadow: var(--boxShadow);
@@ -26,29 +28,48 @@
 .orders .order-information .main-order > div {
   color: var(--textSecondColor);
   width: 25%;
-  padding: 20px;
+  padding: 15px 20px;
   font-size: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.orders .order-information .main-order > div:not(:last-child) {
-  border-right: 1px solid var(--bkRed);
-}
-.orders .order-information .main-order > div.edit-arrow svg {
-  color: var(--redColor);
-  transition: all 0.3s;
-  transform: rotate(90deg);
 }
 .orders .order-information .main-order > div svg {
   font-size: 20px;
   transition: all 0.3s;
 }
 .orders .order-information .main-order > div.show-more, .orders .order-information .main-order > div.delete {
+  width: fit-content;
+  padding: 10px;
+  margin: auto;
+  border-radius: 50%;
+  transition: 0.3s;
   cursor: pointer;
 }
+.orders .order-information .main-order > div.show-more svg, .orders .order-information .main-order > div.delete svg {
+  font-size: 20px;
+  color: var(--textSecondColor);
+  transition: 0.3s;
+}
+.orders .order-information .main-order > div.show-more:hover, .orders .order-information .main-order > div.delete:hover {
+  background-color: var(--secondColor);
+}
 .orders .order-information .main-order > div.show-more:hover svg, .orders .order-information .main-order > div.delete:hover svg {
-  fill: var(--redColor);
+  color: var(--redColor);
+}
+.orders .order-information .main-order > div.edit-arrow svg {
+  color: var(--redColor);
+  transition: all 0.3s;
+  transform: rotate(90deg);
+}
+.orders .order-information .main-order > div.image {
+  display: block;
+  text-align: center;
+}
+.orders .order-information .main-order > div.image img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 .orders .order-information .order-details {
   transition: height 0.4s, opacity 0.4s;
@@ -56,13 +77,13 @@
   opacity: 0;
   overflow: hidden;
   margin-bottom: 10px;
-}
-.orders .order-information .order-details.show {
-  opacity: 1;
   background-color: var(--bodyWhite);
   box-shadow: var(--boxShadow);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+.orders .order-information .order-details.show {
+  opacity: 1;
 }
 .orders .order-information .order-details .order-items {
   padding: var(--padding);
@@ -86,28 +107,66 @@
   height: 50px;
   object-fit: contain;
 }
-.orders .order-information .order-details .order-items .order-item .delete span {
-  width: 40px;
-  height: 40px;
-  border: var(--border);
-  border-radius: 50%;
+.orders .order-information .order-details .order-items .order-item .price {
+  color: var(--textSecondColor);
+}
+.orders .order-information .order-details .order-items .order-item .price span {
+  margin-top: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  gap: 5px;
+  font-size: 14px;
+}
+.orders .order-information .order-details .order-items .order-item .price span svg {
+  font-size: 13px;
+}
+.orders .order-information .order-details .order-items .order-item .delete {
   cursor: pointer;
 }
-.orders .order-information .order-details .order-items .order-item .delete span svg {
-  opacity: 0;
+.orders .order-information .order-details .order-items .order-item .delete svg {
+  padding: 10px;
   font-size: 40px;
+  transition: 0.3s;
+  border-radius: 50%;
+  color: var(--redColor);
+  margin: auto;
 }
-.orders .order-information .order-details .order-items .order-item .delete span:hover svg {
-  transition: all 0.3s;
-  opacity: 1;
+.orders .order-information .order-details .order-items .order-item .delete svg:hover {
+  background-color: var(--bkBlue);
+  box-shadow: var(--boxShadow);
 }
-.orders .order-information .order-details .order-items .order-item .quantity span {
-  border: 1px solid var(--redColor);
-  padding: 3px 5px;
+.orders .order-information .order-details .order-items .order-item .size-color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--border);
+  width: fit-content;
+  margin: auto;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.orders .order-information .order-details .order-items .order-item .size-color span {
+  width: 40px;
+  display: block;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--textSecondColor);
+  font-weight: bold;
+}
+.orders .order-information .order-details .order-items .user-info > p {
+  background-color: var(--bkBlue);
+  border-radius: 5px;
+  padding: 5px;
+  color: var(--textSecondColor);
+  margin-bottom: 1px;
+}
+.orders .order-information .order-details .order-items .user-info > p span {
+  display: inline-block;
+  width: 100px;
 }
 .orders .no-orders-msg {
   text-align: center;

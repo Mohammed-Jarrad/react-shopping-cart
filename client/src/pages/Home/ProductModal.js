@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import Modal from 'react-modal';
-import { HomeContext } from '../../Context/HomeProvider';
+import {HomeContext} from '../../Context/HomeProvider';
+import {UserContext} from '../../Context/UserProvider';
 
 Modal.setAppElement('#root');
 
-const ProductModal = ({ open, close, openCustomiseModal }) => {
+const ProductModal = ({open, close, openCustomiseModal}) => {
 	// context
-	const { removeProduct, singleProduct } = useContext(HomeContext);
+	const {removeProduct, singleProduct} = useContext(HomeContext);
+	const {admin} = useContext(UserContext);
 
 	return (
 		<Modal
@@ -49,7 +51,7 @@ const ProductModal = ({ open, close, openCustomiseModal }) => {
 							<div>Colors:</div>
 							{singleProduct.colors
 								? singleProduct.colors.map((color, i) => (
-										<span className='color-item' style={{ backgroundColor: `${color}` }} key={i}></span>
+										<span className='color-item' style={{backgroundColor: `${color}`}} key={i}></span>
 								  ))
 								: null}
 						</div>
@@ -67,15 +69,17 @@ const ProductModal = ({ open, close, openCustomiseModal }) => {
 					>
 						Add To Cart
 					</button>
-					<button
-						className='delete'
-						onClick={() => {
-							close();
-							removeProduct(singleProduct._id);
-						}}
-					>
-						Delete Product
-					</button>
+					{admin && (
+						<button
+							className='delete'
+							onClick={() => {
+								close();
+								removeProduct(singleProduct._id);
+							}}
+						>
+							Delete Product
+						</button>
+					)}
 				</div>
 			</div>
 		</Modal>

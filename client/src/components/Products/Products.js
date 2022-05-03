@@ -8,11 +8,12 @@ import NoProducts from './NoProducts';
 const Products = ({openProductModal, openCustomiseModal}) => {
 	// context
 	const {products, loading} = useContext(HomeContext);
+	console.log(products);
 
 	return (
 		<React.Fragment>
 			<Fade cascade>
-				{products ? (
+				{products.length ? (
 					<div className='products-wrapper'>
 						{products.map(product => (
 							<div className='product-item' key={product._id}>

@@ -1,7 +1,11 @@
 header {
 	grid-area: header;
 	background-color: var(--mainColor);
-	position: relative;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 929292929;
+	height: 50px;
 
 	.container {
 		display: flex;
@@ -10,13 +14,67 @@ header {
 		height: 100%;
 
 		.logo {
-			text-transform: none;
-			color: var(--textColor);
-			text-decoration: none;
-			font-size: 20px;
-			img {
-				// width: 100px;
-				// max-width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+
+			> a {
+				text-transform: none;
+				color: var(--textColor);
+				text-decoration: none;
+				font-size: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				img {
+					width: 150px;
+					&.cart-logo {
+						width: 45px;
+					}
+				}
+			}
+			.admin {
+				span {
+					color: var(--textColor);
+					padding: 10px;
+					font-size: 22px;
+					cursor: pointer;
+				}
+				.admin-dashboard {
+					display: flex;
+					flex-direction: column;
+					width: 300px;
+					position: absolute;
+					top: 50px;
+					max-height: 0;
+					overflow: hidden;
+					transition: 0.3s;
+					@media (max-width: 767px) {
+						left: 50%;
+						transform: translateX(-50%);
+					}
+					&.show {
+						opacity: 1;
+						max-height: 500px;
+					}
+
+					a.admin-dashboard-btn {
+						width: 100%;
+						display: block;
+						padding: 10px;
+						background-color: var(--redColor);
+						text-decoration: none;
+						color: var(--textColor);
+						display: block;
+						font-weight: bold;
+						position: relative;
+						transition: 0.3s;
+						&:hover {
+							opacity: 0.9;
+						}
+					}
+				}
 			}
 		}
 
@@ -126,7 +184,7 @@ header {
 									color: var(--redColor);
 								}
 								&:hover {
-									background-color: var(--bkRed);
+									background-color: var(--bkBlue);
 								}
 							}
 						}
@@ -196,7 +254,7 @@ header {
 							text-decoration: none;
 							padding: 5px 10px;
 							&:hover {
-								background-color: var(--bkRed);
+								background-color: var(--bkBlue);
 							}
 						}
 						svg {
