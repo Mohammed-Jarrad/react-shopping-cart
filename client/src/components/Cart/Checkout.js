@@ -5,6 +5,8 @@ import Loading from '../Loading/Loading';
 import SuccessMsg from '../SuccessMsg/SuccessMsg';
 import {CartContext} from '../../Context/CartProvider';
 import mainMethods from '../../utils/mainMethods';
+import {useNavigate} from 'react-router-dom';
+import {Alert} from '@mui/material';
 
 Modal.setAppElement('#root');
 
@@ -14,13 +16,24 @@ const Checkout = ({open, close}) => {
 	//myState
 	const [alertSuccess, setAlertSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
-
+	const [location, setLocation] = useState({});
+	const [locationErrros, setlocationErrors] = useState({});
+	const navigate = useNavigate();
+	// handle change address
+	const handleChangeLocation = e => {
+		setLocation(prev => ({...prev, [e.target.name]: e.target.value.trim()}));
+		setlocationErrors(prev => ({...prev, [e.target.name]: null}));
+	};
 	// create Order
 	async function createOrder(e) {
 		e.preventDefault();
-		close();
 		setLoading(true);
 		const order = {
+			location: {
+				city: location['location.city'],
+				country: location['location.country'],
+				address: location['location.address'],
+			},
 			order_info: cart.map(item => ({
 				product: item._id,
 				quantity: item.qty,
@@ -34,8 +47,10 @@ const Checkout = ({open, close}) => {
 				setLoading(false);
 				setAlertSuccess(true);
 				setCart([]);
+				navigate('/orders');
 			} else {
 				console.log(data.errors);
+				setlocationErrors(data.errors);
 				setLoading(false);
 			}
 		} catch (error) {
@@ -51,23 +66,61 @@ const Checkout = ({open, close}) => {
 
 			<Modal
 				isOpen={open}
-				onRequestClose={() => close()}
+				// onRequestClose={() => close()}
+				shouldCloseOnOverlayClick={false}
 				className='modal checkout-modal'
 				overlayClassName='overlay-modal checkout-modal-overlay'
 				closeTimeoutMS={250}
 			>
 				<div className='accept-order'>
-					<h2> Are You Sure? </h2>
-					<form onSubmit={createOrder}>
-						<button autoFocus>yes</button>
-						<button
-							onClick={e => {
-								e.preventDefault();
-								close();
-							}}
-						>
-							No
-						</button>
+					<h2> Enter Your Address Please </h2>
+					<form>
+						<div className='input-box'>
+							<input
+								type='text'
+								placeholder='Country'
+								name='location.country'
+								onChange={handleChangeLocation}
+							/>
+							{locationErrros['location.country'] ? (
+								<Alert className='error' severity='error'>
+									{locationErrros['location.country']}
+								</Alert>
+							) : null}
+						</div>
+						<div className='input-box'>
+							<input type='text' placeholder='City' name='location.city' onChange={handleChangeLocation} />
+							{locationErrros['location.city'] ? (
+								<Alert className='error' severity='error'>
+									{locationErrros['location.city']}
+								</Alert>
+							) : null}
+						</div>
+						<div className='input-box'>
+							<input
+								type='text'
+								placeholder='Address'
+								name='location.address'
+								onChange={handleChangeLocation}
+							/>
+							{locationErrros['location.address'] ? (
+								<Alert className='error' severity='error'>
+									{locationErrros['location.address']}
+								</Alert>
+							) : null}
+						</div>
+
+						<div className='submit'>
+							<button onClick={createOrder}>Submit</button>
+							<button
+								onClick={e => {
+									e.preventDefault();
+									close();
+								}}
+							>
+								Cancel
+							</button>
+						</div>
 					</form>
 				</div>
 			</Modal>

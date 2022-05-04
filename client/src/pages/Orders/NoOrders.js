@@ -24,7 +24,7 @@ const NoOrders = () => {
 			</h2>
 
 			<Link
-				to='/products'
+				to='/'
 				style={{
 					border: '1px solid var(--redColor)',
 					padding: '10px',

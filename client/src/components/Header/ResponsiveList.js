@@ -7,10 +7,12 @@ import {Link} from 'react-router-dom';
 import * as Icon from 'react-icons/ai';
 import {BsCart4} from 'react-icons/bs';
 import {UserContext} from '../../Context/UserProvider';
+import {CartContext} from '../../Context/CartProvider';
 
 const ResponsiveList = ({logout}) => {
 	//context
 	const {user, fullName} = useContext(UserContext);
+	const {cart} = useContext(CartContext);
 	//states
 	const [showResponsive, setShowResponsive] = useState(false);
 	const responsiveRef = useRef();
@@ -51,9 +53,9 @@ const ResponsiveList = ({logout}) => {
 						<Icon.AiFillHome />
 						Home
 					</Link>
-					<Link to='/products' onClick={hideToggleMenu}>
+					<Link to='/cart' onClick={hideToggleMenu} className='cart-link'>
 						<BsCart4 />
-						Products
+						<span>{cart.length}</span>
 					</Link>
 					<Link to='/orders' onClick={hideToggleMenu}>
 						<RiShoppingBag3Fill />

@@ -4,11 +4,14 @@ import Fade from 'react-reveal/Fade';
 import {VscAdd} from 'react-icons/vsc';
 import {HomeContext} from '../../Context/HomeProvider';
 import NoProducts from './NoProducts';
+import {Link, useNavigate} from 'react-router-dom';
 
 const Products = ({openProductModal, openCustomiseModal}) => {
 	// context
 	const {products, loading} = useContext(HomeContext);
 	console.log(products);
+	//
+	const navigate = useNavigate();
 
 	return (
 		<React.Fragment>
@@ -17,13 +20,15 @@ const Products = ({openProductModal, openCustomiseModal}) => {
 					<div className='products-wrapper'>
 						{products.map(product => (
 							<div className='product-item' key={product._id}>
-								<img onClick={() => openProductModal(product)} alt='product figure' src={product.imageUrl} />
+								<Link to={`/product/${product._id}`}>
+									<img alt='product figure' src={product.imageUrl} />
+								</Link>
 
 								<div className='product-desc'>
 									<div>{product.title}</div>
 									<p>
 										{`${product.price}$`}
-										<span onClick={() => openCustomiseModal(product)}>
+										<span onClick={() => navigate(`/product/${product._id}`)}>
 											<VscAdd />
 										</span>
 									</p>

@@ -10,10 +10,10 @@ const HomeProvider = ({children}) => {
 	// states
 	const [products, setProducts] = useState([]);
 	const [productsClone, setProductsClone] = useState([]);
+	const [product, setProduct] = useState({});
 	const [categories, setCategories] = useState([]);
 	const [sizes, setSizes] = useState([]);
 	const [colors, setColors] = useState([]);
-	const [singleProduct, setSingleProduct] = useState({});
 	const [alertProductDeleted, setAlertProductDeleted] = useState(false);
 	const [chosenSize, setChosenSize] = useState('');
 	const [chosenColor, setChosenColor] = useState('');
@@ -46,6 +46,16 @@ const HomeProvider = ({children}) => {
 		}
 	}
 
+	// getProduct
+	const getProduct = async id => {
+		try {
+			const data = await mainMethods.getProduct(id);
+			data.product && setProduct(data.product);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	// remove product
 	async function removeProduct(id) {
 		setLoading(true);
@@ -69,12 +79,15 @@ const HomeProvider = ({children}) => {
 		<HomeContext.Provider
 			value={{
 				get_products_categories_colors_sizes,
+				getProduct,
 				products,
 				setProducts,
+				product,
+				setProduct,
 				productsClone,
 				setProductsClone,
-				singleProduct,
-				setSingleProduct,
+				// singleProduct,
+				// setSingleProduct,
 				categories,
 				setCategories,
 				colors,

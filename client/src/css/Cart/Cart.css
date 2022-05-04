@@ -1,19 +1,14 @@
 .cart {
-  margin: 20px 0;
+  grid-area: main;
+  margin: 20px auto;
   background-color: var(--bodyWhite);
-  border-radius: 5px;
-  overflow: hidden;
+  border-radius: 20px;
   box-shadow: var(--boxShadow);
+  height: fit-content;
+  overflow: auto;
 }
-.cart .cart-title {
-  color: var(--mainColor);
-  text-transform: uppercase;
-  padding: 10px 0;
-}
-.cart .cart-title span {
-  padding: 10px;
-  background: var(--bkBlue);
-  color: var(--textSecondColor);
+.cart.container {
+  padding: 0;
 }
 .cart .heading {
   display: flex;
@@ -128,6 +123,24 @@
   background-color: var(--redColor);
   color: var(--textColor);
 }
+.cart .cart-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+}
+.cart .cart-empty a {
+  color: var(--textColor);
+  background-color: var(--redColor);
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.cart .cart-empty img {
+  width: 60%;
+}
 
 @media (max-width: 767px) {
   .cart .heading {
@@ -169,18 +182,48 @@
     width: 100%;
   }
 }
-.checkout-modal {
-  width: 300px;
+@media (max-width: 767px) {
+  .checkout-modal {
+    width: 90%;
+  }
 }
 .checkout-modal .accept-order h2 {
   margin-bottom: 20px;
 }
 .checkout-modal .accept-order form {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   gap: 20px;
 }
-.checkout-modal .accept-order form button {
+.checkout-modal .accept-order form .input-box input {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  transition: 0.3s;
+  border: var(--border);
+  color: var(--textSecondColor);
+}
+.checkout-modal .accept-order form .input-box input:hover, .checkout-modal .accept-order form .input-box input:focus {
+  border-radius: 10px;
+}
+.checkout-modal .accept-order form .input-box input:focus {
+  outline: none;
+  padding-left: 15px;
+}
+.checkout-modal .accept-order form .input-box input:focus::placeholder {
+  transition: 0.3s;
+  color: transparent;
+}
+.checkout-modal .accept-order form .input-box .error {
+  padding: 0 10px;
+}
+.checkout-modal .accept-order form .submit {
+  display: flex;
+  gap: 10px;
+}
+.checkout-modal .accept-order form .submit button {
+  width: 50%;
   padding: 10px 20px;
   border: none;
   background-color: var(--redColor);
@@ -188,6 +231,6 @@
   transition: 0.3s;
   border-radius: 5px;
 }
-.checkout-modal .accept-order form button:hover {
+.checkout-modal .accept-order form .submit button:hover {
   filter: brightness(1.2);
 }

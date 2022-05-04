@@ -8,19 +8,15 @@ import mainMethods from '../../utils/mainMethods';
 
 const Login = () => {
 	//states
-	const [isChecked, setIsChecked] = useState(false);
+	// const [isChecked, setIsChecked] = useState(false);
 	const [showEye, setShowEye] = useState(false);
 	const [inputValues, setInputValues] = useState('');
 	const [loginError, setLoginError] = useState('');
 	// hide || show Eye
 	const passInput = useRef();
-	const handleShowEye = () => {
-		setShowEye(!showEye);
-		passInput.current.type = 'text';
-	};
 	const handleHideEye = () => {
 		setShowEye(!showEye);
-		passInput.current.type = 'password';
+		passInput.current.type = showEye ? 'password' : 'text';
 	};
 	//handleChangeInput
 	const handleChangeInput = e => {
@@ -96,7 +92,7 @@ const Login = () => {
 
 							<button>log in</button>
 
-							<div className='check-forget'>
+							{/* <div className='check-forget'>
 								<div className='remember-me'>
 									<input
 										type='checkbox'
@@ -112,7 +108,7 @@ const Login = () => {
 								</div>
 
 								<Link to='#Forget'>Forget Password?</Link>
-							</div>
+							</div> */}
 
 							<p className='or-option'>or</p>
 

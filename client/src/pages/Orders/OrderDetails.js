@@ -46,7 +46,7 @@ const OrderDetails = ({order}) => {
 					</p>
 					<p className='info'>
 						<span>Location: </span>
-						{`${order.user.location.country} - ${order.user.location.city}`}
+						{`${order.location.country} - ${order.location.city} - ${order.location.address}`}
 					</p>
 					<p className='info'>
 						<span>Phone: </span>

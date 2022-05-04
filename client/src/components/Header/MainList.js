@@ -6,9 +6,11 @@ import {BsCart4, BsPersonCircle} from 'react-icons/bs';
 import {AiFillHome, AiOutlineLogout} from 'react-icons/ai';
 import {AiOutlineUser, AiOutlineUserAdd} from 'react-icons/ai';
 import {UserContext} from '../../Context/UserProvider';
+import {CartContext} from '../../Context/CartProvider';
 
 const MainList = ({logout}) => {
-	const {user} = useContext(UserContext);
+	const {user, fullName} = useContext(UserContext);
+	const {cart} = useContext(CartContext);
 	const [showDropMenu, setShowDropMenu] = useState(false);
 
 	// * hide & drop menu
@@ -35,8 +37,9 @@ const MainList = ({logout}) => {
 			{user ? (
 				<React.Fragment>
 					<li>
-						<NavLink to='/products'>
-							<BsCart4 /> PRODUCTS
+						<NavLink to='/cart' className='cart-link'>
+							<BsCart4 />
+							<span>{cart.length}</span>
 						</NavLink>
 					</li>
 

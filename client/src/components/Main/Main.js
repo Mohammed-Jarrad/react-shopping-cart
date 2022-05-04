@@ -1,6 +1,7 @@
-import React  from 'react';
+import React from 'react';
+import {Link} from 'react-router-dom';
 import '../../css/Main/Main.css';
- 
+
 const Main = () => {
 	return (
 		<div className='main-page'>

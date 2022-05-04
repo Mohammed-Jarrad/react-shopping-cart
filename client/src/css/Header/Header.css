@@ -4,7 +4,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 929292929;
+  z-index: 9999;
   height: 50px;
 }
 header .container {
@@ -101,6 +101,22 @@ header .container nav .main-list > li > a {
   transition: 0.3s;
   height: fit-content;
 }
+header .container nav .main-list > li > a.cart-link {
+  position: relative;
+}
+header .container nav .main-list > li > a.cart-link span {
+  position: absolute;
+  background-color: var(--redColor);
+  color: var(--textColor);
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+}
 header .container nav .main-list > li > a svg {
   font-size: 20px;
 }
@@ -125,6 +141,15 @@ header .container nav .main-list > li > a:not(.login):not(.signup):hover::after,
   transform: translate(-50%, -50%) scale(1);
   border-radius: 20px;
 }
+header .container nav .main-list > li > a:not(.login):not(.signup):hover.cart-link > span, header .container nav .main-list > li > a:not(.login):not(.signup).active.cart-link > span {
+  transition: 0.3s;
+  background-color: var(--bodyWhite);
+  color: var(--redColor);
+  position: relative;
+  display: flex;
+  font-size: 17px;
+  padding: 10px;
+}
 header .container nav .main-list > li > a.signup svg, header .container nav .main-list > li > a.login svg {
   font-size: 25px;
 }
@@ -137,10 +162,11 @@ header .container nav .main-list > li > a.signup:hover::after, header .container
   border-radius: 50%;
 }
 header .container nav .main-list > li.drop-menu img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-  object-fit: contain;
+  border-radius: 50%;
+  object-fit: cover;
 }
 header .container nav .main-list > li.drop-menu .menu-content {
   padding: 10px;

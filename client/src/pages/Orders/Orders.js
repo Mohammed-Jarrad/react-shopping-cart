@@ -23,6 +23,7 @@ const Orders = () => {
 		showDropDiv,
 	} = useContext(OrdersContext);
 
+	console.log(ordersForUser);
 	useEffect(() => {
 		getOrdersForUser();
 	}, [ignore]);

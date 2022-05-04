@@ -2,6 +2,7 @@ import {DeleteRequest, GetRequest, PostRequest, PutRequest} from './requests';
 
 // products
 const getProducts = async _ => await (await GetRequest('/products')).json(); // data
+const getProduct = async id => await (await GetRequest(`/product/${id}`)).json(); // data
 const getCategories = async _ => await (await GetRequest('/categories')).json(); // data
 const getSizesAndColors = async _ => await (await GetRequest('/sizes-colors')).json(); // data
 const deleteProduct = async id => await DeleteRequest(`/product/${id}`); // res
@@ -39,6 +40,7 @@ const deleteAllOrdesWithUserNull = async _ => await DeleteRequest('/orders-with-
 
 const mainMethods = {
 	getProducts,
+	getProduct,
 	deleteProduct,
 	getCategories,
 	getSizesAndColors,

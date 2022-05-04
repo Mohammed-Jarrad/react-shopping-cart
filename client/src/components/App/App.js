@@ -15,6 +15,9 @@ import {UserContext} from '../../Context/UserProvider';
 import Users from '../Users/Users';
 import AllOrders from '../AllOrders/AllOrders';
 import UpdateProduct from '../UpdateProduct/UpdateProduct';
+import MyCart from '../../pages/MyCart/MyCart';
+import SingleProduct from '../../pages/SingleProduct/SingleProduct';
+import Cart from '../Cart/Cart';
 
 const App = () => {
 	const {user, admin} = useContext(UserContext);
@@ -25,25 +28,28 @@ const App = () => {
 				<ScrollToTop />
 
 				<Header />
+
 				<Routes>
-					<Route exact={'true'} path='/' element={<Main />} />
-					<Route exact={'true'} path='/login' element={<Login />} />
-					<Route exact={'true'} path='/signup' element={<SignUp />} />
-					<Route exact={'true'} path='/products' element={user ? <Home /> : <Navigate to='/login' />} />
+					{/* For All */}
+					{/* <Route exact={'true'} path='/' element={<Main />} /> */}
+					<Route exact={'true'} path='/product/:id' element={<SingleProduct />} />
+					<Route exact={'true'} path='/' element={<Home />} />
+					{/* For New User */}
+					<Route exact={'true'} path='/login' element={user ? <ErrorPage /> : <Login />} />
+					<Route exact={'true'} path='/signup' element={user ? <ErrorPage /> : <SignUp />} />
+					{/* For User */}
 					<Route exact={'true'} path='/orders' element={user ? <Orders /> : <Navigate to='/login' />} />
 					<Route exact={'true'} path='/profile' element={user ? <Profile /> : <Navigate to='/login' />} />
-
-					{admin && ( //  * admin dashboard !
-						<>
-							<Route exact={'true'} path='/users' element={<Users />} />
-							<Route exact={'true'} path='/create-product' element={<CreateProduct />} />
-							<Route exact={'true'} path='/all-orders' element={<AllOrders />} />
-							<Route exact={'true'} path='/update-product' element={<UpdateProduct />} />☻
-						</>
-					)}
-
+					<Route exact={'true'} path='/cart' element={user ? <Cart /> : <Navigate to='/login' />} />
+					{/* For Admin */}
+					<Route exact={'true'} path='/users' element={admin ? <Users /> : <ErrorPage />} />
+					<Route exact={'true'} path='/create-product' element={admin ? <CreateProduct /> : <ErrorPage />} />
+					<Route exact={'true'} path='/all-orders' element={admin ? <AllOrders /> : <ErrorPage />} />
+					<Route exact={'true'} path='/update-product' element={admin ? <UpdateProduct /> : <ErrorPage />} />☻
+					{/* For Error PATH NAME */}
 					<Route path='*' element={<ErrorPage />} />
 				</Routes>
+
 				<Footer />
 			</div>
 		</BrowserRouter>

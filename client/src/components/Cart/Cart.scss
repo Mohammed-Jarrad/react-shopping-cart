@@ -1,18 +1,13 @@
 .cart {
-	margin: 20px 0;
+	grid-area: main;
+	margin: 20px auto;
 	background-color: var(--bodyWhite);
-	border-radius: 5px;
-	overflow: hidden;
+	border-radius: 20px;
 	box-shadow: var(--boxShadow);
-	.cart-title {
-		color: var(--mainColor);
-		text-transform: uppercase;
-		padding: 10px 0;
-		span {
-			padding: 10px;
-			background: var(--bkBlue);
-			color: var(--textSecondColor);
-		}
+	height: fit-content;
+	overflow: auto;
+	&.container {
+		padding: 0;
 	}
 
 	.heading {
@@ -122,6 +117,26 @@
 			color: var(--textColor);
 		}
 	}
+
+	.cart-empty {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+		padding: 10px;
+
+		a {
+			color: var(--textColor);
+			background-color: var(--redColor);
+			padding: 10px;
+			border-radius: 10px;
+			text-decoration: none;
+		}
+		img {
+			width: 60%;
+		}
+	}
 }
 
 @media (max-width: 767px) {
@@ -164,24 +179,58 @@
 }
 
 .checkout-modal {
-	width: 300px;
+	@media (max-width: 767px) {
+		width: 90%;
+	}
 	.accept-order {
 		h2 {
 			margin-bottom: 20px;
 		}
 		form {
 			display: flex;
+			flex-direction: column;
 			justify-content: space-between;
 			gap: 20px;
-			button {
-				padding: 10px 20px;
-				border: none;
-				background-color: var(--redColor);
-				color: var(--textColor);
-				transition: 0.3s;
-				border-radius: 5px;
-				&:hover {
-					filter: brightness(1.2);
+			.input-box {
+				input {
+					width: 100%;
+					border: none;
+					padding: 10px;
+					transition: 0.3s;
+					border: var(--border);
+					color: var(--textSecondColor);
+					&:hover,
+					&:focus {
+						border-radius: 10px;
+					}
+					&:focus {
+						outline: none;
+						padding-left: 15px;
+						&::placeholder {
+							transition: 0.3s;
+							color: transparent;
+						}
+					}
+				}
+				.error {
+					padding: 0 10px;
+				}
+			}
+
+			.submit {
+				display: flex;
+				gap: 10px;
+				button {
+					width: 50%;
+					padding: 10px 20px;
+					border: none;
+					background-color: var(--redColor);
+					color: var(--textColor);
+					transition: 0.3s;
+					border-radius: 5px;
+					&:hover {
+						filter: brightness(1.2);
+					}
 				}
 			}
 		}

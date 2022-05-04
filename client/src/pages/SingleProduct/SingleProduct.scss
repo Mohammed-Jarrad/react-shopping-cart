@@ -1,0 +1,131 @@
+.single-product {
+	grid-area: main;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	.title {
+		margin-bottom: 10px;
+		text-transform: capitalize;
+		text-align: center;
+		color: var(--textSecondColor);
+	}
+	.main-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 30px;
+
+		.product-info {
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			gap: 20px;
+			background-color: var(--bodyWhite);
+			box-shadow: var(--boxShadow);
+			padding: 20px 10px;
+			border-radius: 20px;
+
+			img {
+				width: 300px;
+				height: 300px;
+				max-width: 100%;
+				margin: auto;
+				border-radius: 50%;
+				object-fit: contain;
+				box-shadow: var(--boxShadowStrong);
+			}
+
+			.product-information {
+				width: 60%;
+				margin: auto;
+
+				.desc {
+					margin-bottom: 20px;
+				}
+				.product-info-box {
+					border: var(--border);
+
+					> div {
+						padding: 10px;
+						&:not(:last-child) {
+							border-bottom: var(--border);
+						}
+						span {
+							font-weight: bold;
+							color: var(--mainColor);
+						}
+					}
+					.price,
+					.category {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						padding: 10px;
+					}
+					.sizes,
+					.colors {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						.items {
+							display: flex;
+							align-items: stretch;
+							flex-wrap: wrap;
+							gap: 5px;
+							span {
+								border: var(--border);
+								// padding: 10px;
+								width: 32px;
+								height: 32px;
+								color: var(--mainColor);
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.modal-options {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+			button {
+				width: 180px;
+				border: none;
+				padding: 10px;
+				font-size: 17px;
+				color: var(--textColor);
+				border-radius: 4px;
+				transition: all 0.3s;
+				&:hover {
+					filter: brightness(1.2);
+				}
+			}
+			.close {
+				background-color: var(--redColor);
+			}
+			.delete {
+				background-color: rgb(255, 39, 39);
+			}
+			.add {
+				background-color: rgb(63, 63, 228);
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.single-product {
+		.main-content {
+			.product-info {
+				flex-direction: column;
+				.product-information {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
