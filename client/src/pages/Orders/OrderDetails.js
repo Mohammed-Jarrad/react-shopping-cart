@@ -2,12 +2,15 @@ import React, {useContext} from 'react';
 import {TiTimes} from 'react-icons/ti';
 import {OrdersContext} from '../../Context/OrdersProvider';
 import {ImCross} from 'react-icons/im';
+import {useNavigate} from 'react-router-dom';
 
 const OrderDetails = ({order}) => {
 	//context
 	const {removeProductFromOrder} = useContext(OrdersContext);
 	// states
 	const {order_info} = order;
+	//
+	const navigate = useNavigate();
 
 	return (
 		<React.Fragment>
@@ -15,7 +18,11 @@ const OrderDetails = ({order}) => {
 				{order_info.map((item, index) => (
 					<div className='order-item' key={index}>
 						<div className='img-item'>
-							<img src={item.product.imageUrl} alt='product figure' />
+							<img
+								src={item.product.imageUrl}
+								alt='product figure'
+								onClick={_ => navigate(`/product/${item.product._id}`)}
+							/>
 						</div>
 
 						<div className='price'>
@@ -34,7 +41,9 @@ const OrderDetails = ({order}) => {
 						</div>
 
 						<div className='size-color'>
-							<span style={{background: `${item.selected_color}`}}></span>
+							<span style={{background: `${item.selected_color ? item.selected_color : ''}`}}>
+								{!item.selected_color && 'No Color'}
+							</span>
 							<span>{item.selected_size ? item.selected_size : 'No Size'}</span>
 						</div>
 					</div>

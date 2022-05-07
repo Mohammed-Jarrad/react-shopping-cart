@@ -1,6 +1,5 @@
 .orders {
   grid-area: main;
-  width: 80%;
   margin-top: 20px;
   margin-bottom: 20px;
   transition: width 0.3s;
@@ -143,7 +142,6 @@
   border: var(--border);
   width: fit-content;
   margin: auto;
-  border-radius: 30px;
   overflow: hidden;
 }
 .orders .order-information .order-details .order-items .order-item .size-color span {

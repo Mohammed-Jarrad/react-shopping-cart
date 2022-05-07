@@ -1,0 +1,40 @@
+.search {
+  width: 70%;
+  margin: auto;
+  padding: 20px;
+  background-color: var(--bodyWhite);
+  border-radius: 40px;
+  box-shadow: var(--boxShadow);
+}
+.search .box {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background-color: var(--bodyColor);
+  padding: 10px;
+  border-radius: 20px;
+}
+.search .box span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-right: var(--border);
+  padding: 0 10px;
+  background-color: transparent;
+  color: var(--redColor);
+}
+.search .box input {
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
+.search .box input:focus {
+  outline: none;
+  padding-left: 7px;
+}
+.search .box input:focus::placeholder {
+  transition: all 0.3s;
+  color: transparent;
+}

@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState} from "react";
 
 export const CartContext = createContext();
 
@@ -11,16 +11,19 @@ const CartProvider = ({children}) => {
 		const cartClone = [...cart];
 		let productExist = false;
 		cartClone.forEach(item => {
-			if (item._id === product._id && item.color === color && item.size === size) {
+			if (item.product._id === product._id && item.color === color && item.size === size) {
 				productExist = true;
 				item.qty += 1;
 			}
 		});
 		if (!productExist) {
-			cartClone.push({...product, qty: 1, size: size, color: color});
+			cartClone.push({product, color, size, qty: 1});
+			// cartClone.push({...product, qty: 1, size: size, color: color});
 		}
 		setCart(cartClone);
 	};
+
+	console.log(cart);
 
 	// remove from cart
 	const removeFromCart = product => {

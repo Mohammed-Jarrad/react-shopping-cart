@@ -1,20 +1,9 @@
 :root {
-    /* --mainColor: #0a4660;
-    --secondColor: #F3F5F9;
-    --redColor: rgb(210, 63, 87);
-    --bkRed: rgb(252, 233, 236);
-    --boxShadow: 0px 1px 5px rgb(3 0 71 / 9%);
-    --boxShadowStrong: 0px 5px 5px rgb(3 0 71/ 15%);
-    --textColor: #e7dac7;
-    --textSecondColor: #373F50;
-    --bodyColor: #F6F9F9;
-    --bodyWhite: #fff;
-    --border: 1px solid #ddd;
-    --padding: 10px; */
     --mainColor: #41b1d3;
     --secondColor: #F3F5F9;
     --redColor: #d23f57;
     --bkBlue: #b8d8e088;
+    --bkRed: rgb(252, 233, 236);
     --boxShadow: 0px 1px 5px rgb(3 0 71 / 9%);
     --boxShadowStrong: 0px 5px 5px rgb(3 0 71/ 15%);
     --textColor: #f3f3f3;
@@ -23,6 +12,7 @@
     --bodyWhite: #fff;
     --border: 1px solid #ddd;
     --padding: 10px;
+    --light-txt: #7D879C;
 
 }
 
@@ -79,19 +69,44 @@ body {
     grid-template-rows: 50px 1fr 50px;
 }
 
+.layout>div {
+    transition: .3s;
+}
+
 /* Login Msg */
 .login-msg {
     color: var(--mainColor);
     text-align: center;
     font-size: 20px;
+    margin-top: 20px;
 }
 
 .login-msg a {
     color: var(--redColor);
     text-decoration: none;
-
 }
 
+/* Final Price */
+.discount {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 17px;
+    color: var(--redColor) !important;
+}
+
+.discount .origin-price {
+    text-decoration: line-through;
+    border: none;
+    color: var(--light-txt) !important;
+}
+
+.discount .discount-price {
+    margin-right: 5px;
+    color: var(--redColor) !important;
+}
 
 
 

@@ -121,7 +121,7 @@ header {
 							font-size: 20px;
 						}
 						&::after {
-							content: '';
+							content: "";
 							position: absolute;
 							left: 50%;
 							top: 50%;
@@ -155,12 +155,13 @@ header {
 						}
 						&.signup,
 						&.login {
+							justify-content: center;
 							svg {
 								font-size: 25px;
 							}
 							&:hover,
 							&.active {
-								color: var(--textSecondColor);
+								color: var(--textColor);
 								font-weight: bold;
 								&::after {
 									transform: translate(-50%, -50%) scale(1);
@@ -223,7 +224,7 @@ header {
 				z-index: 11;
 				position: absolute;
 				top: 5px;
-				right: 10px;
+				right: 20px;
 				transition: all 0.5s;
 
 				&.hide {
@@ -255,8 +256,8 @@ header {
 					box-shadow: var(--boxShadowStrong);
 					border-radius: 10px;
 					position: absolute;
-					top: 55px;
-					left: -300px;
+					top: 35px;
+					left: -320px;
 					display: flex;
 					flex-direction: column;
 					color: var(--textSecondColor);
@@ -279,6 +280,24 @@ header {
 							color: var(--textSecondColor);
 							text-decoration: none;
 							padding: 5px 10px;
+							.cart-link {
+								position: relative;
+								span {
+									background-color: var(--redColor);
+									width: 15px;
+									height: 15px;
+									display: flex;
+									justify-content: center;
+									align-items: center;
+									border-radius: 50%;
+									color: var(--textColor);
+									position: absolute;
+									top: -10px;
+									right: -10px;
+									padding: 7px;
+									font-size: 12px;
+								}
+							}
 							&:hover {
 								background-color: var(--bkBlue);
 							}

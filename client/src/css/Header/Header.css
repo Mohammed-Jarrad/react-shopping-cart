@@ -150,11 +150,14 @@ header .container nav .main-list > li > a:not(.login):not(.signup):hover.cart-li
   font-size: 17px;
   padding: 10px;
 }
+header .container nav .main-list > li > a.signup, header .container nav .main-list > li > a.login {
+  justify-content: center;
+}
 header .container nav .main-list > li > a.signup svg, header .container nav .main-list > li > a.login svg {
   font-size: 25px;
 }
 header .container nav .main-list > li > a.signup:hover, header .container nav .main-list > li > a.signup.active, header .container nav .main-list > li > a.login:hover, header .container nav .main-list > li > a.login.active {
-  color: var(--textSecondColor);
+  color: var(--textColor);
   font-weight: bold;
 }
 header .container nav .main-list > li > a.signup:hover::after, header .container nav .main-list > li > a.signup.active::after, header .container nav .main-list > li > a.login:hover::after, header .container nav .main-list > li > a.login.active::after {
@@ -209,7 +212,7 @@ header .container nav .main-responsive-list {
   z-index: 11;
   position: absolute;
   top: 5px;
-  right: 10px;
+  right: 20px;
   transition: all 0.5s;
 }
 header .container nav .main-responsive-list.hide {
@@ -239,8 +242,8 @@ header .container nav .main-responsive-list .responsive-list {
   box-shadow: var(--boxShadowStrong);
   border-radius: 10px;
   position: absolute;
-  top: 55px;
-  left: -300px;
+  top: 35px;
+  left: -320px;
   display: flex;
   flex-direction: column;
   color: var(--textSecondColor);
@@ -262,6 +265,24 @@ header .container nav .main-responsive-list .responsive-list > div a {
   color: var(--textSecondColor);
   text-decoration: none;
   padding: 5px 10px;
+}
+header .container nav .main-responsive-list .responsive-list > div a .cart-link {
+  position: relative;
+}
+header .container nav .main-responsive-list .responsive-list > div a .cart-link span {
+  background-color: var(--redColor);
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: var(--textColor);
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 7px;
+  font-size: 12px;
 }
 header .container nav .main-responsive-list .responsive-list > div a:hover {
   background-color: var(--bkBlue);

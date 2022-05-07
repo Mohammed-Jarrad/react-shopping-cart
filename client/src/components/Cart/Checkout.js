@@ -35,10 +35,10 @@ const Checkout = ({open, close}) => {
 				address: location['location.address'],
 			},
 			order_info: cart.map(item => ({
-				product: item._id,
+				product: item.product._id,
 				quantity: item.qty,
-				selected_color: item.color,
-				selected_size: item.size,
+				selected_color: item.color ? item.color : '',
+				selected_size: item.size ? item.size : '',
 			})),
 		};
 		try {

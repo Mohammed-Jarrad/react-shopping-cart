@@ -1,6 +1,6 @@
 .orders {
 	grid-area: main;
-	width: 80%;
+	// width: 80%;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	transition: width 0.3s;
@@ -152,7 +152,7 @@
 						border: var(--border);
 						width: fit-content;
 						margin: auto;
-						border-radius: 30px;
+						// border-radius: 30px;
 						overflow: hidden;
 						span {
 							width: 40px;

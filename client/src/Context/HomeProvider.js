@@ -1,6 +1,6 @@
-import React, {createContext, useContext, useReducer, useState} from 'react';
-import mainMethods from '../utils/mainMethods';
-import {CartContext} from './CartProvider';
+import React, {createContext, useContext, useReducer, useState} from "react";
+import mainMethods from "../utils/mainMethods";
+import {CartContext} from "./CartProvider";
 
 export const HomeContext = createContext();
 
@@ -15,8 +15,8 @@ const HomeProvider = ({children}) => {
 	const [sizes, setSizes] = useState([]);
 	const [colors, setColors] = useState([]);
 	const [alertProductDeleted, setAlertProductDeleted] = useState(false);
-	const [chosenSize, setChosenSize] = useState('');
-	const [chosenColor, setChosenColor] = useState('');
+	const [chosenSize, setChosenSize] = useState("");
+	const [chosenColor, setChosenColor] = useState("");
 	const [ignore, forceUpdate] = useReducer(x => x + 1, 0);
 	// config
 	const [loading, setLoading] = useState(false);
@@ -45,6 +45,26 @@ const HomeProvider = ({children}) => {
 			setLoading(false);
 		}
 	}
+
+	// discount price
+	const discountPrice = product => {
+		const disPrice = Math.round(product.price - product.price * (product.discount / 100));
+		return disPrice;
+	};
+	// Final price
+	const finalPrice = product => {
+		const disPrice = Math.round(product.price - product.price * (product.discount / 100));
+		if (disPrice === product.price) {
+			return <span className="discount">{`$${product.price}`}</span>;
+		} else {
+			return (
+				<span className="discount">
+					<span className="discount-price">{`$${disPrice}`}</span>
+					<span className="origin-price">{`$${product.price}`}</span>
+				</span>
+			);
+		}
+	};
 
 	// getProduct
 	const getProduct = async id => {
@@ -83,11 +103,11 @@ const HomeProvider = ({children}) => {
 				products,
 				setProducts,
 				product,
+				discountPrice,
+				finalPrice,
 				setProduct,
 				productsClone,
 				setProductsClone,
-				// singleProduct,
-				// setSingleProduct,
 				categories,
 				setCategories,
 				colors,
@@ -97,6 +117,7 @@ const HomeProvider = ({children}) => {
 				removeProduct,
 				ignore,
 				alertProductDeleted,
+				setAlertProductDeleted,
 				chosenSize,
 				setChosenSize,
 				chosenColor,

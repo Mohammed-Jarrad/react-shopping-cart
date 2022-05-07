@@ -1,5 +1,4 @@
-import React, {createContext} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React from 'react';
 import CartProvider from '../../Context/CartProvider';
 import FilterProvider from '../../Context/FilterProvider';
 import HomeProvider from '../../Context/HomeProvider';
@@ -9,19 +8,19 @@ import App from './App';
 
 const Index = () => {
 	return (
-		<UserProvider>
-			<CartProvider>
-				<HomeProvider>
-					<OrdersProvider>
-						<FilterProvider>
+		<CartProvider>
+			<HomeProvider>
+				<OrdersProvider>
+					<FilterProvider>
+						<UserProvider>
 							{/*  */}
 							<App />
 							{/*  */}
-						</FilterProvider>
-					</OrdersProvider>
-				</HomeProvider>
-			</CartProvider>
-		</UserProvider>
+						</UserProvider>
+					</FilterProvider>
+				</OrdersProvider>
+			</HomeProvider>
+		</CartProvider>
 	);
 };
 

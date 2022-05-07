@@ -1,0 +1,100 @@
+.update-product {
+	grid-area: main;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	.container {
+		.products {
+			margin: 20px auto 0;
+			color: var(--textSecondColor);
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			gap: 10px;
+
+			.product-item {
+				background-color: var(--bodyWhite);
+				border-radius: 10px;
+				box-shadow: var(--boxShadow);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				overflow: hidden;
+				.item {
+					position: relative;
+					width: 100%;
+					flex: 1;
+					display: flex;
+					align-items: stretch;
+					gap: 10px;
+					flex: 50%;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-evenly;
+					align-items: center;
+					gap: 5px;
+					padding: 10px;
+					position: relative;
+					overflow: hidden;
+
+					.product-discount {
+						background-color: var(--redColor);
+						color: var(--textColor);
+						width: 150px;
+						font-size: 13px;
+						padding: 2px 8px;
+						border-radius: 20px;
+						position: absolute;
+						top: 7px;
+						left: -53px;
+						transform: rotate(-45deg);
+						text-align: center;
+					}
+
+					img {
+						width: 70px;
+						height: 70px;
+						object-fit: cover;
+						border-radius: 50%;
+						box-shadow: var(--boxShadow);
+						cursor: pointer;
+					}
+					.title {
+						font-weight: bold;
+						font-size: 17px;
+					}
+				}
+
+				.buttons {
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: 1px;
+					button {
+						width: 50%;
+						border: none;
+						background-color: var(--redColor);
+						color: var(--textColor);
+						padding: 5px;
+						font-weight: bold;
+						font-size: 20px;
+						background-color: var(--bkBlue);
+					}
+					.update {
+						// background-color: rgb(8, 177, 8);
+						svg {
+							color: green;
+						}
+					}
+					.remove {
+						svg {
+							color: var(--redColor);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+}

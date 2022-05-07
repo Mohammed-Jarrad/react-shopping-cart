@@ -1,5 +1,5 @@
-import React, {createContext, useReducer, useState} from 'react';
-import mainMethods from '../utils/mainMethods';
+import React, {createContext, useReducer, useState} from "react";
+import mainMethods from "../utils/mainMethods";
 
 export const OrdersContext = createContext();
 
@@ -7,10 +7,20 @@ const OrdersProvider = ({children}) => {
 	// states
 	const [orders, setOrders] = useState([]);
 	const [ordersForUser, setOrdersForUser] = useState([]);
+	const [order, setOrder] = useState({});
 	const [alertDeleteOrder, setAlertDeleteOrder] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [ignore, forceUpdate] = useReducer(x => x + 1, 0);
 
+	// get single order
+	const getOrder = async id => {
+		try {
+			const data = await mainMethods.getOrder(id);
+			data.order && setOrder(data.order);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	//get orders for user
 	const getOrdersForUser = async _ => {
 		setLoading(true);
@@ -62,13 +72,15 @@ const OrdersProvider = ({children}) => {
 		setLoading(true);
 		try {
 			const data = await mainMethods.deleteProductFromOrder(product_id, color, size);
+			if (data.order === null || data.order.order_info.length === 0) {
+				window.location.assign("/orders");
+			}
 			if (data.order) {
-				// delete All empty orders
 				await mainMethods.deleteAllOrdersWithoutProducts();
 				forceUpdate();
 				setLoading(false);
 			} else {
-				console.log(data.errors);
+				console.log(data);
 				setLoading(false);
 			}
 		} catch (error) {
@@ -76,41 +88,6 @@ const OrdersProvider = ({children}) => {
 			setLoading(false);
 		}
 	}
-
-	// (add class -show- to the clicked div and height to transition the height from 0 to auto)
-	const showDropDiv = id => {
-		const ordersDetails = document.getElementsByClassName('order-details');
-		const mainOrders = document.getElementsByClassName('main-order');
-		let show_more_button;
-		let target;
-		Object.values(mainOrders).forEach(
-			// select the show more btn
-			mainOrder =>
-				mainOrder.children[3].getAttribute('data-id') === id && (show_more_button = mainOrder.children[3]),
-		);
-		Object.values(ordersDetails).forEach(
-			// select my box details what i need it
-			div => div.getAttribute('data-id') === id && (target = div),
-		);
-		if (target.classList.contains('show')) {
-			// check if the current box details is open or not
-			target.classList.remove('show');
-			target.style.height = '0px';
-			show_more_button.classList.remove('edit-arrow');
-		} else {
-			// remove show class from all elements
-			Object.values(ordersDetails).forEach(div => {
-				if (div.classList.contains('show')) {
-					div.classList.remove('show');
-					div.style.height = '0px';
-				}
-			}); // remove edit-arrow class from all show more buttons
-			Object.values(mainOrders).forEach(mainOrder => mainOrder.children[3].classList.remove('edit-arrow')); // set the show class to current box details and set the edit-arrow to the current show more button
-			target.classList.add('show');
-			target.style.height = target.scrollHeight + 'px';
-			show_more_button.classList.add('edit-arrow');
-		}
-	};
 
 	return (
 		<OrdersContext.Provider
@@ -125,10 +102,12 @@ const OrdersProvider = ({children}) => {
 				getOrdersForUser,
 				removeOrder,
 				removeProductFromOrder,
-				showDropDiv,
 				getAllOrders,
 				orders,
 				setOrders,
+				order,
+				setOrder,
+				getOrder,
 			}}
 		>
 			{children}

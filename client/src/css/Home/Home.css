@@ -6,46 +6,6 @@ main .home {
   display: flex;
   flex-direction: column;
 }
-main .search {
-  width: 70%;
-  margin: auto;
-  padding: 20px;
-  background-color: var(--bodyWhite);
-  border-radius: 40px;
-  box-shadow: var(--boxShadow);
-}
-main .search .box {
-  display: flex;
-  align-items: stretch;
-  overflow: hidden;
-  background-color: var(--bodyColor);
-  padding: 10px;
-  border-radius: 20px;
-}
-main .search .box span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-right: var(--border);
-  padding: 0 10px;
-  background-color: transparent;
-  color: var(--redColor);
-}
-main .search .box input {
-  padding: 5px;
-  border: none;
-  background-color: transparent;
-  width: 100%;
-}
-main .search .box input:focus {
-  outline: none;
-  padding-left: 7px;
-}
-main .search .box input:focus::placeholder {
-  transition: all 0.3s;
-  color: transparent;
-}
 
 @media (max-width: 767px) {
   main .search {

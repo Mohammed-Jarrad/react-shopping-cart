@@ -19,11 +19,8 @@
 .go-top {
 	position: fixed;
 	bottom: 40px;
-	left: 50%;
-	transform: translateX(-50%);
-	// padding: 10px;
+	left: 10px;
 	z-index: 1111111;
-
 	svg {
 		font-size: 40px;
 		color: var(--mainColor);

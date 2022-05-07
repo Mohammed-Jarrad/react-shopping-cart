@@ -54,8 +54,11 @@ const ResponsiveList = ({logout}) => {
 						Home
 					</Link>
 					<Link to='/cart' onClick={hideToggleMenu} className='cart-link'>
-						<BsCart4 />
-						<span>{cart.length}</span>
+						<div className='cart-link'>
+							<BsCart4 />
+							<span>{cart.length}</span>
+						</div>
+						Cart
 					</Link>
 					<Link to='/orders' onClick={hideToggleMenu}>
 						<RiShoppingBag3Fill />

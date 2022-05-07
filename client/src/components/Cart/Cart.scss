@@ -5,7 +5,6 @@
 	border-radius: 20px;
 	box-shadow: var(--boxShadow);
 	height: fit-content;
-	overflow: auto;
 	&.container {
 		padding: 0;
 	}
@@ -45,6 +44,19 @@
 					object-fit: contain;
 					cursor: pointer;
 				}
+				h5 {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: 5px;
+					.color {
+						display: inline-block;
+						border: var(--border);
+						border-radius: 50%;
+						width: 25px;
+						height: 25px;
+					}
+				}
 			}
 
 			.price,
@@ -53,7 +65,9 @@
 				text-align: center;
 				width: 25%;
 				color: var(--textSecondColor);
-
+				.discount {
+					margin: auto;
+				}
 				.icon {
 					border-radius: 50%;
 					border: var(--border);

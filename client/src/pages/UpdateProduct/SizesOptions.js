@@ -1,11 +1,11 @@
-import React from 'react';
-import {sizeOptions} from '../../pages/CreateProduct/CreateProduct';
+import React from "react";
+import {sizeOptions} from "../CreateProduct/CreateProduct";
 
 const SizesOptions = ({handleClickSize, product}) => {
 	return (
-		<div className='sizes'>
+		<div className="sizes">
 			Select Sizes...
-			<div className='sizes-items'>
+			<div className="sizes-items">
 				{sizeOptions.map((size, i) => {
 					return (
 						<span className={`size-item`} key={i} onClick={e => handleClickSize(e)}>

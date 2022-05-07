@@ -1,12 +1,11 @@
-import React, {useEffect, useContext} from 'react';
-import Cart from '../../components/Cart/Cart';
-import Filter from '../../components/Filter/Filter';
-import Products from '../../components/Products/Products';
-import '../../css/Home/Home.css';
-import Loading from '../../components/Loading/Loading';
-import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
-import SearchBox from './SearchBox';
-import {HomeContext} from '../../Context/HomeProvider';
+import React, {useEffect, useContext} from "react";
+import Filter from "../../components/Filter/Filter";
+import Products from "../../components/Products/Products";
+import "../../css/Home/Home.css";
+import Loading from "../../components/Loading/Loading";
+import SuccessMsg from "../../components/SuccessMsg/SuccessMsg";
+import SearchBox from "../../components/SearchBox/SearchBox";
+import {HomeContext} from "../../Context/HomeProvider";
 
 const Home = () => {
 	// ! context
@@ -22,14 +21,12 @@ const Home = () => {
 	return (
 		<React.Fragment>
 			<Loading open={loading} setOpen={setLoading} />
-			<SuccessMsg msg={'Product Deleted !'} open={alertProductDeleted} setOpen={setAlertProductDeleted} />
 
 			<main>
-				<div className='home container'>
+				<div className="home container">
 					<SearchBox />
 					<Filter />
 					<Products />
-					{/* <Cart /> */}
 				</div>
 			</main>
 		</React.Fragment>

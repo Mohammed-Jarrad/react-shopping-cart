@@ -19,8 +19,7 @@
 .go-top {
   position: fixed;
   bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 10px;
   z-index: 1111111;
 }
 .go-top svg {

@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Link, NavLink} from 'react-router-dom';
-import {RiShoppingBag3Fill} from 'react-icons/ri';
-import {BsCart4, BsPersonCircle} from 'react-icons/bs';
-import {AiFillHome, AiOutlineLogout} from 'react-icons/ai';
-import {AiOutlineUser, AiOutlineUserAdd} from 'react-icons/ai';
-import {UserContext} from '../../Context/UserProvider';
-import {CartContext} from '../../Context/CartProvider';
+import React, {useContext, useEffect, useRef, useState} from "react";
+import {Link, NavLink} from "react-router-dom";
+import {RiShoppingBag3Fill} from "react-icons/ri";
+import {BsCart4, BsPersonCircle} from "react-icons/bs";
+import {AiFillHome, AiOutlineLogout} from "react-icons/ai";
+import {AiOutlineUser, AiOutlineUserAdd} from "react-icons/ai";
+import {UserContext} from "../../Context/UserProvider";
+import {CartContext} from "../../Context/CartProvider";
 
 const MainList = ({logout}) => {
 	const {user, fullName} = useContext(UserContext);
@@ -22,9 +22,9 @@ const MainList = ({logout}) => {
 	};
 
 	useEffect(() => {
-		document.addEventListener('mousedown', hideDrop);
+		document.addEventListener("mousedown", hideDrop);
 
-		return () => document.removeEventListener('mousedown', hideDrop);
+		return () => document.removeEventListener("mousedown", hideDrop);
 	}, []);
 
 	function handleClickLogout() {
@@ -33,39 +33,35 @@ const MainList = ({logout}) => {
 	}
 
 	return (
-		<ul className={`main-list ${user && 'hide-register'}`}>
+		<ul className={`main-list ${user && "hide-register"}`}>
 			{user ? (
 				<React.Fragment>
 					<li>
-						<NavLink to='/cart' className='cart-link'>
+						<NavLink to="/cart" className="cart-link">
 							<BsCart4 />
 							<span>{cart.length}</span>
 						</NavLink>
 					</li>
 
 					<li>
-						<NavLink to='/orders'>
+						<NavLink to="/orders">
 							<RiShoppingBag3Fill /> ORDERS
 						</NavLink>
 					</li>
 
 					<li>
-						<NavLink to='/'>
+						<NavLink to="/">
 							<AiFillHome /> HOME
 						</NavLink>
 					</li>
 
-					<li ref={dropRef} className='drop-menu'>
-						<img
-							onClick={() => setShowDropMenu(!showDropMenu)}
-							src={typeof user === 'object' ? user['user_image'] : null}
-							alt='user figure'
-						/>
-						<div className={`menu-content ${showDropMenu && 'move'}`}>
-							<Link to='/profile' onClick={() => setShowDropMenu(false)}>
+					<li ref={dropRef} className="drop-menu">
+						<img onClick={() => setShowDropMenu(!showDropMenu)} src={user["user_image"]} alt="user figure" />
+						<div className={`menu-content ${showDropMenu && "move"}`}>
+							<Link to="/profile" onClick={() => setShowDropMenu(false)}>
 								<BsPersonCircle /> Profile
 							</Link>
-							<Link to='#' onClick={handleClickLogout}>
+							<Link to="#" onClick={handleClickLogout}>
 								<AiOutlineLogout /> Log Out
 							</Link>
 						</div>
@@ -74,12 +70,12 @@ const MainList = ({logout}) => {
 			) : (
 				<>
 					<li>
-						<NavLink className='login' to='/login' title='Login'>
+						<NavLink className="login" to="/login" title="Login">
 							<AiOutlineUser />
 						</NavLink>
 					</li>
 					<li>
-						<NavLink className='signup' to='/signup' title='Signup'>
+						<NavLink className="signup" to="/signup" title="Signup">
 							<AiOutlineUserAdd />
 						</NavLink>
 					</li>

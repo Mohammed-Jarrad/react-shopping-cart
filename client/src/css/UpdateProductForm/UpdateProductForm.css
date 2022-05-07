@@ -1,0 +1,152 @@
+.update-form {
+  grid-area: main;
+  margin: 20px auto;
+  transition: 0.4s;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: var(--bodyWhite);
+  box-shadow: var(--boxShadow);
+}
+.update-form .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.update-form .image img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  box-shadow: var(--boxShadow);
+  object-fit: contain;
+}
+.update-form .image button {
+  border: none;
+  padding: 10px;
+  background-color: var(--bodyWhite);
+  color: var(--textSecondColor);
+  border: 1px solid var(--redColor);
+  border-radius: 10px;
+}
+.update-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.update-form form .form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.update-form form .form-inputs .input-box label {
+  display: flex;
+  align-items: center;
+}
+.update-form form .form-inputs .input-box label span {
+  width: 100px;
+  color: var(--textSecondColor);
+  font-weight: bold;
+}
+.update-form form .form-inputs .input-box label input,
+.update-form form .form-inputs .input-box label textarea {
+  flex: 1;
+  padding: 7px 10px;
+  background-color: var(--bodyColor);
+  border: none;
+  transition: all 0.3s;
+  border-radius: 5px;
+  border: var(--border);
+}
+.update-form form .form-inputs .input-box label input:focus,
+.update-form form .form-inputs .input-box label textarea:focus {
+  outline: none;
+  padding-left: 13px;
+}
+.update-form form .form-inputs .input-box label input:focus::placeholder,
+.update-form form .form-inputs .input-box label textarea:focus::placeholder {
+  transition: all 0.3s;
+  color: transparent;
+}
+.update-form form .form-inputs .input-box label textarea {
+  resize: none;
+  height: 80px;
+}
+.update-form form .sizes {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.update-form form .sizes .sizes-items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+.update-form form .sizes .sizes-items span {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: var(--border);
+  cursor: pointer;
+}
+.update-form form .sizes .sizes-items span.active {
+  background-color: var(--redColor);
+  color: var(--textColor);
+}
+.update-form form .colors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.update-form form .colors input {
+  -webkit-appearance: none;
+  border: 1px solid #c0c0c0;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.update-form form .colors input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.update-form form .colors input::-webkit-color-swatch {
+  border: none;
+}
+.update-form form .colors button {
+  border: none;
+  padding: 10px 20px;
+  border: 1px solid var(--redColor);
+  background-color: transparent;
+  color: var(--textSecondColor);
+  border-radius: 10px;
+}
+.update-form form .colors .color-item {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.update-form form .colors .color-item svg {
+  opacity: 0;
+  transition: 0.3s;
+}
+.update-form form .colors .color-item:hover svg {
+  opacity: 1;
+}
+.update-form form .submit {
+  border: none;
+  padding: 5px;
+  background-color: var(--redColor);
+  color: var(--textColor);
+  border: 1px solid var(--redColor);
+  border-radius: 10px;
+  font-size: 20px;
+}
