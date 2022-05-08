@@ -166,10 +166,6 @@
   display: inline-block;
   width: 100px;
 }
-.orders .no-orders-msg {
-  text-align: center;
-  color: var(--mainColor);
-}
 
 @media (max-width: 767px) {
   .orders {

@@ -33,16 +33,11 @@
   font-size: 20px;
   color: var(--bkRed);
 }
-.single-order .location-info > div .user-info,
-.single-order .location-info > div .shipping,
-.single-order .location-info > div .address {
+.single-order .location-info > div > div:not(.icon) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: var(--textSecondColor);
-}
-.single-order .location-info > div .user-info span,
-.single-order .location-info > div .shipping span,
-.single-order .location-info > div .address span {
-  display: block;
-  margin-top: 5px;
 }
 .single-order .main-content {
   display: flex;

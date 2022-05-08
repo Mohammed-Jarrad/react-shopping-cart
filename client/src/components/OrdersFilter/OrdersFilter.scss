@@ -1,0 +1,57 @@
+.orders-filter {
+	border-radius: 10px;
+	background-color: var(--bkBlue);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	margin: 0 auto 10px;
+	box-shadow: var(--boxShadow);
+	overflow: hidden;
+
+	.item {
+		padding: 10px;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&:not(:last-child) {
+			border-right: var(--border);
+		}
+		&:hover {
+			transition: 0.3s;
+			font-weight: bold;
+		}
+	}
+	.All {
+		&.active {
+			color: var(--textSecondColor);
+		}
+	}
+	.Pending {
+		&.active {
+			color: var(--mainColor);
+		}
+	}
+	.Cancelled {
+		&.active {
+			color: var(--redColor);
+		}
+	}
+	.Delivered {
+		&.active {
+			color: green;
+		}
+	}
+	.All,
+	.Cancelled,
+	.Pending,
+	.Delivered {
+		color: var(--textSecondColor);
+		&.active {
+			transition: 0.3s;
+			font-weight: bold;
+			font-family: cursive;
+		}
+	}
+}

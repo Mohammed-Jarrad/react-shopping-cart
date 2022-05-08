@@ -5,9 +5,9 @@ import NoOrders from "../../pages/Orders/NoOrders";
 import Loading from "../Loading/Loading";
 import {AiOutlineDelete} from "react-icons/ai";
 import {BsArrowRightShort} from "react-icons/bs";
-import OrderDetails from "../../pages/Orders/OrderDetails";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
 import {useNavigate} from "react-router-dom";
+import OrdersFilter from "../OrdersFilter/OrdersFilter";
 
 const AllOrders = () => {
 	//context
@@ -16,7 +16,7 @@ const AllOrders = () => {
 		orders,
 		loading,
 		setLoading,
-		showDropDiv,
+		setOrders,
 		alertDeleteOrder,
 		setAlertDeleteOrder,
 		ignore,
@@ -32,6 +32,8 @@ const AllOrders = () => {
 	return (
 		<React.Fragment>
 			<div className="orders container">
+				<OrdersFilter getOriginalOrders={getAllOrders} setOrders={setOrders} />
+
 				{orders.length ? (
 					<React.Fragment>
 						<div className="heading">

@@ -1,6 +1,5 @@
 .orders {
 	grid-area: main;
-	// width: 80%;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	transition: width 0.3s;
@@ -182,11 +181,6 @@
 				}
 			}
 		}
-	}
-
-	.no-orders-msg {
-		text-align: center;
-		color: var(--mainColor);
 	}
 }
 
