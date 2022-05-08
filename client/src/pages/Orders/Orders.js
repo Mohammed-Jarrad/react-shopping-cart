@@ -5,10 +5,10 @@ import Loading from "../../components/Loading/Loading";
 import {AiOutlineDelete} from "react-icons/ai";
 import {BsArrowRightShort} from "react-icons/bs";
 import SuccessMsg from "../../components/SuccessMsg/SuccessMsg";
+import OrderDetails from "./OrderDetails";
 import {OrdersContext} from "../../Context/OrdersProvider";
 import NoOrders from "./NoOrders";
 import {useNavigate} from "react-router-dom";
-import OrdersFilter from "../../components/OrdersFilter/OrdersFilter";
 
 const Orders = () => {
 	// context
@@ -21,12 +21,12 @@ const Orders = () => {
 		alertDeleteOrder,
 		setAlertDeleteOrder,
 		removeOrder,
-		setOrdersForUser,
+		showDropDiv,
 	} = useContext(OrdersContext);
 	// variables
 	const navigate = useNavigate();
 	//
-
+	console.log(ordersForUser);
 	useEffect(() => {
 		getOrdersForUser();
 	}, [ignore]);
@@ -34,8 +34,6 @@ const Orders = () => {
 	return (
 		<React.Fragment>
 			<div className="orders container">
-				<OrdersFilter getOriginalOrders={getOrdersForUser} setOrders={setOrdersForUser} />
-
 				{ordersForUser.length ? (
 					<React.Fragment>
 						<div className="heading">
@@ -58,9 +56,19 @@ const Orders = () => {
 										<AiOutlineDelete />
 									</div>
 
-									<div className={`show-more`} onClick={e => navigate(`/order/${order._id}`)}>
+									<div
+										data-id={order._id}
+										className={`show-more`}
+										onClick={e => {
+											navigate(`/order/${order._id}`);
+										}}
+									>
 										<BsArrowRightShort />
 									</div>
+								</div>
+
+								<div data-id={order._id} className={`order-details`}>
+									<OrderDetails order={order} />
 								</div>
 							</div>
 						))}
@@ -69,7 +77,6 @@ const Orders = () => {
 					<>{loading ? null : <NoOrders />}</>
 				)}
 			</div>
-
 			<Loading open={loading} setOpen={setLoading} />
 			<SuccessMsg open={alertDeleteOrder} setOpen={setAlertDeleteOrder} msg={"Deleted Success !"} />
 		</React.Fragment>

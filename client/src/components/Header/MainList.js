@@ -9,7 +9,7 @@ import {UserContext} from "../../Context/UserProvider";
 import {CartContext} from "../../Context/CartProvider";
 
 const MainList = ({logout}) => {
-	const {user} = useContext(UserContext);
+	const {user, fullName} = useContext(UserContext);
 	const {cart} = useContext(CartContext);
 	const [showDropMenu, setShowDropMenu] = useState(false);
 

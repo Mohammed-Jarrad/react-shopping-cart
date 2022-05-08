@@ -10,41 +10,29 @@ const SingleOrderLocation = ({order}) => {
 				<div className="icon">
 					<BsFillPersonFill />
 				</div>
-				<h4>Customer</h4>
-				<div className="customer-info">
+				<div className="user-info">
 					<span>{`${order.user.name.first_name} ${order.user.name.last_name}`} </span>
 					<span>{order.user.email}</span>
-					<span>{order.user.phone}</span>
 				</div>
 			</div>
 
-			<div className="shipping">
+			<div className="order-shipping">
 				<div className="icon">
 					<MdLocalShipping />
 				</div>
-				<h4>Shipping</h4>
-				<div className="shipping-info">
-					<span>
-						<strong>Shipping:</strong> {order.location.country}
-					</span>
-					<span>
-						<strong>Pay Method: upon receipt</strong>
-					</span>
+				<div className="shipping">
+					<span>Shipping: {order.location.country}</span>
+					<span>Pay Method: upon receipt</span>
 				</div>
 			</div>
 
-			<div className="address">
+			<div className="deliver-to">
 				<div className="icon">
 					<HiLocationMarker />
 				</div>
-				<h4>Deliver To</h4>
-				<div className="address-info">
-					<span>
-						<strong>City:</strong> {order.location.city}
-					</span>
-					<span>
-						<strong>Address:</strong> {order.location.address}
-					</span>
+				<div className="address">
+					<span>City: {order.location.city}</span>
+					<span>Address: {order.location.address}</span>
 				</div>
 			</div>
 		</div>

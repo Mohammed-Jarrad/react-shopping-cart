@@ -17,12 +17,7 @@ const SingleOrderTotalBox = ({order}) => {
 		<div className="single-order-total-box">
 			<div className="price-info">
 				<div>
-					<span className="title">Created At</span>
-					<span>{order.createdAt.split("T")[0]}</span>
-				</div>
-
-				<div>
-					<span className="title">Original Price</span>
+					<span className="title">Origin Price</span>
 					<span>${originTotal}</span>
 				</div>
 
