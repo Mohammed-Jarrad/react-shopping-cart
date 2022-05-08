@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useContext, useEffect} from "react";
-import {OrdersContext} from "../../Context/OrdersProvider";
+import React, { useContext, useEffect } from "react";
+import { OrdersContext } from "../../Context/OrdersProvider";
 import NoOrders from "../../pages/Orders/NoOrders";
 import Loading from "../Loading/Loading";
-import {AiOutlineDelete} from "react-icons/ai";
-import {BsArrowRightShort} from "react-icons/bs";
+import { AiOutlineDelete } from "react-icons/ai";
+import { BsArrowRightShort } from "react-icons/bs";
 import OrderDetails from "../../pages/Orders/OrderDetails";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import OrdersFilter from "../OrdersFilter/OrdersFilter";
 
 const AllOrders = () => {
 	//context
@@ -16,12 +17,12 @@ const AllOrders = () => {
 		orders,
 		loading,
 		setLoading,
-		showDropDiv,
+		setOrders,
 		alertDeleteOrder,
 		setAlertDeleteOrder,
 		ignore,
 	} = useContext(OrdersContext);
-	const {removeOrder} = useContext(OrdersContext);
+	const { removeOrder } = useContext(OrdersContext);
 	// variables
 	const navigate = useNavigate();
 
@@ -32,6 +33,8 @@ const AllOrders = () => {
 	return (
 		<React.Fragment>
 			<div className="orders container">
+				<OrdersFilter getOriginalOrders={getAllOrders} setOrders={setOrders} admin={true} />
+
 				{orders.length ? (
 					<React.Fragment>
 						<div className="heading">

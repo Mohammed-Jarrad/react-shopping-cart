@@ -1,11 +1,11 @@
-import React, {createContext, useContext} from "react";
-import {HomeContext} from "./HomeProvider";
+import React, { createContext, useContext } from "react";
+import { HomeContext } from "./HomeProvider";
 
 export const filterContext = createContext();
 
-const FilterProvider = ({children}) => {
+const FilterProvider = ({ children }) => {
 	// ! context
-	const {products, setProducts, productsClone} = useContext(HomeContext);
+	const { products, setProducts, productsClone } = useContext(HomeContext);
 
 	// setActive
 	const setActive = event => {
@@ -81,6 +81,7 @@ const FilterProvider = ({children}) => {
 				handleFilterByColor,
 				handleFilterByCategory,
 				handleFilterBySort,
+				setActive,
 			}}
 		>
 			{children}

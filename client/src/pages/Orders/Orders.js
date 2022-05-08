@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import "../../css/Orders/Orders.css";
 import Loading from "../../components/Loading/Loading";
-import {AiOutlineDelete} from "react-icons/ai";
-import {BsArrowRightShort} from "react-icons/bs";
+import { AiOutlineDelete } from "react-icons/ai";
+import { BsArrowRightShort } from "react-icons/bs";
 import SuccessMsg from "../../components/SuccessMsg/SuccessMsg";
 import OrderDetails from "./OrderDetails";
-import {OrdersContext} from "../../Context/OrdersProvider";
+import { OrdersContext } from "../../Context/OrdersProvider";
 import NoOrders from "./NoOrders";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import OrdersFilter from "../../components/OrdersFilter/OrdersFilter";
 
 const Orders = () => {
 	// context
@@ -21,7 +22,7 @@ const Orders = () => {
 		alertDeleteOrder,
 		setAlertDeleteOrder,
 		removeOrder,
-		showDropDiv,
+		setOrdersForUser,
 	} = useContext(OrdersContext);
 	// variables
 	const navigate = useNavigate();
@@ -34,6 +35,8 @@ const Orders = () => {
 	return (
 		<React.Fragment>
 			<div className="orders container">
+				<OrdersFilter getOriginalOrders={getOrdersForUser} setOrders={setOrdersForUser} admin={false} />
+
 				{ordersForUser.length ? (
 					<React.Fragment>
 						<div className="heading">
