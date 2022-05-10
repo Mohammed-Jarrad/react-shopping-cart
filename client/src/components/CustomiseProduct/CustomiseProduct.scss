@@ -1,12 +1,13 @@
 .customise-product {
-	background-color: var(--bodyWhite);
+	margin-top: 20px;
+	background-color: var(--boxes-bg);
 	padding: 10px;
 	border-radius: 20px;
 	box-shadow: var(--boxShadow);
 
 	.heading {
 		padding: 5px;
-		color: var(--textSecondColor);
+		color: var(--second-text-color);
 		width: fit-content;
 		margin: 0 auto 20px;
 	}
@@ -27,19 +28,19 @@
 		flex-wrap: wrap;
 		margin-top: 10px;
 		.size-item {
-			border: var(--border);
+			border: var(--main-border);
 			padding: 5px 10px;
 			cursor: pointer;
 			&.active {
-				background-color: var(--redColor);
-				color: var(--textColor);
+				background-color: var(--second-color);
+				color: var(--main-text-color);
 				border: none;
 			}
 		}
 		.color-item {
 			width: 40px;
 			height: 40px;
-			border: var(--border);
+			border: var(--main-border);
 			border-radius: 50%;
 			cursor: pointer;
 			&.active {
@@ -56,7 +57,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			border: var(--border);
+			border: var(--main-border);
 			padding: 5px 10px;
 			span {
 				display: flex;
@@ -68,7 +69,7 @@
 				&.chosen-color {
 					border-radius: 50%;
 					margin-left: 5px;
-					border: var(--border);
+					border: var(--main-border);
 				}
 			}
 		}
@@ -79,8 +80,8 @@
 		width: 100%;
 		padding: 10px;
 		border-radius: 10px;
-		background-color: var(--redColor);
-		color: var(--textColor);
+		background-color: var(--second-color);
+		color: var(--main-text-color);
 		font-size: 20px;
 		font-weight: bold;
 		text-transform: uppercase;

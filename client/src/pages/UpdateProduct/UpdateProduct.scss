@@ -5,13 +5,13 @@
 	.container {
 		.products {
 			margin: 20px auto 0;
-			color: var(--textSecondColor);
+			color: var(--second-text-color);
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 			gap: 10px;
 
 			.product-item {
-				background-color: var(--bodyWhite);
+				background-color: var(--boxes-bg);
 				border-radius: 10px;
 				box-shadow: var(--boxShadow);
 				display: flex;
@@ -36,8 +36,8 @@
 					overflow: hidden;
 
 					.product-discount {
-						background-color: var(--redColor);
-						color: var(--textColor);
+						background-color: var(--second-color);
+						color: var(--main-text-color);
 						width: 150px;
 						font-size: 13px;
 						padding: 2px 8px;
@@ -72,12 +72,12 @@
 					button {
 						width: 50%;
 						border: none;
-						background-color: var(--redColor);
-						color: var(--textColor);
+						background-color: var(--second-color);
+						color: var(--main-text-color);
 						padding: 5px;
 						font-weight: bold;
 						font-size: 20px;
-						background-color: var(--bkBlue);
+						background-color: var(--main-light-bg);
 					}
 					.update {
 						// background-color: rgb(8, 177, 8);
@@ -87,7 +87,7 @@
 					}
 					.remove {
 						svg {
-							color: var(--redColor);
+							color: var(--second-color);
 						}
 					}
 				}

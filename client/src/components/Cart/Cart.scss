@@ -1,7 +1,7 @@
 .cart {
 	grid-area: main;
 	margin: 20px auto;
-	background-color: var(--bodyWhite);
+	background-color: var(--boxes-bg);
 	border-radius: 20px;
 	box-shadow: var(--boxShadow);
 	height: fit-content;
@@ -14,8 +14,8 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 10px;
-		background-color: var(--bkBlue);
-		color: var(--textSecondColor);
+		background-color: var(--main-light-bg);
+		color: var(--second-text-color);
 		> div {
 			width: 25%;
 			text-align: center;
@@ -28,14 +28,14 @@
 			justify-content: space-between;
 			align-items: center;
 			padding: 10px;
-			border-bottom: var(--border);
+			border-bottom: var(--main-border);
 			.image {
 				text-align: center;
 				display: flex;
 				flex-direction: column;
 				gap: 10px;
 				align-items: center;
-				color: var(--mainColor);
+				color: var(--second-text-color);
 				text-transform: capitalize;
 				width: 25%;
 				img {
@@ -51,7 +51,7 @@
 					gap: 5px;
 					.color {
 						display: inline-block;
-						border: var(--border);
+						border: var(--main-border);
 						border-radius: 50%;
 						width: 25px;
 						height: 25px;
@@ -64,15 +64,15 @@
 			.remove {
 				text-align: center;
 				width: 25%;
-				color: var(--textSecondColor);
+				color: var(--second-text-color);
 				.discount {
 					margin: auto;
 				}
 				.icon {
 					border-radius: 50%;
-					border: var(--border);
+					border: var(--main-border);
 					display: flex;
-					background-color: var(--bodyColor);
+					background-color: var(--body-color);
 					justify-content: center;
 					align-items: center;
 					width: 50px;
@@ -88,7 +88,7 @@
 					}
 				}
 				.quantity-options {
-					background-color: var(--bodyColor);
+					background-color: var(--body-color);
 					display: flex;
 					justify-content: space-between;
 					text-align: center;
@@ -103,12 +103,11 @@
 						display: flex;
 						justify-content: center;
 						align-items: center;
-						color: var(--textColor);
+						color: var(--main-text-color);
 						cursor: pointer;
-						&:first-child {
-							background-color: var(--redColor);
-							color: var(--textColor);
-						}
+						background-color: var(--second-color);
+						color: var(--main-text-color);
+
 						&.hide {
 							visibility: hidden;
 						}
@@ -127,8 +126,8 @@
 			font-size: 18px;
 			letter-spacing: 1px;
 			text-align: center;
-			background-color: var(--redColor);
-			color: var(--textColor);
+			background-color: var(--second-color);
+			color: var(--main-text-color);
 		}
 	}
 
@@ -141,8 +140,8 @@
 		padding: 10px;
 
 		a {
-			color: var(--textColor);
-			background-color: var(--redColor);
+			color: var(--main-text-color);
+			background-color: var(--second-color);
 			padding: 10px;
 			border-radius: 10px;
 			text-decoration: none;
@@ -197,6 +196,7 @@
 		width: 90%;
 	}
 	.accept-order {
+		// background-color: var(--boxes-bg);
 		h2 {
 			margin-bottom: 20px;
 		}
@@ -211,8 +211,8 @@
 					border: none;
 					padding: 10px;
 					transition: 0.3s;
-					border: var(--border);
-					color: var(--textSecondColor);
+					border: var(--main-border);
+					color: var(--second-text-color);
 					&:hover,
 					&:focus {
 						border-radius: 10px;
@@ -238,8 +238,8 @@
 					width: 50%;
 					padding: 10px 20px;
 					border: none;
-					background-color: var(--redColor);
-					color: var(--textColor);
+					background-color: var(--second-color);
+					color: var(--main-text-color);
 					transition: 0.3s;
 					border-radius: 5px;
 					&:hover {

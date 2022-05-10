@@ -4,7 +4,7 @@
   transition: 0.4s;
   padding: 10px;
   border-radius: 20px;
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   box-shadow: var(--boxShadow);
 }
 .update-form .image {
@@ -24,9 +24,9 @@
 .update-form .image button {
   border: none;
   padding: 10px;
-  background-color: var(--bodyWhite);
-  color: var(--textSecondColor);
-  border: 1px solid var(--redColor);
+  background-color: var(--boxes-bg);
+  color: var(--second-text-color);
+  border: 1px solid var(--second-color);
   border-radius: 10px;
 }
 .update-form form {
@@ -45,18 +45,18 @@
 }
 .update-form form .form-inputs .input-box label span {
   width: 100px;
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
   font-weight: bold;
 }
 .update-form form .form-inputs .input-box label input,
 .update-form form .form-inputs .input-box label textarea {
   flex: 1;
   padding: 7px 10px;
-  background-color: var(--bodyColor);
+  background-color: var(--body-color);
   border: none;
   transition: all 0.3s;
   border-radius: 5px;
-  border: var(--border);
+  border: var(--main-border);
 }
 .update-form form .form-inputs .input-box label input:focus,
 .update-form form .form-inputs .input-box label textarea:focus {
@@ -90,12 +90,12 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  border: var(--border);
+  border: var(--main-border);
   cursor: pointer;
 }
 .update-form form .sizes .sizes-items span.active {
-  background-color: var(--redColor);
-  color: var(--textColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
 }
 .update-form form .colors {
   display: flex;
@@ -120,9 +120,9 @@
 .update-form form .colors button {
   border: none;
   padding: 10px 20px;
-  border: 1px solid var(--redColor);
+  border: 1px solid var(--second-color);
   background-color: transparent;
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
   border-radius: 10px;
 }
 .update-form form .colors .color-item {
@@ -144,9 +144,9 @@
 .update-form form .submit {
   border: none;
   padding: 5px;
-  background-color: var(--redColor);
-  color: var(--textColor);
-  border: 1px solid var(--redColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+  border: 1px solid var(--second-color);
   border-radius: 10px;
   font-size: 20px;
 }

@@ -1,78 +1,195 @@
 .create-product {
   grid-area: main;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-.create-product form {
+  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
   padding: 20px;
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   border-radius: 20px;
   box-shadow: var(--boxShadow);
 }
-.create-product form .error {
-  color: var(--redColor);
-  background-color: transparent;
-  text-transform: lowercase;
-  width: fit-content;
-  margin: auto;
-  padding: 0;
-}
-.create-product form .col-1 {
-  flex: 1;
+.create-product .col-1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.create-product form .col-1 .input-box label {
+.create-product .col-1 .input-box {
+  width: 100%;
+}
+.create-product .col-1 .input-box label {
   display: flex;
   align-items: center;
 }
-.create-product form .col-1 .input-box label span {
+.create-product .col-1 .input-box label span {
   width: 100px;
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
   font-weight: bold;
 }
-.create-product form .col-1 .input-box label input,
-.create-product form .col-1 .input-box label textarea {
+.create-product .col-1 .input-box label input,
+.create-product .col-1 .input-box label textarea {
   flex: 1;
   padding: 7px 10px;
-  background-color: var(--bodyColor);
+  background-color: var(--body-color);
   border: none;
   transition: all 0.3s;
   border-radius: 5px;
-  border: var(--border);
+  border: var(--main-border);
 }
-.create-product form .col-1 .input-box label input:focus,
-.create-product form .col-1 .input-box label textarea:focus {
+.create-product .col-1 .input-box label input:focus,
+.create-product .col-1 .input-box label textarea:focus {
   outline: none;
   padding-left: 13px;
 }
-.create-product form .col-1 .input-box label input:focus::placeholder,
-.create-product form .col-1 .input-box label textarea:focus::placeholder {
+.create-product .col-1 .input-box label input:focus::placeholder,
+.create-product .col-1 .input-box label textarea:focus::placeholder {
   transition: all 0.3s;
   color: transparent;
 }
-.create-product form .col-1 .input-box label textarea {
+.create-product .col-1 .input-box label textarea {
   resize: none;
   height: 150px;
 }
-.create-product form .col-1 .multi-select-size {
+.create-product .col-1 .sizes .view-sizes-select {
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-.create-product form .col-1 .colors .colors-config {
+.create-product .col-1 .sizes .view-sizes-select p {
+  border: var(--main-border);
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.create-product .col-1 .sizes .view-sizes-select p > span {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.create-product .col-1 .sizes .view-sizes-select p > span:hover {
+  border: var(--main-border);
+}
+.create-product .col-1 .sizes .view-sizes-select p > span svg {
+  color: var(--second-color);
+}
+.create-product .col-1 .sizes .drop-menu {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border: var(--main-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.create-product .col-1 .sizes .drop-menu .select {
+  background-color: var(--boxes-bg);
+  color: var(--second-text-color);
+  padding: 10px;
+  transition: 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.create-product .col-1 .sizes .drop-menu .select .input {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  z-index: 11;
+}
+.create-product .col-1 .sizes .drop-menu .select .input input {
+  padding: 7px 10px;
+  background-color: var(--body-color);
+  border: none;
+  transition: all 0.3s;
+  border-radius: 5px;
+  border: var(--main-border);
+}
+.create-product .col-1 .sizes .drop-menu .select .input input:focus {
+  outline: none;
+  padding-left: 13px;
+}
+.create-product .col-1 .sizes .drop-menu .select .input input:focus::placeholder {
+  transition: all 0.3s;
+  color: transparent;
+}
+.create-product .col-1 .sizes .drop-menu .select .input button {
+  padding: 10px;
+  border: none;
+  color: var(--second-text-color);
+  border: 1px solid var(--second-color);
+  background-color: var(--boxes-bg);
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.create-product .col-1 .sizes .drop-menu .select .input button:hover {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+}
+.create-product .col-1 .sizes .drop-menu .select > span {
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.create-product .col-1 .sizes .drop-menu .select > span svg {
+  transition: 0.4s;
+  transform: rotate(90deg);
+  color: var(--second-color);
+  font-size: 23px;
+}
+.create-product .col-1 .sizes .drop-menu .select > span svg.rotate {
+  transform: rotate(90deg) rotate(-180deg);
+}
+.create-product .col-1 .sizes .drop-menu .menu-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-top: var(--main-border);
+}
+.create-product .col-1 .sizes .drop-menu .menu-content.show {
+  max-height: 500px;
+  opacity: 1;
+}
+.create-product .col-1 .sizes .drop-menu .menu-content p {
+  background-color: var(--boxes-bg);
+  color: var(--second-text-color);
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-product .col-1 .sizes .drop-menu .menu-content p.active {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+}
+.create-product .col-1 .sizes .drop-menu .menu-content p:not(.active):hover {
+  background-color: var(--hover-bg);
+}
+.create-product .col-1 .colors .colors-config {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
 }
-.create-product form .col-1 .colors .colors-config input[type=color] {
+.create-product .col-1 .colors .colors-config input[type=color] {
   -webkit-appearance: none;
   border: 1px solid #c0c0c0;
   overflow: hidden;
@@ -81,31 +198,31 @@
   border-radius: 50%;
   cursor: pointer;
 }
-.create-product form .col-1 .colors .colors-config input[type=color]::-webkit-color-swatch-wrapper {
+.create-product .col-1 .colors .colors-config input[type=color]::-webkit-color-swatch-wrapper {
   padding: 0;
 }
-.create-product form .col-1 .colors .colors-config input[type=color]::-webkit-color-swatch {
+.create-product .col-1 .colors .colors-config input[type=color]::-webkit-color-swatch {
   border: none;
 }
-.create-product form .col-1 .colors .colors-config button {
+.create-product .col-1 .colors .colors-config button {
   padding: 10px;
   border: none;
-  color: var(--textSecondColor);
-  border: 1px solid var(--redColor);
-  background-color: var(--bodyWhite);
+  color: var(--second-text-color);
+  border: 1px solid var(--second-color);
+  background-color: var(--boxes-bg);
   border-radius: 5px;
   transition: all 0.3s;
 }
-.create-product form .col-1 .colors .colors-config button:hover {
-  background-color: var(--redColor);
-  color: var(--textColor);
+.create-product .col-1 .colors .colors-config button:hover {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
 }
-.create-product form .col-1 .colors .colors-config .display-colors {
+.create-product .col-1 .colors .colors-config .display-colors {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
-.create-product form .col-1 .colors .colors-config .display-colors > div {
+.create-product .col-1 .colors .colors-config .display-colors > div {
   position: relative;
   display: inline-flex;
   justify-content: center;
@@ -115,19 +232,19 @@
   border-radius: 50%;
   cursor: pointer;
 }
-.create-product form .col-1 .colors .colors-config .display-colors > div svg {
+.create-product .col-1 .colors .colors-config .display-colors > div svg {
   opacity: 0;
   transition: all 0.3s;
 }
-.create-product form .col-1 .colors .colors-config .display-colors > div:hover svg {
+.create-product .col-1 .colors .colors-config .display-colors > div:hover svg {
   opacity: 1;
   cursor: pointer;
   color: black;
 }
-.create-product form .col-1 button.submit {
-  background: var(--redColor);
+.create-product .col-1 button.submit {
+  background: var(--second-color);
   width: 100%;
-  color: var(--textColor);
+  color: var(--main-text-color);
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
@@ -138,43 +255,59 @@
   opacity: 0.9;
   transition: 0.3s;
 }
-.create-product form .col-1 button.submit:hover {
+.create-product .col-1 button.submit:hover {
   opacity: 1;
 }
-.create-product form .col-2 {
-  width: 30%;
+.create-product .col-2 {
   text-align: center;
+  flex: 1;
 }
-.create-product form .col-2 input {
+.create-product .col-2 input {
   display: none;
 }
-.create-product form .col-2 .img-error {
+.create-product .col-2 .img-error {
   display: flex;
   flex-direction: column;
   gap: 20px;
   position: relative;
 }
-.create-product form .col-2 .img-error .camera {
+.create-product .col-2 .img-error .camera {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   font-size: 25px;
-  color: var(--redColor);
+  color: var(--second-color);
   top: -12px;
   cursor: pointer;
 }
-.create-product form .col-2 .img-error img {
+.create-product .col-2 .img-error img {
   width: 200px;
   height: 200px;
   border: 1px solid #c0c0c0;
   border-radius: 50%;
-  box-shadow: 2px 2px 5px #c0c0c0;
+  box-shadow: var(--boxShadow);
   object-fit: contain;
   margin: auto;
 }
+.create-product .error {
+  color: var(--second-color);
+  background-color: transparent;
+  text-transform: lowercase;
+  width: fit-content;
+  margin: auto;
+  padding: 0;
+}
 
+@media (max-width: 991px) {
+  .create-product .col-1 {
+    width: 60%;
+  }
+  .create-product .col-2 {
+    width: 90%;
+  }
+}
 @media (max-width: 767px) {
-  .create-product form {
+  .create-product {
     margin-top: 10px;
     margin-bottom: 10px;
     position: relative;
@@ -183,10 +316,14 @@
     transform: translate(0, 0);
     flex-direction: column-reverse;
   }
-  .create-product form .col-1 {
+  .create-product .col-1 {
     width: 90%;
   }
-  .create-product form .col-2 {
+  .create-product .col-1 .sizes .drop-menu .select .input {
+    width: 70%;
+    gap: 1px;
+  }
+  .create-product .col-2 {
     width: 90%;
   }
 }

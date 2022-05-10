@@ -1,8 +1,8 @@
-import React, {createContext, useState} from "react";
+import React, { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
-const CartProvider = ({children}) => {
+const CartProvider = ({ children }) => {
 	// states
 	const [cart, setCart] = useState(sessionStorage.cart ? JSON.parse(sessionStorage.cart) : []);
 
@@ -17,13 +17,11 @@ const CartProvider = ({children}) => {
 			}
 		});
 		if (!productExist) {
-			cartClone.push({product, color, size, qty: 1});
+			cartClone.push({ product, color, size, qty: 1 });
 			// cartClone.push({...product, qty: 1, size: size, color: color});
 		}
 		setCart(cartClone);
 	};
-
-	console.log(cart);
 
 	// remove from cart
 	const removeFromCart = product => {

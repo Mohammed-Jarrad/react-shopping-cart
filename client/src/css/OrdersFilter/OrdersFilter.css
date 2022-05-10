@@ -1,6 +1,6 @@
 .orders-filter {
   border-radius: 10px;
-  background-color: var(--bkBlue);
+  background-color: var(--main-light-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,20 +17,20 @@
   align-items: center;
 }
 .orders-filter .item:not(:last-child) {
-  border-right: var(--border);
+  border-right: var(--main-border);
 }
 .orders-filter .item:hover {
   transition: 0.3s;
   font-weight: bold;
 }
 .orders-filter .All.active {
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
 }
 .orders-filter .Pending.active {
-  color: var(--mainColor);
+  color: #d4b039;
 }
 .orders-filter .Cancelled.active {
-  color: var(--redColor);
+  color: #ac3939;
 }
 .orders-filter .Delivered.active {
   color: green;
@@ -39,7 +39,7 @@
 .orders-filter .Cancelled,
 .orders-filter .Pending,
 .orders-filter .Delivered {
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
 }
 .orders-filter .All.active,
 .orders-filter .Cancelled.active,

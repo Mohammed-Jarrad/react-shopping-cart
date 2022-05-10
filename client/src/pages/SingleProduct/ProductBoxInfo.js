@@ -1,18 +1,15 @@
-import React, {useContext, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import SuccessMsg from "../../components/SuccessMsg/SuccessMsg";
-import {CartContext} from "../../Context/CartProvider";
-import {HomeContext} from "../../Context/HomeProvider";
-import {UserContext} from "../../Context/UserProvider";
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
+import { CartContext } from '../../Context/CartProvider';
+import { HomeContext } from '../../Context/HomeProvider';
+import { UserContext } from '../../Context/UserProvider';
 
-const ProductBoxInfo = ({product, setShowCustomise}) => {
+const ProductBoxInfo = ({ setShowCustomise }) => {
 	// context
-	const {user} = useContext(UserContext);
-	const {addToCart} = useContext(CartContext);
-	const {discountPrice, finalPrice} = useContext(HomeContext);
-	// variables
-	const navigate = useNavigate();
-	console.log(product);
+	const { user } = useContext(UserContext);
+	const { addToCart } = useContext(CartContext);
+	const { product, discountPrice, finalPrice } = useContext(HomeContext);
 	// states
 	const [alertAdded, setAlertAdded] = useState(false);
 
@@ -21,14 +18,20 @@ const ProductBoxInfo = ({product, setShowCustomise}) => {
 		if (product.sizes.length || product.colors.length) {
 			setShowCustomise(true);
 		} else {
-			addToCart(product, "", "");
+			addToCart(product, '', '');
 			setAlertAdded(true);
 		}
 	};
 	return (
 		<div className="product-information">
 			<p className="desc">
-				<span>{product.desc}</span>
+				<span>
+					{product.desc.split('\n').map((item, i) => (
+						<span style={{ display: 'block' }} key={i}>
+							{item}
+						</span>
+					))}
+				</span>
 			</p>
 
 			<div className="product-info-box">
@@ -52,11 +55,6 @@ const ProductBoxInfo = ({product, setShowCustomise}) => {
 					<span>{product.category}</span>
 				</div>
 
-				<div className="count">
-					In Stock
-					<span>{product.countInStock}</span>
-				</div>
-
 				<>
 					{product.sizes.length ? (
 						<div className="sizes">
@@ -77,7 +75,7 @@ const ProductBoxInfo = ({product, setShowCustomise}) => {
 							<div className="items">
 								{product.colors
 									? product.colors.map((color, i) => (
-											<span style={{backgroundColor: `${color}`}} key={i}></span>
+											<span style={{ backgroundColor: `${color}` }} key={i}></span>
 									  ))
 									: null}
 							</div>
@@ -95,12 +93,12 @@ const ProductBoxInfo = ({product, setShowCustomise}) => {
 					</div>
 				) : (
 					<div className="login-msg">
-						Please <Link to={"/login"}>Login</Link> to Add Your Product to Cart!
+						Please <Link to={'/login'}>Login</Link> to Add Your Product to Cart!
 					</div>
 				)}
 			</>
 
-			<SuccessMsg msg={"Done !"} open={alertAdded} setOpen={setAlertAdded} />
+			<SuccessMsg msg={'Done !'} open={alertAdded} setOpen={setAlertAdded} />
 		</div>
 	);
 };

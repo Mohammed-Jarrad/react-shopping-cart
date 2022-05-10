@@ -1,27 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useContext, useEffect, useRef, useState} from "react";
-import "../../css/UpdateProductForm/UpdateProductForm.css";
-import {inputsInfo} from "../CreateProduct/CreateProduct";
-import UpdateInput from "../UpdateProduct/UpdateInput";
-import {HomeContext} from "../../Context/HomeProvider";
-import mainMethods from "../../utils/mainMethods";
-import SizesOptions from "../UpdateProduct/SizesOptions";
-import ColorsOptions from "../UpdateProduct/ColorsOptions";
-import Loading from "../../components/Loading/Loading";
-import {useNavigate, useParams} from "react-router-dom";
-import {hex2rgb} from "../CreateProduct/ColorInput";
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import '../../css/UpdateProductForm/UpdateProductForm.css';
+import { inputsInfo } from '../CreateProduct/CreateProduct';
+import UpdateInput from '../UpdateProduct/UpdateInput';
+import { HomeContext } from '../../Context/HomeProvider';
+import mainMethods from '../../utils/mainMethods';
+import SizesOptions from '../UpdateProduct/SizesOptions';
+import ColorsOptions from '../UpdateProduct/ColorsOptions';
+import Loading from '../../components/Loading/Loading';
+import { useParams } from 'react-router-dom';
+import { hex2rgb } from '../CreateProduct/ColorInput';
+import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
 
 const UpdateProductForm = () => {
 	// variables
 	const id = useParams().id;
-	const navigate = useNavigate();
 	//context
-	const {removeProduct, getProduct, product} = useContext(HomeContext);
+	const { getProduct, product } = useContext(HomeContext);
 	// state
-	const [productImage, setProductImage] = useState();
+	const [productImage, setProductImage] = useState('');
 	const [inputsValues, setInputsValues] = useState({});
 	const [sizes, setSizes] = useState([]);
 	const [colors, setColors] = useState([]);
+	const [alertUpdatedDone, setAlertUpdatedDone] = useState(false);
 	//ref
 	const inputFileRef = useRef();
 	const colorRef = useRef();
@@ -29,8 +30,16 @@ const UpdateProductForm = () => {
 	/// get product =>
 	useEffect(() => {
 		getProduct(id);
-		setProductImage(product.imageUrl);
-	}, [product]);
+	}, []);
+
+	useEffect(() => {
+		if (product._id === id) {
+			setProductImage(product.imageUrl);
+			setColors(product.colors);
+			setSizes(product.sizes);
+			console.log(product);
+		}
+	}, [id, product]);
 
 	// get path of image
 	const getPathOfImg = e => {
@@ -44,13 +53,13 @@ const UpdateProductForm = () => {
 	};
 	// handle change input
 	const handleChangeInput = e => {
-		setInputsValues(prev => ({...prev, [e.target.name]: e.target.value}));
+		setInputsValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
 	};
 	// handle click size
 	const handleClickSize = e => {
 		const size = e.target.textContent.toLowerCase();
 
-		if (e.target.classList.contains("active")) {
+		if (e.target.classList.contains('active')) {
 			const sizesClone = [...sizes];
 			sizesClone.splice(sizes.indexOf(size), 1);
 			setSizes(sizesClone);
@@ -59,7 +68,7 @@ const UpdateProductForm = () => {
 			sizesClone.push(size);
 			setSizes(sizesClone);
 		}
-		e.target.classList.toggle("active");
+		e.target.classList.toggle('active');
 	};
 
 	// handle Click Color
@@ -91,8 +100,8 @@ const UpdateProductForm = () => {
 			category: inputsValues.category ? inputsValues.category : product.category,
 			desc: inputsValues.desc ? inputsValues.desc : product.desc,
 			price: inputsValues.price ? inputsValues.price : product.price,
-			sizes: sizes.length ? sizes : [...product.sizes],
-			colors: colors.length ? colors : [...product.colors],
+			sizes: sizes,
+			colors: colors,
 			countInStock: inputsValues.countInStock ? inputsValues.countInStock : product.countInStock,
 			discount: inputsValues.discount ? inputsValues.discount : product.discount,
 		};
@@ -100,7 +109,8 @@ const UpdateProductForm = () => {
 		try {
 			const data = await mainMethods.UpdateProduct(product._id, UpdatedProduct);
 			if (data.product) {
-				navigate("/update-product");
+				getProduct(id);
+				setAlertUpdatedDone(true);
 			}
 		} catch (error) {
 			console.log(error);
@@ -116,9 +126,9 @@ const UpdateProductForm = () => {
 						<input
 							type="file"
 							ref={inputFileRef}
-							accept={"image/jpg"}
+							accept={'image/jpg'}
 							onChange={getPathOfImg}
-							style={{display: "none"}}
+							style={{ display: 'none' }}
 						/>
 						<button
 							onClick={e => {
@@ -147,12 +157,12 @@ const UpdateProductForm = () => {
 							})}
 						</div>
 
-						<SizesOptions handleClickSize={handleClickSize} product={product} />
+						<SizesOptions handleClickSize={handleClickSize} sizes={sizes} />
 
 						<ColorsOptions
 							colorRef={colorRef}
-							handleClickColor={handleClickColor}
 							colors={colors}
+							handleClickColor={handleClickColor}
 							removeColor={removeColor}
 						/>
 
@@ -164,6 +174,8 @@ const UpdateProductForm = () => {
 			) : (
 				<Loading open={true} />
 			)}
+
+			<SuccessMsg open={alertUpdatedDone} setOpen={setAlertUpdatedDone} msg="Updated Done !" />
 		</>
 	);
 };

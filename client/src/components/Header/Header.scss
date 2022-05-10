@@ -21,7 +21,7 @@ header {
 
 			> a {
 				text-transform: none;
-				color: var(--textColor);
+				color: var(--main-text-color);
 				text-decoration: none;
 				font-size: 20px;
 				display: flex;
@@ -36,7 +36,7 @@ header {
 			}
 			.admin {
 				span {
-					color: var(--textColor);
+					color: var(--main-text-color);
 					padding: 10px;
 					font-size: 22px;
 					cursor: pointer;
@@ -63,9 +63,9 @@ header {
 						width: 100%;
 						display: block;
 						padding: 10px;
-						background-color: var(--redColor);
+						background-color: var(--second-color);
 						text-decoration: none;
-						color: var(--textColor);
+						color: var(--main-text-color);
 						display: block;
 						font-weight: bold;
 						position: relative;
@@ -80,6 +80,47 @@ header {
 
 		nav {
 			display: flex;
+			li {
+				color: var(--main-text-color);
+			}
+
+			.theme-toggle {
+				cursor: pointer;
+				background-color: #111;
+				border-radius: 60px;
+				width: 60px;
+				height: 26px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 5px;
+				margin-left: 10px;
+				position: relative;
+				.circle {
+					position: absolute;
+					width: 22px;
+					height: 22px;
+					background-color: white;
+					border-radius: 50%;
+					top: 2px;
+					left: 2px;
+					transition: 0.3s;
+					&.move-right {
+						transform: translateX(34px);
+					}
+				}
+				svg {
+					width: 18px;
+					height: 18px;
+					&.sun {
+						color: #f39c12;
+					}
+					&.moon {
+						color: #f1c40f;
+					}
+				}
+			}
+
 			// TODO: main ul
 			.main-list {
 				list-style: none;
@@ -90,11 +131,15 @@ header {
 					align-items: center;
 					transition: all 0.3s;
 					position: relative;
+
+					&.theme {
+					}
+
 					> a {
 						display: flex;
 						align-items: center;
 						gap: 5px;
-						color: var(--textColor);
+						color: var(--main-text-color);
 						text-decoration: none;
 						padding: 10px;
 						position: relative;
@@ -105,8 +150,8 @@ header {
 							position: relative;
 							span {
 								position: absolute;
-								background-color: var(--redColor);
-								color: var(--textColor);
+								background-color: var(--second-color);
+								color: var(--main-text-color);
 								width: 15px;
 								height: 15px;
 								display: flex;
@@ -121,21 +166,21 @@ header {
 							font-size: 20px;
 						}
 						&::after {
-							content: "";
+							content: '';
 							position: absolute;
 							left: 50%;
 							top: 50%;
 							transform: translate(-50%, -50%) scale(0);
 							width: 100%;
 							height: 100%;
-							background-color: var(--redColor);
+							background-color: var(--second-color);
 							z-index: -1;
 							transition: 0.4s;
 						}
 						&:not(.login):not(.signup) {
 							&:hover,
 							&.active {
-								color: var(--textColor);
+								color: var(--main-text-color);
 								font-weight: bold;
 								border-radius: 20px;
 								&::after {
@@ -144,11 +189,10 @@ header {
 								}
 								&.cart-link > span {
 									transition: 0.3s;
-									background-color: var(--bodyWhite);
-									color: var(--redColor);
+									background-color: #fff;
+									color: #333;
 									position: relative;
 									display: flex;
-									font-size: 17px;
 									padding: 10px;
 								}
 							}
@@ -161,7 +205,7 @@ header {
 							}
 							&:hover,
 							&.active {
-								color: var(--textColor);
+								color: var(--main-text-color);
 								font-weight: bold;
 								&::after {
 									transform: translate(-50%, -50%) scale(1);
@@ -176,12 +220,12 @@ header {
 							height: 40px;
 							cursor: pointer;
 							border-radius: 50%;
-							object-fit: cover;
+							object-fit: contain;
 						}
 						.menu-content {
 							padding: 10px;
 							transition: all 0.3s;
-							background-color: var(--bodyWhite);
+							background-color: var(--boxes-bg);
 							position: absolute;
 							right: 0;
 							top: 55px;
@@ -197,21 +241,21 @@ header {
 								display: flex;
 								align-items: center;
 								gap: 15px;
-								color: var(--textSecondColor);
+								color: var(--second-text-color);
 								text-decoration: none;
 								padding: 10px;
 								z-index: 1;
 								transition: 0.5s;
 								&:not(:last-child) {
-									border-bottom: 1px solid var(--textColor);
+									border-bottom: 1px solid var(--main-text-color);
 								}
 								svg {
 									font-size: 25px;
 									transition: all 0.5s;
-									color: var(--redColor);
+									color: var(--second-color);
 								}
 								&:hover {
-									background-color: var(--bkBlue);
+									background-color: var(--main-light-bg);
 								}
 							}
 						}
@@ -243,14 +287,14 @@ header {
 					cursor: pointer;
 					cursor: pointer;
 					svg {
-						fill: var(--textColor);
+						fill: var(--main-text-color);
 						font-size: 20px;
 						transition: all 0.3s;
 					}
 				}
 
 				.responsive-list {
-					background-color: var(--bodyWhite);
+					background-color: var(--boxes-bg);
 					width: 300px;
 					transform: scale(0);
 					box-shadow: var(--boxShadowStrong);
@@ -260,9 +304,11 @@ header {
 					left: -320px;
 					display: flex;
 					flex-direction: column;
-					color: var(--textSecondColor);
+					color: var(--second-text-color);
 					transition: all 0.5s;
 					padding: 10px;
+
+					border: var(--boxes-border);
 
 					&.move {
 						transform: scale(1);
@@ -271,35 +317,18 @@ header {
 					> div {
 						transition: 0.3s;
 						&:not(:first-child) {
-							border-top: var(--border);
+							border-top: var(--main-border);
 						}
 
 						a {
 							display: flex;
 							align-items: center;
-							color: var(--textSecondColor);
+							color: var(--second-text-color);
 							text-decoration: none;
 							padding: 5px 10px;
-							.cart-link {
-								position: relative;
-								span {
-									background-color: var(--redColor);
-									width: 15px;
-									height: 15px;
-									display: flex;
-									justify-content: center;
-									align-items: center;
-									border-radius: 50%;
-									color: var(--textColor);
-									position: absolute;
-									top: -10px;
-									right: -10px;
-									padding: 7px;
-									font-size: 12px;
-								}
-							}
+
 							&:hover {
-								background-color: var(--bkBlue);
+								background-color: var(--main-light-bg);
 							}
 						}
 						svg {
@@ -315,16 +344,24 @@ header {
 								width: 50px;
 								height: 50px;
 								border-radius: 50%;
-								object-fit: contain;
+								object-fit: cover;
 							}
 						}
 						svg {
 							transform: rotate(180deg);
 							&:hover {
-								color: var(--secondColor);
+								color: var(--hover-bg);
 								filter: brightness(1.5);
 							}
 						}
+					}
+
+					.theme {
+						width: 100%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						padding: 10px;
 					}
 
 					.basic-ul {
@@ -341,7 +378,25 @@ header {
 							font-weight: bold;
 							transition: all 0.3s;
 							svg {
-								color: var(--mainColor);
+								color: var(--second-text-color);
+							}
+							.cart-link {
+								position: relative;
+								span {
+									background-color: var(--second-color);
+									width: 15px;
+									height: 15px;
+									display: flex;
+									justify-content: center;
+									align-items: center;
+									border-radius: 50%;
+									color: var(--main-text-color);
+									position: absolute;
+									top: -10px;
+									right: -10px;
+									padding: 7px;
+									font-size: 12px;
+								}
 							}
 						}
 					}
@@ -352,7 +407,7 @@ header {
 							justify-content: space-between;
 							font-weight: bold;
 							svg {
-								color: var(--redColor);
+								color: var(--second-color);
 							}
 						}
 					}

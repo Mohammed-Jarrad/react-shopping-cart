@@ -3,7 +3,7 @@
 	margin: 20px auto;
 
 	.location-info {
-		background-color: var(--bkBlue);
+		background-color: var(--main-light-bg);
 		padding: 10px;
 		border-radius: 20px;
 		display: flex;
@@ -24,12 +24,12 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				background-color: var(--redColor);
+				background-color: var(--second-color);
 				border-radius: 50%;
 				margin: auto;
 				svg {
 					font-size: 20px;
-					color: var(--bkRed);
+					color: #fff;
 				}
 			}
 
@@ -37,7 +37,7 @@
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				color: var(--textSecondColor);
+				color: var(--second-text-color);
 			}
 		}
 	}
@@ -55,7 +55,7 @@
 			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 			gap: 10px;
 			.product-item {
-				background-color: var(--bodyWhite);
+				background-color: var(--boxes-bg);
 				border-radius: 10px;
 				box-shadow: var(--boxShadow);
 				display: flex;
@@ -82,8 +82,8 @@
 						position: relative;
 
 						.product-discount {
-							background-color: var(--redColor);
-							color: var(--textColor);
+							background-color: var(--second-color);
+							color: var(--main-text-color);
 							width: -moz-fit-content;
 							width: fit-content;
 							font-size: 13px;
@@ -114,7 +114,7 @@
 						flex-direction: column;
 						gap: 5px;
 						align-items: center;
-						border-left: var(--border);
+						border-left: var(--main-border);
 						> div {
 							width: 100%;
 							padding: 5px;
@@ -122,7 +122,7 @@
 							justify-content: space-between;
 							align-items: center;
 							&:not(:last-child) {
-								border-bottom: var(--border);
+								border-bottom: var(--main-border);
 							}
 						}
 					}
@@ -130,8 +130,8 @@
 
 				button {
 					border: none;
-					background-color: var(--redColor);
-					color: var(--textColor);
+					background-color: var(--second-color);
+					color: var(--main-text-color);
 					width: 100%;
 					padding: 5px;
 					font-weight: bold;
@@ -143,7 +143,7 @@
 		.single-order-total-box {
 			width: 450px;
 			.price-info {
-				// border: var(--border);
+				// border: var(--main-border);
 				box-shadow: var(--boxShadow);
 				border-radius: 10px;
 				overflow: hidden;
@@ -152,9 +152,9 @@
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
-					background-color: var(--bodyWhite);
+					background-color: var(--boxes-bg);
 					&:not(:last-child) {
-						border-bottom: var(--border);
+						border-bottom: var(--main-border);
 					}
 					span {
 						font-size: 17px;
@@ -162,14 +162,90 @@
 					.title {
 						font-weight: bold;
 						letter-spacing: -1px;
-						color: var(--textSecondColor);
+						color: var(--second-text-color);
 					}
 
 					&.total {
-						background-color: var(--bkBlue);
-						color: var(--redColor);
+						background-color: var(--main-light-bg);
+						color: var(--second-color);
 						.title {
-							color: var(--redColor);
+							color: var(--second-color);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.single-order-status {
+		margin-top: 20px;
+		.status {
+			border: var(--main-border);
+			background-color: var(--boxes-bg);
+			padding: 10px 20px;
+			border-radius: 20px;
+			box-shadow: var(--boxShadow);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.info {
+				font-weight: bold;
+				.Pending {
+					color: rgb(212, 176, 57);
+				}
+				.Cancelled {
+					color: rgb(172, 57, 57);
+				}
+				.Delivered {
+					color: green;
+				}
+			}
+
+			.change {
+				position: relative;
+				.icon {
+					width: 40px;
+					height: 40px;
+					border-radius: 50%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					transition: 0.3s;
+					svg {
+						color: var(--second-color);
+						font-size: 17px;
+					}
+					&:hover {
+						cursor: pointer;
+						background-color: var(--hover-bg);
+						box-shadow: var(--boxShadow);
+					}
+				}
+				.drop-menu {
+					max-height: 0;
+					opacity: 0;
+					overflow: hidden;
+					transition: 0.3s;
+					position: absolute;
+					top: -70px;
+					right: 45px;
+					background-color: var(--boxes-bg);
+					box-shadow: var(--boxShadow);
+					border-radius: 10px;
+					border: var(--boxes-border);
+					width: 150px;
+					&.show-menu {
+						max-height: 500px;
+						opacity: 1;
+					}
+					.item {
+						padding: 10px;
+						cursor: pointer;
+						transition: 0.3s;
+						color: var(--second-text-color);
+						&:hover {
+							background-color: var(--hover-bg);
 						}
 					}
 				}

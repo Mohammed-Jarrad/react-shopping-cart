@@ -1,21 +1,28 @@
-import React, {useContext} from "react";
-import {HomeContext} from "../../Context/HomeProvider";
+import React, { useContext } from "react";
+import { HomeContext } from "../../Context/HomeProvider";
 
-const SingleOrderTotalBox = ({order}) => {
+const SingleOrderTotalBox = ({ order }) => {
 	//context
-	const {discountPrice} = useContext(HomeContext);
+	const { discountPrice } = useContext(HomeContext);
 	// variable
 	const discountTotal = order.order_info.reduce((acc, item) => {
 		return acc + discountPrice(item.product) * item.quantity;
 	}, 0);
+
 	const originTotal = order.order_info.reduce((acc, item) => {
 		return acc + item.product.price * item.quantity;
 	}, 0);
+
 	const tax = 10;
 
 	return (
 		<div className="single-order-total-box">
 			<div className="price-info">
+				<div>
+					<span className="title">Created At</span>
+					<span>{order.createdAt.split("T")[0]}</span>
+				</div>
+
 				<div>
 					<span className="title">Origin Price</span>
 					<span>${originTotal}</span>

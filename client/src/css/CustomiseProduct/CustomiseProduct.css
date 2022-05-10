@@ -1,12 +1,13 @@
 .customise-product {
-  background-color: var(--bodyWhite);
+  margin-top: 20px;
+  background-color: var(--boxes-bg);
   padding: 10px;
   border-radius: 20px;
   box-shadow: var(--boxShadow);
 }
 .customise-product .heading {
   padding: 5px;
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
   width: fit-content;
   margin: 0 auto 20px;
 }
@@ -29,21 +30,21 @@
 }
 .customise-product .sizes-content .size-item,
 .customise-product .colors-content .size-item {
-  border: var(--border);
+  border: var(--main-border);
   padding: 5px 10px;
   cursor: pointer;
 }
 .customise-product .sizes-content .size-item.active,
 .customise-product .colors-content .size-item.active {
-  background-color: var(--redColor);
-  color: var(--textColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
   border: none;
 }
 .customise-product .sizes-content .color-item,
 .customise-product .colors-content .color-item {
   width: 40px;
   height: 40px;
-  border: var(--border);
+  border: var(--main-border);
   border-radius: 50%;
   cursor: pointer;
 }
@@ -61,7 +62,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: var(--border);
+  border: var(--main-border);
   padding: 5px 10px;
 }
 .customise-product .chosen-size-color div span {
@@ -75,15 +76,15 @@
 .customise-product .chosen-size-color div span.chosen-color {
   border-radius: 50%;
   margin-left: 5px;
-  border: var(--border);
+  border: var(--main-border);
 }
 .customise-product .submit {
   border: none;
   width: 100%;
   padding: 10px;
   border-radius: 10px;
-  background-color: var(--redColor);
-  color: var(--textColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;

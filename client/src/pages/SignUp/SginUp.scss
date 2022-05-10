@@ -7,8 +7,9 @@ form.sign-content {
 
 	.sign-box {
 		width: 350px;
-		background: var(--bodyWhite);
+		background: var(--boxes-bg);
 		border-radius: 20px;
+		border: var(--boxes-border);
 		overflow: hidden;
 		box-shadow: var(--boxShadow);
 		transition: all 0.5s;
@@ -37,7 +38,7 @@ form.sign-content {
 					transform: translateX(-50%);
 					font-size: 30px;
 					opacity: 0.6;
-					color: var(--redColor);
+					color: var(--second-color);
 					transition: all 0.3s;
 					&:hover {
 						color: var(--mainColor);
@@ -53,17 +54,17 @@ form.sign-content {
 				align-items: center;
 				label {
 					width: 90px;
-					color: var(--textSecondColor);
+					color: var(--second-text-color);
 				}
 				input {
 					flex: 1;
 					padding: 7px 10px;
 					border: none;
-					background-color: var(--bodyColor);
+					background-color: var(--body-color);
 					border-radius: 5px;
-					border: var(--border);
+					border: var(--main-border);
 					transition: 0.3s;
-					caret-color: var(--redColor);
+					caret-color: var(--second-color);
 					&:focus {
 						outline: none;
 						padding-left: 13px;
@@ -81,7 +82,7 @@ form.sign-content {
 				.error {
 					padding: 0;
 					background-color: transparent;
-					color: var(--redColor);
+					color: var(--second-color);
 					font-size: 13px;
 				}
 			}
@@ -92,16 +93,16 @@ form.sign-content {
 					position: absolute;
 					right: 17px;
 					&.fill-eye {
-						color: var(--redColor);
+						color: var(--second-color);
 					}
 				}
 			}
 		}
 
 		button {
-			background: var(--redColor);
+			background: var(--second-color);
 			width: 100%;
-			color: var(--textColor);
+			color: var(--main-text-color);
 			border: none;
 			padding: 10px 20px;
 			margin-top: 20px;
@@ -118,7 +119,7 @@ form.sign-content {
 	}
 
 	.or-option {
-		color: var(--textColor);
+		color: var(--main-text-color);
 		position: relative;
 		span {
 			width: 30px;
@@ -127,7 +128,7 @@ form.sign-content {
 			justify-content: center;
 			align-items: center;
 			margin: auto;
-			background-color: var(--mainColor);
+			background-color: var(--second-color);
 			border-radius: 50%;
 			font-weight: bold;
 			&::before {
@@ -138,7 +139,7 @@ form.sign-content {
 				width: 1px;
 				height: 120px;
 				top: 30px;
-				background-color: var(--mainColor);
+				background-color: var(--second-color);
 			}
 			&::after {
 				content: '';
@@ -148,7 +149,7 @@ form.sign-content {
 				width: 1px;
 				height: 120px;
 				bottom: 30px;
-				background-color: var(--mainColor);
+				background-color: var(--second-color);
 			}
 		}
 	}

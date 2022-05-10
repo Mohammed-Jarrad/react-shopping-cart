@@ -48,30 +48,18 @@ const Orders = () => {
 
 						{ordersForUser.map(order => (
 							<div className="order-information" key={order._id}>
-								<div className="main-order">
-									<div className="order">{order.user.name["first_name"]}</div>
+								<div className="order">{order.user.name["first_name"]}</div>
 
-									<div className="price">
-										$ {order.order_info.reduce((a, item) => a + item.product.price * item.quantity, 0)}
-									</div>
-
-									<div className="delete" onClick={() => removeOrder(order._id)}>
-										<AiOutlineDelete />
-									</div>
-
-									<div
-										data-id={order._id}
-										className={`show-more`}
-										onClick={e => {
-											navigate(`/order/${order._id}`);
-										}}
-									>
-										<BsArrowRightShort />
-									</div>
+								<div className="price">
+									$ {order.order_info.reduce((a, item) => a + item.product.price * item.quantity, 0)}
 								</div>
 
-								<div data-id={order._id} className={`order-details`}>
-									<OrderDetails order={order} />
+								<div className="delete" onClick={() => removeOrder(order._id)}>
+									<AiOutlineDelete />
+								</div>
+
+								<div className={`show-more`} onClick={e => navigate(`/order/${order._id}`)}>
+									<BsArrowRightShort />
 								</div>
 							</div>
 						))}
@@ -80,6 +68,7 @@ const Orders = () => {
 					<>{loading ? null : <NoOrders />}</>
 				)}
 			</div>
+
 			<Loading open={loading} setOpen={setLoading} />
 			<SuccessMsg open={alertDeleteOrder} setOpen={setAlertDeleteOrder} msg={"Deleted Success !"} />
 		</React.Fragment>

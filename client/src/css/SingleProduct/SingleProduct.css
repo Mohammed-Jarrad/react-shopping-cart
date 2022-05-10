@@ -2,11 +2,11 @@
   grid-area: main;
   margin: 20px auto;
 }
-.single-product .title {
+.single-product > .title {
   margin-bottom: 10px;
   text-transform: capitalize;
   text-align: center;
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
   font-weight: bold;
   font-size: 30px;
 }
@@ -39,8 +39,8 @@
   padding: 10px;
 }
 .single-product .main-content .product-information .product-info-box {
-  border: var(--border);
-  background-color: var(--bodyWhite);
+  border: var(--main-border);
+  background-color: var(--boxes-bg);
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
@@ -52,10 +52,10 @@
   font-weight: bold;
 }
 .single-product .main-content .product-information .product-info-box > div:not(:last-child) {
-  border-bottom: var(--border);
+  border-bottom: var(--main-border);
 }
 .single-product .main-content .product-information .product-info-box > div span {
-  color: var(--mainColor);
+  color: var(--second-text-color);
 }
 .single-product .main-content .product-information .product-info-box .sizes,
 .single-product .main-content .product-information .product-info-box .colors {
@@ -72,10 +72,10 @@
 }
 .single-product .main-content .product-information .product-info-box .sizes .items span,
 .single-product .main-content .product-information .product-info-box .colors .items span {
-  border: var(--border);
+  border: var(--main-border);
   width: 32px;
   height: 32px;
-  color: var(--mainColor);
+  color: var(--second-text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,16 +90,86 @@
   overflow: hidden;
 }
 .single-product .main-content .modal-options .add {
-  background-color: var(--redColor);
+  background-color: var(--second-color);
   width: 100%;
   border: none;
   padding: 10px;
   font-size: 17px;
-  color: var(--textColor);
+  color: var(--main-text-color);
   transition: all 0.3s;
 }
 .single-product .main-content .modal-options .add:hover {
   filter: brightness(1.1);
+}
+.single-product .single-product-status {
+  margin-top: 20px;
+}
+.single-product .single-product-status .status {
+  border: var(--main-border);
+  background-color: var(--boxes-bg);
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: var(--boxShadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.single-product .single-product-status .status .info {
+  font-weight: bold;
+}
+.single-product .single-product-status .status .info .Available {
+  color: green;
+}
+.single-product .single-product-status .status .info .Not {
+  color: red;
+}
+.single-product .single-product-status .status .change {
+  position: relative;
+}
+.single-product .single-product-status .status .change .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.single-product .single-product-status .status .change .icon svg {
+  color: var(--second-color);
+  font-size: 17px;
+}
+.single-product .single-product-status .status .change .icon:hover {
+  cursor: pointer;
+  background-color: var(--hover-bg);
+  box-shadow: var(--boxShadow);
+}
+.single-product .single-product-status .status .change .drop-menu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.3s;
+  position: absolute;
+  top: 0;
+  right: 45px;
+  background-color: var(--boxes-bg);
+  box-shadow: var(--boxShadow);
+  border-radius: 10px;
+  border: var(--main-border);
+  width: 150px;
+}
+.single-product .single-product-status .status .change .drop-menu.show-menu {
+  max-height: 500px;
+  opacity: 1;
+}
+.single-product .single-product-status .status .change .drop-menu .item {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: var(--second-text-color);
+}
+.single-product .single-product-status .status .change .drop-menu .item:hover {
+  background-color: var(--hover-bg);
 }
 
 @media (max-width: 767px) {

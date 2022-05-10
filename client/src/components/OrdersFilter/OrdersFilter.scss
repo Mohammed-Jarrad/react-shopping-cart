@@ -1,6 +1,6 @@
 .orders-filter {
 	border-radius: 10px;
-	background-color: var(--bkBlue);
+	background-color: var(--main-light-bg);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -16,7 +16,7 @@
 		justify-content: center;
 		align-items: center;
 		&:not(:last-child) {
-			border-right: var(--border);
+			border-right: var(--main-border);
 		}
 		&:hover {
 			transition: 0.3s;
@@ -25,17 +25,17 @@
 	}
 	.All {
 		&.active {
-			color: var(--textSecondColor);
+			color: var(--second-text-color);
 		}
 	}
 	.Pending {
 		&.active {
-			color: var(--mainColor);
+			color: rgb(212, 176, 57);
 		}
 	}
 	.Cancelled {
 		&.active {
-			color: var(--redColor);
+			color: rgb(172, 57, 57);
 		}
 	}
 	.Delivered {
@@ -47,7 +47,7 @@
 	.Cancelled,
 	.Pending,
 	.Delivered {
-		color: var(--textSecondColor);
+		color: var(--second-text-color);
 		&.active {
 			transition: 0.3s;
 			font-weight: bold;

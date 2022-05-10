@@ -4,12 +4,13 @@
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	gap: 15px;
 	.product-item {
-		background-color: var(--bodyWhite);
+		background-color: var(--boxes-bg);
 		box-shadow: 0px 1px 3px rgb(3 0 71 / 9%);
 		overflow: hidden;
 		border-radius: 10px;
 		text-align: center;
 		transition: 0.3s;
+		border: var(--boxes-border);
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -19,8 +20,8 @@
 		}
 
 		.product-discount {
-			background-color: var(--redColor);
-			color: var(--textColor);
+			background-color: var(--second-color);
+			color: var(--main-text-color);
 			transform: rotate(-45deg);
 			position: absolute;
 			padding: 2px;
@@ -35,24 +36,24 @@
 			max-width: 100%;
 			margin: auto;
 			cursor: pointer;
-			padding: var(--padding);
+			padding: var(--main-padding);
 		}
 		.product-desc {
 			.title {
-				color: var(--textSecondColor);
+				color: var(--second-text-color);
 				text-transform: capitalize;
-				padding: var(--padding);
+				padding: var(--main-padding);
 				text-align: left;
 			}
 			.price-add {
-				padding: var(--padding);
+				padding: var(--main-padding);
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				color: var(--redColor);
+				color: var(--second-color);
 				.add {
 					border-radius: 5px;
-					border: 1px solid var(--redColor);
+					border: 1px solid var(--second-color);
 					display: flex;
 					justify-content: center;
 					align-items: center;
@@ -63,8 +64,8 @@
 						transform: scale(0.93);
 					}
 					&.add:hover {
-						background-color: var(--redColor);
-						color: var(--textColor);
+						background-color: var(--second-color);
+						color: var(--main-text-color);
 					}
 				}
 
@@ -77,7 +78,7 @@
 				// 	.origin-price {
 				// 		text-decoration: line-through;
 				// 		border: none;
-				// 		color: var(--light-txt);
+				// 		color: var(--text-color-light);
 				// 	}
 				// 	.discount-price {
 				// 		margin-right: 5px;

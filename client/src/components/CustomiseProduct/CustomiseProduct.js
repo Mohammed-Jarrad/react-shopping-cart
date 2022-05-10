@@ -1,40 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {Alert} from "@mui/material";
-import React, {useContext, useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
-import {CartContext} from "../../Context/CartProvider";
-import {HomeContext} from "../../Context/HomeProvider";
-import "../../css/CustomiseProduct/CustomiseProduct.css";
-import SuccessMsg from "../SuccessMsg/SuccessMsg";
+import { Alert } from '@mui/material';
+import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../../Context/CartProvider';
+import { HomeContext } from '../../Context/HomeProvider';
+import '../../css/CustomiseProduct/CustomiseProduct.css';
+import SuccessMsg from '../SuccessMsg/SuccessMsg';
 
 const CustomiseProduct = () => {
 	//context
-	const {addToCart} = useContext(CartContext);
-	const {product, chosenSize, chosenColor, setChosenColor, setChosenSize} = useContext(HomeContext);
+	const { addToCart } = useContext(CartContext);
+	const { product, chosenSize, chosenColor, setChosenColor, setChosenSize } = useContext(HomeContext);
 	//states
 	const [showDoneAdded, setShowDoneAdded] = useState(false);
 	//variables
 	const productSizes = product.sizes ? [...product.sizes] : [];
 	const productColors = product.colors ? [...product.colors] : [];
-	const navigate = useNavigate();
 	//states
 	const [alertMsg, setAlertMsg] = useState(false);
 
 	// handleClickSize
 	const handleClickSize = e => {
 		const target = e.currentTarget;
-		const allSizes = document.getElementsByClassName("size-item");
-		Object.values(allSizes).forEach(div => div.classList.remove("active"));
-		target.classList.add("active");
+		const allSizes = document.getElementsByClassName('size-item');
+		Object.values(allSizes).forEach(div => div.classList.remove('active'));
+		target.classList.add('active');
 		setChosenSize(target.textContent);
 		setAlertMsg(false);
 	};
 	// handleClickColor
 	const handleClickColor = e => {
 		const target = e.currentTarget;
-		const allColors = document.getElementsByClassName("color-item");
-		Object.values(allColors).forEach(div => div.classList.remove("active"));
-		target.classList.add("active");
+		const allColors = document.getElementsByClassName('color-item');
+		Object.values(allColors).forEach(div => div.classList.remove('active'));
+		target.classList.add('active');
 		setChosenColor(target.style.background);
 		setAlertMsg(false);
 	};
@@ -49,12 +48,12 @@ const CustomiseProduct = () => {
 	};
 	//
 	useEffect(() => {
-		setChosenColor("");
-		setChosenSize("");
-		const allSizes = document.getElementsByClassName("size-item");
-		Object.values(allSizes).forEach(div => div.classList.remove("active"));
-		const allColors = document.getElementsByClassName("color-item");
-		Object.values(allColors).forEach(div => div.classList.remove("active"));
+		setChosenColor('');
+		setChosenSize('');
+		const allSizes = document.getElementsByClassName('size-item');
+		Object.values(allSizes).forEach(div => div.classList.remove('active'));
+		const allColors = document.getElementsByClassName('color-item');
+		Object.values(allColors).forEach(div => div.classList.remove('active'));
 	}, [addToCart]);
 
 	return (
@@ -89,7 +88,7 @@ const CustomiseProduct = () => {
 										key={i}
 										className="color-item"
 										onClick={handleClickColor}
-										style={{background: `${color}`}}
+										style={{ background: `${color}` }}
 									></div>
 								))}
 							</div>
@@ -105,18 +104,18 @@ const CustomiseProduct = () => {
 					) : null}
 					{chosenColor ? (
 						<div>
-							Color: <span className="chosen-color" style={{background: `${chosenColor}`}}></span>
+							Color: <span className="chosen-color" style={{ background: `${chosenColor}` }}></span>
 						</div>
 					) : null}
 				</div>
 
-				{alertMsg ? <Alert severity="error">{"Please Customise your Product"}</Alert> : null}
+				{alertMsg ? <Alert severity="error">{'Please Customise your Product'}</Alert> : null}
 
 				<button className="submit" onClick={handleSubmit}>
 					Submit
 				</button>
 			</div>
-			<SuccessMsg msg={"Done!"} open={showDoneAdded} setOpen={setShowDoneAdded} />;
+			<SuccessMsg msg={'Done!'} open={showDoneAdded} setOpen={setShowDoneAdded} />
 		</div>
 	);
 };

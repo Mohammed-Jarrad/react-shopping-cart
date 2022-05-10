@@ -7,9 +7,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: var(--bodyWhite);
+	background: var(--boxes-bg);
 	box-shadow: var(--boxShadowStrong);
-	color: var(--redColor);
+	color: var(--second-color);
 	cursor: pointer;
 	svg {
 		font-size: 20px;
@@ -23,7 +23,7 @@
 	z-index: 1111111;
 	svg {
 		font-size: 40px;
-		color: var(--mainColor);
+		color: var(--second-color);
 		cursor: pointer;
 		animation: go-up-down 0.8s infinite ease-in;
 	}

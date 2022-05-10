@@ -13,8 +13,9 @@
   text-align: center;
   border-radius: 20px;
   padding: 20px;
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   box-shadow: var(--boxShadow);
+  border: var(--boxes-border);
 }
 .login form.login-content .go-sign-up {
   display: block;
@@ -30,7 +31,7 @@
 .login form.login-content .login-box .input-feild {
   display: flex;
   align-items: center;
-  background-color: var(--bodyColor);
+  background-color: var(--body-color);
   box-shadow: var(--boxShadow);
 }
 .login form.login-content .login-box .input-feild input.name-input,
@@ -65,20 +66,20 @@
   padding: 10px;
 }
 .login form.login-content .login-box .input-feild span.icon svg {
-  color: var(--mainColor);
+  color: var(--second-color);
 }
 .login form.login-content .login-box .input-feild span.eye {
   padding: 10px;
 }
 .login form.login-content .login-box .input-feild span.eye svg:last-child {
-  color: var(--redColor);
+  color: var(--second-color);
   size: 2em;
 }
 .login form.login-content .login-box button {
   display: block;
   margin: 10px auto;
-  background: var(--redColor);
-  color: var(--textColor);
+  background: var(--second-color);
+  color: var(--main-text-color);
   border: none;
   padding: 10px 20px;
   font-weight: bold;
@@ -96,36 +97,9 @@
 .login form.login-content .login-box button:active {
   transform: scale(0.95);
 }
-.login form.login-content .login-box .check-forget {
-  display: flex;
-  justify-content: space-between;
-  text-align: left;
-  width: 100%;
-  margin: 10px auto;
-}
-.login form.login-content .login-box .check-forget .remember-me input {
-  cursor: pointer;
-  transition: 0.3s;
-  margin-right: 5px;
-  background-color: var(--redColor);
-}
-.login form.login-content .login-box .check-forget .remember-me input:checked {
-  margin-right: 10px;
-  background-color: red;
-}
-.login form.login-content .login-box .check-forget .remember-me label {
-  cursor: pointer;
-  font-size: 15px;
-  user-select: none;
-}
-.login form.login-content .login-box .check-forget a {
-  display: block;
-  color: var(--mainColor);
-  font-size: 15px;
-}
 .login form.login-content .login-box .or-option {
   border-radius: 50%;
-  background-color: var(--mainColor);
+  background-color: var(--second-color);
   color: #fff;
   width: 30px;
   height: 30px;
@@ -142,7 +116,7 @@
   width: 120px;
   height: 1px;
   right: -120px;
-  background-color: var(--mainColor);
+  background-color: var(--second-color);
 }
 .login form.login-content .login-box .or-option::after {
   content: "";
@@ -150,7 +124,7 @@
   width: 120px;
   height: 1px;
   left: -120px;
-  background-color: var(--mainColor);
+  background-color: var(--second-color);
 }
 .login form.login-content .login-box ul {
   list-style: none;

@@ -3,7 +3,7 @@
   margin: 20px auto;
 }
 .single-order .location-info {
-  background-color: var(--bkBlue);
+  background-color: var(--main-light-bg);
   padding: 10px;
   border-radius: 20px;
   display: flex;
@@ -25,19 +25,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--redColor);
+  background-color: var(--second-color);
   border-radius: 50%;
   margin: auto;
 }
 .single-order .location-info > div .icon svg {
   font-size: 20px;
-  color: var(--bkRed);
+  color: #fff;
 }
 .single-order .location-info > div > div:not(.icon) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
 }
 .single-order .main-content {
   display: flex;
@@ -53,7 +53,7 @@
   gap: 10px;
 }
 .single-order .main-content .single-order-products .product-item {
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   border-radius: 10px;
   box-shadow: var(--boxShadow);
   display: flex;
@@ -81,8 +81,8 @@
   position: relative;
 }
 .single-order .main-content .single-order-products .product-item .item .image .product-discount {
-  background-color: var(--redColor);
-  color: var(--textColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
   width: -moz-fit-content;
   width: fit-content;
   font-size: 13px;
@@ -111,7 +111,7 @@
   flex-direction: column;
   gap: 5px;
   align-items: center;
-  border-left: var(--border);
+  border-left: var(--main-border);
 }
 .single-order .main-content .single-order-products .product-item .item .product-info > div {
   width: 100%;
@@ -121,12 +121,12 @@
   align-items: center;
 }
 .single-order .main-content .single-order-products .product-item .item .product-info > div:not(:last-child) {
-  border-bottom: var(--border);
+  border-bottom: var(--main-border);
 }
 .single-order .main-content .single-order-products .product-item button {
   border: none;
-  background-color: var(--redColor);
-  color: var(--textColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
   width: 100%;
   padding: 5px;
   font-weight: bold;
@@ -145,10 +145,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
 }
 .single-order .main-content .single-order-total-box .price-info > div:not(:last-child) {
-  border-bottom: var(--border);
+  border-bottom: var(--main-border);
 }
 .single-order .main-content .single-order-total-box .price-info > div span {
   font-size: 17px;
@@ -156,14 +156,87 @@
 .single-order .main-content .single-order-total-box .price-info > div .title {
   font-weight: bold;
   letter-spacing: -1px;
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
 }
 .single-order .main-content .single-order-total-box .price-info > div.total {
-  background-color: var(--bkBlue);
-  color: var(--redColor);
+  background-color: var(--main-light-bg);
+  color: var(--second-color);
 }
 .single-order .main-content .single-order-total-box .price-info > div.total .title {
-  color: var(--redColor);
+  color: var(--second-color);
+}
+.single-order .single-order-status {
+  margin-top: 20px;
+}
+.single-order .single-order-status .status {
+  border: var(--main-border);
+  background-color: var(--boxes-bg);
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: var(--boxShadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.single-order .single-order-status .status .info {
+  font-weight: bold;
+}
+.single-order .single-order-status .status .info .Pending {
+  color: #d4b039;
+}
+.single-order .single-order-status .status .info .Cancelled {
+  color: #ac3939;
+}
+.single-order .single-order-status .status .info .Delivered {
+  color: green;
+}
+.single-order .single-order-status .status .change {
+  position: relative;
+}
+.single-order .single-order-status .status .change .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.single-order .single-order-status .status .change .icon svg {
+  color: var(--second-color);
+  font-size: 17px;
+}
+.single-order .single-order-status .status .change .icon:hover {
+  cursor: pointer;
+  background-color: var(--hover-bg);
+  box-shadow: var(--boxShadow);
+}
+.single-order .single-order-status .status .change .drop-menu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.3s;
+  position: absolute;
+  top: -70px;
+  right: 45px;
+  background-color: var(--boxes-bg);
+  box-shadow: var(--boxShadow);
+  border-radius: 10px;
+  border: var(--boxes-border);
+  width: 150px;
+}
+.single-order .single-order-status .status .change .drop-menu.show-menu {
+  max-height: 500px;
+  opacity: 1;
+}
+.single-order .single-order-status .status .change .drop-menu .item {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: var(--second-text-color);
+}
+.single-order .single-order-status .status .change .drop-menu .item:hover {
+  background-color: var(--hover-bg);
 }
 
 @media (max-width: 991px) {

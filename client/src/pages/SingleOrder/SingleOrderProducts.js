@@ -1,16 +1,16 @@
-import React, {useContext} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-import {HomeContext} from "../../Context/HomeProvider";
-import {OrdersContext} from "../../Context/OrdersProvider";
+import { HomeContext } from "../../Context/HomeProvider";
+import { OrdersContext } from "../../Context/OrdersProvider";
 
-const SingleOrderProducts = ({order}) => {
+const SingleOrderProducts = ({ order }) => {
 	//context
-	const {finalPrice, discountPrice} = useContext(HomeContext);
-	const {removeProductFromOrder, loading, setLoading} = useContext(OrdersContext);
+	const { finalPrice, discountPrice } = useContext(HomeContext);
+	const { removeProductFromOrder, loading, setLoading } = useContext(OrdersContext);
 
 	//variables
-	const {order_info} = order;
+	const { order_info } = order;
 	const navigate = useNavigate();
 
 	return (
@@ -50,7 +50,7 @@ const SingleOrderProducts = ({order}) => {
 														background: item.selected_color,
 														width: "20px",
 														height: "20px",
-														border: "var(--border)",
+														border: "var(--main-border)",
 													}}
 												/>
 											</div>

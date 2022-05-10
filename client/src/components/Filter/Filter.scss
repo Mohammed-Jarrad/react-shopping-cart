@@ -1,6 +1,6 @@
 .filter-wrapper {
 	width: 270px;
-	background-color: var(--bodyColor);
+	background-color: var(--body-color);
 	transition: transform 0.5s, top 0.5s, left 0.5s, right 0.5s;
 	position: fixed;
 	left: -270px;
@@ -22,11 +22,11 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			background-color: var(--bkBlue);
+			background-color: var(--main-light-bg);
 			padding: 10px;
 			cursor: pointer;
 			.show-icon {
-				color: var(--redColor);
+				color: var(--second-color);
 				font-size: 25px;
 			}
 		}
@@ -39,12 +39,12 @@
 		top: 0;
 		width: 35px;
 		height: 35px;
-		background-color: var(--bodyWhite);
+		background-color: var(--boxes-bg);
 		box-shadow: var(--boxShadow);
 		padding: 5px;
 		&:hover {
 			transition: all 0.3s;
-			color: var(--redColor);
+			color: var(--second-color);
 		}
 	}
 
@@ -56,7 +56,7 @@
 			padding-bottom: 20px;
 		}
 		.title {
-			color: var(--textSecondColor);
+			color: var(--second-text-color);
 			font-weight: bold;
 			text-transform: uppercase;
 			font-size: 20px;
@@ -64,9 +64,9 @@
 		}
 
 		.filter-items {
-			color: var(--textSecondColor);
+			color: var(--second-text-color);
 			cursor: pointer;
-			background-color: var(--bodyWhite);
+			background-color: var(--boxes-bg);
 			box-shadow: var(--boxShadow);
 			border-radius: 20px;
 			padding: 20px 30px;
@@ -78,8 +78,8 @@
 
 			&:hover,
 			&.active {
-				background-color: var(--redColor);
-				color: var(--textColor);
+				background-color: var(--second-color);
+				color: var(--main-text-color);
 			}
 		}
 		.filter-by-category,

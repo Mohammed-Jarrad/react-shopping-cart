@@ -7,8 +7,9 @@ form.sign-content {
 }
 form.sign-content .sign-box {
   width: 350px;
-  background: var(--bodyWhite);
+  background: var(--boxes-bg);
   border-radius: 20px;
+  border: var(--boxes-border);
   overflow: hidden;
   box-shadow: var(--boxShadow);
   transition: all 0.5s;
@@ -39,7 +40,7 @@ form.sign-content .sign-box .add-photo .btn-and-img svg.camera {
   transform: translateX(-50%);
   font-size: 30px;
   opacity: 0.6;
-  color: var(--redColor);
+  color: var(--second-color);
   transition: all 0.3s;
 }
 form.sign-content .sign-box .add-photo .btn-and-img svg.camera:hover {
@@ -54,17 +55,17 @@ form.sign-content .sign-box .input-box .input {
 }
 form.sign-content .sign-box .input-box .input label {
   width: 90px;
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
 }
 form.sign-content .sign-box .input-box .input input {
   flex: 1;
   padding: 7px 10px;
   border: none;
-  background-color: var(--bodyColor);
+  background-color: var(--body-color);
   border-radius: 5px;
-  border: var(--border);
+  border: var(--main-border);
   transition: 0.3s;
-  caret-color: var(--redColor);
+  caret-color: var(--second-color);
 }
 form.sign-content .sign-box .input-box .input input:focus {
   outline: none;
@@ -79,7 +80,7 @@ form.sign-content .sign-box .input-box .input input::placeholder {
 form.sign-content .sign-box .input-box .error-alert .error {
   padding: 0;
   background-color: transparent;
-  color: var(--redColor);
+  color: var(--second-color);
   font-size: 13px;
 }
 form.sign-content .sign-box .input-box.password {
@@ -90,12 +91,12 @@ form.sign-content .sign-box .input-box.password .input > svg {
   right: 17px;
 }
 form.sign-content .sign-box .input-box.password .input > svg.fill-eye {
-  color: var(--redColor);
+  color: var(--second-color);
 }
 form.sign-content .sign-box button {
-  background: var(--redColor);
+  background: var(--second-color);
   width: 100%;
-  color: var(--textColor);
+  color: var(--main-text-color);
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
@@ -110,7 +111,7 @@ form.sign-content .sign-box button:hover {
   opacity: 1;
 }
 form.sign-content .or-option {
-  color: var(--textColor);
+  color: var(--main-text-color);
   position: relative;
 }
 form.sign-content .or-option span {
@@ -120,7 +121,7 @@ form.sign-content .or-option span {
   justify-content: center;
   align-items: center;
   margin: auto;
-  background-color: var(--mainColor);
+  background-color: var(--second-color);
   border-radius: 50%;
   font-weight: bold;
 }
@@ -132,7 +133,7 @@ form.sign-content .or-option span::before {
   width: 1px;
   height: 120px;
   top: 30px;
-  background-color: var(--mainColor);
+  background-color: var(--second-color);
 }
 form.sign-content .or-option span::after {
   content: "";
@@ -142,7 +143,7 @@ form.sign-content .or-option span::after {
   width: 1px;
   height: 120px;
   bottom: 30px;
-  background-color: var(--mainColor);
+  background-color: var(--second-color);
 }
 form.sign-content .social ul {
   list-style: none;

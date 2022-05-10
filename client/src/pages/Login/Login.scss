@@ -13,8 +13,9 @@
 		text-align: center;
 		border-radius: 20px;
 		padding: 20px;
-		background-color: var(--bodyWhite);
+		background-color: var(--boxes-bg);
 		box-shadow: var(--boxShadow);
+		border: var(--boxes-border);
 
 		.go-sign-up {
 			display: block;
@@ -31,7 +32,7 @@
 			.input-feild {
 				display: flex;
 				align-items: center;
-				background-color: var(--bodyColor);
+				background-color: var(--body-color);
 				box-shadow: var(--boxShadow);
 
 				input.name-input,
@@ -64,13 +65,13 @@
 					display: block;
 					padding: 10px;
 					svg {
-						color: var(--mainColor);
+						color: var(--second-color);
 					}
 				}
 				span.eye {
 					padding: 10px;
 					svg:last-child {
-						color: var(--redColor);
+						color: var(--second-color);
 						size: 2em;
 					}
 				}
@@ -79,8 +80,8 @@
 			button {
 				display: block;
 				margin: 10px auto;
-				background: var(--redColor);
-				color: var(--textColor);
+				background: var(--second-color);
+				color: var(--main-text-color);
 				border: none;
 				padding: 10px 20px;
 				font-weight: bold;
@@ -101,43 +102,9 @@
 				}
 			}
 
-			.check-forget {
-				display: flex;
-				justify-content: space-between;
-				text-align: left;
-				width: 100%;
-				margin: 10px auto;
-
-				.remember-me {
-					input {
-						cursor: pointer;
-						transition: 0.3s;
-						margin-right: 5px;
-						background-color: var(--redColor);
-
-						&:checked {
-							margin-right: 10px;
-							background-color: red;
-						}
-					}
-
-					label {
-						cursor: pointer;
-						font-size: 15px;
-						user-select: none;
-					}
-				}
-
-				a {
-					display: block;
-					color: var(--mainColor);
-					font-size: 15px;
-				}
-			}
-
 			.or-option {
 				border-radius: 50%;
-				background-color: var(--mainColor);
+				background-color: var(--second-color);
 				color: #fff;
 				width: 30px;
 				height: 30px;
@@ -154,7 +121,7 @@
 					width: 120px;
 					height: 1px;
 					right: -120px;
-					background-color: var(--mainColor);
+					background-color: var(--second-color);
 				}
 
 				&::after {
@@ -163,7 +130,7 @@
 					width: 120px;
 					height: 1px;
 					left: -120px;
-					background-color: var(--mainColor);
+					background-color: var(--second-color);
 				}
 			}
 

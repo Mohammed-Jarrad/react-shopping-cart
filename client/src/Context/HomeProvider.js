@@ -1,12 +1,12 @@
-import React, {createContext, useContext, useReducer, useState} from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
 import mainMethods from "../utils/mainMethods";
-import {CartContext} from "./CartProvider";
+import { CartContext } from "./CartProvider";
 
 export const HomeContext = createContext();
 
-const HomeProvider = ({children}) => {
+const HomeProvider = ({ children }) => {
 	//context
-	const {setCart} = useContext(CartContext);
+	const { setCart } = useContext(CartContext);
 	// states
 	const [products, setProducts] = useState([]);
 	const [productsClone, setProductsClone] = useState([]);
@@ -68,11 +68,18 @@ const HomeProvider = ({children}) => {
 
 	// getProduct
 	const getProduct = async id => {
+		setLoading(true);
 		try {
 			const data = await mainMethods.getProduct(id);
-			data.product && setProduct(data.product);
+			if (data.product) {
+				setProduct(data.product);
+				setLoading(false);
+			} else {
+				setLoading(false);
+			}
 		} catch (error) {
 			console.log(error);
+			setLoading(false);
 		}
 	};
 
@@ -111,6 +118,7 @@ const HomeProvider = ({children}) => {
 				categories,
 				setCategories,
 				colors,
+				forceUpdate,
 				setColors,
 				sizes,
 				setSizes,

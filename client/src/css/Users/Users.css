@@ -11,7 +11,7 @@
   gap: 20px;
 }
 .all-users .users .user {
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   padding: 10px;
   border-radius: 10px;
   box-shadow: var(--boxShadow);
@@ -32,8 +32,8 @@
 .all-users .users .user button {
   padding: 10px 5px;
   border: none;
-  background-color: var(--redColor);
-  color: var(--textColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
   width: 100%;
   margin-left: auto;
   border-radius: 10px;

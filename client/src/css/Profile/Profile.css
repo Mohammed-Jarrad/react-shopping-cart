@@ -14,7 +14,7 @@
 .profile .user-image {
   border-radius: 10px;
   box-shadow: var(--boxShadow);
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   width: 30%;
   display: flex;
   gap: 40px;
@@ -57,10 +57,10 @@
 }
 .profile .user-image .user-configuration button {
   padding: 10px;
-  color: var(--textColor);
+  color: var(--main-text-color);
   background-color: var(--mainColor);
   transition: 0.3s;
-  border: var(--border);
+  border: var(--main-border);
   font-size: 17px;
   display: block;
   width: 80%;
@@ -71,8 +71,8 @@
   opacity: 0.8;
 }
 .profile .user-image .user-configuration button:last-child {
-  background-color: var(--redColor);
-  color: var(--textColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
 }
 .profile .user-image .user-configuration button:hover {
   opacity: 1;
@@ -80,7 +80,7 @@
 .profile .user-info {
   border-radius: 10px;
   box-shadow: var(--boxShadow);
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   width: 70%;
 }
 @media (max-width: 768px) {
@@ -102,7 +102,7 @@
   box-shadow: var(--boxShadow);
   padding: 10px;
   border-radius: 10px;
-  background-color: var(--bodyColor);
+  background-color: var(--body-color);
 }
 .profile .user-info .user-info-box .box h3 {
   margin-bottom: 20px;
@@ -110,13 +110,13 @@
 .profile .user-info .user-info-box .box input {
   padding: 10px;
   width: 100%;
-  border: var(--border);
+  border: var(--main-border);
   border-radius: 5px;
   box-shadow: var(--boxShadow◘);
 }
 .profile .user-info .user-info-box .box input:focus {
   outline: none;
-  border-color: var(--redColor);
+  border-color: var(--second-color);
 }
 .profile .change-password {
   position: relative;
@@ -131,7 +131,7 @@
 .profile .change-password .change-form {
   box-shadow: var(--boxShadow);
   border-radius: 10px;
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   padding: 10px;
   width: 80%;
   height: 200px;
@@ -159,13 +159,13 @@
   width: 100%;
   padding: 10px;
   border: none;
-  background-color: var(--bodyColor);
+  background-color: var(--body-color);
   border-radius: 30px;
 }
 .profile .change-password .compare-password input .error,
 .profile .change-password .change-form input .error {
   background-color: transparent;
-  color: var(--redColor);
+  color: var(--second-color);
   padding: 0px 6px;
 }
 .profile .change-password .compare-password input:focus,
@@ -182,9 +182,9 @@
 .profile .change-password .compare-password .submit-password button,
 .profile .change-password .change-form .submit-password button {
   padding: 10px;
-  background-color: var(--redColor);
+  background-color: var(--second-color);
   border-radius: 10px;
-  color: var(--textColor);
+  color: var(--main-text-color);
   border: none;
   margin-top: 10px;
 }
@@ -203,8 +203,8 @@
 .delete-modal .accept-delete form button {
   padding: 10px 20px;
   border: none;
-  background-color: var(--redColor);
-  color: var(--textColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
   transition: 0.3s;
   border-radius: 5px;
 }

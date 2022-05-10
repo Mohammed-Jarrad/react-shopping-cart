@@ -46,24 +46,22 @@ const AllOrders = () => {
 
 						{orders.map(order => (
 							<div className="order-information" key={order._id}>
-								<div className="main-order">
-									<div className="image">
-										<img src={order["user"]["user_image"]} alt="" />
-										<div className="user-name">{`${order["user"]["name"]["first_name"]} ${order["user"]["name"]["last_name"]}`}</div>
-									</div>
-									<div className="price">
-										$ {order.order_info.reduce((a, item) => a + item.product.price * item.quantity, 0)}
-									</div>
-									<div className="delete" onClick={() => removeOrder(order._id)}>
-										<AiOutlineDelete />
-									</div>
-									<div
-										data-id={order._id}
-										className={`show-more`}
-										onClick={e => navigate(`/order/${order._id}`)}
-									>
-										<BsArrowRightShort />
-									</div>
+								<div className="image">
+									<img src={order["user"]["user_image"]} alt="" />
+									<div className="user-name">{`${order["user"]["name"]["first_name"]} ${order["user"]["name"]["last_name"]}`}</div>
+								</div>
+								<div className="price">
+									$ {order.order_info.reduce((a, item) => a + item.product.price * item.quantity, 0)}
+								</div>
+								<div className="delete" onClick={() => removeOrder(order._id)}>
+									<AiOutlineDelete />
+								</div>
+								<div
+									data-id={order._id}
+									className={`show-more`}
+									onClick={e => navigate(`/order/${order._id}`)}
+								>
+									<BsArrowRightShort />
 								</div>
 							</div>
 						))}

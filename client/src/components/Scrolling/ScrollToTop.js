@@ -6,20 +6,24 @@ const ScrollToTop = () => {
 	// states
 	const [showTopButton, setShowTopButton] = useState(false);
 
+	const handleScroll = _ => {
+		if (window.scrollY >= 300) {
+			setShowTopButton(true);
+		} else {
+			setShowTopButton(false);
+		}
+	};
+
 	useEffect(_ => {
-		window.addEventListener('scroll', _ => {
-			if (window.scrollY >= 300) {
-				setShowTopButton(true);
-			} else {
-				setShowTopButton(false);
-			}
-		});
+		window.addEventListener('scroll', handleScroll);
+
+		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
 	const handleGoTop = _ => window.scrollTo({ top: 0, behavior: 'smooth' });
 
 	return (
-		<span className='go-top' style={{ display: `${showTopButton ? 'block' : 'none'}` }} onClick={handleGoTop}>
+		<span className="go-top" style={{ display: `${showTopButton ? 'block' : 'none'}` }} onClick={handleGoTop}>
 			<BsCloudArrowUpFill />
 		</span>
 	);

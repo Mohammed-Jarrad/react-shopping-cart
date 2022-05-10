@@ -1,9 +1,9 @@
-import React, {createContext, useReducer, useState} from "react";
+import React, { createContext, useReducer, useState } from "react";
 import mainMethods from "../utils/mainMethods";
 
 export const OrdersContext = createContext();
 
-const OrdersProvider = ({children}) => {
+const OrdersProvider = ({ children }) => {
 	// states
 	const [orders, setOrders] = useState([]);
 	const [ordersForUser, setOrdersForUser] = useState([]);
@@ -14,11 +14,18 @@ const OrdersProvider = ({children}) => {
 
 	// get single order
 	const getOrder = async id => {
+		setLoading(true);
 		try {
 			const data = await mainMethods.getOrder(id);
-			data.order && setOrder(data.order);
+			if (data.order) {
+				setOrder(data.order);
+				setLoading(false);
+			} else {
+				setLoading(false);
+			}
 		} catch (error) {
 			console.log(error);
+			setLoading(false);
 		}
 	};
 	//get orders for user
@@ -99,6 +106,7 @@ const OrdersProvider = ({children}) => {
 				loading,
 				setLoading,
 				ignore,
+				forceUpdate,
 				getOrdersForUser,
 				removeOrder,
 				removeProductFromOrder,

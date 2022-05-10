@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useContext, useEffect, useRef, useState} from "react";
-import {Link, NavLink} from "react-router-dom";
-import {RiShoppingBag3Fill} from "react-icons/ri";
-import {BsCart4, BsPersonCircle} from "react-icons/bs";
-import {AiFillHome, AiOutlineLogout} from "react-icons/ai";
-import {AiOutlineUser, AiOutlineUserAdd} from "react-icons/ai";
-import {UserContext} from "../../Context/UserProvider";
-import {CartContext} from "../../Context/CartProvider";
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { RiShoppingBag3Fill } from 'react-icons/ri';
+import { BsCart4, BsPersonCircle } from 'react-icons/bs';
+import { AiFillHome, AiOutlineLogout } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
+import { UserContext } from '../../Context/UserProvider';
+import { CartContext } from '../../Context/CartProvider';
+import ThemeToggle from './ThemeToggle';
 
-const MainList = ({logout}) => {
-	const {user, fullName} = useContext(UserContext);
-	const {cart} = useContext(CartContext);
+const MainList = ({ logout }) => {
+	const { user, fullName } = useContext(UserContext);
+	const { cart } = useContext(CartContext);
 	const [showDropMenu, setShowDropMenu] = useState(false);
 
 	// * hide & drop menu
@@ -22,9 +23,9 @@ const MainList = ({logout}) => {
 	};
 
 	useEffect(() => {
-		document.addEventListener("mousedown", hideDrop);
+		document.addEventListener('mousedown', hideDrop);
 
-		return () => document.removeEventListener("mousedown", hideDrop);
+		return () => document.removeEventListener('mousedown', hideDrop);
 	}, []);
 
 	function handleClickLogout() {
@@ -33,7 +34,7 @@ const MainList = ({logout}) => {
 	}
 
 	return (
-		<ul className={`main-list ${user && "hide-register"}`}>
+		<ul className={`main-list ${user && 'hide-register'}`}>
 			{user ? (
 				<React.Fragment>
 					<li>
@@ -56,8 +57,8 @@ const MainList = ({logout}) => {
 					</li>
 
 					<li ref={dropRef} className="drop-menu">
-						<img onClick={() => setShowDropMenu(!showDropMenu)} src={user["user_image"]} alt="user figure" />
-						<div className={`menu-content ${showDropMenu && "move"}`}>
+						<img onClick={() => setShowDropMenu(!showDropMenu)} src={user['user_image']} alt="user figure" />
+						<div className={`menu-content ${showDropMenu && 'move'}`}>
 							<Link to="/profile" onClick={() => setShowDropMenu(false)}>
 								<BsPersonCircle /> Profile
 							</Link>
@@ -65,6 +66,10 @@ const MainList = ({logout}) => {
 								<AiOutlineLogout /> Log Out
 							</Link>
 						</div>
+					</li>
+
+					<li className="theme">
+						<ThemeToggle />
 					</li>
 				</React.Fragment>
 			) : (
@@ -78,6 +83,9 @@ const MainList = ({logout}) => {
 						<NavLink className="signup" to="/signup" title="Signup">
 							<AiOutlineUserAdd />
 						</NavLink>
+					</li>
+					<li className="theme">
+						<ThemeToggle />
 					</li>
 				</>
 			)}

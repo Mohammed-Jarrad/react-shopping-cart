@@ -1,6 +1,6 @@
 .filter-wrapper {
   width: 270px;
-  background-color: var(--bodyColor);
+  background-color: var(--body-color);
   transition: transform 0.5s, top 0.5s, left 0.5s, right 0.5s;
   position: fixed;
   left: -270px;
@@ -22,12 +22,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--bkBlue);
+  background-color: var(--main-light-bg);
   padding: 10px;
   cursor: pointer;
 }
 .filter-wrapper.move .filter-title .show-icon {
-  color: var(--redColor);
+  color: var(--second-color);
   font-size: 25px;
 }
 .filter-wrapper .hide-icon {
@@ -37,13 +37,13 @@
   top: 0;
   width: 35px;
   height: 35px;
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   box-shadow: var(--boxShadow);
   padding: 5px;
 }
 .filter-wrapper .hide-icon:hover {
   transition: all 0.3s;
-  color: var(--redColor);
+  color: var(--second-color);
 }
 .filter-wrapper .filter-content {
   overflow-y: auto;
@@ -53,16 +53,16 @@
   padding-bottom: 20px;
 }
 .filter-wrapper .filter-content .title {
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
   font-weight: bold;
   text-transform: uppercase;
   font-size: 20px;
   padding: 10px;
 }
 .filter-wrapper .filter-content .filter-items {
-  color: var(--textSecondColor);
+  color: var(--second-text-color);
   cursor: pointer;
-  background-color: var(--bodyWhite);
+  background-color: var(--boxes-bg);
   box-shadow: var(--boxShadow);
   border-radius: 20px;
   padding: 20px 30px;
@@ -73,8 +73,8 @@
   position: relative;
 }
 .filter-wrapper .filter-content .filter-items:hover, .filter-wrapper .filter-content .filter-items.active {
-  background-color: var(--redColor);
-  color: var(--textColor);
+  background-color: var(--second-color);
+  color: var(--main-text-color);
 }
 .filter-wrapper .filter-content .filter-by-category,
 .filter-wrapper .filter-content .filter-by-order {

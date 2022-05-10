@@ -4,7 +4,7 @@
 	transition: 0.4s;
 	padding: 10px;
 	border-radius: 20px;
-	background-color: var(--bodyWhite);
+	background-color: var(--boxes-bg);
 	box-shadow: var(--boxShadow);
 
 	.image {
@@ -23,9 +23,9 @@
 		button {
 			border: none;
 			padding: 10px;
-			background-color: var(--bodyWhite);
-			color: var(--textSecondColor);
-			border: 1px solid var(--redColor);
+			background-color: var(--boxes-bg);
+			color: var(--second-text-color);
+			border: 1px solid var(--second-color);
 			border-radius: 10px;
 		}
 	}
@@ -44,18 +44,18 @@
 					align-items: center;
 					span {
 						width: 100px;
-						color: var(--textSecondColor);
+						color: var(--second-text-color);
 						font-weight: bold;
 					}
 					input,
 					textarea {
 						flex: 1;
 						padding: 7px 10px;
-						background-color: var(--bodyColor);
+						background-color: var(--body-color);
 						border: none;
 						transition: all 0.3s;
 						border-radius: 5px;
-						border: var(--border);
+						border: var(--main-border);
 						&:focus {
 							outline: none;
 							padding-left: 13px;
@@ -89,11 +89,11 @@
 					justify-content: center;
 					align-items: center;
 					border-radius: 50%;
-					border: var(--border);
+					border: var(--main-border);
 					cursor: pointer;
 					&.active {
-						background-color: var(--redColor);
-						color: var(--textColor);
+						background-color: var(--second-color);
+						color: var(--main-text-color);
 					}
 				}
 			}
@@ -120,9 +120,9 @@
 			button {
 				border: none;
 				padding: 10px 20px;
-				border: 1px solid var(--redColor);
+				border: 1px solid var(--second-color);
 				background-color: transparent;
-				color: var(--textSecondColor);
+				color: var(--second-text-color);
 				border-radius: 10px;
 			}
 			.color-item {
@@ -147,9 +147,9 @@
 		.submit {
 			border: none;
 			padding: 5px;
-			background-color: var(--redColor);
-			color: var(--textColor);
-			border: 1px solid var(--redColor);
+			background-color: var(--second-color);
+			color: var(--main-text-color);
+			border: 1px solid var(--second-color);
 			border-radius: 10px;
 			font-size: 20px;
 		}
