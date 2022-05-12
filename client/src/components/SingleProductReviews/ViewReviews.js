@@ -1,61 +1,41 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { HomeContext } from '../../Context/HomeProvider';
 import { UserContext } from '../../Context/UserProvider';
-import { DeleteRequest, GetRequest } from '../../utils/requests';
 import Stars from './Stars';
 import { MdDelete } from 'react-icons/md';
-import { CircularProgress } from '@mui/material';
+import { PutRequest } from '../../utils/requests';
 
 const ViewReviews = () => {
 	// context
-	const { product, ignore } = useContext(HomeContext);
+	const { product, forceUpdate } = useContext(HomeContext);
+	const { setLoading } = useContext(HomeContext).config;
 	const { user, admin } = useContext(UserContext);
-	// states
-	const [reviewsForProduct, setReviewsForProduct] = useState([]);
-	const [reviewDeleted, setReviewDeleted] = useState('');
 
-	// get reviews for product
-	const getReviewsForProduct = async id => {
-		try {
-			const res = await GetRequest(`/reviews/${id}`);
-			const data = await res.json();
-			console.log(data);
-			if (data.reviews) {
-				setReviewsForProduct(data.reviews);
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	// variales
+	const reviews = [...product.reviews];
 
 	// delete review
 	const deleteReview = async id => {
-		setReviewDeleted(_ => id);
+		setLoading(true);
 		try {
-			const res = await DeleteRequest(`/review/${id}`);
-			if (res.status === 202) {
-				setReviewDeleted('');
-				getReviewsForProduct(product._id);
-			} else {
-				setReviewDeleted('');
+			const res = await PutRequest(`/product/delete/review/${id}`);
+			const data = await res.json();
+			if (data.product) {
+				forceUpdate();
+				setLoading(false);
 			}
 		} catch (error) {
 			console.log(error);
-			setReviewDeleted('');
+			setLoading(false);
 		}
 	};
 
-	//
-	useEffect(() => {
-		getReviewsForProduct(product._id);
-	}, [ignore]);
-
 	return (
 		<div className="view-reviews">
-			{reviewsForProduct.length ? (
+			{reviews.length ? (
 				<>
-					{reviewsForProduct.map((item, i) => (
+					{reviews.map((item, i) => (
 						<div className="review" key={i}>
 							{(item.user._id === user._id || admin) && (
 								<div className="delete" onClick={() => deleteReview(item._id)}>
@@ -65,8 +45,7 @@ const ViewReviews = () => {
 
 							<div className="user-info">
 								<img src={item.user.user_image} alt="" width={50} height={50} />
-								<div className="name">{`${item.user.name.first_name} ${item.user.name.last_name}`}</div>
-								{item._id === reviewDeleted ? <CircularProgress color="error" /> : null}
+								<div className="name">{`${item.user['name']['first_name']} ${item.user.name.last_name}`}</div>
 							</div>
 
 							<div className="date">{item.date.split('T')[0]}</div>

@@ -1,7 +1,29 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
+import { hex2rgb } from '../CreateProduct/ColorInput';
 
-const ColorsOptions = ({ colorRef, handleClickColor, colors, removeColor }) => {
+const ColorsOptions = ({ colorRef, colors, setColors }) => {
+	// handle Click Color
+	const handleClickColor = e => {
+		e.preventDefault();
+		const color = hex2rgb(colorRef.current.value);
+		const colorsClone = [...colors];
+		if (colorsClone.includes(color)) {
+			return;
+		} else {
+			colorsClone.push(color);
+			setColors(colorsClone);
+		}
+	};
+
+	// remove color
+	const removeColor = e => {
+		const color = e.currentTarget.style.background;
+		const colorsClone = [...colors];
+		colorsClone.splice(colorsClone.indexOf(color), 1);
+		setColors(colorsClone);
+	};
+
 	return (
 		<div className="colors">
 			<input type="color" ref={colorRef} />

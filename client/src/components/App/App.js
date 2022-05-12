@@ -1,26 +1,28 @@
-import React, {useContext} from "react";
-import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
-import Orders from "../../pages/Orders/Orders";
-import Home from "../../pages/Home/Home";
-import Login from "../../pages/Login/Login";
-import SignUp from "../../pages/SignUp/SignUp";
-import CreateProduct from "../../pages/CreateProduct/CreateProduct";
-import Profile from "../../pages/Profile/Profile";
-import ScrollToTop from "../Scrolling/ScrollToTop";
-import ErrorPage from "../ErrorPage/ErrorPage";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import {UserContext} from "../../Context/UserProvider";
-import Users from "../Users/Users";
-import AllOrders from "../AllOrders/AllOrders";
-import UpdateProduct from "../../pages/UpdateProduct/UpdateProduct";
-import Cart from "../Cart/Cart";
-import SingleOrder from "../../pages/SingleOrder/SingleOrder";
-import SingleProduct from "../../pages/SingleProduct/SingleProduct";
-import UpdateProductForm from "../../pages/UpdateProductForm/UpdateProductForm";
+import React, { useContext } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Orders from '../../pages/Orders/Orders';
+import Home from '../../pages/Home/Home';
+import Login from '../../pages/Login/Login';
+import SignUp from '../../pages/SignUp/SignUp';
+import CreateProduct from '../../pages/CreateProduct/CreateProduct';
+import Profile from '../../pages/Profile/Profile';
+import ScrollToTop from '../Scrolling/ScrollToTop';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import { UserContext } from '../../Context/UserProvider';
+import Users from '../Users/Users';
+import AllOrders from '../AllOrders/AllOrders';
+import UpdateProduct from '../../pages/UpdateProduct/UpdateProduct';
+import Cart from '../Cart/Cart';
+import SingleOrder from '../../pages/SingleOrder/SingleOrder';
+import SingleProduct from '../../pages/SingleProduct/SingleProduct';
+import UpdateProductForm from '../../pages/UpdateProductForm/UpdateProductForm';
+import MainPage from '../../pages/MainPage/MainPage';
 
 const App = () => {
-	const {user, admin} = useContext(UserContext);
+	//context
+	const { user, admin } = useContext(UserContext);
 
 	return (
 		<BrowserRouter>
@@ -31,28 +33,28 @@ const App = () => {
 
 				<Routes>
 					{/* For All */}
-					{/* <Route exact={'true'} path='/' element={<Main />} /> */}
-					<Route exact={"true"} path="/product/:id" element={<SingleProduct />} />
-					<Route exact={"true"} path="/" element={<Home />} />
+					<Route exact={'true'} path="/" element={<MainPage />} />
+					<Route exact={'true'} path="/product/:id" element={<SingleProduct />} />
+					<Route exact={'true'} path="/all-products" element={<Home />} />
 					{/* For New User */}
-					<Route exact={"true"} path="/login" element={user ? <ErrorPage /> : <Login />} />
-					<Route exact={"true"} path="/signup" element={user ? <ErrorPage /> : <SignUp />} />
+					<Route exact={'true'} path="/login" element={user ? <ErrorPage /> : <Login />} />
+					<Route exact={'true'} path="/signup" element={user ? <ErrorPage /> : <SignUp />} />
 					{/* For User */}
-					<Route exact={"true"} path="/orders" element={user ? <Orders /> : <Navigate to="/login" />} />
-					<Route exact={"true"} path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
-					<Route exact={"true"} path="/cart" element={user ? <Cart /> : <Navigate to="/login" />} />
+					<Route exact={'true'} path="/orders" element={user ? <Orders /> : <Navigate to="/login" />} />
+					<Route exact={'true'} path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+					<Route exact={'true'} path="/cart" element={user ? <Cart /> : <Navigate to="/login" />} />
 					<Route
-						exact={"true"}
+						exact={'true'}
 						path="/order/:id"
 						element={user ? <SingleOrder /> : <Navigate to="/login" />}
 					/>
 					{/* For Admin */}
-					<Route exact={"true"} path="/users" element={admin ? <Users /> : <ErrorPage />} />
-					<Route exact={"true"} path="/create-product" element={admin ? <CreateProduct /> : <ErrorPage />} />
-					<Route exact={"true"} path="/all-orders" element={admin ? <AllOrders /> : <ErrorPage />} />
-					<Route exact={"true"} path="/update-product" element={admin ? <UpdateProduct /> : <ErrorPage />} />
+					<Route exact={'true'} path="/users" element={admin ? <Users /> : <ErrorPage />} />
+					<Route exact={'true'} path="/create-product" element={admin ? <CreateProduct /> : <ErrorPage />} />
+					<Route exact={'true'} path="/all-orders" element={admin ? <AllOrders /> : <ErrorPage />} />
+					<Route exact={'true'} path="/update-product" element={admin ? <UpdateProduct /> : <ErrorPage />} />
 					<Route
-						exact={"true"}
+						exact={'true'}
 						path="/update-product/:id"
 						element={admin ? <UpdateProductForm /> : <ErrorPage />}
 					/>

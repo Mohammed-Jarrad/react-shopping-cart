@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useReducer, useState } from "react";
-import mainMethods from "../utils/mainMethods";
-import { CartContext } from "./CartProvider";
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import mainMethods from '../utils/mainMethods';
+import { CartContext } from './CartProvider';
 
 export const HomeContext = createContext();
 
@@ -11,12 +11,13 @@ const HomeProvider = ({ children }) => {
 	const [products, setProducts] = useState([]);
 	const [productsClone, setProductsClone] = useState([]);
 	const [product, setProduct] = useState({});
+	const [topRating, setTopRating] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [sizes, setSizes] = useState([]);
 	const [colors, setColors] = useState([]);
 	const [alertProductDeleted, setAlertProductDeleted] = useState(false);
-	const [chosenSize, setChosenSize] = useState("");
-	const [chosenColor, setChosenColor] = useState("");
+	const [chosenSize, setChosenSize] = useState('');
+	const [chosenColor, setChosenColor] = useState('');
 	const [ignore, forceUpdate] = useReducer(x => x + 1, 0);
 	// config
 	const [loading, setLoading] = useState(false);
@@ -46,11 +47,27 @@ const HomeProvider = ({ children }) => {
 		}
 	}
 
+	//
+	useEffect(() => {
+		get_products_categories_colors_sizes();
+	}, [ignore, products]);
+
+	// find max element
+	const findMaxElementInArray = arr => {
+		const array = [...arr];
+		if (array.length === 0) return null;
+
+		return array.reduce((a, b, i, arr) => {
+			return arr.filter(e => e === a).length >= arr.filter(e => e === b).length ? a : b;
+		}, null);
+	};
+
 	// discount price
 	const discountPrice = product => {
 		const disPrice = Math.round(product.price - product.price * (product.discount / 100));
 		return disPrice;
 	};
+
 	// Final price
 	const finalPrice = product => {
 		const disPrice = Math.round(product.price - product.price * (product.discount / 100));
@@ -83,14 +100,54 @@ const HomeProvider = ({ children }) => {
 		}
 	};
 
+	// get Product Ratings
+	const getProductRatings = product => {
+		return [...product.reviews].map(item => item.rating);
+	};
+
+	// get average rating
+	const getAverageRating = product => {
+		const ratings = getProductRatings(product);
+		let countMap = {
+			poor: { count: 0, value: 1 },
+			fair: { count: 0, value: 2 },
+			good: { count: 0, value: 3 },
+			'very good': { count: 0, value: 4 },
+			excellent: { count: 0, value: 5 },
+		};
+		ratings.forEach(rate => {
+			countMap[rate]['count']++;
+		});
+		const allCount = Object.keys(countMap).reduce((acc, item) => {
+			return acc + countMap[item].count * countMap[item].value;
+		}, 0);
+		const length = ratings.length;
+		let averageRate = Math.round(allCount / length);
+
+		return {
+			value: averageRate,
+			rate: Object.keys(countMap).find(item => countMap[item].value === averageRate),
+		};
+	};
+
+	// get top rating
+	const getTopRatingsProducts = products => {
+		let all = [...products];
+		const maxRating = Math.max(...all.map(p => getAverageRating(p).value));
+
+		let newArr = all.filter(
+			p => getAverageRating(p).value === maxRating || getAverageRating(p).value === maxRating - 1,
+		);
+
+		setTopRating(newArr);
+	};
+
 	// remove product
 	async function removeProduct(id) {
 		setLoading(true);
 		try {
-			await mainMethods.deleteProductsFromOrders(id);
 			const res = await mainMethods.deleteProduct(id);
 			if (res.status === 202) {
-				await mainMethods.deleteAllOrdersWithoutProducts();
 				setCart([]);
 				setLoading(false);
 				setAlertProductDeleted(true);
@@ -130,6 +187,11 @@ const HomeProvider = ({ children }) => {
 				setChosenSize,
 				chosenColor,
 				setChosenColor,
+				findMaxElementInArray,
+				getProductRatings,
+				getAverageRating,
+				getTopRatingsProducts,
+				topRating,
 				config: {
 					loading,
 					setLoading,

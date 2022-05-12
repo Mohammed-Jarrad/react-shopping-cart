@@ -44,6 +44,9 @@
   padding: var(--main-padding);
   text-align: left;
 }
+.products-wrapper .product-item .product-desc .rating {
+  padding: var(--main-padding);
+}
 .products-wrapper .product-item .product-desc .price-add {
   padding: var(--main-padding);
   display: flex;

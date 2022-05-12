@@ -14,7 +14,8 @@ const Footer = () => {
 					<h3 className="title">About</h3>
 
 					<div className="desc">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis nam ratione amet ducimus
+						An online shopping site that comforts the customer in determining his order with high accuracy and
+						good quality.
 					</div>
 				</div>
 
@@ -27,7 +28,7 @@ const Footer = () => {
 						</div>
 						<div>
 							<AiFillPhone />
-							<p>+ 970 568558874</p>
+							<p>+970-568558874</p>
 						</div>
 						<div>
 							<AiFillMail />

@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useContext, useEffect} from "react";
-import {HomeContext} from "../../Context/HomeProvider";
-import "../../css/UpdateProduct/UpdateProduct.css";
-import Loading from "../../components/Loading/Loading";
-import NoProducts from "../../components/Products/NoProducts";
-import SearchBox from "../../components/SearchBox/SearchBox";
-import {useNavigate} from "react-router-dom";
-import {AiTwotoneDelete} from "react-icons/ai";
-import {BiEdit} from "react-icons/bi";
-import SuccessMsg from "../../components/SuccessMsg/SuccessMsg";
+import React, { useContext, useEffect } from 'react';
+import { HomeContext } from '../../Context/HomeProvider';
+import '../../css/UpdateProduct/UpdateProduct.css';
+import Loading from '../../components/Loading/Loading';
+import NoProducts from '../../components/Products/NoProducts';
+import SearchBox from '../../components/SearchBox/SearchBox';
+import { useNavigate } from 'react-router-dom';
+import { AiTwotoneDelete } from 'react-icons/ai';
+import { BiEdit } from 'react-icons/bi';
+import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
 
 const UpdateProduct = () => {
 	// context
@@ -22,7 +22,8 @@ const UpdateProduct = () => {
 		alertProductDeleted,
 		setAlertProductDeleted,
 	} = useContext(HomeContext);
-	const {loading, setLoading} = useContext(HomeContext).config;
+	const { loading, setLoading } = useContext(HomeContext).config;
+
 	// variables
 	const navigate = useNavigate();
 
@@ -72,7 +73,7 @@ const UpdateProduct = () => {
 			</div>
 
 			<Loading open={loading} setOpen={setLoading} />
-			<SuccessMsg msg={"Product Deleted !"} open={alertProductDeleted} setOpen={setAlertProductDeleted} />
+			<SuccessMsg msg={'Product Deleted !'} open={alertProductDeleted} setOpen={setAlertProductDeleted} />
 		</React.Fragment>
 	);
 };

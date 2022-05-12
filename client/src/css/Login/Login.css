@@ -42,11 +42,11 @@
   margin: auto;
   border: none;
   background-color: transparent;
-  color: #000;
-  caret-color: var(--mainColor);
+  color: var(--second-text-color);
+  caret-color: var(--second-color);
   font-size: 16px;
   transition: 0.3s;
-  border-left: 1px solid #afafaf;
+  border-left: var(--main-border);
 }
 .login form.login-content .login-box .input-feild input.name-input::placeholder,
 .login form.login-content .login-box .input-feild input.pass-input::placeholder {

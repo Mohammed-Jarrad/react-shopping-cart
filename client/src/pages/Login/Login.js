@@ -1,9 +1,9 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import '../../css/Login/Login.css';
-import {Link, NavLink} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Bounce from 'react-reveal/Bounce';
-import {AiOutlineUser, AiOutlineLock, AiFillEyeInvisible, AiFillEye} from 'react-icons/ai';
-import {Alert} from '@mui/material';
+import { AiOutlineUser, AiOutlineLock, AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
+import { Alert } from '@mui/material';
 import mainMethods from '../../utils/mainMethods';
 
 const Login = () => {
@@ -20,8 +20,8 @@ const Login = () => {
 	};
 	//handleChangeInput
 	const handleChangeInput = e => {
-		setInputValues(prevValue => ({...prevValue, [e.target.name]: e.target.value}));
-		setLoginError(prev => ({...prev, [e.target.name]: ''}));
+		setInputValues(prevValue => ({ ...prevValue, [e.target.name]: e.target.value }));
+		setLoginError(prev => ({ ...prev, [e.target.name]: '' }));
 	};
 	// login
 	async function login(e) {
@@ -33,7 +33,7 @@ const Login = () => {
 		try {
 			const data = await mainMethods.login(sendUser);
 			if (data.isUser) {
-				localStorage.user = JSON.stringify({...(await data.isUser), password: ''});
+				localStorage.user = JSON.stringify({ ...(await data.isUser), password: '' });
 				localStorage.token = data.token;
 				window.location.assign('/');
 			} else {
@@ -47,47 +47,47 @@ const Login = () => {
 	return (
 		<React.Fragment>
 			<Bounce top>
-				<div className='login'>
-					<form className='login-content' onSubmit={login}>
-						<NavLink className='go-sign-up' to='/signup'>
+				<div className="login">
+					<form className="login-content" onSubmit={login}>
+						<NavLink className="go-sign-up" to="/signup">
 							have an account? signup
 						</NavLink>
 
-						<div className='login-box'>
-							<div className='input-and-error'>
-								<div className='input-feild'>
-									<span className='icon'>
+						<div className="login-box">
+							<div className="input-and-error">
+								<div className="input-feild">
+									<span className="icon">
 										<AiOutlineUser />
 									</span>
 									<input
-										type='email'
-										name='email'
-										placeholder='E-mail'
-										className='name-input'
+										type="email"
+										name="email"
+										placeholder="E-mail"
+										className="name-input"
 										onChange={handleChangeInput}
 									/>
 								</div>
-								{loginError.email && <Alert severity='error'>{loginError.email}</Alert>}
+								{loginError.email && <Alert severity="error">{loginError.email}</Alert>}
 							</div>
 
-							<div className='input-and-error'>
-								<div className='input-feild'>
-									<span className='icon'>
+							<div className="input-and-error">
+								<div className="input-feild">
+									<span className="icon">
 										<AiOutlineLock />
 									</span>
 									<input
-										type='password'
-										name='password'
-										placeholder='Password'
-										className='pass-input'
+										type="password"
+										name="password"
+										placeholder="Password"
+										className="pass-input"
 										ref={passInput}
 										onChange={handleChangeInput}
 									/>
-									<span className='eye' onClick={() => handleHideEye()}>
+									<span className="eye" onClick={() => handleHideEye()}>
 										{showEye ? <AiFillEye /> : <AiFillEyeInvisible />}
 									</span>
 								</div>
-								{loginError.password && <Alert severity='error'>{loginError.password}</Alert>}
+								{loginError.password && <Alert severity="error">{loginError.password}</Alert>}
 							</div>
 
 							<button>log in</button>
@@ -110,17 +110,17 @@ const Login = () => {
 								<Link to='#Forget'>Forget Password?</Link>
 							</div> */}
 
-							<p className='or-option'>or</p>
+							<p className="or-option">or</p>
 
 							<ul>
 								<li>
-									<Link to='#facebook'>
-										<i className='fab fa-facebook-f'></i>
+									<Link to="#facebook">
+										<i className="fab fa-facebook-f"></i>
 									</Link>
 								</li>
 								<li>
-									<Link to='#gmail'>
-										<i className='fab fa-google'></i>
+									<Link to="#gmail">
+										<i className="fab fa-google"></i>
 									</Link>
 								</li>
 							</ul>

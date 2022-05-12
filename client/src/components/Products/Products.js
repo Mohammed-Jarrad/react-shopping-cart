@@ -5,16 +5,16 @@ import { VscAdd } from 'react-icons/vsc';
 import { HomeContext } from '../../Context/HomeProvider';
 import NoProducts from './NoProducts';
 import { Link, useNavigate } from 'react-router-dom';
+import Stars from '../SingleProductReviews/Stars';
 
 const Products = () => {
 	// context
-	const { products, discountPrice, finalPrice } = useContext(HomeContext);
+	const { products, discountPrice, finalPrice, getProductRatings, getAverageRating } =
+		useContext(HomeContext);
 	const { loading } = useContext(HomeContext).config;
-	useEffect(() => {
-		console.log('products: ', products);
-	}, [products]);
 	//
 	const navigate = useNavigate();
+	const ratings = getProductRatings;
 
 	return (
 		<React.Fragment>
@@ -33,6 +33,13 @@ const Products = () => {
 
 								<div className="product-desc">
 									<div className="title">{product.title}</div>
+
+									{[...ratings(product)].length ? (
+										<div className="rating">
+											<Stars value={getAverageRating(product).rate} />
+										</div>
+									) : null}
+
 									<p className="price-add">
 										{finalPrice(product)}
 										<span className="add" onClick={() => navigate(`/product/${product._id}`)}>

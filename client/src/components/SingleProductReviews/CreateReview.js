@@ -3,13 +3,15 @@ import { Alert } from '@mui/material';
 import { HomeContext } from '../../Context/HomeProvider';
 import Stars from './Stars';
 import { AiOutlineRight } from 'react-icons/ai';
-import { PostRequest } from '../../utils/requests';
+import { PutRequest } from '../../utils/requests';
+import { UserContext } from '../../Context/UserProvider';
 
 const ratingsCapitalize = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
 
 const CreateReview = () => {
 	// context
 	const { product, forceUpdate } = useContext(HomeContext);
+	const { user } = useContext(UserContext);
 	// ref
 	const commentRef = useRef();
 	// states
@@ -34,16 +36,16 @@ const CreateReview = () => {
 	//createReview
 	const createReview = async e => {
 		e.preventDefault();
-		const review = {
-			product: product._id,
+		const newReviwe = {
+			user: user._id,
 			comment: comment,
 			rating: rating,
 		};
-
 		try {
-			const res = await PostRequest('/review', JSON.stringify(review));
+			const res = await PutRequest(`/product/review/${product._id}`, JSON.stringify(newReviwe));
 			const data = await res.json();
-			if (data.review) {
+			console.log(data);
+			if (data.product) {
 				forceUpdate();
 				setRating('');
 				commentRef.current.value = '';

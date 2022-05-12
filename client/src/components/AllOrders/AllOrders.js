@@ -1,14 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect } from "react";
-import { OrdersContext } from "../../Context/OrdersProvider";
-import NoOrders from "../../pages/Orders/NoOrders";
-import Loading from "../Loading/Loading";
-import { AiOutlineDelete } from "react-icons/ai";
-import { BsArrowRightShort } from "react-icons/bs";
-import OrderDetails from "../../pages/Orders/OrderDetails";
-import SuccessMsg from "../SuccessMsg/SuccessMsg";
-import { useNavigate } from "react-router-dom";
-import OrdersFilter from "../OrdersFilter/OrdersFilter";
+import React, { useContext, useEffect } from 'react';
+import { OrdersContext } from '../../Context/OrdersProvider';
+import NoOrders from '../../pages/Orders/NoOrders';
+import Loading from '../Loading/Loading';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { BsArrowRightShort } from 'react-icons/bs';
+import SuccessMsg from '../SuccessMsg/SuccessMsg';
+import { useNavigate } from 'react-router-dom';
+import OrdersFilter from '../OrdersFilter/OrdersFilter';
 
 const AllOrders = () => {
 	//context
@@ -47,8 +46,8 @@ const AllOrders = () => {
 						{orders.map(order => (
 							<div className="order-information" key={order._id}>
 								<div className="image">
-									<img src={order["user"]["user_image"]} alt="" />
-									<div className="user-name">{`${order["user"]["name"]["first_name"]} ${order["user"]["name"]["last_name"]}`}</div>
+									<img src={order['user']['user_image']} alt="" />
+									<div className="user-name">{`${order['user']['name']['first_name']} ${order['user']['name']['last_name']}`}</div>
 								</div>
 								<div className="price">
 									$ {order.order_info.reduce((a, item) => a + item.product.price * item.quantity, 0)}
@@ -73,7 +72,7 @@ const AllOrders = () => {
 
 			{/* for Loading ! */}
 			<Loading open={loading} setOpen={setLoading} />
-			<SuccessMsg open={alertDeleteOrder} setOpen={setAlertDeleteOrder} msg={"Deleted Success !"} />
+			<SuccessMsg open={alertDeleteOrder} setOpen={setAlertDeleteOrder} msg={'Deleted Success !'} />
 			{/*  */}
 		</React.Fragment>
 	);

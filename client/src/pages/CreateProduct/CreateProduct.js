@@ -5,8 +5,6 @@ import { PostRequest } from '../../utils/requests';
 import Loading from '../../components/Loading/Loading';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
 import { AiFillCamera } from 'react-icons/ai';
-import MultiSelect from 'react-multiple-select-dropdown-lite';
-import 'react-multiple-select-dropdown-lite/dist/index.css';
 import CreateInput from './CreateInput';
 import ColorInput from './ColorInput';
 import SizesInput from './SizesInput';

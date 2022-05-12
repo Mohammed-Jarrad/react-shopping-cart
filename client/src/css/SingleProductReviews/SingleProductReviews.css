@@ -43,6 +43,7 @@
 }
 .reviews .view-reviews .review .user-info img {
   border-radius: 50%;
+  object-fit: cover;
 }
 .reviews .view-reviews .review .comment {
   background-color: var(--body-color);
@@ -155,14 +156,15 @@
   font-weight: bold;
   margin-top: 5px;
 }
-.reviews .stars {
+
+.stars {
   margin-top: 5px;
   list-style: none;
   display: flex;
   align-items: center;
   gap: 2px;
 }
-.reviews .stars svg {
+.stars svg {
   color: #ebb450;
   font-size: 17px;
 }

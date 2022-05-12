@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Stars from '../../components/SingleProductReviews/Stars';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
 import { CartContext } from '../../Context/CartProvider';
 import { HomeContext } from '../../Context/HomeProvider';
@@ -9,7 +10,7 @@ const ProductBoxInfo = ({ setShowCustomise }) => {
 	// context
 	const { user } = useContext(UserContext);
 	const { addToCart } = useContext(CartContext);
-	const { product, discountPrice, finalPrice } = useContext(HomeContext);
+	const { product, discountPrice, finalPrice, getAverageRating, getProductRatings } = useContext(HomeContext);
 	// states
 	const [alertAdded, setAlertAdded] = useState(false);
 
@@ -22,6 +23,7 @@ const ProductBoxInfo = ({ setShowCustomise }) => {
 			setAlertAdded(true);
 		}
 	};
+
 	return (
 		<div className="product-information">
 			<p className="desc">
@@ -35,6 +37,17 @@ const ProductBoxInfo = ({ setShowCustomise }) => {
 			</p>
 
 			<div className="product-info-box">
+				<div className="ratings">
+					Rate
+					<span>
+						{[...getProductRatings(product)].length ? (
+							<Stars value={getAverageRating(product).rate} />
+						) : (
+							'No Rate Yet !'
+						)}
+					</span>
+				</div>
+
 				{discountPrice(product) !== product.price ? (
 					<>
 						<div className="discount-desc">

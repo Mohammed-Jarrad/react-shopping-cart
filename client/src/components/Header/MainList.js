@@ -10,7 +10,7 @@ import { CartContext } from '../../Context/CartProvider';
 import ThemeToggle from './ThemeToggle';
 
 const MainList = ({ logout }) => {
-	const { user, fullName } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 	const { cart } = useContext(CartContext);
 	const [showDropMenu, setShowDropMenu] = useState(false);
 
@@ -51,7 +51,7 @@ const MainList = ({ logout }) => {
 					</li>
 
 					<li>
-						<NavLink to="/">
+						<NavLink to="/all-products">
 							<AiFillHome /> HOME
 						</NavLink>
 					</li>

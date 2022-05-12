@@ -1,9 +1,9 @@
-import React, {createContext, useState} from 'react';
+import React, { createContext, useState } from 'react';
 import mainMethods from '../utils/mainMethods';
 
 export const UserContext = createContext();
 
-const UserProvider = ({children}) => {
+const UserProvider = ({ children }) => {
 	// variables
 	const user = localStorage.user ? JSON.parse(localStorage.user) : '';
 	const token = localStorage.token ? localStorage.token : '';
@@ -19,7 +19,7 @@ const UserProvider = ({children}) => {
 	const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
 	// handleInputChange
 	const handleInputChange = e => {
-		setInputValues(prev => ({...prev, [e.target.name]: e.target.value}));
+		setInputValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
 	};
 	// getPathNewImage
 	async function getPathNewImage(e) {
@@ -58,7 +58,7 @@ const UserProvider = ({children}) => {
 			const data = await mainMethods.updateUser(userUpdated);
 			console.log(data);
 			if (data.user) {
-				localStorage.user = JSON.stringify({...(await data.user), password: ''});
+				localStorage.user = JSON.stringify({ ...(await data.user), password: '' });
 				localStorage.token = await data.token;
 				setShowChangeInformation(false);
 				setLoading(false);
@@ -92,7 +92,7 @@ const UserProvider = ({children}) => {
 	async function handleComparePassword() {
 		const enterPassword = compareInputValue;
 		try {
-			const data = await mainMethods.comparePassword({enterPassword});
+			const data = await mainMethods.comparePassword({ enterPassword });
 			if (data.compare) {
 				setShowInputChangeForm(true);
 			} else if (data.errors) {
@@ -117,7 +117,7 @@ const UserProvider = ({children}) => {
 			setLoadingChange(false);
 		} else {
 			try {
-				const res = await mainMethods.changePassword({newPassword});
+				const res = await mainMethods.changePassword({ newPassword });
 				console.log(await res.json());
 				if (res.status === 200) {
 					setLoadingChange(false);
@@ -135,8 +135,6 @@ const UserProvider = ({children}) => {
 	async function deleteAccount() {
 		try {
 			const res = await mainMethods.deleteUser();
-			console.log(res);
-			console.log(await res.json());
 			if (res.status !== 400) {
 				localStorage.clear();
 				window.location.assign('/login');
@@ -173,8 +171,6 @@ const UserProvider = ({children}) => {
 		setLoading(true);
 		try {
 			const res = await mainMethods.removeUser(id);
-			console.log(res);
-			console.log(await res.json());
 			if (res.status !== 400) {
 				getAllUsers();
 				setLoading(false);

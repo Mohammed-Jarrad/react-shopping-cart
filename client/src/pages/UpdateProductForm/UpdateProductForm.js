@@ -9,20 +9,22 @@ import SizesOptions from '../UpdateProduct/SizesOptions';
 import ColorsOptions from '../UpdateProduct/ColorsOptions';
 import Loading from '../../components/Loading/Loading';
 import { useParams } from 'react-router-dom';
-import { hex2rgb } from '../CreateProduct/ColorInput';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
 
 const UpdateProductForm = () => {
 	// variables
 	const id = useParams().id;
+
 	//context
 	const { getProduct, product } = useContext(HomeContext);
+
 	// state
 	const [productImage, setProductImage] = useState('');
 	const [inputsValues, setInputsValues] = useState({});
 	const [sizes, setSizes] = useState([]);
 	const [colors, setColors] = useState([]);
 	const [alertUpdatedDone, setAlertUpdatedDone] = useState(false);
+
 	//ref
 	const inputFileRef = useRef();
 	const colorRef = useRef();
@@ -37,7 +39,6 @@ const UpdateProductForm = () => {
 			setProductImage(product.imageUrl);
 			setColors(product.colors);
 			setSizes(product.sizes);
-			console.log(product);
 		}
 	}, [id, product]);
 
@@ -54,41 +55,6 @@ const UpdateProductForm = () => {
 	// handle change input
 	const handleChangeInput = e => {
 		setInputsValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
-	};
-	// handle click size
-	const handleClickSize = e => {
-		const size = e.target.textContent.toLowerCase();
-
-		if (e.target.classList.contains('active')) {
-			const sizesClone = [...sizes];
-			sizesClone.splice(sizes.indexOf(size), 1);
-			setSizes(sizesClone);
-		} else {
-			const sizesClone = [...sizes];
-			sizesClone.push(size);
-			setSizes(sizesClone);
-		}
-		e.target.classList.toggle('active');
-	};
-
-	// handle Click Color
-	const handleClickColor = e => {
-		e.preventDefault();
-		const color = hex2rgb(colorRef.current.value);
-		const colorsClone = [...colors];
-		if (colorsClone.includes(color)) {
-			return;
-		} else {
-			colorsClone.push(color);
-			setColors(colorsClone);
-		}
-	};
-	// remove color
-	const removeColor = e => {
-		const color = e.currentTarget.style.background;
-		const colorsClone = [...colors];
-		colorsClone.splice(colorsClone.indexOf(color), 1);
-		setColors(colorsClone);
 	};
 
 	// Update Product
@@ -157,14 +123,9 @@ const UpdateProductForm = () => {
 							})}
 						</div>
 
-						<SizesOptions handleClickSize={handleClickSize} sizes={sizes} />
+						<SizesOptions sizes={sizes} setSizes={setSizes} />
 
-						<ColorsOptions
-							colorRef={colorRef}
-							colors={colors}
-							handleClickColor={handleClickColor}
-							removeColor={removeColor}
-						/>
+						<ColorsOptions colorRef={colorRef} colors={colors} setColors={setColors} />
 
 						<button className="submit" onClick={UpdateProduct}>
 							Update
