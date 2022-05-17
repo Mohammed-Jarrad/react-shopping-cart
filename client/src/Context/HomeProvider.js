@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { createContext, useContext, useLayoutEffect, useReducer, useState } from 'react';
 import mainMethods from '../utils/mainMethods';
 import { CartContext } from './CartProvider';
 
@@ -12,7 +13,9 @@ const HomeProvider = ({ children }) => {
 	const [productsClone, setProductsClone] = useState([]);
 	const [product, setProduct] = useState({});
 	const [topRating, setTopRating] = useState([]);
+	const [bigDiscountProducts, setBigDiscountProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
+	const [SingleCategoryProducts, setSingleCategoryProducts] = useState([]);
 	const [sizes, setSizes] = useState([]);
 	const [colors, setColors] = useState([]);
 	const [alertProductDeleted, setAlertProductDeleted] = useState(false);
@@ -26,19 +29,13 @@ const HomeProvider = ({ children }) => {
 	async function get_products_categories_colors_sizes() {
 		setLoading(true);
 		try {
-			// ! get products
 			const data = await mainMethods.getProducts();
-			// ! get get Categories
-			const data_categories = await mainMethods.getCategories();
-			// ! get colors & sizes
-			const data_colors_sizes = await mainMethods.getSizesAndColors();
-			//
 			if (data.products) {
 				setProducts(data.products);
 				setProductsClone(data.products);
-				setCategories(data_categories.categories);
-				setColors(data_colors_sizes.colors);
-				setSizes(data_colors_sizes.sizes);
+				getCategoriesAndColorsAndSizes(data.products);
+				getTopRatingsProducts(data.products);
+				getBigDiscountProducts(data.products);
 				setLoading(false);
 			}
 		} catch (error) {
@@ -47,30 +44,49 @@ const HomeProvider = ({ children }) => {
 		}
 	}
 
-	//
-	useEffect(() => {
+	useLayoutEffect(() => {
 		get_products_categories_colors_sizes();
-	}, [ignore, products]);
+		console.log(' from Home provider getting .... ');
+	}, [ignore]);
 
+	// get colors and sizes and categories
+	const getCategoriesAndColorsAndSizes = products => {
+		let categories = [...products].map(p => p.category);
+		let CWD = categories.filter((c, i, arr) => arr.indexOf(c) === i);
+		setCategories(CWD);
+
+		let sizes = [];
+		let colors = [];
+		[...products].forEach(product => {
+			[...product.sizes].forEach(size => sizes.push(size));
+			[...product.colors].forEach(color => colors.push(color));
+		});
+
+		const sizesWithoutDuplicate = sizes.filter((size, index, arr) => arr.indexOf(size) === index);
+		setSizes(sizesWithoutDuplicate);
+
+		const colorsWithoutDuplicate = colors.filter((color, index, arr) => arr.indexOf(color) === index);
+		setColors(colorsWithoutDuplicate);
+	};
 	// find max element
-	const findMaxElementInArray = arr => {
+	function findMaxElementInArray(arr) {
 		const array = [...arr];
 		if (array.length === 0) return null;
 
 		return array.reduce((a, b, i, arr) => {
 			return arr.filter(e => e === a).length >= arr.filter(e => e === b).length ? a : b;
 		}, null);
-	};
+	}
 
 	// discount price
 	const discountPrice = product => {
-		const disPrice = Math.round(product.price - product.price * (product.discount / 100));
+		const disPrice = Math.floor(product.price - product.price * (product.discount / 100));
 		return disPrice;
 	};
 
 	// Final price
 	const finalPrice = product => {
-		const disPrice = Math.round(product.price - product.price * (product.discount / 100));
+		const disPrice = discountPrice(product);
 		if (disPrice === product.price) {
 			return <span className="discount">{`$${product.price}`}</span>;
 		} else {
@@ -102,7 +118,7 @@ const HomeProvider = ({ children }) => {
 
 	// get Product Ratings
 	const getProductRatings = product => {
-		return [...product.reviews].map(item => item.rating);
+		return [...product.reviews].length ? [...product.reviews].map(item => item.rating) : [];
 	};
 
 	// get average rating
@@ -115,19 +131,23 @@ const HomeProvider = ({ children }) => {
 			'very good': { count: 0, value: 4 },
 			excellent: { count: 0, value: 5 },
 		};
-		ratings.forEach(rate => {
-			countMap[rate]['count']++;
-		});
-		const allCount = Object.keys(countMap).reduce((acc, item) => {
-			return acc + countMap[item].count * countMap[item].value;
-		}, 0);
-		const length = ratings.length;
-		let averageRate = Math.round(allCount / length);
+		if (ratings.length === 0) {
+			return { value: 0, rate: '' };
+		} else {
+			ratings.forEach(rate => {
+				countMap[rate]['count']++;
+			});
+			const allCount = Object.keys(countMap).reduce((acc, item) => {
+				return acc + countMap[item].count * countMap[item].value;
+			}, 0);
+			const length = ratings.length;
+			let averageRate = Math.round(allCount / length);
 
-		return {
-			value: averageRate,
-			rate: Object.keys(countMap).find(item => countMap[item].value === averageRate),
-		};
+			return {
+				value: averageRate,
+				rate: Object.keys(countMap).find(key => countMap[key].value === averageRate),
+			};
+		}
 	};
 
 	// get top rating
@@ -136,10 +156,24 @@ const HomeProvider = ({ children }) => {
 		const maxRating = Math.max(...all.map(p => getAverageRating(p).value));
 
 		let newArr = all.filter(
-			p => getAverageRating(p).value === maxRating || getAverageRating(p).value === maxRating - 1,
+			p =>
+				getAverageRating(p).value === maxRating ||
+				getAverageRating(p).value === maxRating - 1 ||
+				getAverageRating(p).value === maxRating - 2,
 		);
 
 		setTopRating(newArr);
+	};
+
+	const getBigDiscountProducts = products => {
+		let disProducts = [...products].filter(product => product.discount >= 10);
+		setBigDiscountProducts(disProducts);
+	};
+
+	const getCategoryProducts = (category, allProducts) => {
+		const all = [...allProducts];
+		const products = all.filter(p => p.category === category);
+		setSingleCategoryProducts(products);
 	};
 
 	// remove product
@@ -191,7 +225,13 @@ const HomeProvider = ({ children }) => {
 				getProductRatings,
 				getAverageRating,
 				getTopRatingsProducts,
+				getBigDiscountProducts,
+				bigDiscountProducts,
+				setBigDiscountProducts,
 				topRating,
+				SingleCategoryProducts,
+				getCategoryProducts,
+				setSingleCategoryProducts,
 				config: {
 					loading,
 					setLoading,

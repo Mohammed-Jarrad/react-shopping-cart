@@ -1,22 +1,60 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import mainMethods from '../utils/mainMethods';
+import { GetRequest } from '../utils/requests';
+import { CartContext } from './CartProvider';
 
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
+	//context
+	const { setCart } = useContext(CartContext);
 	// variables
-	const user = localStorage.user ? JSON.parse(localStorage.user) : '';
+	const [user, setUser] = useState('');
+	let fullName = user ? `${user['name']['first_name']} ${user['name']['last_name']}` : '';
+	let admin = user && user.email === 'abura3ed.mohammed@gmail.com' ? true : false;
 	const token = localStorage.token ? localStorage.token : '';
-	const fullName = user ? `${user['name']['first_name']} ${user['name']['last_name']}` : '';
-	const admin = user && user.email === 'abura3ed.mohammed@gmail.com' ? true : false;
-	const [users, setUsers] = useState([]);
+	// nav
+	const navigate = useNavigate();
 	//states
-	const [userImage, setUserImage] = useState(user.user_image);
+	const [users, setUsers] = useState([]);
+	const [userImage, setUserImage] = useState('');
 	const [showChangeInformation, setShowChangeInformation] = useState(false);
 	const [inputValues, setInputValues] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [showChangePassword, setShowChangePassword] = useState(false);
 	const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
+
+	// ! Effects
+	useEffect(() => {
+		setUserImage(user.user_image);
+
+		return () => null;
+	}, [user]);
+
+	useLayoutEffect(() => {
+		token && getUser();
+		console.log('from User Provider ....');
+
+		return () => null;
+	}, [token]);
+	// ! end Effects
+
+	// Get CURRENT USER
+	async function getUser() {
+		try {
+			const res = await GetRequest('/user');
+			const data = await res.json();
+			if (data.user) {
+				setUser(data.user);
+			} else {
+				console.log(data.errors);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	// handleInputChange
 	const handleInputChange = e => {
 		setInputValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -31,9 +69,7 @@ const UserProvider = ({ children }) => {
 				setUserImage(fileReader.result);
 			};
 			fileReader.onerror = e => console.log(e);
-		} else {
-			setUserImage('/mages/profile-image-default.webp');
-		}
+		} else return;
 	}
 	// handleChangeInformation
 	async function handleChangeInformation(e) {
@@ -52,19 +88,17 @@ const UserProvider = ({ children }) => {
 			phone: inputValues.phone ? inputValues.phone : user.phone,
 			user_image: userImage,
 		};
-		console.log(userUpdated);
 
 		try {
 			const data = await mainMethods.updateUser(userUpdated);
 			console.log(data);
 			if (data.user) {
-				localStorage.user = JSON.stringify({ ...(await data.user), password: '' });
 				localStorage.token = await data.token;
 				setShowChangeInformation(false);
 				setLoading(false);
-				window.location.assign('/profile');
 			} else {
 				setLoading(false);
+				console.log(data.errors);
 			}
 		} catch (err) {
 			console.log(err);
@@ -118,11 +152,12 @@ const UserProvider = ({ children }) => {
 		} else {
 			try {
 				const res = await mainMethods.changePassword({ newPassword });
-				console.log(await res.json());
+				const data = await res.json();
+				console.log(data);
 				if (res.status === 200) {
 					setLoadingChange(false);
 					setAlertChangeSuccess(true);
-					window.location.assign('/profile');
+					setShowChangePassword(false);
 				}
 			} catch (error) {
 				console.log(error);
@@ -137,7 +172,10 @@ const UserProvider = ({ children }) => {
 			const res = await mainMethods.deleteUser();
 			if (res.status !== 400) {
 				localStorage.clear();
-				window.location.assign('/login');
+				setCart([]);
+				setUser('');
+				setOpenDeleteAccountModal(false);
+				navigate('/login');
 			} else {
 				console.log(await res.json());
 			}
@@ -185,8 +223,9 @@ const UserProvider = ({ children }) => {
 		<UserContext.Provider
 			value={{
 				user,
-				admin,
+				setUser,
 				token,
+				admin,
 				fullName,
 				users,
 				getAllUsers,
@@ -196,6 +235,7 @@ const UserProvider = ({ children }) => {
 				loading,
 				setLoading,
 				userImage,
+				setUserImage,
 				handleInputChange,
 				showChangeInformation,
 				setShowChangeInformation,
@@ -215,6 +255,7 @@ const UserProvider = ({ children }) => {
 				changePassword,
 				deleteAccount,
 				removeUser,
+				getUser,
 			}}
 		>
 			{children}

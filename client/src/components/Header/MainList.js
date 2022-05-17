@@ -10,23 +10,22 @@ import { CartContext } from '../../Context/CartProvider';
 import ThemeToggle from './ThemeToggle';
 
 const MainList = ({ logout }) => {
-	const { user } = useContext(UserContext);
+	const { user, token } = useContext(UserContext);
 	const { cart } = useContext(CartContext);
 	const [showDropMenu, setShowDropMenu] = useState(false);
 
 	// * hide & drop menu
 	const dropRef = useRef();
 	const hideDrop = e => {
-		if (user) {
+		if (token) {
 			!dropRef.current.contains(e.target) && setShowDropMenu(false);
-		}
+		} else return null;
 	};
 
 	useEffect(() => {
 		document.addEventListener('mousedown', hideDrop);
-
 		return () => document.removeEventListener('mousedown', hideDrop);
-	}, []);
+	}, [token]);
 
 	function handleClickLogout() {
 		setShowDropMenu(false);
@@ -34,8 +33,8 @@ const MainList = ({ logout }) => {
 	}
 
 	return (
-		<ul className={`main-list ${user && 'hide-register'}`}>
-			{user ? (
+		<ul className={`main-list ${token && 'hide-register'}`}>
+			{token ? (
 				<React.Fragment>
 					<li>
 						<NavLink to="/cart" className="cart-link">

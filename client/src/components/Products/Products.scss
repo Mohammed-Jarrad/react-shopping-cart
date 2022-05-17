@@ -33,6 +33,8 @@
 
 		img {
 			width: 200px;
+			// height: 200px;
+			object-fit: cover;
 			max-width: 100%;
 			margin: auto;
 			cursor: pointer;
@@ -47,6 +49,9 @@
 			}
 			.rating {
 				padding: var(--main-padding);
+				display: flex;
+				gap: 5px;
+				align-items: center;
 			}
 			.price-add {
 				padding: var(--main-padding);

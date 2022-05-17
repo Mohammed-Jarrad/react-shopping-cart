@@ -6,22 +6,20 @@ import OrdersProvider from '../../Context/OrdersProvider';
 import UserProvider from '../../Context/UserProvider';
 import App from './App';
 
-const Index = () => {
+function Index() {
 	return (
 		<CartProvider>
-			<HomeProvider>
-				<OrdersProvider>
-					<FilterProvider>
-						<UserProvider>
-							{/*  */}
+			<UserProvider>
+				<HomeProvider>
+					<OrdersProvider>
+						<FilterProvider>
 							<App />
-							{/*  */}
-						</UserProvider>
-					</FilterProvider>
-				</OrdersProvider>
-			</HomeProvider>
+						</FilterProvider>
+					</OrdersProvider>
+				</HomeProvider>
+			</UserProvider>
 		</CartProvider>
 	);
-};
+}
 
 export default Index;

@@ -1,25 +1,20 @@
-header {
-  grid-area: header;
+header.header-layout {
   background-color: var(--mainColor);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9999;
-  height: 50px;
 }
-header .container {
+header.header-layout .container {
+  border-bottom: var(--main-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
 }
-header .container .logo {
+header.header-layout .container .logo {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
-header .container .logo > a {
+header.header-layout .container .logo > a {
   text-transform: none;
   color: var(--main-text-color);
   text-decoration: none;
@@ -28,19 +23,19 @@ header .container .logo > a {
   justify-content: center;
   align-items: center;
 }
-header .container .logo > a img {
+header.header-layout .container .logo > a img {
   width: 150px;
 }
-header .container .logo > a img.cart-logo {
+header.header-layout .container .logo > a img.cart-logo {
   width: 45px;
 }
-header .container .logo .admin span {
+header.header-layout .container .logo .admin span {
   color: var(--main-text-color);
   padding: 10px;
   font-size: 22px;
   cursor: pointer;
 }
-header .container .logo .admin .admin-dashboard {
+header.header-layout .container .logo .admin .admin-dashboard {
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -51,16 +46,16 @@ header .container .logo .admin .admin-dashboard {
   transition: 0.3s;
 }
 @media (max-width: 767px) {
-  header .container .logo .admin .admin-dashboard {
+  header.header-layout .container .logo .admin .admin-dashboard {
     left: 50%;
     transform: translateX(-50%);
   }
 }
-header .container .logo .admin .admin-dashboard.show {
+header.header-layout .container .logo .admin .admin-dashboard.show {
   opacity: 1;
   max-height: 500px;
 }
-header .container .logo .admin .admin-dashboard a.admin-dashboard-btn {
+header.header-layout .container .logo .admin .admin-dashboard a.admin-dashboard-btn {
   width: 100%;
   display: block;
   padding: 10px;
@@ -72,16 +67,16 @@ header .container .logo .admin .admin-dashboard a.admin-dashboard-btn {
   position: relative;
   transition: 0.3s;
 }
-header .container .logo .admin .admin-dashboard a.admin-dashboard-btn:hover {
+header.header-layout .container .logo .admin .admin-dashboard a.admin-dashboard-btn:hover {
   opacity: 0.9;
 }
-header .container nav {
+header.header-layout .container nav {
   display: flex;
 }
-header .container nav li {
+header.header-layout .container nav li {
   color: var(--main-text-color);
 }
-header .container nav .theme-toggle {
+header.header-layout .container nav .theme-toggle {
   cursor: pointer;
   background-color: #111;
   border-radius: 60px;
@@ -94,7 +89,7 @@ header .container nav .theme-toggle {
   margin-left: 10px;
   position: relative;
 }
-header .container nav .theme-toggle .circle {
+header.header-layout .container nav .theme-toggle .circle {
   position: absolute;
   width: 22px;
   height: 22px;
@@ -104,31 +99,31 @@ header .container nav .theme-toggle .circle {
   left: 2px;
   transition: 0.3s;
 }
-header .container nav .theme-toggle .circle.move-right {
+header.header-layout .container nav .theme-toggle .circle.move-right {
   transform: translateX(34px);
 }
-header .container nav .theme-toggle svg {
+header.header-layout .container nav .theme-toggle svg {
   width: 18px;
   height: 18px;
 }
-header .container nav .theme-toggle svg.sun {
+header.header-layout .container nav .theme-toggle svg.sun {
   color: #f39c12;
 }
-header .container nav .theme-toggle svg.moon {
+header.header-layout .container nav .theme-toggle svg.moon {
   color: #f1c40f;
 }
-header .container nav .main-list {
+header.header-layout .container nav .main-list {
   list-style: none;
   display: flex;
   gap: 5px;
 }
-header .container nav .main-list > li {
+header.header-layout .container nav .main-list > li {
   display: flex;
   align-items: center;
   transition: all 0.3s;
   position: relative;
 }
-header .container nav .main-list > li > a {
+header.header-layout .container nav .main-list > li > a {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -140,10 +135,10 @@ header .container nav .main-list > li > a {
   transition: 0.3s;
   height: fit-content;
 }
-header .container nav .main-list > li > a.cart-link {
+header.header-layout .container nav .main-list > li > a.cart-link {
   position: relative;
 }
-header .container nav .main-list > li > a.cart-link span {
+header.header-layout .container nav .main-list > li > a.cart-link span {
   position: absolute;
   background-color: var(--second-color);
   color: var(--main-text-color);
@@ -156,10 +151,10 @@ header .container nav .main-list > li > a.cart-link span {
   top: 0;
   right: 0;
 }
-header .container nav .main-list > li > a svg {
+header.header-layout .container nav .main-list > li > a svg {
   font-size: 20px;
 }
-header .container nav .main-list > li > a::after {
+header.header-layout .container nav .main-list > li > a::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -171,16 +166,16 @@ header .container nav .main-list > li > a::after {
   z-index: -1;
   transition: 0.4s;
 }
-header .container nav .main-list > li > a:not(.login):not(.signup):hover, header .container nav .main-list > li > a:not(.login):not(.signup).active {
+header.header-layout .container nav .main-list > li > a:not(.login):not(.signup):hover, header.header-layout .container nav .main-list > li > a:not(.login):not(.signup).active {
   color: var(--main-text-color);
   font-weight: bold;
   border-radius: 20px;
 }
-header .container nav .main-list > li > a:not(.login):not(.signup):hover::after, header .container nav .main-list > li > a:not(.login):not(.signup).active::after {
+header.header-layout .container nav .main-list > li > a:not(.login):not(.signup):hover::after, header.header-layout .container nav .main-list > li > a:not(.login):not(.signup).active::after {
   transform: translate(-50%, -50%) scale(1);
   border-radius: 20px;
 }
-header .container nav .main-list > li > a:not(.login):not(.signup):hover.cart-link > span, header .container nav .main-list > li > a:not(.login):not(.signup).active.cart-link > span {
+header.header-layout .container nav .main-list > li > a:not(.login):not(.signup):hover.cart-link > span, header.header-layout .container nav .main-list > li > a:not(.login):not(.signup).active.cart-link > span {
   transition: 0.3s;
   background-color: #fff;
   color: #333;
@@ -188,28 +183,28 @@ header .container nav .main-list > li > a:not(.login):not(.signup):hover.cart-li
   display: flex;
   padding: 10px;
 }
-header .container nav .main-list > li > a.signup, header .container nav .main-list > li > a.login {
+header.header-layout .container nav .main-list > li > a.signup, header.header-layout .container nav .main-list > li > a.login {
   justify-content: center;
 }
-header .container nav .main-list > li > a.signup svg, header .container nav .main-list > li > a.login svg {
+header.header-layout .container nav .main-list > li > a.signup svg, header.header-layout .container nav .main-list > li > a.login svg {
   font-size: 25px;
 }
-header .container nav .main-list > li > a.signup:hover, header .container nav .main-list > li > a.signup.active, header .container nav .main-list > li > a.login:hover, header .container nav .main-list > li > a.login.active {
+header.header-layout .container nav .main-list > li > a.signup:hover, header.header-layout .container nav .main-list > li > a.signup.active, header.header-layout .container nav .main-list > li > a.login:hover, header.header-layout .container nav .main-list > li > a.login.active {
   color: var(--main-text-color);
   font-weight: bold;
 }
-header .container nav .main-list > li > a.signup:hover::after, header .container nav .main-list > li > a.signup.active::after, header .container nav .main-list > li > a.login:hover::after, header .container nav .main-list > li > a.login.active::after {
+header.header-layout .container nav .main-list > li > a.signup:hover::after, header.header-layout .container nav .main-list > li > a.signup.active::after, header.header-layout .container nav .main-list > li > a.login:hover::after, header.header-layout .container nav .main-list > li > a.login.active::after {
   transform: translate(-50%, -50%) scale(1);
   border-radius: 50%;
 }
-header .container nav .main-list > li.drop-menu img {
+header.header-layout .container nav .main-list > li.drop-menu img {
   width: 40px;
   height: 40px;
   cursor: pointer;
   border-radius: 50%;
   object-fit: contain;
 }
-header .container nav .main-list > li.drop-menu .menu-content {
+header.header-layout .container nav .main-list > li.drop-menu .menu-content {
   padding: 10px;
   transition: all 0.3s;
   background-color: var(--boxes-bg);
@@ -222,10 +217,10 @@ header .container nav .main-list > li.drop-menu .menu-content {
   border-radius: 10px;
   box-shadow: var(--boxShadowStrong);
 }
-header .container nav .main-list > li.drop-menu .menu-content.move {
+header.header-layout .container nav .main-list > li.drop-menu .menu-content.move {
   transform: scale(1);
 }
-header .container nav .main-list > li.drop-menu .menu-content > a {
+header.header-layout .container nav .main-list > li.drop-menu .menu-content > a {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -235,28 +230,28 @@ header .container nav .main-list > li.drop-menu .menu-content > a {
   z-index: 1;
   transition: 0.5s;
 }
-header .container nav .main-list > li.drop-menu .menu-content > a:not(:last-child) {
+header.header-layout .container nav .main-list > li.drop-menu .menu-content > a:not(:last-child) {
   border-bottom: 1px solid var(--main-text-color);
 }
-header .container nav .main-list > li.drop-menu .menu-content > a svg {
+header.header-layout .container nav .main-list > li.drop-menu .menu-content > a svg {
   font-size: 25px;
   transition: all 0.5s;
   color: var(--second-color);
 }
-header .container nav .main-list > li.drop-menu .menu-content > a:hover {
+header.header-layout .container nav .main-list > li.drop-menu .menu-content > a:hover {
   background-color: var(--main-light-bg);
 }
-header .container nav .main-responsive-list {
+header.header-layout .container nav .main-responsive-list {
   z-index: 11;
   position: absolute;
   top: 5px;
   right: 20px;
   transition: all 0.5s;
 }
-header .container nav .main-responsive-list.hide {
+header.header-layout .container nav .main-responsive-list.hide {
   display: none;
 }
-header .container nav .main-responsive-list .toggle-bar {
+header.header-layout .container nav .main-responsive-list .toggle-bar {
   padding: 10px;
   width: fit-content;
   position: absolute;
@@ -268,12 +263,12 @@ header .container nav .main-responsive-list .toggle-bar {
   cursor: pointer;
   cursor: pointer;
 }
-header .container nav .main-responsive-list .toggle-bar svg {
+header.header-layout .container nav .main-responsive-list .toggle-bar svg {
   fill: var(--main-text-color);
   font-size: 20px;
   transition: all 0.3s;
 }
-header .container nav .main-responsive-list .responsive-list {
+header.header-layout .container nav .main-responsive-list .responsive-list {
   background-color: var(--boxes-bg);
   width: 300px;
   transform: scale(0);
@@ -289,62 +284,62 @@ header .container nav .main-responsive-list .responsive-list {
   padding: 10px;
   border: var(--boxes-border);
 }
-header .container nav .main-responsive-list .responsive-list.move {
+header.header-layout .container nav .main-responsive-list .responsive-list.move {
   transform: scale(1);
 }
-header .container nav .main-responsive-list .responsive-list > div {
+header.header-layout .container nav .main-responsive-list .responsive-list > div {
   transition: 0.3s;
 }
-header .container nav .main-responsive-list .responsive-list > div:not(:first-child) {
+header.header-layout .container nav .main-responsive-list .responsive-list > div:not(:first-child) {
   border-top: var(--main-border);
 }
-header .container nav .main-responsive-list .responsive-list > div a {
+header.header-layout .container nav .main-responsive-list .responsive-list > div a {
   display: flex;
   align-items: center;
   color: var(--second-text-color);
   text-decoration: none;
   padding: 5px 10px;
 }
-header .container nav .main-responsive-list .responsive-list > div a:hover {
+header.header-layout .container nav .main-responsive-list .responsive-list > div a:hover {
   background-color: var(--main-light-bg);
 }
-header .container nav .main-responsive-list .responsive-list > div svg {
+header.header-layout .container nav .main-responsive-list .responsive-list > div svg {
   font-size: 30px;
   cursor: pointer;
 }
-header .container nav .main-responsive-list .responsive-list .profile-ul {
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul {
   width: 100%;
 }
-header .container nav .main-responsive-list .responsive-list .profile-ul a {
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul a {
   justify-content: space-between;
 }
-header .container nav .main-responsive-list .responsive-list .profile-ul a img {
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul a img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
 }
-header .container nav .main-responsive-list .responsive-list .profile-ul svg {
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul svg {
   transform: rotate(180deg);
 }
-header .container nav .main-responsive-list .responsive-list .profile-ul svg:hover {
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul svg:hover {
   color: var(--hover-bg);
   filter: brightness(1.5);
 }
-header .container nav .main-responsive-list .responsive-list .theme {
+header.header-layout .container nav .main-responsive-list .responsive-list .theme {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
 }
-header .container nav .main-responsive-list .responsive-list .basic-ul {
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul {
   padding: 10px 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-header .container nav .main-responsive-list .responsive-list .basic-ul a {
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul a {
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -352,13 +347,13 @@ header .container nav .main-responsive-list .responsive-list .basic-ul a {
   font-weight: bold;
   transition: all 0.3s;
 }
-header .container nav .main-responsive-list .responsive-list .basic-ul a svg {
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul a svg {
   color: var(--second-text-color);
 }
-header .container nav .main-responsive-list .responsive-list .basic-ul a .cart-link {
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul a .cart-link {
   position: relative;
 }
-header .container nav .main-responsive-list .responsive-list .basic-ul a .cart-link span {
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul a .cart-link span {
   background-color: var(--second-color);
   width: 15px;
   height: 15px;
@@ -373,12 +368,12 @@ header .container nav .main-responsive-list .responsive-list .basic-ul a .cart-l
   padding: 7px;
   font-size: 12px;
 }
-header .container nav .main-responsive-list .responsive-list .logout a {
+header.header-layout .container nav .main-responsive-list .responsive-list .logout a {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
 }
-header .container nav .main-responsive-list .responsive-list .logout a svg {
+header.header-layout .container nav .main-responsive-list .responsive-list .logout a svg {
   color: var(--second-color);
 }
 

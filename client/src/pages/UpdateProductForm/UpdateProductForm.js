@@ -16,7 +16,7 @@ const UpdateProductForm = () => {
 	const id = useParams().id;
 
 	//context
-	const { getProduct, product } = useContext(HomeContext);
+	const { getProduct, product, forceUpdate } = useContext(HomeContext);
 
 	// state
 	const [productImage, setProductImage] = useState('');
@@ -76,6 +76,7 @@ const UpdateProductForm = () => {
 			const data = await mainMethods.UpdateProduct(product._id, UpdatedProduct);
 			if (data.product) {
 				getProduct(id);
+				forceUpdate();
 				setAlertUpdatedDone(true);
 			}
 		} catch (error) {

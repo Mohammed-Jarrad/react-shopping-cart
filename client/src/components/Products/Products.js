@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import '../../css/Products/Products.css';
 import Fade from 'react-reveal/Fade';
 import { VscAdd } from 'react-icons/vsc';
@@ -7,10 +7,9 @@ import NoProducts from './NoProducts';
 import { Link, useNavigate } from 'react-router-dom';
 import Stars from '../SingleProductReviews/Stars';
 
-const Products = () => {
+const Products = ({ products }) => {
 	// context
-	const { products, discountPrice, finalPrice, getProductRatings, getAverageRating } =
-		useContext(HomeContext);
+	const { discountPrice, finalPrice, getProductRatings, getAverageRating } = useContext(HomeContext);
 	const { loading } = useContext(HomeContext).config;
 	//
 	const navigate = useNavigate();
@@ -19,9 +18,9 @@ const Products = () => {
 	return (
 		<React.Fragment>
 			<Fade cascade>
-				{products.length ? (
+				{[...products].length ? (
 					<div className="products-wrapper">
-						{products.map(product => (
+						{[...products].map(product => (
 							<div className="product-item" key={product._id}>
 								{discountPrice(product) !== product.price && (
 									<span className="product-discount">{`${product.discount}% off`}</span>
@@ -37,6 +36,7 @@ const Products = () => {
 									{[...ratings(product)].length ? (
 										<div className="rating">
 											<Stars value={getAverageRating(product).rate} />
+											<span>({[...product.reviews].length})</span>
 										</div>
 									) : null}
 

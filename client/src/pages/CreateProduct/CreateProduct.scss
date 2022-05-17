@@ -1,8 +1,4 @@
 .create-product {
-	grid-area: main;
-	margin-top: 20px;
-	margin-bottom: 20px;
-
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -56,6 +52,7 @@
 				width: 100%;
 				display: flex;
 				align-items: center;
+				flex-wrap: wrap;
 				gap: 5px;
 				p {
 					border: var(--main-border);
@@ -102,7 +99,6 @@
 						align-items: stretch;
 						gap: 10px;
 						z-index: 11;
-
 						input {
 							padding: 7px 10px;
 							background-color: var(--body-color);

@@ -1,13 +1,18 @@
-import React, {useRef, useState} from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import '../../css/SignUp/SginUp.css';
 import Bounce from 'react-reveal/Bounce';
-import {AiFillEyeInvisible, AiFillEye, AiFillCamera} from 'react-icons/ai';
+import { AiFillEyeInvisible, AiFillEye, AiFillCamera } from 'react-icons/ai';
 import Loading from '../../components/Loading/Loading';
-import {Link} from 'react-router-dom';
-import {Alert} from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
 import mainMethods from '../../utils/mainMethods';
+import { UserContext } from '../../Context/UserProvider';
 
 const SignUp = () => {
+	//context
+	const { setUser } = useContext(UserContext);
+	// nav
+	const navigate = useNavigate();
 	//states
 	const [inputValue, setInputValue] = useState('');
 	const [showEye, setShowEye] = useState(false);
@@ -18,8 +23,8 @@ const SignUp = () => {
 
 	// ! handle input changes + ? change the error values in change;
 	function handleChange(e) {
-		setInputValue(prevValue => ({...prevValue, [e.target.id]: e.target.value.trim()}));
-		setUserError(prev => ({...prev, [e.target.id]: ''}));
+		setInputValue(prevValue => ({ ...prevValue, [e.target.id]: e.target.value.trim() }));
+		setUserError(prev => ({ ...prev, [e.target.id]: '' }));
 	}
 	//!get Path of image
 	function getPathOfImg(e) {
@@ -29,7 +34,6 @@ const SignUp = () => {
 			fileReader.readAsDataURL(file);
 			fileReader.onload = () => {
 				setUserImage(fileReader.result);
-				console.log(fileReader.result);
 			};
 			fileReader.onerror = e => console.log(e);
 		} else {
@@ -56,11 +60,12 @@ const SignUp = () => {
 		};
 		try {
 			const data = await mainMethods.signup(user_created);
+			console.log(data);
 			if (data.user) {
-				localStorage.setItem('user', JSON.stringify({...(await data.user), password: ''}));
-				localStorage.setItem('token', await data.token);
+				localStorage.token = data.token;
+				setUser(data.user);
 				setLoading(false);
-				window.location.assign('/');
+				navigate('/');
 			} else {
 				setUserError(data.errors);
 				setLoading(false);
@@ -86,130 +91,130 @@ const SignUp = () => {
 			<Loading open={loading} setOpen={setLoading} />
 
 			<Bounce left>
-				<form className='sign-content' onSubmit={signup}>
-					<div className='sign-box'>
-						<div className='add-photo'>
+				<form className="sign-content" onSubmit={signup}>
+					<div className="sign-box">
+						<div className="add-photo">
 							<input
-								type='file'
-								accept='image/*'
+								type="file"
+								accept="image/*"
 								onChange={getPathOfImg}
 								ref={inputRef}
-								style={{display: 'none'}}
+								style={{ display: 'none' }}
 							/>
-							<div className='btn-and-img'>
-								<img alt='' src={userImage} />
-								<AiFillCamera className='camera' onClick={() => inputRef.current.click()} />
+							<div className="btn-and-img">
+								<img alt="" src={userImage} />
+								<AiFillCamera className="camera" onClick={() => inputRef.current.click()} />
 								{userError['user_image'] && (
-									<Alert severity='error' className='error'>
+									<Alert severity="error" className="error">
 										{userError['user_image']}
 									</Alert>
 								)}
 							</div>
 						</div>
 
-						<div className='input-box'>
-							<div className='input'>
-								<label htmlFor='name.first_name'>First Name: </label>
-								<input type='text' id='name.first_name' placeholder='First Name' onChange={handleChange} />
+						<div className="input-box">
+							<div className="input">
+								<label htmlFor="name.first_name">First Name: </label>
+								<input type="text" id="name.first_name" placeholder="First Name" onChange={handleChange} />
 							</div>
-							<div className='error-alert'>
+							<div className="error-alert">
 								{userError['name.first_name'] && (
-									<Alert className='error' severity='error'>
+									<Alert className="error" severity="error">
 										{userError['name.first_name']}
 									</Alert>
 								)}
 							</div>
 						</div>
 
-						<div className='input-box'>
-							<div className='input'>
-								<label htmlFor='name.last_name'>Last Name: </label>
-								<input type='text' id='name.last_name' placeholder='Last Name' onChange={handleChange} />
+						<div className="input-box">
+							<div className="input">
+								<label htmlFor="name.last_name">Last Name: </label>
+								<input type="text" id="name.last_name" placeholder="Last Name" onChange={handleChange} />
 							</div>
-							<div className='error-alert'>
+							<div className="error-alert">
 								{userError['name.last_name'] && (
-									<Alert className='error' severity='error'>
+									<Alert className="error" severity="error">
 										{userError['name.last_name']}
 									</Alert>
 								)}
 							</div>
 						</div>
 
-						<div className='input-box'>
-							<div className='input'>
-								<label htmlFor='email'>Email: </label>
-								<input type='text' id='email' placeholder='Email' onChange={handleChange} />
+						<div className="input-box">
+							<div className="input">
+								<label htmlFor="email">Email: </label>
+								<input type="text" id="email" placeholder="Email" onChange={handleChange} />
 							</div>
-							<div className='error-alert'>
+							<div className="error-alert">
 								{userError.email && (
-									<Alert className='error' severity='error'>
+									<Alert className="error" severity="error">
 										{userError.email}
 									</Alert>
 								)}
 							</div>
 						</div>
 
-						<div className='input-box password'>
-							<div className='input'>
-								<label htmlFor='password'>Password: </label>
+						<div className="input-box password">
+							<div className="input">
+								<label htmlFor="password">Password: </label>
 								<input
-									type='password'
-									id='password'
-									placeholder='Password'
+									type="password"
+									id="password"
+									placeholder="Password"
 									onChange={handleChange}
 									ref={passInput}
 								/>
 								{showEye ? (
-									<AiFillEye onClick={handleHideEye} className='fill-eye' />
+									<AiFillEye onClick={handleHideEye} className="fill-eye" />
 								) : (
 									<AiFillEyeInvisible onClick={handleShowEye} />
 								)}
 							</div>
-							<div className='error-alert'>
+							<div className="error-alert">
 								{userError.password && (
-									<Alert className='error' severity='error'>
+									<Alert className="error" severity="error">
 										{userError.password}
 									</Alert>
 								)}
 							</div>
 						</div>
 
-						<div className='input-box'>
-							<div className='input'>
-								<label htmlFor='location.country'>Country: </label>
-								<input type='text' id='location.country' placeholder='Country' onChange={handleChange} />
+						<div className="input-box">
+							<div className="input">
+								<label htmlFor="location.country">Country: </label>
+								<input type="text" id="location.country" placeholder="Country" onChange={handleChange} />
 							</div>
-							<div className='error-alert'>
+							<div className="error-alert">
 								{userError['location.country'] && (
-									<Alert className='error' severity='error'>
+									<Alert className="error" severity="error">
 										{userError['location.country']}
 									</Alert>
 								)}
 							</div>
 						</div>
 
-						<div className='input-box'>
-							<div className='input'>
-								<label htmlFor='location.city'>City: </label>
-								<input type='text' id='location.city' placeholder='City' onChange={handleChange} />
+						<div className="input-box">
+							<div className="input">
+								<label htmlFor="location.city">City: </label>
+								<input type="text" id="location.city" placeholder="City" onChange={handleChange} />
 							</div>
-							<div className='error-alert'>
+							<div className="error-alert">
 								{userError['location.city'] && (
-									<Alert className='error' severity='error'>
+									<Alert className="error" severity="error">
 										{userError['location.city']}
 									</Alert>
 								)}
 							</div>
 						</div>
 
-						<div className='input-box'>
-							<div className='input'>
-								<label htmlFor='phone'>Phone: </label>
-								<input type='text' id='phone' placeholder='Phone' onChange={handleChange} />
+						<div className="input-box">
+							<div className="input">
+								<label htmlFor="phone">Phone: </label>
+								<input type="text" id="phone" placeholder="Phone" onChange={handleChange} />
 							</div>
-							<div className='error-alert'>
+							<div className="error-alert">
 								{userError.phone && (
-									<Alert className='error' severity='error'>
+									<Alert className="error" severity="error">
 										{userError.phone}
 									</Alert>
 								)}
@@ -219,20 +224,20 @@ const SignUp = () => {
 						<button>sign up</button>
 					</div>
 
-					<p className='or-option'>
+					<p className="or-option">
 						<span>or</span>
 					</p>
 
-					<div className='social'>
+					<div className="social">
 						<ul>
 							<li>
-								<Link to='#facebook'>
-									<i className='fab fa-facebook-f'></i> Facebook
+								<Link to="#facebook">
+									<i className="fab fa-facebook-f"></i> Facebook
 								</Link>
 							</li>
 							<li>
-								<Link to='#gmail'>
-									<i className='fab fa-google'></i> Gmail
+								<Link to="#gmail">
+									<i className="fab fa-google"></i> Gmail
 								</Link>
 							</li>
 						</ul>

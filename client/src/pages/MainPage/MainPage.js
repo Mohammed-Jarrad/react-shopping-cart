@@ -1,35 +1,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import '../../css/MainPage/MainPage.css';
 import MainHeader from './MainHeader';
 import TopRating from './TopRating';
 import BigDiscount from './BigDiscount';
 import Categories from './Categories';
-import Stars from '../../components/SingleProductReviews/Stars';
+import Loading from '../../components/Loading/Loading';
 import { HomeContext } from '../../Context/HomeProvider';
+import Features from './Features';
 
 const MainPage = () => {
-	//context
-	const { products, topRating, getTopRatingsProducts, get_products_categories_colors_sizes } =
-		useContext(HomeContext);
-	//
-	useEffect(() => {
-		getTopRatingsProducts(products);
-	}, [products]);
-
-	useEffect(() => {
-		console.log(topRating);
-	}, [topRating]);
-
-	// states
+	// context
+	const { loading, setLoading } = useContext(HomeContext).config;
 
 	return (
-		<div className="main-page">
-			<MainHeader />
-			<TopRating />
-			<BigDiscount />
-			<Categories />
-		</div>
+		<>
+			<div className="main-page">
+				<MainHeader />
+				<Categories />
+				<TopRating />
+				<BigDiscount />
+				<Features />
+			</div>
+
+			<Loading open={loading} setOpen={setLoading} />
+		</>
 	);
 };
 

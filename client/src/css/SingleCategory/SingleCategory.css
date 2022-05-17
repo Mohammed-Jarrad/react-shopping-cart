@@ -1,0 +1,13 @@
+.single-category .container .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.single-category .container .title svg {
+  color: var(--second-color);
+  font-size: 30px;
+}
+.single-category .container .title span {
+  color: var(--second-text-color);
+}

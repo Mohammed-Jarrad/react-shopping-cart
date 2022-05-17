@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { sizeOptions } from './CreateProduct';
 import { AiFillCaretRight } from 'react-icons/ai';
 import { FaTimes } from 'react-icons/fa';
@@ -7,6 +7,20 @@ const SizesInput = ({ setSizes, sizes }) => {
 	// states
 	const [showSizes, setShowSizes] = useState(false);
 	const [inputValue, setInputValue] = useState('');
+	//
+	const sizeInputRef = useRef();
+	const sizeMenuItems = useRef();
+
+	useEffect(() => {
+		console.log(sizeMenuItems.current.children);
+		Object.values(sizeMenuItems.current.children).forEach(p => {
+			if (sizes.includes(p.textContent.toLowerCase())) {
+				p.classList.add('active');
+			} else {
+				p.classList.remove('active');
+			}
+		});
+	}, [sizes]);
 
 	//handleChangeInput
 	const handleChangeInput = e => {
@@ -21,7 +35,6 @@ const SizesInput = ({ setSizes, sizes }) => {
 		} else {
 			handleChangeSizes(value);
 		}
-		e.target.classList.toggle('active');
 	};
 
 	//handleChangeSizes
@@ -60,29 +73,30 @@ const SizesInput = ({ setSizes, sizes }) => {
 
 			<div className="drop-menu">
 				<div className="select">
-					<div className="input">
+					<form
+						className="input"
+						onSubmit={e => {
+							e.preventDefault();
+							handleChangeSizes(inputValue.toLowerCase().trim());
+							setInputValue('');
+							sizeInputRef.current.focus();
+						}}
+					>
 						<input
 							type="text"
 							value={inputValue}
 							onChange={handleChangeInput}
 							placeholder="Enter Your Size..."
+							ref={sizeInputRef}
 						/>
-						<button
-							onClick={e => {
-								e.preventDefault();
-								handleChangeSizes(inputValue.toLowerCase().trim());
-								setInputValue('');
-							}}
-						>
-							Add Size
-						</button>
-					</div>
+						<button>Add Size</button>
+					</form>
 					<span onClick={_ => setShowSizes(!showSizes)}>
 						<AiFillCaretRight className={showSizes && 'rotate'} />
 					</span>
 				</div>
 
-				<div className={`menu-content ${showSizes && 'show'}`}>
+				<div className={`menu-content ${showSizes && 'show'}`} ref={sizeMenuItems}>
 					{sizeOptions.map((item, i) => (
 						<p key={i} onClick={clickOnMenuContent}>
 							{item.label}

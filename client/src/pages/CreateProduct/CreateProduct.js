@@ -1,5 +1,5 @@
 import { Alert } from '@mui/material';
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import '../../css/CreateProduct/CreateProduct.css';
 import { PostRequest } from '../../utils/requests';
 import Loading from '../../components/Loading/Loading';
@@ -8,6 +8,7 @@ import { AiFillCamera } from 'react-icons/ai';
 import CreateInput from './CreateInput';
 import ColorInput from './ColorInput';
 import SizesInput from './SizesInput';
+import { HomeContext } from '../../Context/HomeProvider';
 
 export const sizeOptions = [
 	{ label: 'XS', value: 'xs' },
@@ -57,6 +58,8 @@ export const inputsInfo = [
 ];
 
 const CreateProduct = () => {
+	// context
+	const { forceUpdate } = useContext(HomeContext);
 	// my state
 	const [imageProductUrl, setImageProductUrl] = useState('/images/product-default-image.jpg');
 	const [inputsValue, setInputsValue] = useState('');
@@ -100,7 +103,6 @@ const CreateProduct = () => {
 			desc: inputsValue['desc'],
 			sizes: sizes,
 			colors: colors,
-			countInStock: inputsValue['countInStock'],
 			discount: inputsValue['discount'],
 		};
 		console.log(product);
@@ -111,6 +113,7 @@ const CreateProduct = () => {
 				setLoading(false);
 				setAlertCreateDone(true);
 				setProductError(false);
+				forceUpdate();
 			} else {
 				setLoading(false);
 				setProductError(data.errors);

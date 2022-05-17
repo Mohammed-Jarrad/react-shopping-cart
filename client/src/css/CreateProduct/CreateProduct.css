@@ -1,7 +1,4 @@
 .create-product {
-  grid-area: main;
-  margin-top: 20px;
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,6 +53,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 5px;
 }
 .create-product .col-1 .sizes .view-sizes-select p {

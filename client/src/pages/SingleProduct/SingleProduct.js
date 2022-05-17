@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import '../../css/SingleProduct/SingleProduct.css';
 import { useParams } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
@@ -13,14 +13,15 @@ import SingleProductReviews from '../../components/SingleProductReviews/SinglePr
 const SingleProduct = () => {
 	//context
 	const { getProduct, product, ignore } = useContext(HomeContext);
-	const { loading, sestLoading } = useContext(HomeContext).config;
+	const { loading, setLoading } = useContext(HomeContext).config;
 	// variables
 	const product_id = useParams().id;
 	//states
 	const [showCustomise, setShowCustomise] = useState(false);
 	//
-	useEffect(() => {
+	useLayoutEffect(() => {
 		getProduct(product_id);
+		console.log('Getting from Single Product....');
 	}, [ignore]);
 
 	return (
@@ -45,7 +46,7 @@ const SingleProduct = () => {
 				<>{!loading && <ErrorPage />}</>
 			)}
 
-			<Loading open={loading} setOpen={sestLoading} />
+			<Loading open={loading} setOpen={setLoading} />
 		</React.Fragment>
 	);
 };

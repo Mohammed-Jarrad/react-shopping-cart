@@ -1,9 +1,8 @@
 form.sign-content {
-  grid-area: main;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 10px 0;
+  min-height: var(--main-layout-height);
 }
 form.sign-content .sign-box {
   width: 350px;

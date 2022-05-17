@@ -8,7 +8,7 @@ import { UserContext } from '../../Context/UserProvider';
 
 const ProductBoxInfo = ({ setShowCustomise }) => {
 	// context
-	const { user } = useContext(UserContext);
+	const { token } = useContext(UserContext);
 	const { addToCart } = useContext(CartContext);
 	const { product, discountPrice, finalPrice, getAverageRating, getProductRatings } = useContext(HomeContext);
 	// states
@@ -98,7 +98,7 @@ const ProductBoxInfo = ({ setShowCustomise }) => {
 			</div>
 
 			<>
-				{user ? (
+				{token ? (
 					<div className="modal-options">
 						<button className="add" onClick={_ => handleClickAddToCart()}>
 							Add To Cart

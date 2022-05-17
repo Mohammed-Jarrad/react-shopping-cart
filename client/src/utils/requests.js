@@ -17,7 +17,7 @@ export async function PostRequest(url, body) {
 			'content-type': 'application/json',
 			'x-auth-token': localStorage.token,
 		},
-		body: body,
+		body,
 	});
 }
 
@@ -38,6 +38,6 @@ export async function PutRequest(url, body) {
 			'content-type': 'application/json',
 			'x-auth-token': localStorage.token,
 		},
-		body: body,
+		body,
 	});
 }

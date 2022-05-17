@@ -6,10 +6,10 @@ import CreateReview from './CreateReview';
 import ViewReviews from './ViewReviews';
 
 const SingleProductReviews = () => {
-	const { user } = useContext(UserContext);
+	const { token } = useContext(UserContext);
 	return (
 		<div className="reviews">
-			{user ? (
+			{token ? (
 				<>
 					<ViewReviews />
 					<CreateReview />

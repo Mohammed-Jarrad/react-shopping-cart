@@ -12,14 +12,14 @@ import ThemeToggle from './ThemeToggle';
 
 const ResponsiveList = ({ logout }) => {
 	//context
-	const { user, fullName } = useContext(UserContext);
+	const { user, token, fullName } = useContext(UserContext);
 	const { cart } = useContext(CartContext);
 	//states
 	const [showResponsive, setShowResponsive] = useState(false);
 	const responsiveRef = useRef();
 
 	const hideResponsive = e => {
-		if (user) {
+		if (token) {
 			if (responsiveRef.current.contains(e.target)) {
 				return;
 			} else {
@@ -37,7 +37,7 @@ const ResponsiveList = ({ logout }) => {
 	const hideToggleMenu = _ => setShowResponsive(!showResponsive);
 
 	return (
-		<div className={`main-responsive-list ${!user && 'hide'}`}>
+		<div className={`main-responsive-list ${!token && 'hide'}`}>
 			<div className="toggle-bar" onClick={() => setShowResponsive(!showResponsive)}>
 				{showResponsive ? <FaTimes /> : <FaBars />}
 			</div>
@@ -45,7 +45,7 @@ const ResponsiveList = ({ logout }) => {
 				<div className="profile-ul">
 					<Link to="/profile" onClick={hideToggleMenu}>
 						<span>{fullName}</span>
-						<img src={typeof user === 'object' ? user.user_image : null} alt="user figure" />
+						<img src={token ? user['user_image'] : null} alt="user figure" />
 					</Link>
 				</div>
 

@@ -1,17 +1,22 @@
 @charset "UTF-8";
 .profile {
-  grid-area: main;
+  min-height: var(--main-layout-height);
+  display: flex;
+  align-items: center;
+}
+.profile .profile-wrapper {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  padding: 20px;
+  width: 95%;
+  margin: auto;
 }
 @media (max-width: 768px) {
-  .profile {
+  .profile .profile-wrapper {
     flex-direction: column;
   }
 }
-.profile .user-image {
+.profile .profile-wrapper .user-image {
   border-radius: 10px;
   box-shadow: var(--boxShadow);
   background-color: var(--boxes-bg);
@@ -22,17 +27,17 @@
   justify-content: center;
 }
 @media (max-width: 768px) {
-  .profile .user-image {
+  .profile .profile-wrapper .user-image {
     width: 100%;
   }
 }
-.profile .user-image .user-image-content {
+.profile .profile-wrapper .user-image .user-image-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
-.profile .user-image .user-image-content img {
+.profile .profile-wrapper .user-image .user-image-content img {
   width: 200px;
   height: 200px;
   object-fit: contain;
@@ -40,12 +45,12 @@
   box-shadow: 2px 2px 5px #c0c0c0;
 }
 @media (max-width: 768px) {
-  .profile .user-image .user-image-content img {
+  .profile .profile-wrapper .user-image .user-image-content img {
     display: block;
     margin: auto;
   }
 }
-.profile .user-image .user-image-content button {
+.profile .profile-wrapper .user-image .user-image-content button {
   width: fit-content;
   margin: 10px auto 0;
   padding: 10px 20px;
@@ -55,7 +60,7 @@
   cursor: pointer;
   border-radius: 6px;
 }
-.profile .user-image .user-configuration button {
+.profile .profile-wrapper .user-image .user-configuration button {
   padding: 10px;
   color: var(--main-text-color);
   background-color: var(--mainColor);
@@ -70,65 +75,65 @@
   margin: 0 auto 10px;
   opacity: 0.8;
 }
-.profile .user-image .user-configuration button:last-child {
+.profile .profile-wrapper .user-image .user-configuration button:last-child {
   background-color: var(--second-color);
   color: var(--main-text-color);
 }
-.profile .user-image .user-configuration button:hover {
+.profile .profile-wrapper .user-image .user-configuration button:hover {
   opacity: 1;
 }
-.profile .user-info {
+.profile .profile-wrapper .user-info {
   border-radius: 10px;
   box-shadow: var(--boxShadow);
   background-color: var(--boxes-bg);
   width: 70%;
 }
 @media (max-width: 768px) {
-  .profile .user-info {
+  .profile .profile-wrapper .user-info {
     width: 100%;
   }
 }
-.profile .user-info h2 {
+.profile .profile-wrapper .user-info h2 {
   border-bottom: 1px solid #c0c0c0;
   padding: 10px;
 }
-.profile .user-info .user-info-box {
+.profile .profile-wrapper .user-info .user-info-box {
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
 }
-.profile .user-info .user-info-box .box {
+.profile .profile-wrapper .user-info .user-info-box .box {
   box-shadow: var(--boxShadow);
   padding: 10px;
   border-radius: 10px;
   background-color: var(--body-color);
 }
-.profile .user-info .user-info-box .box h3 {
+.profile .profile-wrapper .user-info .user-info-box .box h3 {
   margin-bottom: 20px;
 }
-.profile .user-info .user-info-box .box input {
+.profile .profile-wrapper .user-info .user-info-box .box input {
   padding: 10px;
   width: 100%;
   border: var(--main-border);
   border-radius: 5px;
   box-shadow: var(--boxShadow◘);
 }
-.profile .user-info .user-info-box .box input:focus {
+.profile .profile-wrapper .user-info .user-info-box .box input:focus {
   outline: none;
   border-color: var(--second-color);
 }
-.profile .change-password {
+.profile .profile-wrapper .change-password {
   position: relative;
   width: 70%;
 }
 @media (max-width: 767px) {
-  .profile .change-password {
+  .profile .profile-wrapper .change-password {
     width: 100%;
   }
 }
-.profile .change-password .compare-password,
-.profile .change-password .change-form {
+.profile .profile-wrapper .change-password .compare-password,
+.profile .profile-wrapper .change-password .change-form {
   box-shadow: var(--boxShadow);
   border-radius: 10px;
   background-color: var(--boxes-bg);
@@ -144,43 +149,43 @@
   justify-content: space-between;
 }
 @media (max-width: 767px) {
-  .profile .change-password .compare-password,
-.profile .change-password .change-form {
+  .profile .profile-wrapper .change-password .compare-password,
+.profile .profile-wrapper .change-password .change-form {
     position: relative;
   }
 }
-.profile .change-password .compare-password h3,
-.profile .change-password .change-form h3 {
+.profile .profile-wrapper .change-password .compare-password h3,
+.profile .profile-wrapper .change-password .change-form h3 {
   margin-bottom: 10px;
   text-align: center;
 }
-.profile .change-password .compare-password input,
-.profile .change-password .change-form input {
+.profile .profile-wrapper .change-password .compare-password input,
+.profile .profile-wrapper .change-password .change-form input {
   width: 100%;
   padding: 10px;
   border: none;
   background-color: var(--body-color);
   border-radius: 30px;
 }
-.profile .change-password .compare-password input .error,
-.profile .change-password .change-form input .error {
+.profile .profile-wrapper .change-password .compare-password input .error,
+.profile .profile-wrapper .change-password .change-form input .error {
   background-color: transparent;
   color: var(--second-color);
   padding: 0px 6px;
 }
-.profile .change-password .compare-password input:focus,
-.profile .change-password .change-form input:focus {
+.profile .profile-wrapper .change-password .compare-password input:focus,
+.profile .profile-wrapper .change-password .change-form input:focus {
   border: none;
   outline: none;
 }
-.profile .change-password .compare-password .submit-password,
-.profile .change-password .change-form .submit-password {
+.profile .profile-wrapper .change-password .compare-password .submit-password,
+.profile .profile-wrapper .change-password .change-form .submit-password {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
-.profile .change-password .compare-password .submit-password button,
-.profile .change-password .change-form .submit-password button {
+.profile .profile-wrapper .change-password .compare-password .submit-password button,
+.profile .profile-wrapper .change-password .change-form .submit-password button {
   padding: 10px;
   background-color: var(--second-color);
   border-radius: 10px;

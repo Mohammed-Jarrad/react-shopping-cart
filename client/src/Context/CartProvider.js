@@ -1,10 +1,18 @@
-import React, { createContext, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react';
+import { UserContext } from './UserProvider';
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
 	// states
 	const [cart, setCart] = useState(sessionStorage.cart ? JSON.parse(sessionStorage.cart) : []);
+
+	// save the cart items in session storage;
+	useEffect(() => {
+		sessionStorage.setItem('cart', JSON.stringify(cart));
+		console.log('cart: ', cart);
+	}, [cart]);
 
 	// add to cart
 	const addToCart = (product, size, color) => {
@@ -18,7 +26,6 @@ const CartProvider = ({ children }) => {
 		});
 		if (!productExist) {
 			cartClone.push({ product, color, size, qty: 1 });
-			// cartClone.push({...product, qty: 1, size: size, color: color});
 		}
 		setCart(cartClone);
 	};

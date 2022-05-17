@@ -27,10 +27,10 @@ const Orders = () => {
 	// variables
 	const navigate = useNavigate();
 
-	//
-	useEffect(() => {
-		getOrdersForUser();
-	}, [ignore]);
+	// //
+	// useEffect(() => {
+	// 	getOrdersForUser();
+	// }, [ignore]);
 
 	return (
 		<React.Fragment>

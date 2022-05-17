@@ -1,165 +1,171 @@
-.login {
-	grid-area: main;
+.main-layout .login {
 	color: #333;
 	user-select: none;
-	margin: 10px 0;
+	min-height: var(--main-layout-height);
 
-	form.login-content {
-		position: relative;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-		width: 350px;
-		text-align: center;
-		border-radius: 20px;
-		padding: 20px;
-		background-color: var(--boxes-bg);
-		box-shadow: var(--boxShadow);
-		border: var(--boxes-border);
+	.container {
+		min-height: var(--main-layout-height);
+		display: flex;
+		align-items: center;
 
-		.go-sign-up {
-			display: block;
-			color: var(--mainColor);
-			margin-bottom: 20px;
-		}
-
-		.login-box {
+		form.login-content {
+			// position: absolute;
+			// top: 50%;
+			// transform: translateY(-50%);
+			width: 350px;
+			margin: auto;
+			max-width: 100%;
+			text-align: center;
+			border-radius: 20px;
 			padding: 20px;
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
+			background-color: var(--boxes-bg);
+			box-shadow: var(--boxShadow);
+			border: var(--boxes-border);
 
-			.input-feild {
+			.go-sign-up {
+				display: block;
+				color: var(--mainColor);
+				margin-bottom: 20px;
+			}
+
+			.login-box {
+				padding: 20px;
 				display: flex;
-				align-items: center;
-				background-color: var(--body-color);
-				box-shadow: var(--boxShadow);
+				flex-direction: column;
+				gap: 10px;
 
-				input.name-input,
-				input.pass-input {
-					width: 100%;
-					display: block;
-					padding: 10px;
-					margin: auto;
-					border: none;
-					background-color: transparent;
-					color: var(--second-text-color);
-					caret-color: var(--second-color);
-					font-size: 16px;
-					transition: 0.3s;
-					border-left: var(--main-border);
+				.input-feild {
+					display: flex;
+					align-items: center;
+					background-color: var(--body-color);
+					box-shadow: var(--boxShadow);
 
-					&::placeholder {
-						color: #afafaf;
-					}
+					input.name-input,
+					input.pass-input {
+						width: 100%;
+						display: block;
+						padding: 10px;
+						margin: auto;
+						border: none;
+						background-color: transparent;
+						color: var(--second-text-color);
+						caret-color: var(--second-color);
+						font-size: 16px;
+						transition: 0.3s;
+						border-left: var(--main-border);
 
-					&:focus {
-						outline: none;
-						padding-left: 15px;
 						&::placeholder {
-							color: transparent;
+							color: #afafaf;
+						}
+
+						&:focus {
+							outline: none;
+							padding-left: 15px;
+							&::placeholder {
+								color: transparent;
+							}
+						}
+					}
+					span.icon {
+						display: block;
+						padding: 10px;
+						svg {
+							color: var(--second-color);
+						}
+					}
+					span.eye {
+						padding: 10px;
+						svg:last-child {
+							color: var(--second-color);
+							size: 2em;
 						}
 					}
 				}
-				span.icon {
+
+				button {
 					display: block;
-					padding: 10px;
-					svg {
-						color: var(--second-color);
+					margin: 10px auto;
+					background: var(--second-color);
+					color: var(--main-text-color);
+					border: none;
+					padding: 10px 20px;
+					font-weight: bold;
+					font-size: 20px;
+					border-radius: 5px;
+					width: 100%;
+					text-transform: uppercase;
+					cursor: pointer;
+					opacity: 0.9;
+					transition: 0.3s;
+
+					&:hover {
+						opacity: 1;
+					}
+
+					&:active {
+						transform: scale(0.95);
 					}
 				}
-				span.eye {
-					padding: 10px;
-					svg:last-child {
-						color: var(--second-color);
-						size: 2em;
-					}
-				}
-			}
 
-			button {
-				display: block;
-				margin: 10px auto;
-				background: var(--second-color);
-				color: var(--main-text-color);
-				border: none;
-				padding: 10px 20px;
-				font-weight: bold;
-				font-size: 20px;
-				border-radius: 5px;
-				width: 100%;
-				text-transform: uppercase;
-				cursor: pointer;
-				opacity: 0.9;
-				transition: 0.3s;
-
-				&:hover {
-					opacity: 1;
-				}
-
-				&:active {
-					transform: scale(0.95);
-				}
-			}
-
-			.or-option {
-				border-radius: 50%;
-				background-color: var(--second-color);
-				color: #fff;
-				width: 30px;
-				height: 30px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				font-weight: bold;
-				margin: 50px auto 20px;
-				position: relative;
-
-				&::before {
-					content: '';
-					position: absolute;
-					width: 120px;
-					height: 1px;
-					right: -120px;
-					background-color: var(--second-color);
-				}
-
-				&::after {
-					content: '';
-					position: absolute;
-					width: 120px;
-					height: 1px;
-					left: -120px;
-					background-color: var(--second-color);
-				}
-			}
-
-			ul {
-				list-style: none;
-				display: flex;
-				justify-content: center;
-				gap: 10px;
-
-				li {
-					width: 50px;
-					height: 50px;
+				.or-option {
 					border-radius: 50%;
+					background-color: var(--second-color);
+					color: #fff;
+					width: 30px;
+					height: 30px;
 					display: flex;
 					justify-content: center;
 					align-items: center;
+					font-weight: bold;
+					margin: 50px auto 20px;
+					position: relative;
 
-					&:first-child {
-						background-color: #4267b2;
+					&::before {
+						content: '';
+						position: absolute;
+						width: 120px;
+						height: 1px;
+						right: -120px;
+						background-color: var(--second-color);
 					}
 
-					&:last-child {
-						background-color: #ea4335;
+					&::after {
+						content: '';
+						position: absolute;
+						width: 120px;
+						height: 1px;
+						left: -120px;
+						background-color: var(--second-color);
 					}
+				}
 
-					a {
-						text-decoration: none;
-						color: #fff;
-						font-size: 20px;
+				ul {
+					list-style: none;
+					display: flex;
+					justify-content: center;
+					gap: 10px;
+
+					li {
+						width: 50px;
+						height: 50px;
+						border-radius: 50%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+
+						&:first-child {
+							background-color: #4267b2;
+						}
+
+						&:last-child {
+							background-color: #ea4335;
+						}
+
+						a {
+							text-decoration: none;
+							color: #fff;
+							font-size: 20px;
+						}
 					}
 				}
 			}

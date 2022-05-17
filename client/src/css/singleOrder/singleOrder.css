@@ -1,7 +1,3 @@
-.single-order {
-  grid-area: main;
-  margin: 20px auto;
-}
 .single-order .location-info {
   background-color: var(--main-light-bg);
   padding: 10px;

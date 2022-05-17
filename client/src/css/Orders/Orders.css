@@ -1,7 +1,4 @@
 .orders {
-  grid-area: main;
-  margin-top: 20px;
-  margin-bottom: 20px;
   transition: width 0.3s;
 }
 .orders .heading {

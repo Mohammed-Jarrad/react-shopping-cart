@@ -17,7 +17,6 @@ const SizesOptions = ({ sizes, setSizes }) => {
 			sizesClone.push(size);
 			setSizes(sizesClone);
 		}
-		e.target.classList.toggle('active');
 	};
 
 	//
@@ -26,6 +25,8 @@ const SizesOptions = ({ sizes, setSizes }) => {
 		sizes_spans.forEach(span => {
 			if (sizes.includes(span.textContent.toLowerCase())) {
 				span.classList.add('active');
+			} else {
+				span.classList.remove('active');
 			}
 		});
 	}, [sizes]);

@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
-import { OrdersContext } from "../../Context/OrdersProvider";
-import "../../css/singleOrder/singleOrder.css";
-import SingleOrderLocation from "./SingleOrderLocation";
-import SingleOrderProducts from "./SingleOrderProducts";
-import SingleOrderTotalBox from "./SingleOrderTotalBox";
-import ErrorPage from "../../components/ErrorPage/ErrorPage";
-import SingleOrderStatus from "./SingleOrderStatus";
-import { UserContext } from "../../Context/UserProvider";
+import React, { useContext, useLayoutEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Loading from '../../components/Loading/Loading';
+import { OrdersContext } from '../../Context/OrdersProvider';
+import '../../css/singleOrder/singleOrder.css';
+import SingleOrderLocation from './SingleOrderLocation';
+import SingleOrderProducts from './SingleOrderProducts';
+import SingleOrderTotalBox from './SingleOrderTotalBox';
+import ErrorPage from '../../components/ErrorPage/ErrorPage';
+import SingleOrderStatus from './SingleOrderStatus';
+import { UserContext } from '../../Context/UserProvider';
 
 const SingleOrder = () => {
 	// context
@@ -18,7 +18,7 @@ const SingleOrder = () => {
 	// variables
 	const order_id = useParams().id;
 	//
-	useEffect(() => {
+	useLayoutEffect(() => {
 		getOrder(order_id);
 	}, [ignore]);
 

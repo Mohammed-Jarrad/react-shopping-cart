@@ -36,24 +36,30 @@ const CreateReview = () => {
 	//createReview
 	const createReview = async e => {
 		e.preventDefault();
-		const newReviwe = {
-			user: user._id,
-			comment: comment,
-			rating: rating,
-		};
-		try {
-			const res = await PutRequest(`/product/review/${product._id}`, JSON.stringify(newReviwe));
-			const data = await res.json();
-			console.log(data);
-			if (data.product) {
-				forceUpdate();
-				setRating('');
-				commentRef.current.value = '';
-			} else {
-				setErrorReview(data.errors);
+		if (rating === '') {
+			setErrorReview(prev => ({ ...prev, rating: 'set Rating Please !' }));
+		} else if (comment === '') {
+			setErrorReview(prev => ({ ...prev, comment: 'set Comment Please !' }));
+		} else {
+			const newReviwe = {
+				user: user._id,
+				comment: comment,
+				rating: rating,
+			};
+			try {
+				const res = await PutRequest(`/product/review/${product._id}`, JSON.stringify(newReviwe));
+				const data = await res.json();
+				console.log(data);
+				if (data.product) {
+					forceUpdate();
+					setRating('');
+					commentRef.current.value = '';
+				} else {
+					setErrorReview(data.errors);
+				}
+			} catch (error) {
+				console.log(error);
 			}
-		} catch (error) {
-			console.log(error);
 		}
 	};
 	return (

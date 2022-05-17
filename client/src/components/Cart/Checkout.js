@@ -1,18 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
-import "../../css/CeckoutForm/Checkout.css";
-import Modal from "react-modal";
-import Loading from "../Loading/Loading";
-import SuccessMsg from "../SuccessMsg/SuccessMsg";
-import { CartContext } from "../../Context/CartProvider";
-import mainMethods from "../../utils/mainMethods";
-import { useNavigate } from "react-router-dom";
-import { Alert } from "@mui/material";
+import React, { useContext, useEffect, useState } from 'react';
+import '../../css/CeckoutForm/Checkout.css';
+import Modal from 'react-modal';
+import Loading from '../Loading/Loading';
+import SuccessMsg from '../SuccessMsg/SuccessMsg';
+import { CartContext } from '../../Context/CartProvider';
+import mainMethods from '../../utils/mainMethods';
+import { useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
+import { OrdersContext } from '../../Context/OrdersProvider';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const Checkout = ({ open, close }) => {
 	// context
 	const { cart, setCart } = useContext(CartContext);
+	const { forceUpdateOrders } = useContext(OrdersContext);
 	//myState
 	const [alertSuccess, setAlertSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -30,15 +32,15 @@ const Checkout = ({ open, close }) => {
 		setLoading(true);
 		const order = {
 			location: {
-				city: location["location.city"],
-				country: location["location.country"],
-				address: location["location.address"],
+				city: location['location.city'],
+				country: location['location.country'],
+				address: location['location.address'],
 			},
 			order_info: cart.map(item => ({
 				product: item.product._id,
 				quantity: item.qty,
-				selected_color: item.color ? item.color : "",
-				selected_size: item.size ? item.size : "",
+				selected_color: item.color ? item.color : '',
+				selected_size: item.size ? item.size : '',
 			})),
 		};
 		try {
@@ -47,7 +49,8 @@ const Checkout = ({ open, close }) => {
 				setLoading(false);
 				setAlertSuccess(true);
 				setCart([]);
-				navigate("/orders");
+				await forceUpdateOrders();
+				navigate('/orders');
 			} else {
 				console.log(data.errors);
 				setlocationErrors(data.errors);
@@ -89,17 +92,17 @@ const Checkout = ({ open, close }) => {
 								name="location.country"
 								onChange={handleChangeLocation}
 							/>
-							{locationErrros["location.country"] ? (
+							{locationErrros['location.country'] ? (
 								<Alert className="error" severity="error">
-									{locationErrros["location.country"]}
+									{locationErrros['location.country']}
 								</Alert>
 							) : null}
 						</div>
 						<div className="input-box">
 							<input type="text" placeholder="City" name="location.city" onChange={handleChangeLocation} />
-							{locationErrros["location.city"] ? (
+							{locationErrros['location.city'] ? (
 								<Alert className="error" severity="error">
-									{locationErrros["location.city"]}
+									{locationErrros['location.city']}
 								</Alert>
 							) : null}
 						</div>
@@ -110,9 +113,9 @@ const Checkout = ({ open, close }) => {
 								name="location.address"
 								onChange={handleChangeLocation}
 							/>
-							{locationErrros["location.address"] ? (
+							{locationErrros['location.address'] ? (
 								<Alert className="error" severity="error">
-									{locationErrros["location.address"]}
+									{locationErrros['location.address']}
 								</Alert>
 							) : null}
 						</div>

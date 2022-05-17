@@ -1,7 +1,3 @@
-.single-product {
-  grid-area: main;
-  margin: 20px auto;
-}
 .single-product > .title {
   margin-bottom: 10px;
   text-transform: capitalize;

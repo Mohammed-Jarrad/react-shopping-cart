@@ -1,16 +1,23 @@
-import React, { createContext, useReducer, useState } from "react";
-import mainMethods from "../utils/mainMethods";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { createContext, useContext, useLayoutEffect, useReducer, useState } from 'react';
+import mainMethods from '../utils/mainMethods';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from './UserProvider';
 
 export const OrdersContext = createContext();
 
 const OrdersProvider = ({ children }) => {
+	//context
+	const { token } = useContext(UserContext);
 	// states
 	const [orders, setOrders] = useState([]);
 	const [ordersForUser, setOrdersForUser] = useState([]);
 	const [order, setOrder] = useState({});
 	const [alertDeleteOrder, setAlertDeleteOrder] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [ignore, forceUpdate] = useReducer(x => x + 1, 0);
+	const [ignore, forceUpdateOrders] = useReducer(x => x + 1, 0);
+	// nav
+	const navigate = useNavigate();
 
 	// get single order
 	const getOrder = async id => {
@@ -28,6 +35,14 @@ const OrdersProvider = ({ children }) => {
 			setLoading(false);
 		}
 	};
+
+	useLayoutEffect(() => {
+		if (token) {
+			getOrdersForUser();
+			console.log('Getting From Orders Provider...');
+		}
+	}, [ignore, token]);
+
 	//get orders for user
 	const getOrdersForUser = async _ => {
 		setLoading(true);
@@ -45,6 +60,7 @@ const OrdersProvider = ({ children }) => {
 			setLoading(false);
 		}
 	};
+
 	// get all orders
 	const getAllOrders = async _ => {
 		setLoading(true);
@@ -62,33 +78,36 @@ const OrdersProvider = ({ children }) => {
 			setLoading(false);
 		}
 	};
+
 	// remove order
 	async function removeOrder(product_id) {
 		try {
 			const res = await mainMethods.deleteOrder(product_id);
 			if (res.status === 202) {
 				setAlertDeleteOrder(true);
-				forceUpdate();
+				forceUpdateOrders();
 			}
 		} catch (err) {
 			console.log(err);
 		}
 	}
+
 	//remove product from order
 	async function removeProductFromOrder(product_id, color, size) {
 		setLoading(true);
 		try {
 			const data = await mainMethods.deleteProductFromOrder(product_id, color, size);
-			if (data.order === null || data.order.order_info.length === 0) {
-				window.location.assign("/orders");
-			}
-			if (data.order) {
-				await mainMethods.deleteAllOrdersWithoutProducts();
-				forceUpdate();
+			console.log('data: ', data);
+			if ([...data.order.order_info].length) {
+				forceUpdateOrders();
 				setLoading(false);
-			} else {
+			} else if (data.errors) {
 				console.log(data);
 				setLoading(false);
+			} else if ([...data.order.order_info].length === 0) {
+				forceUpdateOrders();
+				navigate(`/orders`);
+				console.log('done');
 			}
 		} catch (error) {
 			console.log(error);
@@ -106,7 +125,7 @@ const OrdersProvider = ({ children }) => {
 				loading,
 				setLoading,
 				ignore,
-				forceUpdate,
+				forceUpdateOrders,
 				getOrdersForUser,
 				removeOrder,
 				removeProductFromOrder,

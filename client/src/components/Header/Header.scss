@@ -1,13 +1,8 @@
-header {
-	grid-area: header;
+header.header-layout {
 	background-color: var(--mainColor);
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 9999;
-	height: 50px;
 
 	.container {
+		border-bottom: var(--main-border);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

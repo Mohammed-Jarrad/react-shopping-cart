@@ -1,5 +1,220 @@
 .main-page {
-  grid-area: main;
+  margin-top: -20px;
+}
+.main-page > div {
+  padding-top: 30px;
+  margin: auto;
+}
+.main-page .main-header {
+  height: calc(40px + var(--main-layout-height));
+  background-color: var(--mainColor);
+}
+.main-page .main-header .container {
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.main-page .main-header .container .intro {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.main-page .main-header .container .intro .welcome {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.main-page .main-header .container .intro .welcome h1 {
+  color: var(--hover-bg);
+  font-size: 35px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--second-color);
+}
+.main-page .main-header .container .intro .welcome a {
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--main-text-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+.main-page .main-header .container .intro .welcome a:hover {
+  text-decoration: underline;
+}
+.main-page .main-header .container .intro > button {
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--second-color);
+  color: var(--main-text-color);
+  font-weight: bold;
+  font-size: 20px;
+  width: 200px;
+}
+.main-page .main-header .container .intro .about p {
+  width: 300px;
+  color: var(--main-text-color);
+  font-size: 20px;
+  line-height: 50px;
+}
+.main-page .main-header .container .image img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: var(--second-color);
+}
+@media (max-width: 767px) {
+  .main-page .main-header .container .image {
+    display: none;
+  }
+  .main-page .main-header .container .intro .about p {
+    width: 100%;
+  }
+}
+.main-page .top-rating,
+.main-page .discount-products {
   width: 95%;
-  margin: 20px auto;
+}
+.main-page .top-rating .swiper .swiper-wrapper,
+.main-page .discount-products .swiper .swiper-wrapper {
+  padding: 30px 0;
+}
+.main-page .top-rating .swiper .swiper-button-prev,
+.main-page .top-rating .swiper .swiper-button-next,
+.main-page .discount-products .swiper .swiper-button-prev,
+.main-page .discount-products .swiper .swiper-button-next {
+  background-color: var(--second-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.main-page .top-rating .swiper .swiper-button-prev::after,
+.main-page .top-rating .swiper .swiper-button-next::after,
+.main-page .discount-products .swiper .swiper-button-prev::after,
+.main-page .discount-products .swiper .swiper-button-next::after {
+  color: var(--main-text-color);
+  font-size: 17px;
+}
+.main-page .top-rating .swiper .slide .product-item,
+.main-page .discount-products .swiper .slide .product-item {
+  background-color: var(--boxes-bg);
+  box-shadow: 0px 1px 3px rgba(3, 0, 71, 0.09);
+  overflow: hidden;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+  border: var(--boxes-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.main-page .top-rating .swiper .slide .product-item:hover,
+.main-page .discount-products .swiper .slide .product-item:hover {
+  box-shadow: 0px 1px 15px rgba(3, 0, 71, 0.15);
+}
+.main-page .top-rating .swiper .slide .product-item .product-discount,
+.main-page .discount-products .swiper .slide .product-item .product-discount {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+  transform: rotate(-45deg);
+  position: absolute;
+  padding: 2px;
+  top: 15px;
+  left: -25px;
+  font-size: 12px;
+  width: 100px;
+}
+.main-page .top-rating .swiper .slide .product-item img,
+.main-page .discount-products .swiper .slide .product-item img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  max-width: 100%;
+  margin: auto;
+  cursor: pointer;
+  padding: var(--main-padding);
+}
+.main-page .top-rating .swiper .slide .product-item .product-desc .title,
+.main-page .discount-products .swiper .slide .product-item .product-desc .title {
+  color: var(--second-text-color);
+  text-transform: capitalize;
+  padding: var(--main-padding);
+  text-align: left;
+}
+.main-page .top-rating .swiper .slide .product-item .product-desc .rating,
+.main-page .discount-products .swiper .slide .product-item .product-desc .rating {
+  padding: var(--main-padding);
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.main-page .top-rating .swiper .slide .product-item .product-desc .price-add,
+.main-page .discount-products .swiper .slide .product-item .product-desc .price-add {
+  padding: var(--main-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--second-color);
+}
+.main-page .top-rating .swiper .slide .product-item .product-desc .price-add .add,
+.main-page .discount-products .swiper .slide .product-item .product-desc .price-add .add {
+  border-radius: 5px;
+  border: 1px solid var(--second-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.3s;
+}
+.main-page .top-rating .swiper .slide .product-item .product-desc .price-add .add:active,
+.main-page .discount-products .swiper .slide .product-item .product-desc .price-add .add:active {
+  transform: scale(0.93);
+}
+.main-page .top-rating .swiper .slide .product-item .product-desc .price-add .add.add:hover,
+.main-page .discount-products .swiper .slide .product-item .product-desc .price-add .add.add:hover {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+}
+.main-page .categories {
+  width: 95%;
+  margin: auto;
+}
+.main-page .categories .view-categories {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+.main-page .categories .view-categories .category {
+  width: 200px;
+  height: 70px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--boxes-bg);
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: var(--boxShadow);
+  border: var(--boxes-border);
+  color: var(--second-text-color);
+  cursor: pointer;
+}
+.main-page .categories .view-categories .category svg {
+  color: var(--second-color);
+}
+.main-page .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--second-text-color);
+}
+.main-page .title svg {
+  color: var(--second-color);
 }

@@ -5,11 +5,12 @@ import { BsFacebook } from 'react-icons/bs';
 
 const Footer = () => {
 	return (
-		<footer>
+		<div className="container">
 			<div className="info">
 				<div className="logo">
 					<img src="/images/logo/N3.png" alt="" width={200} />
 				</div>
+
 				<div className="about">
 					<h3 className="title">About</h3>
 
@@ -48,7 +49,7 @@ const Footer = () => {
 					<AiFillLinkedin />
 				</div>
 			</div>
-		</footer>
+		</div>
 	);
 };
 
