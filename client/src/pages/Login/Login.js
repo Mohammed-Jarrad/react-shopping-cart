@@ -1,12 +1,11 @@
 import React, { useContext, useRef, useState } from 'react';
 import '../../css/Login/Login.css';
-import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineLock, AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { Alert } from '@mui/material';
 import mainMethods from '../../utils/mainMethods';
 import { Bounce } from 'react-reveal';
 import { UserContext } from '../../Context/UserProvider';
-import { HomeContext } from '../../Context/HomeProvider';
 import Loading from '../../components/Loading/Loading';
 
 const Login = () => {
@@ -77,6 +76,7 @@ const Login = () => {
 										<input
 											type="email"
 											name="email"
+											defaultValue={inputValues.email}
 											placeholder="E-mail"
 											className="name-input"
 											onChange={handleChangeInput}
@@ -93,6 +93,7 @@ const Login = () => {
 										<input
 											type="password"
 											name="password"
+											defaultValue={inputValues.password}
 											placeholder="Password"
 											className="pass-input"
 											ref={passInput}

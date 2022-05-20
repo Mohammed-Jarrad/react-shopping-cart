@@ -133,7 +133,10 @@
 .reviews .create-review .comment {
   width: 100%;
 }
-.reviews .create-review .comment textarea {
+.reviews .create-review .comment textarea,
+.reviews .create-review .comment input {
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
   height: 100px;
   resize: vertical;
@@ -143,7 +146,8 @@
   margin-top: 10px;
   background-color: var(--boxes-bg);
 }
-.reviews .create-review .comment textarea:focus {
+.reviews .create-review .comment textarea:focus,
+.reviews .create-review .comment input:focus {
   outline: none;
 }
 .reviews .create-review .submit {

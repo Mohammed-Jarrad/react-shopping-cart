@@ -12,7 +12,6 @@ const SizesInput = ({ setSizes, sizes }) => {
 	const sizeMenuItems = useRef();
 
 	useEffect(() => {
-		console.log(sizeMenuItems.current.children);
 		Object.values(sizeMenuItems.current.children).forEach(p => {
 			if (sizes.includes(p.textContent.toLowerCase())) {
 				p.classList.add('active');
@@ -20,6 +19,8 @@ const SizesInput = ({ setSizes, sizes }) => {
 				p.classList.remove('active');
 			}
 		});
+
+		return () => null;
 	}, [sizes]);
 
 	//handleChangeInput

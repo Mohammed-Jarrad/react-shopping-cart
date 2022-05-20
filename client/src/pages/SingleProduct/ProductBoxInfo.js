@@ -25,94 +25,98 @@ const ProductBoxInfo = ({ setShowCustomise }) => {
 	};
 
 	return (
-		<div className="product-information">
-			<p className="desc">
-				<span>
-					{product.desc.split('\n').map((item, i) => (
-						<span style={{ display: 'block' }} key={i}>
-							{item}
+		<>
+			{Object.keys(product).length > 0 && (
+				<div className="product-information">
+					<p className="desc">
+						<span>
+							{product.desc.split('\n').map((item, i) => (
+								<span style={{ display: 'block' }} key={i}>
+									- {item}
+								</span>
+							))}
 						</span>
-					))}
-				</span>
-			</p>
+					</p>
 
-			<div className="product-info-box">
-				<div className="ratings">
-					Rate
-					<span>
-						{[...getProductRatings(product)].length ? (
-							<Stars value={getAverageRating(product).rate} />
+					<div className="product-info-box">
+						<div className="ratings">
+							Rate
+							<span>
+								{[...getProductRatings(product)].length ? (
+									<Stars value={getAverageRating(product).rate} />
+								) : (
+									'No Rate Yet !'
+								)}
+							</span>
+						</div>
+
+						{discountPrice(product) !== product?.price ? (
+							<>
+								<div className="discount-desc">
+									Discount
+									<span>{`${product.discount}%`}</span>
+								</div>
+								<div className="price">Price {finalPrice(product)}</div>
+							</>
 						) : (
-							'No Rate Yet !'
+							<div className="price">
+								Price
+								<span>{finalPrice(product)}</span>
+							</div>
 						)}
-					</span>
-				</div>
 
-				{discountPrice(product) !== product.price ? (
+						<div className="category">
+							Category
+							<span>{product.category}</span>
+						</div>
+
+						<>
+							{product.sizes.length ? (
+								<div className="sizes">
+									Sizes
+									<div className="items">
+										{product.sizes.map((size, i) => (
+											<span key={i}>{size}</span>
+										))}
+									</div>
+								</div>
+							) : null}
+						</>
+
+						<>
+							{product.colors.length ? (
+								<div className="colors">
+									Colors
+									<div className="items">
+										{product.colors
+											? product.colors.map((color, i) => (
+													<span style={{ backgroundColor: `${color}` }} key={i}></span>
+											  ))
+											: null}
+									</div>
+								</div>
+							) : null}
+						</>
+					</div>
+
 					<>
-						<div className="discount-desc">
-							Discount
-							<span>{`${product.discount}%`}</span>
-						</div>
-						<div className="price">Price {finalPrice(product)}</div>
+						{token ? (
+							<div className="modal-options">
+								<button className="add" onClick={_ => handleClickAddToCart()}>
+									Add To Cart
+								</button>
+							</div>
+						) : (
+							<div className="login-msg">
+								Please <Link to={'/login'}>Login</Link> to Add Your Product to Cart!
+							</div>
+						)}
 					</>
-				) : (
-					<div className="price">
-						Price
-						<span>{finalPrice(product)}</span>
-					</div>
-				)}
 
-				<div className="category">
-					Category
-					<span>{product.category}</span>
+					<SuccessMsg msg={'Done !'} open={alertAdded} setOpen={setAlertAdded} />
 				</div>
-
-				<>
-					{product.sizes.length ? (
-						<div className="sizes">
-							Sizes
-							<div className="items">
-								{product.sizes.map((size, i) => (
-									<span key={i}>{size}</span>
-								))}
-							</div>
-						</div>
-					) : null}
-				</>
-
-				<>
-					{product.colors.length ? (
-						<div className="colors">
-							Colors
-							<div className="items">
-								{product.colors
-									? product.colors.map((color, i) => (
-											<span style={{ backgroundColor: `${color}` }} key={i}></span>
-									  ))
-									: null}
-							</div>
-						</div>
-					) : null}
-				</>
-			</div>
-
-			<>
-				{token ? (
-					<div className="modal-options">
-						<button className="add" onClick={_ => handleClickAddToCart()}>
-							Add To Cart
-						</button>
-					</div>
-				) : (
-					<div className="login-msg">
-						Please <Link to={'/login'}>Login</Link> to Add Your Product to Cart!
-					</div>
-				)}
-			</>
-
-			<SuccessMsg msg={'Done !'} open={alertAdded} setOpen={setAlertAdded} />
-		</div>
+			)}
+		</>
 	);
 };
 

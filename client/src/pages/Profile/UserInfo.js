@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../../Context/UserProvider';
 import ProfileBox from './ProfileBox';
 
 const UserInfo = () => {
 	// context
 	const { user } = useContext(UserContext);
+
 	return (
 		<div className="user-info">
 			<h2>Information </h2>

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useLayoutEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
 import { OrdersContext } from '../../Context/OrdersProvider';
@@ -13,13 +13,14 @@ import { UserContext } from '../../Context/UserProvider';
 
 const SingleOrder = () => {
 	// context
-	const { getOrder, order, ignore, loading, setLoading } = useContext(OrdersContext);
+	const { getOrder, setOrder, order, ignore, loading, setLoading } = useContext(OrdersContext);
 	const { admin } = useContext(UserContext);
 	// variables
 	const order_id = useParams().id;
 	//
-	useLayoutEffect(() => {
+	useEffect(() => {
 		getOrder(order_id);
+		console.log('From Single Order...');
 	}, [ignore]);
 
 	return (

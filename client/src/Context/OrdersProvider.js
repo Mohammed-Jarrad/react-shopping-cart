@@ -28,6 +28,7 @@ const OrdersProvider = ({ children }) => {
 				setOrder(data.order);
 				setLoading(false);
 			} else {
+				console.log(data.errors);
 				setLoading(false);
 			}
 		} catch (error) {
@@ -39,7 +40,7 @@ const OrdersProvider = ({ children }) => {
 	useLayoutEffect(() => {
 		if (token) {
 			getOrdersForUser();
-			console.log('Getting From Orders Provider...');
+			console.log('From Orders Provider...');
 		}
 	}, [ignore, token]);
 

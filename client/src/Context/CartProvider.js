@@ -11,7 +11,6 @@ const CartProvider = ({ children }) => {
 	// save the cart items in session storage;
 	useEffect(() => {
 		sessionStorage.setItem('cart', JSON.stringify(cart));
-		console.log('cart: ', cart);
 	}, [cart]);
 
 	// add to cart

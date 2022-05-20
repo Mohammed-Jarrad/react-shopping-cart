@@ -18,7 +18,7 @@ const SingleProductStatus = () => {
 	const changeProductStatus = async e => {
 		const status = e.target.textContent;
 		try {
-			const res = await PutRequest(`/product/${product._id}`, JSON.stringify({ status }));
+			const res = await PutRequest(`/product/${product._id}`, JSON.stringify({ ...product, status }));
 			const data = await res.json();
 			console.log(data);
 			if (data.product) {
@@ -30,30 +30,32 @@ const SingleProductStatus = () => {
 	};
 	return (
 		<div className="single-product-status">
-			<div className={`status`}>
-				<div className="info">
-					Product Status:
-					<span className={` ${product.status}`}> {product.status}</span>
-				</div>
-
-				{admin && (
-					<div className="change" onClick={_ => setShowChangeStatus(show => !show)}>
-						<div className="icon">
-							<FaEdit />
-						</div>
-
-						<div className={`drop-menu ${showChangeStatus && 'show-menu'}`}>
-							{allStatus
-								.filter(item => item !== product.status)
-								.map((item, index) => (
-									<div key={index} className={`item`} onClick={changeProductStatus}>
-										{item}
-									</div>
-								))}
-						</div>
+			{Object.keys(product).length > 0 && (
+				<div className={`status`}>
+					<div className="info">
+						Product Status:
+						<span className={` ${product.status}`}> {product.status}</span>
 					</div>
-				)}
-			</div>
+
+					{admin && (
+						<div className="change" onClick={_ => setShowChangeStatus(show => !show)}>
+							<div className="icon">
+								<FaEdit />
+							</div>
+
+							<div className={`drop-menu ${showChangeStatus && 'show-menu'}`}>
+								{allStatus
+									.filter(item => item !== product.status)
+									.map((item, index) => (
+										<div key={index} className={`item`} onClick={changeProductStatus}>
+											{item}
+										</div>
+									))}
+							</div>
+						</div>
+					)}
+				</div>
+			)}
 		</div>
 	);
 };

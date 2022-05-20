@@ -13,7 +13,7 @@ const ViewReviews = () => {
 	const { user, admin } = useContext(UserContext);
 
 	// variales
-	const reviews = [...product.reviews];
+	const reviews = Object.keys(product).length && [...product.reviews];
 
 	// delete review
 	const deleteReview = async id => {

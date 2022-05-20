@@ -23,64 +23,65 @@ const Profile = () => {
 		setUserImage,
 		user,
 	} = useContext(UserContext);
+
 	// ref
 	const inputRef = useRef();
-
-	console.log(user);
 
 	return (
 		<React.Fragment>
 			<Loading open={loading} setOpen={setLoading} />
 
-			<div className="profile">
-				<div className="profile-wrapper">
-					<div className="user-image">
-						<div className="user-image-content">
-							<img src={userImage} alt={`${fullName} figure`} />
+			{Object.keys(user).length > 0 && (
+				<div className="profile">
+					<div className="profile-wrapper">
+						<div className="user-image">
+							<div className="user-image-content">
+								<img src={userImage} alt={`${fullName} figure`} />
 
-							{showChangeInformation ? (
-								<>
-									<input
-										type="file"
-										accept="images/*"
-										onChange={getPathNewImage}
-										ref={inputRef}
-										style={{ display: 'none' }}
-									/>
-									<button onClick={() => inputRef.current.click()}>Change Photo</button>
-								</>
-							) : null}
-						</div>
-						<div className="user-configuration">
-							{showChangeInformation ? (
-								<>
-									<button onClick={handleChangeInformation}>Save</button>
+								{showChangeInformation ? (
+									<>
+										<input
+											type="file"
+											accept="images/*"
+											onChange={getPathNewImage}
+											ref={inputRef}
+											style={{ display: 'none' }}
+										/>
+										<button onClick={() => inputRef.current.click()}>Change Photo</button>
+									</>
+								) : null}
+							</div>
+							<div className="user-configuration">
+								{showChangeInformation ? (
+									<>
+										<button onClick={handleChangeInformation}>Save</button>
+										<button
+											onClick={() => {
+												setShowChangeInformation(false);
+												setUserImage(user.user_image);
+											}}
+										>
+											Cancel
+										</button>
+									</>
+								) : (
 									<button
 										onClick={() => {
-											setShowChangeInformation(false);
-											setUserImage(user.user_image);
+											setShowChangeInformation(true);
+											setShowChangePassword(false);
 										}}
 									>
-										Cancel
+										Change Information
 									</button>
-								</>
-							) : (
-								<button
-									onClick={() => {
-										setShowChangeInformation(true);
-										setShowChangePassword(false);
-									}}
-								>
-									Change Information
-								</button>
-							)}
-							<button onClick={() => setShowChangePassword(true)}>Change Password</button>
-							<button onClick={() => setOpenDeleteAccountModal(true)}>Delete Account</button>
+								)}
+								<button onClick={() => setShowChangePassword(true)}>Change Password</button>
+								<button onClick={() => setOpenDeleteAccountModal(true)}>Delete Account</button>
+							</div>
 						</div>
+						{showChangePassword === false ? <UserInfo /> : <ChangePassword />}
 					</div>
-					{showChangePassword === false ? <UserInfo /> : <ChangePassword />}
 				</div>
-			</div>
+			)}
 
 			<DeleteAccountModal />
 		</React.Fragment>

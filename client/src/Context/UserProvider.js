@@ -28,30 +28,30 @@ const UserProvider = ({ children }) => {
 	// ! Effects
 	useEffect(() => {
 		setUserImage(user.user_image);
-
-		return () => null;
 	}, [user]);
 
 	useLayoutEffect(() => {
 		token && getUser();
 		console.log('from User Provider ....');
-
-		return () => null;
 	}, [token]);
 	// ! end Effects
 
 	// Get CURRENT USER
 	async function getUser() {
+		setLoading(true);
 		try {
 			const res = await GetRequest('/user');
 			const data = await res.json();
 			if (data.user) {
 				setUser(data.user);
+				setLoading(false);
 			} else {
 				console.log(data.errors);
+				setLoading(false);
 			}
 		} catch (error) {
 			console.log(error);
+			setLoading(false);
 		}
 	}
 

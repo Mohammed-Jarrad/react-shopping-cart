@@ -21,6 +21,7 @@ const HomeProvider = ({ children }) => {
 	const [alertProductDeleted, setAlertProductDeleted] = useState(false);
 	const [chosenSize, setChosenSize] = useState('');
 	const [chosenColor, setChosenColor] = useState('');
+	// Force Update
 	const [ignore, forceUpdate] = useReducer(x => x + 1, 0);
 	// config
 	const [loading, setLoading] = useState(false);
@@ -43,6 +44,24 @@ const HomeProvider = ({ children }) => {
 			setLoading(false);
 		}
 	}
+
+	// getProduct
+	const getProduct = async id => {
+		setLoading(true);
+		try {
+			const data = await mainMethods.getProduct(id);
+			if (data.product) {
+				setProduct(data.product);
+				setLoading(false);
+			} else {
+				console.log(data.errors);
+				setLoading(false);
+			}
+		} catch (error) {
+			console.log(error);
+			setLoading(false);
+		}
+	};
 
 	useLayoutEffect(() => {
 		get_products_categories_colors_sizes();
@@ -73,7 +92,7 @@ const HomeProvider = ({ children }) => {
 		const array = [...arr];
 		if (array.length === 0) return null;
 
-		return array.reduce((a, b, i, arr) => {
+		return array.reduce((a, b, arr) => {
 			return arr.filter(e => e === a).length >= arr.filter(e => e === b).length ? a : b;
 		}, null);
 	}
@@ -96,23 +115,6 @@ const HomeProvider = ({ children }) => {
 					<span className="origin-price">{`$${product.price}`}</span>
 				</span>
 			);
-		}
-	};
-
-	// getProduct
-	const getProduct = async id => {
-		setLoading(true);
-		try {
-			const data = await mainMethods.getProduct(id);
-			if (data.product) {
-				setProduct(data.product);
-				setLoading(false);
-			} else {
-				setLoading(false);
-			}
-		} catch (error) {
-			console.log(error);
-			setLoading(false);
 		}
 	};
 
