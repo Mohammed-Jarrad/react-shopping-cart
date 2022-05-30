@@ -38,7 +38,7 @@ const SingleOrder = () => {
 				<>{!loading && <ErrorPage />}</>
 			)}
 
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 		</>
 	);
 };

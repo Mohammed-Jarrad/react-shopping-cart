@@ -71,7 +71,7 @@ const Checkout = ({ open, close }) => {
 
 	return (
 		<React.Fragment>
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 			<SuccessMsg msg={`order created done !`} open={alertSuccess} setOpen={setAlertSuccess} />
 
 			<Modal

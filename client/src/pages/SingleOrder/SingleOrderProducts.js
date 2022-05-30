@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
-import { HomeContext } from "../../Context/HomeProvider";
-import { OrdersContext } from "../../Context/OrdersProvider";
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Loading from '../../components/Loading/Loading';
+import { HomeContext } from '../../Context/HomeProvider';
+import { OrdersContext } from '../../Context/OrdersProvider';
 
 const SingleOrderProducts = ({ order }) => {
 	//context
@@ -18,7 +18,7 @@ const SingleOrderProducts = ({ order }) => {
 			<>
 				{order_info.map((item, i) => {
 					return (
-						<div className="product-item" key={i}>
+						<div className="product-items" key={i}>
 							<div className="item">
 								<div className="image">
 									{discountPrice(item.product) !== item.product.price && (
@@ -48,9 +48,9 @@ const SingleOrderProducts = ({ order }) => {
 												<span
 													style={{
 														background: item.selected_color,
-														width: "20px",
-														height: "20px",
-														border: "var(--main-border)",
+														width: '20px',
+														height: '20px',
+														border: 'var(--main-border)',
 													}}
 												/>
 											</div>
@@ -78,7 +78,7 @@ const SingleOrderProducts = ({ order }) => {
 					);
 				})}
 
-				<Loading open={loading} setOpen={setLoading} />
+				<Loading open={loading} />
 			</>
 		</div>
 	);

@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { RiShoppingBag3Fill } from 'react-icons/ri';
 import { BsCart4, BsPersonCircle } from 'react-icons/bs';
 import { AiFillHome, AiOutlineLogout } from 'react-icons/ai';
+import { FaShoppingBasket } from 'react-icons/fa';
 import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
 import { UserContext } from '../../Context/UserProvider';
 import { CartContext } from '../../Context/CartProvider';
@@ -51,6 +52,12 @@ const MainList = ({ logout }) => {
 
 					<li>
 						<NavLink to="/all-products">
+							<FaShoppingBasket /> PRODUCTS
+						</NavLink>
+					</li>
+
+					<li>
+						<NavLink to="/">
 							<AiFillHome /> HOME
 						</NavLink>
 					</li>

@@ -6,7 +6,7 @@ import Loading from '../Loading/Loading';
 
 const Users = () => {
 	//context
-	const { users, getAllUsers, loading, setLoading, removeUser } = useContext(UserContext);
+	const { users, getAllUsers, loading, removeUser } = useContext(UserContext);
 
 	useEffect(_ => getAllUsers(), []);
 
@@ -30,7 +30,7 @@ const Users = () => {
 					: null}
 			</div>
 
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 		</div>
 	);
 };

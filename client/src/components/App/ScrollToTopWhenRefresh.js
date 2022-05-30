@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTopWhenRefresh = ({ children }) => {
@@ -6,7 +6,7 @@ const ScrollToTopWhenRefresh = ({ children }) => {
 
 	useEffect(() => {
 		window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-	}, [location.pathname]);
+	}, [location.key]);
 
 	return children;
 };

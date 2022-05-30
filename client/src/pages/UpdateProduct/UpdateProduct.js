@@ -22,7 +22,7 @@ const UpdateProduct = () => {
 		alertProductDeleted,
 		setAlertProductDeleted,
 	} = useContext(HomeContext);
-	const { loading, setLoading } = useContext(HomeContext).config;
+	const { loading } = useContext(HomeContext).config;
 
 	// variables
 	const navigate = useNavigate();
@@ -39,7 +39,7 @@ const UpdateProduct = () => {
 					{products.length ? (
 						<div className="products">
 							{products.map((product, index) => (
-								<div className="product-item" key={index}>
+								<div className="product-items" key={index}>
 									<div className="item">
 										{discountPrice(product) !== product.price && (
 											<span className="product-discount">{`${product.discount}%`}</span>
@@ -72,7 +72,7 @@ const UpdateProduct = () => {
 				</div>
 			</div>
 
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 			<SuccessMsg msg={'Product Deleted !'} open={alertProductDeleted} setOpen={setAlertProductDeleted} />
 		</React.Fragment>
 	);

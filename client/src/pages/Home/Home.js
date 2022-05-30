@@ -1,5 +1,4 @@
-// /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Filter from '../../components/Filter/Filter';
 import Products from '../../components/Products/Products';
 import '../../css/Home/Home.css';
@@ -8,7 +7,7 @@ import { HomeContext } from '../../Context/HomeProvider';
 import Loading from '../../components/Loading/Loading';
 
 const Home = () => {
-	const { loading, setLoading } = useContext(HomeContext).config;
+	const { loading } = useContext(HomeContext).config;
 	const { products } = useContext(HomeContext);
 
 	return (
@@ -21,7 +20,7 @@ const Home = () => {
 				</div>
 			</main>
 
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 		</>
 	);
 };

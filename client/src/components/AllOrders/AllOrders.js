@@ -11,16 +11,8 @@ import OrdersFilter from '../OrdersFilter/OrdersFilter';
 
 const AllOrders = () => {
 	//context
-	const {
-		getAllOrders,
-		orders,
-		loading,
-		setLoading,
-		setOrders,
-		alertDeleteOrder,
-		setAlertDeleteOrder,
-		ignore,
-	} = useContext(OrdersContext);
+	const { getAllOrders, orders, loading, setOrders, alertDeleteOrder, setAlertDeleteOrder, ignore } =
+		useContext(OrdersContext);
 	const { removeOrder } = useContext(OrdersContext);
 	// variables
 	const navigate = useNavigate();
@@ -71,7 +63,7 @@ const AllOrders = () => {
 			</div>
 
 			{/* for Loading ! */}
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 			<SuccessMsg open={alertDeleteOrder} setOpen={setAlertDeleteOrder} msg={'Deleted Success !'} />
 			{/*  */}
 		</React.Fragment>

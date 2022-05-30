@@ -42,7 +42,7 @@ const Header = () => {
 
 	return (
 		<>
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 
 			<div className="container">
 				<div className="logo">

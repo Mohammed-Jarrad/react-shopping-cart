@@ -10,13 +10,13 @@ function Index() {
 	return (
 		<CartProvider>
 			<UserProvider>
-				<HomeProvider>
-					<OrdersProvider>
+				<OrdersProvider>
+					<HomeProvider>
 						<FilterProvider>
 							<App />
 						</FilterProvider>
-					</OrdersProvider>
-				</HomeProvider>
+					</HomeProvider>
+				</OrdersProvider>
 			</UserProvider>
 		</CartProvider>
 	);

@@ -126,7 +126,7 @@ const CreateProduct = () => {
 
 	return (
 		<React.Fragment>
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 			<SuccessMsg open={alertCreateDone} setOpen={setAlertCreateDone} msg={'Created Done !'} />
 
 			<div className="create-product container">

@@ -15,7 +15,6 @@ const Orders = () => {
 	const {
 		ordersForUser,
 		getOrdersForUser,
-		ignore,
 		loading,
 		setLoading,
 		alertDeleteOrder,
@@ -26,11 +25,6 @@ const Orders = () => {
 
 	// variables
 	const navigate = useNavigate();
-
-	// //
-	// useEffect(() => {
-	// 	getOrdersForUser();
-	// }, [ignore]);
 
 	return (
 		<React.Fragment>
@@ -69,7 +63,7 @@ const Orders = () => {
 				)}
 			</div>
 
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 			<SuccessMsg open={alertDeleteOrder} setOpen={setAlertDeleteOrder} msg={'Deleted Success !'} />
 		</React.Fragment>
 	);

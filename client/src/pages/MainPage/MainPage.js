@@ -23,7 +23,7 @@ const MainPage = () => {
 				<Features />
 			</div>
 
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 		</>
 	);
 };

@@ -10,6 +10,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import { MdOutlineStarRate } from 'react-icons/md';
+import Product from '../../components/Products/Product';
 
 // break points
 export const breakPoints = {
@@ -47,33 +48,7 @@ const TopRating = () => {
 							.map((product, i) => {
 								return (
 									<SwiperSlide key={i} className="slide">
-										<div className="product-item" key={product._id}>
-											{discountPrice(product) !== product.price && (
-												<span className="product-discount">{`${product.discount}% off`}</span>
-											)}
-
-											<Link to={`/product/${product._id}`}>
-												<img alt="product figure" src={product.imageUrl} />
-											</Link>
-
-											<div className="product-desc">
-												<div className="title">{product.title}</div>
-
-												{[...getProductRatings(product)].length ? (
-													<div className="rating">
-														<Stars value={getAverageRating(product).rate} />
-														<span>({[...product.reviews].length})</span>
-													</div>
-												) : null}
-
-												<p className="price-add">
-													{finalPrice(product)}
-													<span className="add" onClick={() => navigate(`/product/${product._id}`)}>
-														<VscAdd />
-													</span>
-												</p>
-											</div>
-										</div>
+										<Product product={product} />
 									</SwiperSlide>
 								);
 							})}

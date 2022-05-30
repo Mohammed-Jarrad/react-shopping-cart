@@ -16,6 +16,7 @@ const OrdersProvider = ({ children }) => {
 	const [alertDeleteOrder, setAlertDeleteOrder] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [ignore, forceUpdateOrders] = useReducer(x => x + 1, 0);
+	const [filterState, setFilterState] = useState('');
 	// nav
 	const navigate = useNavigate();
 
@@ -28,7 +29,8 @@ const OrdersProvider = ({ children }) => {
 				setOrder(data.order);
 				setLoading(false);
 			} else {
-				console.log(data.errors);
+				// console.log(data.errors);
+				console.log(data);
 				setLoading(false);
 			}
 		} catch (error) {
@@ -136,6 +138,8 @@ const OrdersProvider = ({ children }) => {
 				order,
 				setOrder,
 				getOrder,
+				filterState,
+				setFilterState,
 			}}
 		>
 			{children}

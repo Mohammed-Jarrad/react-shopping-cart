@@ -29,7 +29,7 @@ const Profile = () => {
 
 	return (
 		<React.Fragment>
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 
 			{Object.keys(user).length > 0 && (
 				<div className="profile">

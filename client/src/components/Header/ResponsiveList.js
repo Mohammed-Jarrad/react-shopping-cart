@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { HiOutlineLogout } from 'react-icons/hi';
 import { RiShoppingBag3Fill } from 'react-icons/ri';
+import { FaShoppingBasket } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import * as Icon from 'react-icons/ai';
 import { BsCart4 } from 'react-icons/bs';
@@ -54,10 +55,16 @@ const ResponsiveList = ({ logout }) => {
 				</div>
 
 				<div className="basic-ul">
-					<Link to="/all-products" onClick={hideToggleMenu}>
+					<Link to="/" onClick={hideToggleMenu}>
 						<Icon.AiFillHome />
 						Home
 					</Link>
+
+					<Link to="/all-products" onClick={hideToggleMenu}>
+						<FaShoppingBasket />
+						PRODUCTS
+					</Link>
+
 					<Link to="/cart" onClick={hideToggleMenu} className="cart-link">
 						<div className="cart-link">
 							<BsCart4 />
@@ -65,6 +72,7 @@ const ResponsiveList = ({ logout }) => {
 						</div>
 						Cart
 					</Link>
+
 					<Link to="/orders" onClick={hideToggleMenu}>
 						<RiShoppingBag3Fill />
 						Orders

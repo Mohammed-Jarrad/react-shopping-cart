@@ -88,7 +88,7 @@ const SignUp = () => {
 
 	return (
 		<React.Fragment>
-			<Loading open={loading} setOpen={setLoading} />
+			<Loading open={loading} />
 
 			<Bounce left>
 				<form className="sign-content" onSubmit={signup}>

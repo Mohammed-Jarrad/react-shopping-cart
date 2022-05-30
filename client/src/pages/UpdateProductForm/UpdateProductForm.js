@@ -10,6 +10,7 @@ import ColorsOptions from '../UpdateProduct/ColorsOptions';
 import Loading from '../../components/Loading/Loading';
 import { useParams } from 'react-router-dom';
 import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
+import { OrdersContext } from '../../Context/OrdersProvider';
 
 const UpdateProductForm = () => {
 	// variables
@@ -17,6 +18,7 @@ const UpdateProductForm = () => {
 
 	//context
 	const { getProduct, product, forceUpdate } = useContext(HomeContext);
+	const { forceUpdateOrders } = useContext(OrdersContext);
 
 	// state
 	const [productImage, setProductImage] = useState('');
@@ -77,6 +79,7 @@ const UpdateProductForm = () => {
 			if (data.product) {
 				getProduct(id);
 				forceUpdate();
+				forceUpdateOrders();
 				setAlertUpdatedDone(true);
 			}
 		} catch (error) {

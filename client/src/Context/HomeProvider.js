@@ -2,11 +2,13 @@
 import React, { createContext, useContext, useLayoutEffect, useReducer, useState } from 'react';
 import mainMethods from '../utils/mainMethods';
 import { CartContext } from './CartProvider';
+import { OrdersContext } from './OrdersProvider';
 
 export const HomeContext = createContext();
 
 const HomeProvider = ({ children }) => {
 	//context
+	const { forceUpdateOrders } = useContext(OrdersContext);
 	const { setCart } = useContext(CartContext);
 	// states
 	const [products, setProducts] = useState([]);
@@ -172,10 +174,10 @@ const HomeProvider = ({ children }) => {
 		setBigDiscountProducts(disProducts);
 	};
 
-	const getCategoryProducts = (category, allProducts) => {
-		const all = [...allProducts];
-		const products = all.filter(p => p.category === category);
-		setSingleCategoryProducts(products);
+	const getCategoryProducts = category => {
+		const all = [...products];
+		const Cproducts = all.filter(p => p.category === category);
+		setSingleCategoryProducts(Cproducts);
 	};
 
 	// remove product
@@ -188,6 +190,7 @@ const HomeProvider = ({ children }) => {
 				setLoading(false);
 				setAlertProductDeleted(true);
 				forceUpdate();
+				forceUpdateOrders();
 			}
 		} catch (error) {
 			setLoading(false);

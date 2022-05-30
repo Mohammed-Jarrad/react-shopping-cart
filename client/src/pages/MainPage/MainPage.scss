@@ -101,97 +101,18 @@
 					font-size: 17px;
 				}
 			}
-
-			.slide {
-				.product-item {
-					background-color: var(--boxes-bg);
-					box-shadow: 0px 1px 3px rgb(3 0 71 / 9%);
-					overflow: hidden;
-					border-radius: 10px;
-					text-align: center;
-					transition: 0.3s;
-					border: var(--boxes-border);
-					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
-					position: relative;
-					&:hover {
-						box-shadow: 0px 1px 15px rgb(3 0 71 / 15%);
-					}
-
-					.product-discount {
-						background-color: var(--second-color);
-						color: var(--main-text-color);
-						transform: rotate(-45deg);
-						position: absolute;
-						padding: 2px;
-						top: 15px;
-						left: -25px;
-						font-size: 12px;
-						width: 100px;
-					}
-
-					img {
-						width: 200px;
-						height: 200px;
-						object-fit: contain;
-						max-width: 100%;
-						margin: auto;
-						cursor: pointer;
-						padding: var(--main-padding);
-					}
-					.product-desc {
-						.title {
-							color: var(--second-text-color);
-							text-transform: capitalize;
-							padding: var(--main-padding);
-							text-align: left;
-						}
-						.rating {
-							padding: var(--main-padding);
-							display: flex;
-							gap: 5px;
-							align-items: center;
-						}
-						.price-add {
-							padding: var(--main-padding);
-							display: flex;
-							justify-content: space-between;
-							align-items: center;
-							color: var(--second-color);
-							.add {
-								border-radius: 5px;
-								border: 1px solid var(--second-color);
-								display: flex;
-								justify-content: center;
-								align-items: center;
-								cursor: pointer;
-								padding: 5px;
-								transition: all 0.3s;
-								&:active {
-									transform: scale(0.93);
-								}
-								&.add:hover {
-									background-color: var(--second-color);
-									color: var(--main-text-color);
-								}
-							}
-						}
-					}
-				}
-			}
 		}
 	}
 
 	.categories {
 		width: 95%;
 		margin: auto;
-		// padding-top: 10px;
 		.view-categories {
 			margin-top: 30px;
 			display: flex;
 			justify-content: space-around;
 			align-items: center;
+			flex-wrap: wrap;
 			gap: 20px;
 			.category {
 				width: 200px;

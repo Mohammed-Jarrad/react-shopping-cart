@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Categories = () => {
 	// context
-	const { categories, getCategoryProducts, products } = useContext(HomeContext);
+	const { categories, getCategoryProducts } = useContext(HomeContext);
 	// nav
 	const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const Categories = () => {
 						className="category"
 						key={i}
 						onClick={() => {
-							getCategoryProducts(category, products);
+							getCategoryProducts(category);
 							navigate(`/category/${category}`);
 						}}
 					>
