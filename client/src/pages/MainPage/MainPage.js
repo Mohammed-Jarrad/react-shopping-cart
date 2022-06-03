@@ -7,11 +7,10 @@ import BigDiscount from './BigDiscount';
 import Categories from './Categories';
 import Loading from '../../components/Loading/Loading';
 import { HomeContext } from '../../Context/HomeProvider';
-import Features from './Features';
 
 const MainPage = () => {
 	// context
-	const { loading, setLoading } = useContext(HomeContext).config;
+	const { loading } = useContext(HomeContext).config;
 
 	return (
 		<>
@@ -20,7 +19,6 @@ const MainPage = () => {
 				<Categories />
 				<TopRating />
 				<BigDiscount />
-				<Features />
 			</div>
 
 			<Loading open={loading} />

@@ -37,11 +37,8 @@ const SingleProduct = () => {
 						</div>
 						<ProductBoxInfo setShowCustomise={setShowCustomise} />
 					</div>
-
-					<SingleProductStatus />
-
 					{showCustomise ? <CustomiseProduct /> : null}
-
+					<SingleProductStatus />
 					<SingleProductReviews />
 				</div>
 			) : (

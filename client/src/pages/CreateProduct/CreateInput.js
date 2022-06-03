@@ -13,7 +13,7 @@ const CreateInput = ({ productError, labelFor, label, type, placeholder, name, h
 				)}
 			</label>
 			{productError[`${name}`] && (
-				<Alert className='error' severity='error'>
+				<Alert className="error" severity="error">
 					{productError[`${name}`]}
 				</Alert>
 			)}

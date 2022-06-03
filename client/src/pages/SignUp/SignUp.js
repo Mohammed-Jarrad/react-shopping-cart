@@ -3,7 +3,7 @@ import '../../css/SignUp/SginUp.css';
 import Bounce from 'react-reveal/Bounce';
 import { AiFillEyeInvisible, AiFillEye, AiFillCamera } from 'react-icons/ai';
 import Loading from '../../components/Loading/Loading';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Alert } from '@mui/material';
 import mainMethods from '../../utils/mainMethods';
 import { UserContext } from '../../Context/UserProvider';
@@ -222,25 +222,6 @@ const SignUp = () => {
 						</div>
 
 						<button>sign up</button>
-					</div>
-
-					<p className="or-option">
-						<span>or</span>
-					</p>
-
-					<div className="social">
-						<ul>
-							<li>
-								<Link to="#facebook">
-									<i className="fab fa-facebook-f"></i> Facebook
-								</Link>
-							</li>
-							<li>
-								<Link to="#gmail">
-									<i className="fab fa-google"></i> Gmail
-								</Link>
-							</li>
-						</ul>
 					</div>
 				</form>
 			</Bounce>

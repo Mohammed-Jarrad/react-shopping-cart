@@ -107,21 +107,6 @@ const Login = () => {
 								</div>
 
 								<button>log in</button>
-
-								<p className="or-option">or</p>
-
-								<ul>
-									<li>
-										<Link to="#facebook">
-											<i className="fab fa-facebook-f"></i>
-										</Link>
-									</li>
-									<li>
-										<Link to="#gmail">
-											<i className="fab fa-google"></i>
-										</Link>
-									</li>
-								</ul>
 							</div>
 						</form>
 					</div>

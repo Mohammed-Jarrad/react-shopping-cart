@@ -1,8 +1,8 @@
 header.header-layout {
   background-color: var(--mainColor);
+  border-bottom: var(--main-border);
 }
 header.header-layout .container {
-  border-bottom: var(--main-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
