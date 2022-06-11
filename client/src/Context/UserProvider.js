@@ -57,7 +57,7 @@ const UserProvider = ({ children }) => {
 
 	// handleInputChange
 	const handleInputChange = e => {
-		setInputValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
+		setInputValues(prev => ({ ...prev, [e.target.name]: e.target.value.trim() }));
 	};
 	// getPathNewImage
 	async function getPathNewImage(e) {

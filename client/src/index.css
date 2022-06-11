@@ -56,17 +56,9 @@ body {
 }
 
 .layout .main-layout {
-    grid-area: main;
     margin-top: 75px;
     margin-bottom: 20px;
     min-height: var(--main-layout-height);
-}
-
-
-
-
-.layout>div {
-    transition: .3s;
 }
 
 /* Login Msg */
@@ -79,6 +71,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    width: 300px;
 }
 
 .login-msg a {

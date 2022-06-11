@@ -62,7 +62,7 @@ const ResponsiveList = ({ logout }) => {
 
 					<Link to="/all-products" onClick={hideToggleMenu}>
 						<FaShoppingBasket />
-						PRODUCTS
+						Products
 					</Link>
 
 					<Link to="/cart" onClick={hideToggleMenu} className="cart-link">

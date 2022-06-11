@@ -37,7 +37,7 @@ footer.footer-layout .container .info .contact {
   }
   footer.footer-layout .container .info .about.about,
 footer.footer-layout .container .info .contact.about {
-    width: 350px;
+    width: 100%;
   }
 }
 footer.footer-layout .container .info .about {

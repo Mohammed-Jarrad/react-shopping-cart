@@ -2,6 +2,7 @@
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 30px;
   padding-top: 30px;
   border-top: var(--main-border);
@@ -179,6 +180,9 @@
     gap: 20px;
   }
   .reviews .create-review {
+    width: 100%;
+  }
+  .reviews .view-reviews {
     width: 100%;
   }
 }

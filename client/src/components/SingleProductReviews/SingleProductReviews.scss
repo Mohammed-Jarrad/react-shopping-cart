@@ -2,6 +2,7 @@
 	margin-top: 40px;
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-start;
 	gap: 30px;
 	padding-top: 30px;
 	border-top: var(--main-border);
@@ -185,6 +186,9 @@
 		flex-direction: column-reverse;
 		gap: 20px;
 		.create-review {
+			width: 100%;
+		}
+		.view-reviews {
 			width: 100%;
 		}
 	}

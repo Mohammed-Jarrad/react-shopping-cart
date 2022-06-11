@@ -9,11 +9,9 @@ const SingleProductReviews = () => {
 	const { token } = useContext(UserContext);
 	return (
 		<div className="reviews">
+			<ViewReviews />
 			{token ? (
-				<>
-					<ViewReviews />
-					<CreateReview />
-				</>
+				<CreateReview />
 			) : (
 				<div className="login-msg">
 					Please <Link to="/login">Login</Link> to Add Your Comment And Rating!
