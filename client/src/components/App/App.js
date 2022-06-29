@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Link } from 'react-router-dom';
 import Orders from '../../pages/Orders/Orders';
 import Home from '../../pages/Home/Home';
 import Login from '../../pages/Login/Login';
@@ -21,6 +21,7 @@ import UpdateProductForm from '../../pages/UpdateProductForm/UpdateProductForm';
 import MainPage from '../../pages/MainPage/MainPage';
 import ScrollToTopWhenRefresh from './ScrollToTopWhenRefresh';
 import SingleCategory from '../../pages/SingleCategory/SingleCategory';
+import AdminNav from '../AdminNav/AdminNav';
 
 const App = () => {
 	//context
@@ -37,6 +38,7 @@ const App = () => {
 
 				<div className="main-layout">
 					<ScrollToTopWhenRefresh>
+						{admin ? <AdminNav /> : null}
 						<Routes>
 							{/* For All */}
 							<Route exact={'true'} path="/" element={<MainPage />} />

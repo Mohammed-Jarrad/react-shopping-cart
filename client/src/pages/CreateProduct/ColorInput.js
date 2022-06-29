@@ -1,6 +1,6 @@
-import {Alert} from "@mui/material";
-import React from "react";
-import {FaTimes} from "react-icons/fa";
+import { Alert } from '@mui/material';
+import React from 'react';
+import { FaTimes } from 'react-icons/fa';
 
 // changes hex colors to rgb
 export const hex2rgb = color => {
@@ -10,11 +10,11 @@ export const hex2rgb = color => {
 	return `rgb(${r}, ${g}, ${b})`;
 };
 
-const ColorInput = ({colorRef, colors, setColors, productError, setProductError}) => {
+const ColorInput = ({ colorRef, colors, setColors, productError, setProductError }) => {
 	// add color
 	const addColor = e => {
 		e.preventDefault();
-		setProductError(prev => ({...prev, colors: ""}));
+		setProductError(prev => ({ ...prev, colors: '' }));
 		const myColor = colorRef.current.value;
 		const myColor_rgb = hex2rgb(myColor);
 		const colorsClone = [...colors];
@@ -46,11 +46,11 @@ const ColorInput = ({colorRef, colors, setColors, productError, setProductError}
 									key={i}
 									style={{
 										backgroundColor: `${color}`,
-										border: `${color === "rgb(255, 255, 255)" && "1px solid #c0c0c0"}`,
+										border: `${color === 'rgb(255, 255, 255)' && '1px solid #c0c0c0'}`,
 									}}
 									onClick={removeColor}
 								>
-									<FaTimes color={`${color === "rgb(0, 0, 0)" ? "white" : "black"}`} />
+									<FaTimes color={`${color === 'rgb(0, 0, 0)' ? 'white' : 'black'}`} />
 								</div>
 						  ))
 						: null}

@@ -53,7 +53,7 @@ const OrdersFilter = ({ getOriginalOrders, setOrders, admin }) => {
 			<div className="orders-filter">
 				{ordersStatus.map((item, i) => {
 					return (
-						<div className={` p-96 item ${item} ${setActiveClass(item)}`} key={i} onClick={filterOrders}>
+						<div className={`item ${item} ${setActiveClass(item)}`} key={i} onClick={filterOrders}>
 							{item}
 						</div>
 					);

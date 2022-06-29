@@ -14,6 +14,7 @@ const HomeProvider = ({ children }) => {
 	const [products, setProducts] = useState([]);
 	const [productsClone, setProductsClone] = useState([]);
 	const [product, setProduct] = useState({});
+	const [relatedProducts, setRelatedProducts] = useState([]);
 	const [topRating, setTopRating] = useState([]);
 	const [bigDiscountProducts, setBigDiscountProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
@@ -206,6 +207,8 @@ const HomeProvider = ({ children }) => {
 				products,
 				setProducts,
 				product,
+				relatedProducts,
+				setRelatedProducts,
 				discountPrice,
 				finalPrice,
 				setProduct,

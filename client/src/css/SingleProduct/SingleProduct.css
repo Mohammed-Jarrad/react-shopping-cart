@@ -167,6 +167,9 @@
 .single-product .single-product-status .status .change .drop-menu .item:hover {
   background-color: var(--hover-bg);
 }
+.single-product .related-items {
+  margin-top: 20px;
+}
 
 @media (max-width: 767px) {
   .single-product .main-content {

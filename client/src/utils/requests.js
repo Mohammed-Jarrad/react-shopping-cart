@@ -41,3 +41,51 @@ export async function PutRequest(url, body) {
 		body,
 	});
 }
+
+export class Requests {
+	constructor() {
+		this.baseURL = 'http://localhost:5002';
+	}
+
+	async GetRequest(url) {
+		return await fetch(`${this.baseURL}${url}`, {
+			method: 'GET',
+			headers: {
+				'content-type': 'application/json',
+				'x-auth-token': localStorage.token,
+			},
+		});
+	}
+
+	async PostRequest(url, body) {
+		return await fetch(`${this.baseURL}${url}`, {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+				'x-auth-token': localStorage.token,
+			},
+			body,
+		});
+	}
+
+	async DeleteRequest(url) {
+		return await fetch(`${this.baseURL}${url}`, {
+			method: 'DELETE',
+			headers: {
+				'content-type': 'application/json',
+				'x-auth-token': localStorage.token,
+			},
+		});
+	}
+
+	async PutRequest(url, body) {
+		return await fetch(`${this.baseURL}${url}`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+				'x-auth-token': localStorage.token,
+			},
+			body,
+		});
+	}
+}

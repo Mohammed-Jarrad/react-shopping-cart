@@ -29,48 +29,6 @@ header.header-layout {
 					}
 				}
 			}
-			.admin {
-				span {
-					color: var(--main-text-color);
-					padding: 10px;
-					font-size: 22px;
-					cursor: pointer;
-				}
-				.admin-dashboard {
-					display: flex;
-					flex-direction: column;
-					width: 300px;
-					position: absolute;
-					top: 50px;
-					max-height: 0;
-					overflow: hidden;
-					transition: 0.3s;
-					@media (max-width: 767px) {
-						left: 50%;
-						transform: translateX(-50%);
-					}
-					&.show {
-						opacity: 1;
-						max-height: 500px;
-					}
-
-					a.admin-dashboard-btn {
-						width: 100%;
-						display: block;
-						padding: 10px;
-						background-color: var(--second-color);
-						text-decoration: none;
-						color: var(--main-text-color);
-						display: block;
-						font-weight: bold;
-						position: relative;
-						transition: 0.3s;
-						&:hover {
-							opacity: 0.9;
-						}
-					}
-				}
-			}
 		}
 
 		nav {

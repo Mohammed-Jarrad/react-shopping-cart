@@ -68,6 +68,7 @@ const CreateProduct = () => {
 	const [loading, setLoading] = useState(false);
 	const [sizes, setSizes] = useState([]);
 	const [colors, setColors] = useState([]);
+
 	// variables
 	const selectInputRef = useRef();
 	const colorRef = useRef();

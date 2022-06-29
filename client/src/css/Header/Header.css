@@ -29,47 +29,6 @@ header.header-layout .container .logo > a img {
 header.header-layout .container .logo > a img.cart-logo {
   width: 45px;
 }
-header.header-layout .container .logo .admin span {
-  color: var(--main-text-color);
-  padding: 10px;
-  font-size: 22px;
-  cursor: pointer;
-}
-header.header-layout .container .logo .admin .admin-dashboard {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  position: absolute;
-  top: 50px;
-  max-height: 0;
-  overflow: hidden;
-  transition: 0.3s;
-}
-@media (max-width: 767px) {
-  header.header-layout .container .logo .admin .admin-dashboard {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-header.header-layout .container .logo .admin .admin-dashboard.show {
-  opacity: 1;
-  max-height: 500px;
-}
-header.header-layout .container .logo .admin .admin-dashboard a.admin-dashboard-btn {
-  width: 100%;
-  display: block;
-  padding: 10px;
-  background-color: var(--second-color);
-  text-decoration: none;
-  color: var(--main-text-color);
-  display: block;
-  font-weight: bold;
-  position: relative;
-  transition: 0.3s;
-}
-header.header-layout .container .logo .admin .admin-dashboard a.admin-dashboard-btn:hover {
-  opacity: 0.9;
-}
 header.header-layout .container nav {
   display: flex;
 }

@@ -15,7 +15,7 @@ const MainPage = () => {
 	return (
 		<>
 			<div className="main-page">
-				<MainHeader />
+				{/* <MainHeader /> */}
 				<Categories />
 				<TopRating />
 				<BigDiscount />

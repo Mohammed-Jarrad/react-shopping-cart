@@ -11,16 +11,13 @@ import { CartContext } from '../../Context/CartProvider.js';
 
 const Header = () => {
 	//context
-	const { admin, setUser } = useContext(UserContext);
+	const { setUser } = useContext(UserContext);
 	const { setCart } = useContext(CartContext);
 	//
 	const navigate = useNavigate();
 
 	//states
-	const [showAdmin, setShowAdmin] = useState(false);
 	const [loading, setLoading] = useState(false);
-
-	const hideMenu = _ => setShowAdmin(false);
 
 	// ! logout
 	async function logout() {
@@ -50,27 +47,6 @@ const Header = () => {
 						{/* <img className="cart-logo" src={"/images/logo/N3-cart.png"} alt="" /> */}
 						<img src={'/images/logo/5.png'} alt="" />
 					</Link>
-					{admin && (
-						<div className="admin">
-							<span onClick={_ => setShowAdmin(!showAdmin)}>
-								<AiOutlineMenu />
-							</span>
-							<div className={`admin-dashboard ${showAdmin && 'show'}`}>
-								<Link onClick={hideMenu} className="admin-dashboard-btn" to={`/create-product`}>
-									Create New Product
-								</Link>
-								<Link onClick={hideMenu} className="admin-dashboard-btn" to={`/users`}>
-									All Users
-								</Link>
-								<Link onClick={hideMenu} className="admin-dashboard-btn" to={`/all-orders`}>
-									All Orders
-								</Link>
-								<Link onClick={hideMenu} className="admin-dashboard-btn" to={`/update-product`}>
-									Update Products
-								</Link>
-							</div>
-						</div>
-					)}
 				</div>
 
 				<nav>

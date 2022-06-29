@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import '../../css/SingleProduct/SingleProduct.css';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
 import { HomeContext } from '../../Context/HomeProvider';
 import CustomiseProduct from '../../components/CustomiseProduct/CustomiseProduct';
@@ -9,22 +9,33 @@ import ProductBoxInfo from './ProductBoxInfo';
 import ErrorPage from '../../components/ErrorPage/ErrorPage';
 import SingleProductStatus from './SingleProductStatus';
 import SingleProductReviews from '../../components/SingleProductReviews/SingleProductReviews';
+import Products from '../../components/Products/Products';
 
 const SingleProduct = () => {
 	//context
-	const { getProduct, product, ignore } = useContext(HomeContext);
+	const { getProduct, product, ignore, relatedProducts, setRelatedProducts, products } =
+		useContext(HomeContext);
 	const { loading, setLoading } = useContext(HomeContext).config;
 	// variables
 	const product_id = useParams().id;
+	console.log(product_id);
 	//
 	//states
 	const [showCustomise, setShowCustomise] = useState(false);
 	//
-	useEffect(() => {
+	useLayoutEffect(() => {
 		getProduct(product_id);
 
 		console.log('From Single Product....');
-	}, [ignore]);
+	}, [ignore, product_id]);
+
+	useEffect(() => {
+		setRelatedProducts(products.filter(p => p.category === product.category && p._id !== product_id));
+	}, [product]);
+
+	useEffect(() => {
+		console.log('related: ', relatedProducts);
+	}, [relatedProducts]);
 
 	return (
 		<>
@@ -39,6 +50,12 @@ const SingleProduct = () => {
 					</div>
 					{showCustomise ? <CustomiseProduct /> : null}
 					<SingleProductStatus />
+					{[...relatedProducts].length && (
+						<div className="related-items">
+							<h2>Related Products: </h2>
+							<Products products={relatedProducts} />
+						</div>
+					)}
 					<SingleProductReviews />
 				</div>
 			) : (
