@@ -1,86 +1,348 @@
-header {
-  grid-area: header;
-  color: #333;
-  box-shadow: 5px 5px 5px #c0c0c0;
+header.header-layout {
+  background-color: var(--mainColor);
+  border-bottom: var(--main-border);
 }
-header .container {
+header.header-layout .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
 }
-header .container > a {
-  text-transform: uppercase;
-  color: #333;
-  text-decoration: none;
-}
-header .container > a h1 {
-  font-family: "operator mono";
+header.header-layout .container .logo {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 10px;
 }
-header .container > a h1 svg {
-  color: orangered;
-}
-header .container nav ul.main-list {
-  display: flex;
-  position: relative;
-  list-style: none;
-}
-header .container nav ul.main-list li {
-  margin-left: 10px;
-}
-header .container nav ul.main-list li a {
-  font-weight: bold;
-  display: block;
+header.header-layout .container .logo > a {
+  text-transform: none;
+  color: var(--main-text-color);
   text-decoration: none;
-  font-size: 18px;
-  color: #333;
-  cursor: pointer;
-  padding: 10px;
-}
-header .container nav ul.main-list .active {
-  position: relative;
-  color: #333;
-  border: 1px solid orangered;
-}
-header .container nav ul.main-list li.login-drop {
-  background-color: orangered;
-}
-header .container nav ul.main-list li.login-drop button {
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  color: #fff;
-  height: 100%;
-  font-size: 18px;
-  cursor: pointer;
-}
-header .container nav ul.main-list li.login-drop ul.drop-content {
-  list-style: none;
-  position: absolute;
-  top: 51px;
-  right: 0;
-  z-index: 1;
-  width: 300px;
-}
-header .container nav ul.main-list li.login-drop ul.drop-content li {
-  border-top: 1px solid #c0c0c0;
-  transition: 0.3s;
-  background-color: #333;
-  opacity: 0.9;
+  font-size: 20px;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
-header .container nav ul.main-list li.login-drop ul.drop-content li svg {
-  color: #fff;
+header.header-layout .container .logo > a img {
+  width: 150px;
 }
-header .container nav ul.main-list li.login-drop ul.drop-content li:hover a {
+header.header-layout .container .logo > a img.cart-logo {
+  width: 45px;
+}
+header.header-layout .container nav {
+  display: flex;
+}
+header.header-layout .container nav li {
+  color: var(--main-text-color);
+}
+header.header-layout .container nav .theme-toggle {
+  cursor: pointer;
+  background-color: #111;
+  border-radius: 60px;
+  width: 60px;
+  height: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
   margin-left: 10px;
+  position: relative;
 }
-header .container nav ul.main-list li.login-drop ul.drop-content li a {
-  color: #fff;
+header.header-layout .container nav .theme-toggle .circle {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
   transition: 0.3s;
-  flex: 1;
+}
+header.header-layout .container nav .theme-toggle .circle.move-right {
+  transform: translateX(34px);
+}
+header.header-layout .container nav .theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+header.header-layout .container nav .theme-toggle svg.sun {
+  color: #f39c12;
+}
+header.header-layout .container nav .theme-toggle svg.moon {
+  color: #f1c40f;
+}
+header.header-layout .container nav .main-list {
+  list-style: none;
+  display: flex;
+  gap: 5px;
+}
+header.header-layout .container nav .main-list > li {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+  position: relative;
+}
+header.header-layout .container nav .main-list > li > a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--main-text-color);
+  text-decoration: none;
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+  transition: 0.3s;
+  height: fit-content;
+}
+header.header-layout .container nav .main-list > li > a.cart-link {
+  position: relative;
+}
+header.header-layout .container nav .main-list > li > a.cart-link span {
+  position: absolute;
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+}
+header.header-layout .container nav .main-list > li > a svg {
+  font-size: 20px;
+}
+header.header-layout .container nav .main-list > li > a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 100%;
+  height: 100%;
+  background-color: var(--second-color);
+  z-index: -1;
+  transition: 0.4s;
+}
+header.header-layout .container nav .main-list > li > a:not(.login):not(.signup):hover, header.header-layout .container nav .main-list > li > a:not(.login):not(.signup).active {
+  color: var(--main-text-color);
+  font-weight: bold;
+  border-radius: 20px;
+}
+header.header-layout .container nav .main-list > li > a:not(.login):not(.signup):hover::after, header.header-layout .container nav .main-list > li > a:not(.login):not(.signup).active::after {
+  transform: translate(-50%, -50%) scale(1);
+  border-radius: 20px;
+}
+header.header-layout .container nav .main-list > li > a:not(.login):not(.signup):hover.cart-link > span, header.header-layout .container nav .main-list > li > a:not(.login):not(.signup).active.cart-link > span {
+  transition: 0.3s;
+  background-color: #fff;
+  color: #333;
+  position: relative;
+  display: flex;
+  padding: 10px;
+}
+header.header-layout .container nav .main-list > li > a.signup, header.header-layout .container nav .main-list > li > a.login {
+  justify-content: center;
+}
+header.header-layout .container nav .main-list > li > a.signup svg, header.header-layout .container nav .main-list > li > a.login svg {
+  font-size: 25px;
+}
+header.header-layout .container nav .main-list > li > a.signup:hover, header.header-layout .container nav .main-list > li > a.signup.active, header.header-layout .container nav .main-list > li > a.login:hover, header.header-layout .container nav .main-list > li > a.login.active {
+  color: var(--main-text-color);
+  font-weight: bold;
+}
+header.header-layout .container nav .main-list > li > a.signup:hover::after, header.header-layout .container nav .main-list > li > a.signup.active::after, header.header-layout .container nav .main-list > li > a.login:hover::after, header.header-layout .container nav .main-list > li > a.login.active::after {
+  transform: translate(-50%, -50%) scale(1);
+  border-radius: 50%;
+}
+header.header-layout .container nav .main-list > li.drop-menu img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  object-fit: contain;
+}
+header.header-layout .container nav .main-list > li.drop-menu .menu-content {
+  padding: 10px;
+  transition: all 0.3s;
+  background-color: var(--boxes-bg);
+  position: absolute;
+  right: 0;
+  top: 55px;
+  width: 260px;
+  transform: scale(0);
+  z-index: 11;
+  border-radius: 10px;
+  box-shadow: var(--boxShadowStrong);
+}
+header.header-layout .container nav .main-list > li.drop-menu .menu-content.move {
+  transform: scale(1);
+}
+header.header-layout .container nav .main-list > li.drop-menu .menu-content > a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--second-text-color);
+  text-decoration: none;
+  padding: 10px;
+  z-index: 1;
+  transition: 0.5s;
+}
+header.header-layout .container nav .main-list > li.drop-menu .menu-content > a:not(:last-child) {
+  border-bottom: 1px solid var(--main-text-color);
+}
+header.header-layout .container nav .main-list > li.drop-menu .menu-content > a svg {
+  font-size: 25px;
+  transition: all 0.5s;
+  color: var(--second-color);
+}
+header.header-layout .container nav .main-list > li.drop-menu .menu-content > a:hover {
+  background-color: var(--main-light-bg);
+}
+header.header-layout .container nav .main-responsive-list {
+  z-index: 11;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  transition: all 0.5s;
+}
+header.header-layout .container nav .main-responsive-list.hide {
+  display: none;
+}
+header.header-layout .container nav .main-responsive-list .toggle-bar {
+  padding: 10px;
+  width: fit-content;
+  position: absolute;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  cursor: pointer;
+}
+header.header-layout .container nav .main-responsive-list .toggle-bar svg {
+  fill: var(--main-text-color);
+  font-size: 20px;
+  transition: all 0.3s;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list {
+  background-color: var(--boxes-bg);
+  width: 300px;
+  transform: scale(0);
+  box-shadow: var(--boxShadowStrong);
+  border-radius: 10px;
+  position: absolute;
+  top: 35px;
+  left: -320px;
+  display: flex;
+  flex-direction: column;
+  color: var(--second-text-color);
+  transition: all 0.5s;
+  padding: 10px;
+  border: var(--boxes-border);
+}
+header.header-layout .container nav .main-responsive-list .responsive-list.move {
+  transform: scale(1);
+}
+header.header-layout .container nav .main-responsive-list .responsive-list > div {
+  transition: 0.3s;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list > div:not(:first-child) {
+  border-top: var(--main-border);
+}
+header.header-layout .container nav .main-responsive-list .responsive-list > div a {
+  display: flex;
+  align-items: center;
+  color: var(--second-text-color);
+  text-decoration: none;
+  padding: 5px 10px;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list > div a:hover {
+  background-color: var(--main-light-bg);
+}
+header.header-layout .container nav .main-responsive-list .responsive-list > div svg {
+  font-size: 30px;
+  cursor: pointer;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul {
+  width: 100%;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul a {
+  justify-content: space-between;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul a img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul svg {
+  transform: rotate(180deg);
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .profile-ul svg:hover {
+  color: var(--hover-bg);
+  filter: brightness(1.5);
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .theme {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul a {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul a svg {
+  color: var(--second-text-color);
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul a .cart-link {
+  position: relative;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .basic-ul a .cart-link span {
+  background-color: var(--second-color);
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: var(--main-text-color);
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 7px;
+  font-size: 12px;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .logout a {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+header.header-layout .container nav .main-responsive-list .responsive-list .logout a svg {
+  color: var(--second-color);
+}
+
+@media (max-width: 767px) {
+  header .container nav .main-list.hide-register {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  header .container nav .main-responsive-list {
+    display: none;
+  }
 }

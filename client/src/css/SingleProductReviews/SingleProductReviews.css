@@ -1,0 +1,188 @@
+.reviews {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  padding-top: 30px;
+  border-top: var(--main-border);
+}
+.reviews .view-reviews {
+  flex: 1;
+}
+.reviews .view-reviews .review {
+  border: var(--boxes-border);
+  background-color: var(--boxes-bg);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: var(--boxShadow);
+  padding: 10px;
+}
+.reviews .view-reviews .review .delete {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.reviews .view-reviews .review .delete:hover {
+  background-color: var(--hover-bg);
+}
+.reviews .view-reviews .review .delete svg {
+  font-size: 17px;
+  color: var(--second-text-color);
+}
+.reviews .view-reviews .review .user-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 5px;
+}
+.reviews .view-reviews .review .user-info img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+.reviews .view-reviews .review .comment {
+  background-color: var(--body-color);
+  box-shadow: var(--boxShadow);
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.reviews .view-reviews .no-reviews-msg {
+  color: var(--second-color);
+  text-align: center;
+}
+.reviews .create-review {
+  width: 300px;
+}
+.reviews .create-review .title {
+  font-weight: bold;
+  color: var(--second-text-color);
+}
+.reviews .create-review .rating {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.reviews .create-review .rating > .drop-menu {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border: var(--main-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.reviews .create-review .rating > .drop-menu .select {
+  background-color: var(--boxes-bg);
+  color: var(--second-text-color);
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.reviews .create-review .rating > .drop-menu .select > span {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+.reviews .create-review .rating > .drop-menu .select > span:hover {
+  background-color: var(--hover-bg);
+}
+.reviews .create-review .rating > .drop-menu .select > span svg {
+  transition: 0.4s;
+  transform: rotate(90deg);
+  color: var(--second-color);
+}
+.reviews .create-review .rating > .drop-menu .select > span svg.rotate {
+  transform: rotate(90deg) rotate(-180deg);
+}
+.reviews .create-review .rating > .drop-menu .menu-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.3s;
+}
+.reviews .create-review .rating > .drop-menu .menu-content.show {
+  max-height: 500px;
+  opacity: 1;
+}
+.reviews .create-review .rating > .drop-menu .menu-content p {
+  background-color: var(--boxes-bg);
+  color: var(--second-text-color);
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-top: var(--main-border);
+}
+.reviews .create-review .rating > .drop-menu .menu-content p:hover {
+  background-color: var(--hover-bg);
+}
+.reviews .create-review .rating > .drop-menu .menu-content p:hover svg {
+  transition: 0.3s;
+  transform: translateX(3px);
+}
+.reviews .create-review .comment {
+  width: 100%;
+}
+.reviews .create-review .comment textarea,
+.reviews .create-review .comment input {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100px;
+  resize: vertical;
+  border: var(--main-border);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: var(--boxes-bg);
+}
+.reviews .create-review .comment textarea:focus,
+.reviews .create-review .comment input:focus {
+  outline: none;
+}
+.reviews .create-review .submit {
+  width: 100%;
+  border: var(--boxes-border);
+  background-color: var(--second-color);
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--main-text-color);
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.stars {
+  margin-top: 5px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.stars svg {
+  color: #ebb450;
+  font-size: 17px;
+}
+
+@media (max-width: 767px) {
+  .reviews {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .reviews .create-review {
+    width: 100%;
+  }
+  .reviews .view-reviews {
+    width: 100%;
+  }
+}

@@ -1,16 +1,13 @@
-import React from 'react'
-import '../../css/Loading/Loading.css'
+import { Backdrop, CircularProgress } from '@mui/material';
+import React from 'react';
+import '../../css/Loading/Loading.css';
 
-const Loading = () => {
-    return (
-       <div className='loading'>
-            <ul className='loading-list'>
-                <li className='list-1'></li>
-                <li className='list-2'></li>
-                <li className='list-3'></li>
-            </ul>
-       </div>
-    )
-}
+const Loading = ({ open }) => {
+	return (
+		<Backdrop open={open} style={{ zIndex: '111111111111', backgroundColor: '#00000047' }}>
+			<CircularProgress color="error" />
+		</Backdrop>
+	);
+};
 
-export default Loading
+export default Loading;

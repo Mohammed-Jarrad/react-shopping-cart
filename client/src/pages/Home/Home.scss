@@ -1,0 +1,40 @@
+main {
+	.home {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 767px) {
+	main {
+		.search {
+			width: 85%;
+			padding: 10px;
+			.box {
+				padding: 5px;
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.product-modal {
+		width: 80%;
+		.main-content {
+			justify-content: center;
+			gap: 10px;
+			.product-info {
+				flex-direction: column;
+				img {
+					width: 100px;
+					height: 100px;
+				}
+			}
+			.modal-options {
+				flex-direction: column;
+				justify-content: center;
+				gap: 5px;
+			}
+		}
+	}
+}

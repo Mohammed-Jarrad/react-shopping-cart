@@ -1,38 +1,113 @@
-$mainColor: #333;
-$textColor: #fff;
-// $mainColor: #2a5ea5;
-
 .filter-wrapper {
-  margin-bottom: 30px;
-  height: fit-content;
-  border: 1px solid #c0c0c0;
-  box-shadow: 2px 2px 5px #c0c0c0;
-  @media (max-width: 767px) {
-    width: 100%;
-  }
+	width: 300px;
+	background-color: var(--body-color);
+	transition: transform 0.5s, top 0.5s, left 0.5s, right 0.5s;
+	position: fixed;
+	left: -300px;
+	top: 55px;
+	z-index: 111;
+	box-shadow: var(--boxShadowStrong);
 
-  .filter-title {
-    background-color: $mainColor;
-    color: $textColor;
-    padding: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
+	&.move {
+		left: 0;
+		top: 50px;
+		min-height: calc(100vh - 50px);
+		max-height: calc(100vh - 50px);
+		overflow-y: auto;
+		overflow-x: hidden;
 
-  > div {
-    margin-bottom: 10px;
-    padding: 5px 10px;
-  }
+		.filter-title {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background-color: var(--main-light-bg);
+			padding: 10px;
+			cursor: pointer;
+			.show-icon {
+				color: var(--second-color);
+				font-size: 25px;
+			}
+		}
+	}
 
-  select {
-    width: 100%;
-    padding: 10px;
-    margin: 4px auto;
-    border: 1px solid #c0c0c0;
-    &:focus {
-      outline: none;
-    }
-  }
+	.hide-icon {
+		position: absolute;
+		cursor: pointer;
+		right: -35px;
+		top: 0;
+		width: 35px;
+		height: 35px;
+		background-color: var(--boxes-bg);
+		box-shadow: var(--boxShadow);
+		padding: 5px;
+		&:hover {
+			transition: all 0.3s;
+			color: var(--second-color);
+		}
+	}
+
+	.filter-content {
+		> div:not(.title):not(:last-child) {
+			border-bottom: 1px solid #eee;
+			padding-bottom: 20px;
+		}
+
+		.title {
+			color: var(--second-text-color);
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 20px;
+			padding: 10px;
+		}
+
+		.filter-items {
+			color: var(--second-text-color);
+			cursor: pointer;
+			background-color: var(--boxes-bg);
+			box-shadow: var(--boxShadow);
+			border-radius: 20px;
+			padding: 20px 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			transition: 0.3s;
+			position: relative;
+
+			&:hover,
+			&.active {
+				background-color: var(--second-color);
+				color: var(--main-text-color);
+			}
+		}
+
+		.filter-by-category,
+		.filter-by-order {
+			margin-right: 10px;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 5px;
+			padding: 10px 20px 10px 10px;
+		}
+		.filter-by-color,
+		.filter-by-size {
+			padding: 10px 20px 10px 10px;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 10px;
+			.filter-items {
+				height: 50px;
+				width: 50px;
+				border-radius: 50%;
+				padding: 0;
+			}
+			&.filter-by-color {
+				.filter-items {
+					&.active,
+					&:hover {
+						outline: 1px solid var(--mainColor);
+					}
+				}
+			}
+		}
+	}
 }

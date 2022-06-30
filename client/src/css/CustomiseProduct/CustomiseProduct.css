@@ -1,0 +1,92 @@
+.customise-product {
+  margin-top: 20px;
+  background-color: var(--boxes-bg);
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: var(--boxShadow);
+}
+.customise-product .heading {
+  padding: 5px;
+  color: var(--second-text-color);
+  width: fit-content;
+  margin: 0 auto 20px;
+}
+.customise-product > div {
+  margin: 10px auto;
+}
+.customise-product .sizes,
+.customise-product .colors {
+  text-align: center;
+  margin-top: 20px;
+}
+.customise-product .sizes-content,
+.customise-product .colors-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.customise-product .sizes-content .size-item,
+.customise-product .colors-content .size-item {
+  border: var(--main-border);
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.customise-product .sizes-content .size-item.active,
+.customise-product .colors-content .size-item.active {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+  border: none;
+}
+.customise-product .sizes-content .color-item,
+.customise-product .colors-content .color-item {
+  width: 40px;
+  height: 40px;
+  border: var(--main-border);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.customise-product .sizes-content .color-item.active,
+.customise-product .colors-content .color-item.active {
+  outline: 2px solid var(--mainColor);
+}
+.customise-product .chosen-size-color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.customise-product .chosen-size-color div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--main-border);
+  padding: 5px 10px;
+}
+.customise-product .chosen-size-color div span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 40px;
+  width: 40px;
+}
+.customise-product .chosen-size-color div span.chosen-color {
+  border-radius: 50%;
+  margin-left: 5px;
+  border: var(--main-border);
+}
+.customise-product .submit {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 20px;
+}

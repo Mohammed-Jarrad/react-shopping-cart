@@ -1,50 +1,218 @@
+:root {
+    --main-layout-height: calc(100vh - 95px);
+}
+
+body {
+    background-color: var(--body-color);
+    font-size: 14px;
+    transition: .3s;
+    scroll-behavior: smooth;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'operator mono lig';
+    font-family: 'Roboto Mono', monospace;
 }
+
 
 /* Container Style */
 .container {
-    padding-right: 15px;
-    padding-left: 15px;
+    width: 90%;
     margin-right: auto;
     margin-left: auto;
-    width: 95%;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px
+    }
 }
 
 .layout {
-    height: 100vh;
-    display: grid;
-    grid-template-areas:
-        "header"
-        "main"
-        "footer";
-    grid-template-rows: 60px 1fr 60px;
+    min-height: 100vh;
 }
 
-main {
-    grid-row: 2;
+.layout .header-layout {
+    height: 55px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
 }
 
-main > .container {
-    grid-area: main;
-    display: grid;
-    grid-template-columns: auto 300px;
-    grid-gap: 20px;
-    margin-top: 20px;
+.layout .main-layout {
+    margin-top: 75px;
     margin-bottom: 20px;
+    min-height: var(--main-layout-height);
 }
 
-@media (max-width: 991px) {
-    main .container {
-        grid-template-columns: auto;
-    }
-    main .container .filter-wrapper {
-        grid-row: 1;
-    }
-    main .container .products-wrapper {
-        grid-row: 2;
-    }
+/* Login Msg */
+.login-msg {
+    color: var(--second-text-color);
+    text-align: center;
+    font-size: 20px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 300px;
+}
+
+.login-msg a {
+    color: var(--main-text-color);
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--second-color);
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* Final Price */
+.discount {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 17px;
+    color: var(--second-color) !important;
+}
+
+.discount .origin-price {
+    text-decoration: line-through;
+    border: none;
+    color: var(--text-color-light) !important;
+}
+
+.discount .discount-price {
+    margin-right: 5px;
+    color: var(--second-color) !important;
+}
+
+
+
+/* !Global Config */
+
+/* * buttons */
+button {
+    transform: .3s;
+    cursor: pointer;
+    position: relative;
+}
+
+button:active, svg:active, a:active {
+    transform: scale(0.98);
+}
+
+/* INputs */
+input, textarea {
+    caret-color: var(--second-color);
+    color: var(--second-text-color);
+}
+
+/* * Model Style */
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    margin-top: 20px;
+    transition: all .4s;
+    background-color: var(--boxes-bg);
+    padding: 20px;
+    border-radius: 10px;
+    overflow: auto;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+}
+
+.modal:focus {
+    outline: none;
+}
+
+.overlay-modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--model-overlay-bg);
+    z-index: 11111;
+    transition: all 0.5s ease-in-out;
+}
+
+.ReactModal__Content--after-open {
+    opacity: 1;
+}
+
+.ReactModal__Content--before-close {
+    opacity: 0;
+}
+
+
+/* END Model Style */
+
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--hover-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color: var(--mainColor);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    transition: all .3s;
+    background: #0a4660d8;
+}
+
+::-webkit-scrollbar-button:single-button {
+    background-color: var(--mainColor);
+    display: block;
+    background-size: 10px;
+    background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement,
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    height: 12px;
+    width: 16px;
+    background-position: center 4px;
+
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(96, 96, 96)'><polygon points='50,00 0,50 100,50'/></svg>");
+}
+
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(96, 96, 96)'><polygon points='0,0 100,0 50,50'/></svg>");
 }

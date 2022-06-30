@@ -1,0 +1,81 @@
+.update-product .container .products {
+  margin: 20px auto 0;
+  color: var(--second-text-color);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}
+.update-product .container .products .product-items {
+  background-color: var(--boxes-bg);
+  border-radius: 10px;
+  box-shadow: var(--boxShadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.update-product .container .products .product-items .item {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  flex: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.update-product .container .products .product-items .item .product-discount {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+  width: 150px;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  position: absolute;
+  top: 7px;
+  left: -53px;
+  transform: rotate(-45deg);
+  text-align: center;
+}
+.update-product .container .products .product-items .item img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--boxShadow);
+  cursor: pointer;
+}
+.update-product .container .products .product-items .item .title {
+  font-weight: bold;
+  font-size: 17px;
+}
+.update-product .container .products .product-items .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+.update-product .container .products .product-items .buttons button {
+  width: 50%;
+  border: none;
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+  padding: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: var(--main-light-bg);
+}
+.update-product .container .products .product-items .buttons .update svg {
+  color: green;
+}
+.update-product .container .products .product-items .buttons .remove svg {
+  color: var(--second-color);
+}

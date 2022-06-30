@@ -1,152 +1,103 @@
-import React, { useEffect, useState } from "react";
-import "../../css/Cart/Cart.css";
-import Checkout from "../CeckoutForm/Checkout";
-import Zoom from "react-reveal/Zoom";
-import Bounce from "react-reveal/Bounce";
-import CartModal from "./CartModal";
-// import { MdAddShoppingCart } from 'react-icons/md'
-import { BsCartPlus, BsCartDash, BsCartX, BsCart4 } from "react-icons/bs";
-import axios from "axios";
+import React, { useContext, useEffect, useState } from 'react';
+import '../../css/Cart/Cart.css';
+import Checkout from './Checkout';
+import { RiDeleteBin4Fill } from 'react-icons/ri';
+import { CartContext } from '../../Context/CartProvider';
+import { Link, useNavigate } from 'react-router-dom';
+import { Fade } from 'react-reveal';
+import { HomeContext } from '../../Context/HomeProvider';
 
-const Cart = ({ cart, setCart, showProduct, products }) => {
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
+const Cart = () => {
+	//context
+	const { cart, removeFromCart, minusQty, plusQty } = useContext(CartContext);
+	const { finalPrice } = useContext(HomeContext);
+	// states
+	const [showCheckout, setShowCheckout] = useState(false);
+	//
+	const navigate = useNavigate();
 
-    // MY STATE ==>
-    let [showForm, setShowForm] = useState(false);
-    let [order, setOrder] = useState(false);
-    let [value, setValue] = useState("");
-    let [isOpen, setIsOpen] = useState(false);
+	return (
+		<React.Fragment>
+			<div className="cart">
+				<div className="container">
+					{cart.length ? (
+						<React.Fragment>
+							<div className="heading">
+								<div>ITEM</div>
+								<div>PRICE</div>
+								<div>QUANTITY</div>
+								<div>REMOVE</div>
+							</div>
 
-    let handleSubmit = (e) => {
-        e.preventDefault();
-        let myOrder = {
-            user_name: value.name,
-            user_email: value.email,
-            order_info: cart.map((item) => {
-                return { title: item.title, quantity: item.qty };
-            }),
-        };
-        setOrder(myOrder);
-        axios.post("/order", myOrder);
-        setIsOpen(true);
-    };
+							<Fade cascade>
+								<div className="cart-items">
+									{cart.map((item, i) => (
+										<div className="cart-item" key={i}>
+											<div className="image">
+												<img
+													src={item.product.imageUrl}
+													alt="product figure"
+													onClick={() => navigate(`/product/${item.product._id}`)}
+												/>
+												<h3>{item.product.title}</h3>
+												<h5>
+													<span className="size">{item.size}</span>
+													{item.color ? <span className="color" style={{ background: item.color }} /> : null}
+												</h5>
+											</div>
 
-    let handleChange = (e) => {
-        setValue((PrevValue) => {
-            return { ...PrevValue, [e.target.name]: e.target.value };
-        });
-    };
+											<div className="price">
+												{/* <div>${item.price}</div> */}
+												{finalPrice(item.product)}
+											</div>
 
-    let closeModal = () => {
-        setOrder(false);
-        setIsOpen(false);
-        setShowForm(false);
-        setCart([]);
-    };
+											<div className="quantity">
+												<div className="quantity-options">
+													<span
+														className={`minus ${item.qty === 1 && 'hide'}`}
+														onClick={() => minusQty(item)}
+													>
+														-
+													</span>
+													{item.qty}
+													<span className="plus" onClick={() => plusQty(item)}>
+														+
+													</span>
+												</div>
+											</div>
 
-    let removeFromCart = (product) => {
-        let cartClone = [...cart];
-        setCart(cartClone.filter((p) => p._id !== product._id));
-    };
+											<div className="remove">
+												<span className="icon">
+													<RiDeleteBin4Fill
+														color="var(--second-color)"
+														onClick={() => removeFromCart(item)}
+													/>
+												</span>
+											</div>
+										</div>
+									))}
+								</div>
+							</Fade>
 
-    let minusQty = (product) => {
-        let cartClone = [...cart];
-        cartClone[cartClone.indexOf(product)].qty -= 1;
-        setCart(cartClone);
-    };
+							<div className="cart-footer">
+								<button className="checkout-order" onClick={() => setShowCheckout(!showCheckout)}>
+									CECKOUT ({`${cart.reduce((acc, item) => acc + item.product.price * item.qty, 0)}$`})
+								</button>
+							</div>
+						</React.Fragment>
+					) : (
+						<h2 className="cart-empty">
+							<div>Your Cart Is Empty!</div>
+							<Link to={'/all-products'}>Start Shopping</Link>
+							<img src={'/images/empty-cart.png'} alt="" />
+						</h2>
+					)}
+				</div>
+			</div>
 
-    let plusQty = (product) => {
-        let cartClone = [...cart];
-        cartClone[cartClone.indexOf(product)].qty += 1;
-        setCart(cartClone);
-    };
-
-    return (
-        <>
-            {products.length ? (
-                <div className="cart">
-                    <div className="container">
-                        <div className="cart-title">
-                            {cart.length} Products In <BsCart4 size="1.5em" />
-                        </div>
-                        <Bounce left cascade>
-                            <div className="cart-items">
-                                {cart.map((p) => {
-                                    return (
-                                        <div className="cart-item" key={p._id}>
-                                            <img
-                                                src={p.imageUrl}
-                                                alt={p.title}
-                                                onClick={() => showProduct(p)}
-                                            />
-                                            <div className="cart-info">
-                                                <div>
-                                                    <p>Title: {p.title}</p>
-                                                    <p>
-                                                        {" "}
-                                                        Quantity: <span>{p.qty}</span>
-                                                    </p>
-                                                    <p>Price: {p.price}$</p>
-                                                </div>
-                                                <div>
-                                                    <button onClick={() => removeFromCart(p)}>
-                                                        <BsCartX />
-                                                    </button>
-                                                    <button onClick={() => plusQty(p)}>
-                                                        <BsCartPlus />
-                                                    </button>
-                                                    <button
-                                                        onClick={(e) =>
-                                                            p.qty === 1 ? removeFromCart(p) : minusQty(p)
-                                                        }
-                                                    >
-                                                        <BsCartDash />
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </Bounce>
-                        {cart.length ? (
-                            <Zoom>
-                                <div className="cart-footer">
-                                    <div className="total">
-                                        Total : ${cart.reduce((acc, p) => acc + p.price * p.qty, 0)}
-                                    </div>
-                                    <button
-                                        className="select-products"
-                                        onClick={() => setShowForm(true)}
-                                    >
-                                        Select Product
-                                    </button>
-                                </div>
-                            </Zoom>
-                        ) : (
-                            false
-                        )}
-                    </div>
-                    <Checkout
-                        showForm={showForm}
-                        setShowForm={setShowForm}
-                        handleChange={handleChange}
-                        handleSubmit={handleSubmit}
-                    />
-                    <CartModal
-                        isOpen={isOpen}
-                        cart={cart}
-                        closeModal={closeModal}
-                        order={order}
-                    />
-                </div>
-            ) : (
-                false
-            )}
-        </>
-    );
+			<Checkout open={showCheckout} close={() => setShowCheckout(false)} />
+		</React.Fragment>
+	);
 };
 
 export default Cart;

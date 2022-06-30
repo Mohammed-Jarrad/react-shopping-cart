@@ -1,0 +1,57 @@
+.orders-filter {
+	border-radius: 10px;
+	background-color: var(--main-light-bg);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	margin: 0 auto 10px;
+	box-shadow: var(--boxShadow);
+	overflow: hidden;
+
+	.item {
+		padding: 10px;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&:not(:last-child) {
+			border-right: var(--main-border);
+		}
+		&:hover {
+			transition: 0.3s;
+			font-weight: bold;
+		}
+	}
+	.All {
+		&.active {
+			color: var(--second-text-color);
+		}
+	}
+	.Pending {
+		&.active {
+			color: rgb(212, 176, 57);
+		}
+	}
+	.Cancelled {
+		&.active {
+			color: rgb(172, 57, 57);
+		}
+	}
+	.Delivered {
+		&.active {
+			color: green;
+		}
+	}
+	.All,
+	.Cancelled,
+	.Pending,
+	.Delivered {
+		color: var(--second-text-color);
+		&.active {
+			transition: 0.3s;
+			font-weight: bold;
+			font-family: cursive;
+		}
+	}
+}

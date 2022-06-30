@@ -1,0 +1,39 @@
+.go-to-cart {
+  width: 35px;
+  height: 35px;
+  position: fixed;
+  top: 95px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--boxes-bg);
+  box-shadow: var(--boxShadowStrong);
+  color: var(--second-color);
+  cursor: pointer;
+}
+.go-to-cart svg {
+  font-size: 20px;
+}
+
+.go-top {
+  position: fixed;
+  bottom: 40px;
+  left: 10px;
+  z-index: 1111111;
+}
+.go-top svg {
+  font-size: 40px;
+  color: var(--second-color);
+  cursor: pointer;
+  animation: go-up-down 0.8s infinite ease-in;
+}
+
+@keyframes go-up-down {
+  from {
+    transform: translateY(-2px);
+  }
+  to {
+    transform: translateY(2px);
+  }
+}

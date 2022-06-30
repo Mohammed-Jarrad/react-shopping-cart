@@ -1,46 +1,29 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
-import '../../css/Products/Products.css'
-import Fade from 'react-reveal/Fade'
-import { MdAddShoppingCart } from 'react-icons/md'
-import Loading from '../Loading/Loading'
+import React, { useContext } from 'react';
+import '../../css/Products/Products.css';
+import Fade from 'react-reveal/Fade';
+import { HomeContext } from '../../Context/HomeProvider';
+import NoProducts from './NoProducts';
+import Product from './Product';
 
-const Products = ({ showProduct, addToCart, products, loading }) => {
+const Products = ({ products }) => {
+	// context
+	const { loading } = useContext(HomeContext).config;
 
-    return (
-        <React.Fragment>
+	return (
+		<React.Fragment>
+			<Fade cascade>
+				{[...products].length ? (
+					<div className="products-wrapper">
+						{[...products].map((product, i) => (
+							<Product key={i} product={product} />
+						))}
+					</div>
+				) : (
+					<>{!loading && <NoProducts />}</>
+				)}
+			</Fade>
+		</React.Fragment>
+	);
+};
 
-            {loading === true ? <Loading /> : false}
-
-            <Fade cascade>
-                {
-                    typeof products === 'object' && products.length ? (
-                        <div className='products-wrapper'>
-                            {products.map(product => (
-                                <div key={product._id} className='product-item'>
-                                    <a href={'#'} onClick={() => showProduct(product)} >
-                                        <img
-                                            src={product.imageUrl}
-                                            alt={product.title}
-                                        />
-                                    </a>
-                                    <div className='product-desc'>
-                                        <p>{product.title}</p>
-                                        <p><span>$</span> {product.price}</p>
-                                    </div>
-                                    <button onClick={() => addToCart(product)} >
-                                        Add to Cart<MdAddShoppingCart size='30px' />
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <h1> {products} </h1>
-                    )
-                }
-            </Fade>
-        </React.Fragment>
-    )
-}
-
-export default Products
+export default Products;

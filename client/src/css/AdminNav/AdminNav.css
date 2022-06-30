@@ -1,0 +1,54 @@
+.admin-nav {
+  height: calc(100vh - 55px);
+  background-color: var(--body-color);
+  border-right: 1px solid var(--second-color);
+  width: 280px;
+  position: fixed;
+  top: 55px;
+  left: 0;
+  z-index: 111;
+  transition: left 0.3s;
+}
+.admin-nav.hide {
+  left: -280px;
+}
+.admin-nav .admin-title {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+.admin-nav .admin-lists {
+  padding: 20px 10px;
+}
+.admin-nav .admin-lists > a {
+  display: block;
+  text-decoration: none;
+  background-color: var(--boxes-bg);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--second-color);
+}
+.admin-nav .admin-lists > a.active {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+}
+.admin-nav .side-btn {
+  background-color: var(--second-color);
+  color: var(--main-text-color);
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: -72px;
+  transform: rotate(-90deg) translateY(-50%);
+  height: 40px;
+  padding-right: 10px;
+  padding-left: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  cursor: pointer;
+}

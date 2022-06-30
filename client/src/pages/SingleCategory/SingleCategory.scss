@@ -1,0 +1,19 @@
+.single-category {
+	.container {
+		.title {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 20px;
+			svg {
+				color: var(--second-color);
+				font-size: 30px;
+			}
+			span {
+				color: var(--second-text-color);
+			}
+		}
+		.products {
+		}
+	}
+}
