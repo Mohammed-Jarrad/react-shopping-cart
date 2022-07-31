@@ -1,59 +1,71 @@
-import { Alert } from '@mui/material';
-import React, { useContext, useRef, useState } from 'react';
-import '../../css/CreateProduct/CreateProduct.css';
-import { PostRequest } from '../../utils/requests';
-import Loading from '../../components/Loading/Loading';
-import SuccessMsg from '../../components/SuccessMsg/SuccessMsg';
-import { AiFillCamera } from 'react-icons/ai';
-import CreateInput from './CreateInput';
-import ColorInput from './ColorInput';
-import SizesInput from './SizesInput';
-import { HomeContext } from '../../Context/HomeProvider';
+import { Alert } from "@mui/material";
+import React, { useContext, useRef, useState } from "react";
+import "../../css/CreateProduct/CreateProduct.css";
+import { PostRequest } from "../../utils/requests";
+import Loading from "../../components/Loading/Loading";
+import SuccessMsg from "../../components/SuccessMsg/SuccessMsg";
+import { AiFillCamera } from "react-icons/ai";
+import CreateInput from "./CreateInput";
+import ColorInput from "./ColorInput";
+import SizesInput from "./SizesInput";
+import { HomeContext } from "../../Context/HomeProvider";
 
 export const sizeOptions = [
-	{ label: 'XS', value: 'xs' },
-	{ label: 'S', value: 's' },
-	{ label: 'M', value: 'm' },
-	{ label: 'L', value: 'l' },
-	{ label: 'Xl', value: 'xl' },
-	{ label: 'XXL', value: 'xxl' },
-	{ label: '35', value: '35' },
-	{ label: '36', value: '36' },
-	{ label: '37', value: '37' },
-	{ label: '38', value: '38' },
-	{ label: '39', value: '39' },
-	{ label: '40', value: '40' },
-	{ label: '41', value: '41' },
-	{ label: '42', value: '42' },
-	{ label: '43', value: '43' },
-	{ label: '44', value: '44' },
-	{ label: '45', value: '45' },
-	{ label: '46', value: '46' },
+	{ label: "XS", value: "xs" },
+	{ label: "S", value: "s" },
+	{ label: "M", value: "m" },
+	{ label: "L", value: "l" },
+	{ label: "Xl", value: "xl" },
+	{ label: "XXL", value: "xxl" },
+	{ label: "35", value: "35" },
+	{ label: "36", value: "36" },
+	{ label: "37", value: "37" },
+	{ label: "38", value: "38" },
+	{ label: "39", value: "39" },
+	{ label: "40", value: "40" },
+	{ label: "41", value: "41" },
+	{ label: "42", value: "42" },
+	{ label: "43", value: "43" },
+	{ label: "44", value: "44" },
+	{ label: "45", value: "45" },
+	{ label: "46", value: "46" },
 ];
 
 export const inputsInfo = [
-	{ label: 'Title: ', labelFor: 'title', type: 'text', placeholder: 'Product Title', name: 'title' },
-	{ label: 'Price: ', labelFor: 'price', type: 'number', placeholder: 'Product Price', name: 'price' },
 	{
-		label: 'Discount: ',
-		labelFor: 'discount',
-		type: 'number',
-		placeholder: 'Product Discount % ',
-		name: 'discount',
+		label: "Title: ",
+		labelFor: "title",
+		type: "text",
+		placeholder: "Product Title",
+		name: "title",
 	},
 	{
-		label: 'Category: ',
-		labelFor: 'category',
-		type: 'text',
-		placeholder: 'Product Category',
-		name: 'category',
+		label: "Price: ",
+		labelFor: "price",
+		type: "number",
+		placeholder: "Product Price",
+		name: "price",
 	},
 	{
-		label: 'Description: ',
-		labelFor: 'desc',
-		type: 'text',
-		placeholder: 'Product Description',
-		name: 'desc',
+		label: "Discount: ",
+		labelFor: "discount",
+		type: "number",
+		placeholder: "Product Discount % ",
+		name: "discount",
+	},
+	{
+		label: "Category: ",
+		labelFor: "category",
+		type: "text",
+		placeholder: "Product Category",
+		name: "category",
+	},
+	{
+		label: "Description: ",
+		labelFor: "desc",
+		type: "text",
+		placeholder: "Product Description",
+		name: "desc",
 	},
 ];
 
@@ -61,9 +73,11 @@ const CreateProduct = () => {
 	// context
 	const { forceUpdate } = useContext(HomeContext);
 	// my state
-	const [imageProductUrl, setImageProductUrl] = useState('/images/product-default-image.jpg');
-	const [inputsValue, setInputsValue] = useState('');
-	const [productError, setProductError] = useState('');
+	const [imageProductUrl, setImageProductUrl] = useState(
+		"/images/product-default-image.jpg",
+	);
+	const [inputsValue, setInputsValue] = useState("");
+	const [productError, setProductError] = useState("");
 	const [alertCreateDone, setAlertCreateDone] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [sizes, setSizes] = useState([]);
@@ -81,15 +95,19 @@ const CreateProduct = () => {
 			fileReader.readAsDataURL(file);
 			fileReader.onloadend = () => {
 				setImageProductUrl(fileReader.result);
-				setProductError(prev => ({ ...prev, [e.target.name]: '' }));
+				setProductError(prev => ({ ...prev, [e.target.name]: "" }));
 			};
 			fileReader.onerror = e => console.log(e);
 		} else return;
 	}
+
 	// handle change inputs
 	const handleChangeInput = async e => {
-		setInputsValue(prev => ({ ...prev, [e.target.name]: e.target.value.trim() }));
-		setProductError(prev => ({ ...prev, [e.target.name]: '' }));
+		setInputsValue(prev => ({
+			...prev,
+			[e.target.name]: e.target.value.trim(),
+		}));
+		setProductError(prev => ({ ...prev, [e.target.name]: "" }));
 	};
 
 	// create product
@@ -97,18 +115,18 @@ const CreateProduct = () => {
 		e.preventDefault();
 		setLoading(true);
 		const product = {
-			title: inputsValue['title'],
+			title: inputsValue["title"],
 			imageUrl: imageProductUrl,
-			price: inputsValue['price'],
-			category: inputsValue['category'],
-			desc: inputsValue['desc'],
+			price: inputsValue["price"],
+			category: inputsValue["category"],
+			desc: inputsValue["desc"],
 			sizes: sizes,
 			colors: colors,
-			discount: inputsValue['discount'],
+			discount: inputsValue["discount"],
 		};
 		console.log(product);
 		try {
-			const res = await PostRequest('/product', JSON.stringify(product));
+			const res = await PostRequest("/product", JSON.stringify(product));
 			const data = await res.json();
 			if (data.product) {
 				setLoading(false);
@@ -128,7 +146,11 @@ const CreateProduct = () => {
 	return (
 		<React.Fragment>
 			<Loading open={loading} />
-			<SuccessMsg open={alertCreateDone} setOpen={setAlertCreateDone} msg={'Created Done !'} />
+			<SuccessMsg
+				open={alertCreateDone}
+				setOpen={setAlertCreateDone}
+				msg={"Created Done !"}
+			/>
 
 			<div className="create-product container">
 				<div className="col-1">
@@ -170,7 +192,10 @@ const CreateProduct = () => {
 					/>
 					<div className="img-error">
 						<img alt="Product Figure" src={imageProductUrl} />
-						<AiFillCamera className="camera" onClick={() => selectInputRef.current.click()} />
+						<AiFillCamera
+							className="camera"
+							onClick={() => selectInputRef.current.click()}
+						/>
 						{productError.imageUrl && (
 							<Alert severity="error" className="error">
 								{productError.imageUrl}
