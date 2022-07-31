@@ -1,10 +1,10 @@
-import React, { useContext, useRef } from 'react';
-import '../../css/Profile/Profile.css';
-import Loading from '../../components/Loading/Loading';
-import ChangePassword from './ChangePassword';
-import DeleteAccountModal from './DeleteAccountModal';
-import { UserContext } from '../../Context/UserProvider';
-import UserInfo from './UserInfo';
+import React, { useContext, useRef } from "react";
+import "../../css/Profile/Profile.css";
+import Loading from "../../components/Loading/Loading";
+import ChangePassword from "./ChangePassword";
+import DeleteAccountModal from "./DeleteAccountModal";
+import { UserContext } from "../../Context/UserProvider";
+import UserInfo from "./UserInfo";
 
 const Profile = () => {
 	//context
@@ -13,7 +13,6 @@ const Profile = () => {
 		getPathNewImage,
 		handleChangeInformation,
 		loading,
-		setLoading,
 		userImage,
 		showChangeInformation,
 		setShowChangeInformation,
@@ -45,9 +44,11 @@ const Profile = () => {
 											accept="images/*"
 											onChange={getPathNewImage}
 											ref={inputRef}
-											style={{ display: 'none' }}
+											style={{ display: "none" }}
 										/>
-										<button onClick={() => inputRef.current.click()}>Change Photo</button>
+										<button onClick={() => inputRef.current.click()}>
+											Change Photo
+										</button>
 									</>
 								) : null}
 							</div>
@@ -74,8 +75,12 @@ const Profile = () => {
 										Change Information
 									</button>
 								)}
-								<button onClick={() => setShowChangePassword(true)}>Change Password</button>
-								<button onClick={() => setOpenDeleteAccountModal(true)}>Delete Account</button>
+								<button onClick={() => setShowChangePassword(true)}>
+									Change Password
+								</button>
+								<button onClick={() => setOpenDeleteAccountModal(true)}>
+									Delete Account
+								</button>
 							</div>
 						</div>
 						{showChangePassword === false ? <UserInfo /> : <ChangePassword />}
