@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
-import { HomeContext } from '../../Context/HomeProvider';
-import { BiCategory } from 'react-icons/bi';
-import { MdCategory } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { HomeContext } from "../../Context/HomeProvider";
+import { BiCategory } from "react-icons/bi";
+import { MdCategory } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
 	// context

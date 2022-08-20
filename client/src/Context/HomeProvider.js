@@ -1,8 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { createContext, useContext, useLayoutEffect, useReducer, useState } from 'react';
-import mainMethods from '../utils/mainMethods';
-import { CartContext } from './CartProvider';
-import { OrdersContext } from './OrdersProvider';
+import React, {
+	createContext,
+	useContext,
+	useLayoutEffect,
+	useReducer,
+	useState,
+} from "react";
+import mainMethods from "../utils/mainMethods";
+import { CartContext } from "./CartProvider";
+import { OrdersContext } from "./OrdersProvider";
 
 export const HomeContext = createContext();
 
@@ -22,8 +28,8 @@ const HomeProvider = ({ children }) => {
 	const [sizes, setSizes] = useState([]);
 	const [colors, setColors] = useState([]);
 	const [alertProductDeleted, setAlertProductDeleted] = useState(false);
-	const [chosenSize, setChosenSize] = useState('');
-	const [chosenColor, setChosenColor] = useState('');
+	const [chosenSize, setChosenSize] = useState("");
+	const [chosenColor, setChosenColor] = useState("");
 	// Force Update
 	const [ignore, forceUpdate] = useReducer(x => x + 1, 0);
 	// config
@@ -68,13 +74,13 @@ const HomeProvider = ({ children }) => {
 
 	useLayoutEffect(() => {
 		get_products_categories_colors_sizes();
-		console.log(' from Home provider getting .... ');
+		console.log(" from Home provider getting .... ");
 	}, [ignore]);
 
 	// get colors and sizes and categories
 	const getCategoriesAndColorsAndSizes = products => {
 		let categories = [...products].map(p => p.category);
-		let CWD = categories.filter((c, i, arr) => arr.indexOf(c) === i);
+		let CWD = [...new Set(categories)];
 		setCategories(CWD);
 
 		let sizes = [];
@@ -84,10 +90,10 @@ const HomeProvider = ({ children }) => {
 			[...product.colors].forEach(color => colors.push(color));
 		});
 
-		const sizesWithoutDuplicate = sizes.filter((size, index, arr) => arr.indexOf(size) === index);
+		const sizesWithoutDuplicate = [...new Set(sizes)];
 		setSizes(sizesWithoutDuplicate);
 
-		const colorsWithoutDuplicate = colors.filter((color, index, arr) => arr.indexOf(color) === index);
+		const colorsWithoutDuplicate = [...new Set(colors)];
 		setColors(colorsWithoutDuplicate);
 	};
 	// find max element
@@ -96,13 +102,17 @@ const HomeProvider = ({ children }) => {
 		if (array.length === 0) return null;
 
 		return array.reduce((a, b, arr) => {
-			return arr.filter(e => e === a).length >= arr.filter(e => e === b).length ? a : b;
+			return arr.filter(e => e === a).length >= arr.filter(e => e === b).length
+				? a
+				: b;
 		}, null);
 	}
 
 	// discount price
 	const discountPrice = product => {
-		const disPrice = Math.floor(product.price - product.price * (product.discount / 100));
+		const disPrice = Math.floor(
+			product.price - product.price * (product.discount / 100),
+		);
 		return disPrice;
 	};
 
@@ -123,7 +133,9 @@ const HomeProvider = ({ children }) => {
 
 	// get Product Ratings
 	const getProductRatings = product => {
-		return [...product.reviews].length ? [...product.reviews].map(item => item.rating) : [];
+		return [...product.reviews].length
+			? [...product.reviews].map(item => item.rating)
+			: [];
 	};
 
 	// get average rating
@@ -133,15 +145,16 @@ const HomeProvider = ({ children }) => {
 			poor: { count: 0, value: 1 },
 			fair: { count: 0, value: 2 },
 			good: { count: 0, value: 3 },
-			'very good': { count: 0, value: 4 },
+			"very good": { count: 0, value: 4 },
 			excellent: { count: 0, value: 5 },
 		};
 		if (ratings.length === 0) {
-			return { value: 0, rate: '' };
+			return { value: 0, rate: "" };
 		} else {
 			ratings.forEach(rate => {
-				countMap[rate]['count']++;
+				countMap[rate]["count"]++;
 			});
+
 			const allCount = Object.keys(countMap).reduce((acc, item) => {
 				return acc + countMap[item].count * countMap[item].value;
 			}, 0);
@@ -150,7 +163,9 @@ const HomeProvider = ({ children }) => {
 
 			return {
 				value: averageRate,
-				rate: Object.keys(countMap).find(key => countMap[key].value === averageRate),
+				rate: Object.keys(countMap).find(
+					key => countMap[key].value === averageRate,
+				),
 			};
 		}
 	};
@@ -158,7 +173,8 @@ const HomeProvider = ({ children }) => {
 	// get top rating
 	const getTopRatingsProducts = products => {
 		let all = [...products];
-		const maxRating = Math.max(...all.map(p => getAverageRating(p).value));
+		const filterd_all = all.map(p => getAverageRating(p).value);
+		const maxRating = Math.max(...filterd_all);
 
 		let newArr = all.filter(
 			p =>
