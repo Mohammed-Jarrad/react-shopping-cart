@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import Filter from '../../components/Filter/Filter';
-import Products from '../../components/Products/Products';
-import '../../css/Home/Home.css';
-import SearchBox from '../../components/SearchBox/SearchBox';
-import { HomeContext } from '../../Context/HomeProvider';
-import Loading from '../../components/Loading/Loading';
+import React, { useContext } from "react";
+import Filter from "../../components/Filter/Filter";
+import Products from "../../components/Products/Products";
+import "../../css/Home/Home.css";
+import SearchBox from "../../components/SearchBox/SearchBox";
+import { HomeContext } from "../../Context/HomeProvider";
+import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
 	const { loading } = useContext(HomeContext).config;
